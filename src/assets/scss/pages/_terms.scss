@@ -1,0 +1,29 @@
+
+/*=============================================
+=            terms and conditions            =
+=============================================*/
+
+.term-conditions {
+  h6 {
+    margin-bottom: 15px;
+  }
+  ul,
+  ol {
+    padding-left: 15px;
+  }
+  ul {
+    list-style-type: circle;
+  }
+
+  p,
+  li {
+    font-size: 14px;
+    line-height: 28px;
+
+    margin-bottom: 15px;
+
+    color: $black--three;
+  }
+}
+
+/*=====  End of terms and conditions  ======*/

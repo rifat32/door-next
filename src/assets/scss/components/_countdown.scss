@@ -1,0 +1,144 @@
+
+/*=============================================
+=            countdown            =
+=============================================*/
+
+.countdown {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+
+  max-width: 100%;
+
+  text-align: right;
+  .single-countdown {
+    width: 40px;
+
+@include respond (extra-small-mobile) {
+      width: 30px;
+    }
+
+    &__time {
+      font-size: 22px;
+
+@include respond (large-mobile) {
+        font-size: 18px;
+      }
+
+@include respond (extra-small-mobile) {
+        font-size: 15px;
+      }
+    }
+
+    &__text {
+      font-size: 22px;
+
+      padding: 0 5px;
+
+@include respond (large-mobile) {
+        font-size: 18px;
+      }
+
+@include respond (extra-small-mobile) {
+        font-size: 15px;
+      }
+    }
+
+    &:last-child {
+      width: 35px;
+
+@include respond (extra-small-mobile) {
+        width: 25px;
+      }
+    }
+  }
+
+  svg {
+    font-size: 22px;
+
+    margin-right: 10px;
+
+    color: $theme-color--default;
+
+@include respond (large-mobile) {
+      font-size: 18px;
+    }
+
+@include respond (extra-small-mobile) {
+      font-size: 15px;
+    }
+  }
+}
+
+.countdown-two {
+  display: flex;
+  justify-content: space-between;
+
+  .single-countdown {
+    width: 22%;
+    padding: 15px;
+
+    text-align: center;
+
+    background-color: $white;
+    box-shadow: 0 0 5px rgba($black,0.03);
+
+@include respond(small-mobile) {
+      padding: 10px;
+    }
+
+    &:last-child {
+      margin-right: 0;
+    }
+    &__time {
+      font-size: 40px;
+
+      display: block;
+
+@include respond (small-mobile) {
+        font-size: 30px;
+      }
+
+@include respond (extra-small-mobile) {
+        font-size: 20px;
+      }
+    }
+    &__text {
+      color: $black--three;
+
+@include respond (extra-small-mobile) {
+        font-size: 12px;
+      }
+    }
+  }
+
+  &--style-two {
+    .single-countdown {
+      flex-basis: 25%;
+
+      margin-right: 4px;
+      padding: 10px;
+
+      background-color: $grey--eighteen;
+
+      &:last-child {
+        margin-right: 0;
+      }
+
+      &__time {
+        font-family: $roboto;
+        font-size: 24px;
+      }
+      &__text {
+        font-family: $roboto;
+        font-size: 13px;
+
+@include respond (extra-small-mobile) {
+          font-size: 12px;
+        }
+      }
+    }
+  }
+}
+/*=====  End of countdown  ======*/
+

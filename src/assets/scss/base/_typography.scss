@@ -1,0 +1,54 @@
+/*=============================================
+=            typography            =
+=============================================*/
+
+body,
+html {
+  font-family: $poppins;
+  font-size: 16px;
+  font-weight: 400;
+
+  color: $black;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: $roboto;
+  font-weight: 500;
+  line-height: normal;
+
+  color: $black--two;
+}
+
+a {
+  text-decoration: none;
+
+  color: $black--two;
+}
+
+a:hover {
+  text-decoration: none;
+
+  color: $theme-color--default;
+}
+
+a:focus {
+  text-decoration: none;
+
+  color: inherit;
+}
+
+p {
+  line-height: 1.75;
+
+  margin-bottom: 25px;
+
+  color: $black--three;
+}
+
+
+/*=====  End of typography  ======*/

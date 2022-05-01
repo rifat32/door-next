@@ -1,0 +1,110 @@
+
+/*=============================================
+=            team            =
+=============================================*/
+
+.team-box {
+  position: relative;
+
+  overflow: hidden;
+
+  margin-bottom: 30px;
+  &__image {
+    position: relative;
+    img {
+      width: 100%;
+    }
+
+    &:before {
+      position: absolute;
+      z-index: 1;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+
+      content: "";
+      transition: all 0.5s ease-in-out;
+
+      opacity: 0;
+      background-color: rgba(0, 0, 0, 0.5);
+    }
+  }
+
+  &__content {
+    padding-top: 15px;
+    .title {
+      h5 {
+        font-weight: 600;
+      }
+      span {
+        display: block;
+
+        color: $black--three;
+      }
+    }
+  }
+
+  &__social-icons {
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    left: 50%;
+
+    display: flex;
+
+    transition: all 0.5s ease-in-out;
+    transform: translate(-50%, -50%);
+    text-align: center;
+
+    opacity: 0;
+
+    li {
+      margin-right: 10px;
+      &:last-child {
+        margin-right: 0;
+      }
+
+      a {
+        font-size: 18px;
+        line-height: 36px;
+
+        display: inline-block;
+        overflow: hidden;
+
+        width: 36px;
+        height: 36px;
+
+        text-align: center;
+        vertical-align: middle;
+
+        color: $theme-color--default;
+        background-color: $white;
+
+        &:hover {
+          color: $white;
+          background-color: $theme-color--default;
+        }
+      }
+    }
+  }
+
+  &:hover {
+    .team-box {
+      &__image {
+        &:before {
+          opacity: 1;
+        }
+      }
+
+      &__social-icons {
+        top: 50%;
+
+        opacity: 1;
+      }
+    }
+  }
+}
+
+/*=====  End of team  ======*/
+

@@ -1,0 +1,80 @@
+
+/*=============================================
+=            image slider            =
+=============================================*/
+
+.follow-box {
+  position: absolute;
+  z-index: 9;
+  top: 50%;
+  right: 0;
+  left: 0;
+
+  width: 400px;
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 25px;
+
+  transform: translateY(-50%);
+  text-align: center;
+
+  border-radius: 80px;
+  background-color: rgba($white,01);
+
+@include respond (extra-small-mobile) {
+    width: 300px;
+  }
+
+  svg {
+    font-size: 80px;
+
+    position: absolute;
+    z-index: -1;
+    top: 50%;
+    right: 0;
+    left: 50%;
+
+    transform: translate(-50%, -50%);
+
+    opacity: 0.1;
+  }
+}
+
+.instafeed-box {
+  overflow: hidden;
+  a {
+    display: block;
+    img {
+      width: 100%;
+
+      transition: all 0.5s ease-in-out;
+    }
+    &:before {
+      position: absolute;
+      z-index: 1;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+
+      display: block;
+
+      content: "";
+      transition: all 0.5s ease-in-out;
+
+      opacity: 0;
+      background-color: rgba($black,0.4);
+    }
+    &:hover {
+      &:before {
+        opacity: 1;
+      }
+      img {
+        transform: scale(1.1);
+      }
+    }
+  }
+}
+
+/*=====  End of image slider  ======*/
+

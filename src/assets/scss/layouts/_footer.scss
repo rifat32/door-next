@@ -1,0 +1,464 @@
+
+/*=============================================
+=            footer            =
+=============================================*/
+
+footer {
+  overflow: hidden;
+  p {
+    font-size: 14px;
+  }
+  .widget {
+    margin-bottom: 30px;
+  }
+
+  .widget-title {
+    font-size: 18px;
+    font-weight: 600;
+
+    margin-top: 10px;
+    margin-bottom: 25px;
+
+    text-transform: capitalize;
+  }
+}
+.footer-dark {
+  position: relative;
+
+  background-color: $black--five;
+}
+.footer-top {
+  padding: 100px 0 70px;
+
+@include respond(extra-large-mobile) {
+    padding: 80px 0 50px;
+  }
+
+@include respond(large-mobile) {
+    padding: 60px 0 30px;
+  }
+
+  &--style-two {
+    padding: 60px 0 30px;
+  }
+}
+.footer-logo {
+  margin-bottom: 20px;
+}
+
+.widget-links li {
+  padding-bottom: 10px;
+
+  list-style: none;
+
+  &:last-child {
+    padding-bottom: 0;
+  }
+
+  a {
+    font-size: 14px;
+
+    color: $black--three;
+  }
+}
+
+.contact-info {
+  & > li {
+    margin-bottom: 15px;
+
+    list-style: none;
+    a {
+      color: $black--three;
+      &:hover {
+        color: $theme-color--default;
+      }
+    }
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+    svg {
+      font-size: 18px;
+
+      display: inline-block;
+
+      margin-top: 4px;
+      margin-right: 10px;
+
+      vertical-align: top;
+
+      color: $black--three;
+
+      & + * {
+        font-size: 14px;
+        line-height: 26px;
+
+        display: inline-block;
+        overflow: hidden;
+
+        max-width: 78%;
+        margin: 0;
+
+        vertical-align: middle;
+      }
+    }
+
+    span {
+      float: left;
+
+      width: 100%;
+      max-width: 70px;
+      margin-right: 10px;
+
+      color: $black--two;
+      & + * {
+        font-size: 14px;
+        line-height: 26px;
+
+        overflow: hidden;
+
+        margin: 0;
+
+        color: $black--three;
+      }
+    }
+  }
+}
+
+.contact-info-light {
+  li {
+    svg {
+      color: $white;
+      border-color: $white;
+    }
+
+    span,
+    a {
+      color: $white;
+    }
+  }
+}
+
+.contact-info-style2 {
+  svg + * {
+    font-size: 18px;
+  }
+  li {
+    svg {
+      font-size: 22px;
+
+      margin-top: 2px;
+      margin-right: 8px;
+
+      color: $theme-color--default;
+    }
+  }
+} 
+
+.bottom-footer {
+  position: relative;
+
+  padding: 30px 0;
+}
+
+.footer-link {
+  li {
+    position: relative;
+
+    display: inline-block;
+    a {
+      font-size: 14px;
+
+      padding: 0 5px;
+
+      color: $black--three;
+    }
+  }
+}
+
+.footer-dark h1,
+.footer-dark h2,
+.footer-dark h3,
+.footer-dark h4,
+.footer-dark h5,
+.footer-dark h6,
+.footer-dark p,
+.footer-dark a,
+.footer-dark .widget-links li a,
+.footer-dark .footer-link li a,
+.footer-dark .post-content a {
+  color: $white;
+}
+.footer-dark a:hover,
+.footer-dark .widget-links li a:hover,
+.widget-links li a:hover,
+.footer-dark .footer-link li a:hover,
+.footer-link li a:hover {
+  color: $theme-color--default;
+}
+.widget-contact-form {
+  margin-top: -190px;
+  padding: 20px 30px 30px;
+
+  background-color: $white;
+  box-shadow: 0 0 10px rgba($black ,0.1);
+}
+.bottom-footer {
+  .social-icons {
+    li {
+      padding-bottom: 0;
+    }
+  }
+}
+
+.footer-payment,
+.app-list {
+  li {
+    display: inline-block;
+
+    list-style: none;
+  }
+}
+.footer-payment {
+  li {
+    margin-left: 5px;
+  }
+}
+.footer-call {
+  padding: 15px;
+
+  text-align: center;
+
+  border-radius: 40px;
+  background-color: rgba($black ,0.2);
+  * {
+    font-size: 22px;
+
+    margin: 0;
+  }
+
+  svg {
+    margin-right: 10px;
+  }
+}
+
+.social-icons {
+  li {
+    display: inline-block;
+
+    margin-right: 25px;
+    &:last-child {
+      margin-right: 0;
+    }
+
+    svg {
+      font-size: 20px;
+    }
+  }
+}
+
+.scroll-top {
+  font-size: 24px;
+  line-height: 40px;
+
+  position: fixed;
+  z-index: 99;
+  right: 20px;
+  bottom: 20px;
+
+  visibility: hidden;
+
+  width: 40px;
+  height: 40px;
+  padding: 0;
+
+  text-align: center;
+
+  opacity: 0;
+  color: $white;
+  border: none;
+  background-color: $black--seven;
+
+  svg {
+    line-height: 40px;
+  }
+
+  &:hover {
+    color: $white;
+    background-color: $theme-color--default;
+  }
+  &:focus {
+    color: $white;
+  }
+
+  &.show {
+    visibility: visible;
+
+    opacity: 1;
+  }
+}
+
+.widget-instafeed {
+  display: table;
+
+  margin: -2px;
+  &--col4 {
+    li {
+      width: 25%;
+    }
+  }
+  li {
+    position: relative;
+
+    float: left;
+
+    padding: 2px;
+
+    list-style: none;
+    a {
+      position: relative;
+
+      display: block;
+      overflow: hidden;
+      &:before {
+        position: absolute;
+        z-index: 1;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+
+        content: "";
+        transition: all 0.5s ease-in-out;
+
+        opacity: 0;
+        background-color: rgba($black, 0.8);
+      }
+    }
+    &:hover {
+      a {
+        &:before {
+          opacity: 1;
+        }
+      }
+      .insta-icon {
+        opacity: 1;
+      }
+    }
+  }
+
+  img {
+    width: 100%;
+  }
+}
+
+.insta-icon {
+  font-size: 20px;
+
+  position: absolute;
+  z-index: 2;
+  top: 50%;
+  right: 0;
+  left: 0;
+
+  transition: all 0.5s ease-in-out;
+  transform: translateY(-50%);
+  text-align: center;
+
+  opacity: 0;
+  color: $white;
+}
+
+.shopping-info {
+  border-top: 1px solid $grey--two;
+  border-bottom: 1px solid $grey--two;
+}
+
+
+.footer-bottom {
+  p {
+    a {
+      color: $black--three;
+      &:hover {
+        color: $theme-color--default;
+      }
+    }
+  }
+  .social-icons {
+    li {
+      margin-right: 0;
+      padding-right: 5px;
+      a {
+        font-size: 18px;
+        line-height: 36px;
+
+        display: inline-block;
+        overflow: hidden;
+
+        width: 36px;
+        height: 36px;
+
+        text-align: center;
+        vertical-align: middle;
+
+        color: $white;
+      }
+    }
+  }
+}
+
+.widget {
+  .social-icons {
+    li {
+      margin-right: 0;
+      padding-right: 5px;
+      a {
+        font-size: 18px;
+        line-height: 36px;
+
+        display: inline-block;
+        overflow: hidden;
+
+        width: 36px;
+        height: 36px;
+
+        text-align: center;
+        vertical-align: middle;
+
+        color: $white;
+        border-radius: 50%;
+      }
+    }
+    &--style-two {
+      li {
+        a {
+          border-radius: 0;
+        }
+      }
+    }
+  }
+}
+
+.footer-text {
+  h3 {
+    font-weight: 700;
+  }
+  p {
+    line-height: 2;
+
+    margin-bottom: 20px;
+  }
+}
+
+.app-list {
+  display: flex;
+  li {
+    margin-right: 5px;
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+}
+
+/*=====  End of footer  ======*/
+

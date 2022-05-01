@@ -1,0 +1,58 @@
+/* third party styles */
+@import "~bootstrap/scss/bootstrap";
+@import "~animate.css/animate.min.css";
+@import "~swiper/css/swiper.css";
+@import "~simple-line-icons/scss/simple-line-icons.scss";
+@import "~lightgallery.js/dist/css/lightgallery.css";
+@import "~react-slidedown/lib/slidedown.css";
+@import "../css/flaticon.css";
+
+/* project styles */
+@import "abstracts/variables";
+@import "abstracts/mixins";
+
+@import "base/animations";
+@import "base/base";
+@import "base/typography";
+@import "base/utilities";
+@import "base/reset";
+
+@import "components/button";
+@import "components/newsletter";
+@import "components/icon-box";
+@import "components/testimonial";
+@import "components/banner";
+@import "components/hero-slider";
+@import "components/section-title";
+@import "components/product-thumb";
+@import "components/product-slider";
+@import "components/product-modal";
+@import "components/product-tab";
+@import "components/breadcrumb";
+@import "components/product-image-gallery";
+@import "components/product-description";
+@import "components/empty-area";
+@import "components/team";
+@import "components/pagination";
+@import "components/brand-logo";
+@import "components/countdown";
+@import "components/image-slider";
+@import "components/category";
+
+@import "layouts/footer";
+@import "layouts/grid";
+@import "layouts/header";
+@import "layouts/sidebar";
+
+@import "pages/cart";
+@import "pages/compare";
+@import "pages/checkout";
+@import "pages/order-complete";
+@import "pages/my-account";
+@import "pages/login-register";
+@import "pages/terms";
+@import "pages/not-found";
+@import "pages/faq";
+@import "pages/contact";
+@import "pages/blog";
+@import "pages/shop";

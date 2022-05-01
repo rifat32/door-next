@@ -1,0 +1,58 @@
+
+/*=============================================
+=            faq            =
+=============================================*/
+
+.single-faq {
+  margin-bottom: 20px;
+
+  border: 0;
+  border-radius: 0;
+  &:last-child {
+    margin-bottom: 0;
+  }
+  .card-header {
+    margin-bottom: 0 !important;
+    padding: 0;
+
+    background-color: transparent;
+    button {
+      width: 100%;
+      padding: 0 40px 15px 0;
+
+      text-align: left;
+
+      border: none;
+      background: none;
+      h3 {
+        font-size: 16px;
+        font-weight: 600;
+
+        position: relative;
+
+        margin-bottom: 0;
+
+        transition: $transition--default;
+        svg {
+          position: absolute;
+          top: 50%;
+          right: -30px;
+
+          transform: translateY(-50%);
+        }
+      }
+      &:hover {
+        h3 {
+          color: $theme-color--default;
+        }
+      }
+    }
+  }
+
+  .card-body {
+    padding-left: 0;
+  }
+}
+
+/*=====  End of faq  ======*/
+

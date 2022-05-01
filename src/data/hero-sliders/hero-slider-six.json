@@ -1,0 +1,23 @@
+[
+  {
+    "id": "1",
+    "backgroundImage": "/assets/images/hero-slider/six/1.jpg",
+    "subtitle": "Get up to 50% Off Today",
+    "title": "LED 75 INCH F58",
+    "url": "/shop/grid-left-sidebar"
+  },
+  {
+    "id": "2",
+    "backgroundImage": "/assets/images/hero-slider/six/2.jpg",
+    "subtitle": "40% Off in All Products",
+    "title": "Smart Phones",
+    "url": "/shop/grid-left-sidebar"
+  },
+  {
+    "id": "3",
+    "backgroundImage": "/assets/images/hero-slider/six/3.jpg",
+    "subtitle": "Taking your Listening Experience to Next Level",
+    "title": "Jeat Headphone",
+    "url": "/shop/grid-left-sidebar"
+  }
+]

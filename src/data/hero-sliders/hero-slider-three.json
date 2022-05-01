@@ -1,0 +1,26 @@
+[
+  {
+    "id": "1",
+    "backgroundImage": "/assets/images/hero-slider/three/1.jpg",
+    "subtitle": "New Trending",
+    "title": "Sofa Collection",
+    "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus blandit massa enim.",
+    "url": "/shop/grid-left-sidebar"
+  },
+  {
+    "id": "2",
+    "backgroundImage": "/assets/images/hero-slider/three/2.jpg",
+    "subtitle": "Get up to 50% off Today Only!",
+    "title": "Wooden  Chair Collection",
+    "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus blandit massa enim.",
+    "url": "/shop/grid-left-sidebar"
+  },
+  {
+    "id": "3",
+    "backgroundImage": "/assets/images/hero-slider/three/3.jpg",
+    "subtitle": "Taking your Viewing Experience to Next Level",
+    "title": "Living Room Collection",
+    "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus blandit massa enim.",
+    "url": "/shop/grid-left-sidebar"
+  }
+]

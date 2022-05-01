@@ -1,0 +1,19 @@
+
+/*=============================================
+=            reset            =
+=============================================*/
+
+.form-control {
+  &:focus {
+    border-color: inherit !important;
+    box-shadow: none !important;
+  }
+}
+
+.react-toast-notifications {
+  &__container {
+    z-index: 1100 !important;
+  }
+}
+
+/*=====  End of reset  ======*/

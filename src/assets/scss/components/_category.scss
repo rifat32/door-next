@@ -1,0 +1,122 @@
+
+/*=============================================
+=            category            =
+=============================================*/
+
+.category-overlap {
+  position: relative;
+  z-index: 1;
+
+  margin-top: -70px;
+  padding: 30px;
+
+  border-radius: 5px;
+  background-color: $white;
+  box-shadow: 0 0 10px rgba($black,0.2);
+
+  .slider-nav-wrapper {
+    .ht-swiper-button-nav {
+      font-size: 25px;
+      line-height: 40px;
+
+      position: absolute;
+      z-index: 9;
+
+      width: 40px;
+      height: 40px;
+      padding: 0;
+
+      opacity: 0;
+      color: $black--six;
+      border: none;
+      border-radius: 4px;
+      background: none;
+      background-color: $white;
+      box-shadow: 0 0 10px rgba($black,0.1);
+
+      &:hover {
+        background-color: $theme-color--default;
+        i {
+          color: $white;
+        }
+      }
+
+      i {
+        font-size: 17px;
+
+        color: $black--six;
+      }
+
+      &.swiper-button-prev {
+        left: 0;
+
+        &:after {
+          display: none;
+        }
+      }
+
+      &.swiper-button-next {
+        right: 0;
+
+        &:after {
+          display: none;
+        }
+      }
+    }
+  }
+
+  &:hover {
+    .ht-swiper-button-nav {
+      opacity: 1;
+      &.swiper-button-prev {
+        left: 35px;
+      }
+      &.swiper-button-next {
+        right: 35px;
+      }
+    }
+  }
+}
+
+.categories-box {
+  text-align: center;
+  a {
+    display: block;
+
+    padding: 35px 20px;
+
+    background-color: $grey--five;
+
+@include respond (extra-small-mobile) {
+      padding: 20px 10px;
+    }
+  }
+  i {
+    font-size: 40px;
+
+    display: block;
+  }
+  span {
+    display: block;
+
+    margin-top: 5px;
+
+    text-transform: capitalize;
+
+@include respond (extra-small-mobile) {
+      font-size: 14px;
+    }
+  }
+
+  &--style-two {
+    a {
+      padding: 0;
+
+      background-color: transparent;
+    }
+  }
+}
+
+
+/*=====  End of category  ======*/
+

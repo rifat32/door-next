@@ -1,0 +1,100 @@
+
+/*=============================================
+=            contact            =
+=============================================*/
+
+.contact-wrap {
+  margin-bottom: 30px;
+  padding: 40px 20px;
+
+  text-align: center;
+
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba($black, 0.1);
+  &__icon {
+    line-height: 78px;
+
+    position: relative;
+    z-index: 1;
+
+    display: inline-block;
+    overflow: hidden;
+
+    width: 80px;
+    height: 80px;
+    margin: 0 0 5px;
+
+    text-align: center;
+
+    border: 1px solid $theme-color--default;
+    border-radius: 100%;
+
+    &:before {
+      position: absolute;
+      z-index: -1;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+
+      content: "";
+      transition: all 0.5s ease-in-out;
+      transform: scale(0);
+
+      border-radius: 100%;
+      background-color: $theme-color--default;
+    }
+
+    svg {
+      font-size: 34px;
+
+      transition: all 0.5s ease-in-out;
+
+      color: $theme-color--default;
+    }
+  }
+
+  &__text {
+    span {
+      font-weight: 600;
+
+      display: block;
+
+      margin-bottom: 3px;
+
+      color: $black--four;
+    }
+    a {
+      color: $black--three;
+      &:hover {
+        color: $theme-color--default;
+      }
+    }
+  }
+
+  &:hover {
+    .contact-wrap__icon {
+      svg {
+        color: $white;
+      }
+      &:before {
+        transform: scale(1);
+      }
+    }
+  }
+}
+
+.google-map {
+  iframe {
+    width: 100%;
+    height: 500px;
+
+    border: 0;
+
+@include respond(large-mobile) {
+      height: 300px;
+    }
+  }
+}
+/*=====  End of contact  ======*/
+

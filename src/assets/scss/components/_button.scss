@@ -1,0 +1,396 @@
+
+/*=============================================
+=            button            =
+=============================================*/
+
+.btn:focus,
+.btn:hover,
+.btn.active {
+  outline: medium none;
+  box-shadow: none;
+}
+button:focus {
+  outline: none;
+}
+.border-2 {
+  border-width: 2px !important;
+}
+.btn {
+  line-height: normal;
+
+  padding: 12px 35px;
+
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  text-transform: capitalize;
+
+  border-width: 1px;
+}
+.btn.active:focus,
+.btn:active:focus {
+  box-shadow: none !important;
+}
+.btn-fill-out {
+  position: relative;
+  z-index: 1;
+
+  overflow: hidden;
+
+  color: $white;
+  border: 1px solid $theme-color--default;
+  background-color: transparent;
+}
+.btn-fill-out::before,
+.btn-fill-out::after {
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  bottom: 0;
+  left: 0;
+
+  width: 51%;
+
+  content: "";
+  transition: all 0.3s ease-in-out;
+
+  background-color: $theme-color--default;
+}
+.btn-fill-out::after {
+  right: 0;
+  left: auto;
+}
+.btn-fill-out:hover:before,
+.btn-fill-out:hover:after {
+  width: 0;
+}
+.btn-fill-out:hover {
+  color: $theme-color--default !important;
+}
+.btn-fill-line {
+  position: relative;
+  z-index: 1;
+
+  overflow: hidden;
+
+  transition: all 0.8s ease 0s;
+
+  color: $white !important;
+  border: 1px solid $black--four;
+  background-color: transparent;
+}
+.btn-fill-line:before,
+.btn-fill-line:after {
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  bottom: 0;
+  left: 0;
+
+  width: 50%;
+
+  content: "";
+  transition: all 0.3s ease-in-out;
+
+  background-color: $black--four;
+}
+.btn-fill-line::after {
+  right: 0;
+  left: auto;
+}
+.btn-fill-line:hover:before,
+.btn-fill-line:hover:after {
+  width: 0;
+}
+.btn-fill-line:hover {
+  color: $black--four !important;
+}
+.btn-border-fill {
+  position: relative;
+  z-index: 1;
+
+  overflow: hidden;
+
+  color: $theme-color--default;
+  border: 1px solid $theme-color--default;
+}
+.btn-border-fill::before,
+.btn-border-fill::after {
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  bottom: 0;
+  left: 0;
+
+  width: 0;
+
+  content: "";
+  transition: all 0.3s ease-in-out;
+
+  background-color: $theme-color--default;
+}
+.btn-border-fill::after {
+  right: 0;
+  left: auto;
+}
+.btn-border-fill:hover:before,
+.btn-border-fill:hover:after {
+  width: 50%;
+}
+.btn-border-fill:hover {
+  color: $white !important;
+}
+.btn-white {
+  position: relative;
+  z-index: 1;
+
+  overflow: hidden;
+
+  color: $black--two !important;
+  border: 1px solid $white;
+  background-color: transparent;
+}
+.btn-white::before,
+.btn-white::after {
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  bottom: 0;
+  left: 0;
+
+  width: calc( 50% + 1px);
+
+  content: "";
+  transition: all 0.5s ease-in-out;
+
+  background-color: $white;
+}
+.btn-white::after {
+  right: 0;
+  left: auto;
+}
+.btn-white:hover:before,
+.btn-white:hover:after {
+  width: 0;
+}
+.btn-white:hover {
+  color: $white !important;
+}
+.btn-fill-out-dark {
+  position: relative;
+  z-index: 1;
+
+  overflow: hidden;
+
+  color: $white !important;
+  border: 1px solid $black--four;
+  background-color: transparent;
+}
+.btn-fill-out-dark:hover {
+  color: $black--four !important;
+}
+.btn-fill-out-dark::before {
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  left: 0;
+
+  display: block;
+
+  width: 100%;
+  height: 100%;
+
+  content: "";
+  transition: all 0.4s cubic-bezier(0.42, 0, 0.58, 1);
+
+  background-color: $black--four;
+}
+.btn-line-fill {
+  position: relative;
+  z-index: 1;
+
+  overflow: hidden;
+
+  transition: all 0.8s ease 0s;
+
+  color: $black--four !important;
+  border: 1px solid $black--four;
+}
+.btn-line-fill:hover {
+  color: $white !important;
+}
+@keyframes criss-cross-left {
+  0% {
+    left: -20px;
+  }
+  50% {
+    left: 50%;
+
+    width: 20px;
+    height: 20px;
+  }
+  100% {
+    left: 50%;
+
+    width: 450px;
+    height: 450px;
+  }
+}
+@keyframes criss-cross-right {
+  0% {
+    right: -20px;
+  }
+  50% {
+    right: 50%;
+
+    width: 20px;
+    height: 20px;
+  }
+  100% {
+    right: 50%;
+
+    width: 450px;
+    height: 450px;
+  }
+}
+.btn-line-fill:before,
+.btn-line-fill:after {
+  position: absolute;
+  z-index: -1;
+  top: 50%;
+
+  width: 20px;
+  height: 20px;
+
+  content: "";
+
+  border-radius: 50%;
+  background-color: $black--four;
+}
+.btn-line-fill:before {
+  left: -20px;
+
+  transform: translate(-50%, -50%);
+}
+.btn-line-fill:after {
+  right: -20px;
+
+  transform: translate(50%, -50%);
+}
+.btn-line-fill:hover:before {
+  animation: criss-cross-left 0.7s both;
+  animation-direction: alternate;
+}
+.btn-line-fill:hover:after {
+  animation: criss-cross-right 0.7s both;
+  animation-direction: alternate;
+}
+.btn-line-white {
+  color: $white !important;
+  border: 1px solid $white;
+}
+.btn-line-white:hover {
+  color: $black--four !important;
+}
+.btn-line-fill.btn-line-white:before,
+.btn-line-fill.btn-line-white:after {
+  background-color: $white;
+}
+.btn-tran-light {
+  color: $white;
+  background-color: rgba($black ,0.2);
+}
+.btn-tran-light:hover {
+  background-color: $white;
+}
+.btn-radius {
+  border-radius: 40px;
+}
+.btn + .btn {
+  margin-left: 10px;
+}
+.btn i {
+  font-size: 16px;
+  line-height: 1;
+
+  margin-right: 5px;
+
+  vertical-align: middle;
+}
+.btn span {
+  vertical-align: middle;
+}
+.btn-group-sm > .btn,
+.btn-sm {
+  padding: 8px 25px;
+}
+.btn-group-lg > .btn,
+.btn-lg {
+  padding: 16px 45px;
+}
+.btn-xs {
+  font-size: 12px;
+
+  padding: 4px 20px;
+}
+.btn-md {
+  font-size: 16px;
+
+  padding: 12px 35px;
+}
+.btn.btn-xs i {
+  font-size: 10px;
+}
+.btn.btn-sm i {
+  font-size: 12px;
+}
+.btn.btn-lg i {
+  font-size: 22px;
+}	
+.btn-ripple {
+  padding-right: 0 !important;
+
+  border: 0;
+}
+.btn-link {
+  position: relative;
+  z-index: 2;
+
+  text-decoration: none;
+}
+.btn-link:hover {
+  text-decoration: none;
+}
+.btn-link::before {
+  position: absolute;
+  z-index: -1;
+  right: 0;
+  bottom: 0;
+  left: 0;
+
+  height: 1px;
+
+  content: "";
+
+  background-color: $theme-color--default;
+}
+
+.btn-default {
+  color: $white;
+  background-color: $theme-color--default;
+}
+
+.search-btn-two {
+  position: absolute;
+  z-index: 9;
+  top: 0;
+  right: 0;
+  bottom: 0;
+
+  padding: 10px 30px;
+
+  color: $white;
+  border: 0;
+  background-color: $theme-color--default;
+}
+/*=====  End of button  ======*/
+

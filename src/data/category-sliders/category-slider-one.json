@@ -1,0 +1,38 @@
+[
+  {
+    "id": "1",
+    "iconClass": "flaticon-bed",
+    "title": "Bedroom",
+    "url": "/shop/grid-left-sidebar"
+  },
+  {
+    "id": "2",
+    "iconClass": "flaticon-table",
+    "title": "Dining Table",
+    "url": "/shop/grid-left-sidebar"
+  },
+  {
+    "id": "3",
+    "iconClass": "flaticon-sofa",
+    "title": "Sofa",
+    "url": "/shop/grid-left-sidebar"
+  },
+  {
+    "id": "4",
+    "iconClass": "flaticon-armchair",
+    "title": "Armchair",
+    "url": "/shop/grid-left-sidebar"
+  },
+  {
+    "id": "5",
+    "iconClass": "flaticon-chair",
+    "title": "Chair",
+    "url": "/shop/grid-left-sidebar"
+  },
+  {
+    "id": "6",
+    "iconClass": "flaticon-desk-lamp",
+    "title": "Desk Lamp",
+    "url": "/shop/grid-left-sidebar"
+  }
+]

@@ -1,0 +1,23 @@
+[
+  {
+    "id": "1",
+    "backgroundImage": "/assets/images/hero-slider/one/1.jpg",
+    "subtitle": "50% off in all products",
+    "title": "Man Fashion",
+    "url": "/shop/grid-left-sidebar"
+  },
+  {
+    "id": "2",
+    "backgroundImage": "/assets/images/hero-slider/one/2.jpg",
+    "subtitle": "40% off in all products",
+    "title": "Women Fashion",
+    "url": "/shop/grid-left-sidebar"
+  },
+  {
+    "id": "3",
+    "backgroundImage": "/assets/images/hero-slider/one/3.jpg",
+    "subtitle": "Taking your Viewing Experience to Next Level",
+    "title": "Summer Sale",
+    "url": "/shop/grid-left-sidebar"
+  }
+]

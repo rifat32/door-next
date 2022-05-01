@@ -1,0 +1,44 @@
+[
+  {
+    "id": "1",
+    "image": "/assets/images/categories/cat_img1.png",
+    "title": "Television",
+    "url": "/shop/grid-left-sidebar"
+  },
+  {
+    "id": "2",
+    "image": "/assets/images/categories/cat_img2.png",
+    "title": "Mobile",
+    "url": "/shop/grid-left-sidebar"
+  },
+  {
+    "id": "1",
+    "image": "/assets/images/categories/cat_img3.png",
+    "title": "Headphone",
+    "url": "/shop/grid-left-sidebar"
+  },
+  {
+    "id": "1",
+    "image": "/assets/images/categories/cat_img4.png",
+    "title": "Watch",
+    "url": "/shop/grid-left-sidebar"
+  },
+  {
+    "id": "1",
+    "image": "/assets/images/categories/cat_img5.png",
+    "title": "Game",
+    "url": "/shop/grid-left-sidebar"
+  },
+  {
+    "id": "1",
+    "image": "/assets/images/categories/cat_img6.png",
+    "title": "Camera",
+    "url": "/shop/grid-left-sidebar"
+  },
+  {
+    "id": "1",
+    "image": "/assets/images/categories/cat_img7.png",
+    "title": "Audio",
+    "url": "/shop/grid-left-sidebar"
+  }
+]

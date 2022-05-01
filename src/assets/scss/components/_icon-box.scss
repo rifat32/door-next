@@ -1,0 +1,219 @@
+
+/*=============================================
+=            icon box            =
+=============================================*/
+
+.icon-box {
+  margin-bottom: 30px;
+  &__icon {
+    margin-bottom: 15px;
+    i {
+      font-size: 46px;
+      line-height: 1;
+
+      color: $black--three;
+    }
+  }
+  &__content {
+    .link {
+      i {
+        margin-left: 2px;
+
+        vertical-align: middle;
+      }
+    }
+  }
+
+  p {
+    &:last-child {
+      margin: 0;
+    }
+  }
+
+  &--style1 {
+    position: relative;
+
+    padding: 0 40px;
+
+    text-align: center;
+
+    &:before {
+      position: absolute;
+      top: 15%;
+      right: 0;
+      bottom: 15%;
+
+      width: 1px;
+
+      content: "";
+
+      background-color: $grey--two;
+
+@include respond (extra-large-mobile) {
+        content: normal;
+      }
+
+@include respond (large-mobile) {
+        content: normal;
+      }
+    }
+  }
+
+  &--style2 {
+    padding: 20px;
+
+    text-align: center;
+
+    background-color: $white;
+    box-shadow: 0 0 10px rgba($black, 0.1);
+
+    .icon-box__icon {
+      font-size: 24px;
+      line-height: 60px;
+
+      display: inline-block;
+
+      width: 60px;
+      height: 60px;
+
+      color: $white;
+      border-radius: 100%;
+      background-color: $theme-color--default;
+    }
+  }
+
+  &--style3 {
+    padding-top: 30px;
+
+@include respond(extra-large-mobile) {
+      text-align: center;
+    }
+
+@include respond(large-mobile) {
+      text-align: center;
+    }
+
+    .icon-box__icon {
+      line-height: 78px;
+
+      position: relative;
+
+      float: left;
+      flex: 0 0 78px;
+
+      width: 78px;
+      height: 78px;
+      margin: 0 20px 0 0;
+
+      text-align: center;
+
+      border-radius: 100%;
+      background-color: $white;
+      box-shadow: 0 2px 0 rgba($black, 0.05);
+
+@include respond(extra-large-mobile) {
+        display: block;
+        float: none;
+
+        margin-right: auto;
+        margin-bottom: 15px;
+        margin-left: auto;
+      }
+
+@include respond(large-mobile) {
+        display: block;
+        float: none;
+
+        margin-right: auto;
+        margin-bottom: 15px;
+        margin-left: auto;
+      }
+
+      i {
+        font-size: 40px;
+        line-height: 78px;
+
+        color: $theme-color--default;
+      }
+    }
+
+    .icon-box__content {
+      h5 {
+        @include respond(extra-large-mobile) {
+          font-size: 18px;
+        }
+
+@include respond(large-mobile) {
+          font-size: 18px;
+        }
+      }
+    }
+
+    &:hover {
+      .icon-box__icon {
+        animation-name: swing;
+        animation-duration: 1s;
+
+        animation-fill-mode: both;
+      }
+    }
+  }
+
+  &--style4 {
+    margin-top: -1px;
+    margin-bottom: 0;
+    margin-left: -1px;
+    padding: 30px;
+
+    border: 1px solid $grey--two;
+
+@include respond (small-desktop) {
+      padding: 15px;
+    }
+
+@include respond (large-mobile) {
+      padding: 15px;
+    }
+
+    .icon-box__icon {
+      float: left;
+
+      margin-right: 20px;
+      margin-bottom: 0;
+
+@include respond (small-desktop) {
+        margin-right: 15px;
+      }
+
+@include respond (large-mobile) {
+        margin-right: 15px;
+      }
+
+      i {
+        font-size: 36px;
+        line-height: normal;
+
+        color: $theme-color--default;
+
+@include respond (small-desktop) {
+          font-size: 32px;
+        }
+
+@include respond (large-mobile) {
+          font-size: 32px;
+        }
+      }
+    }
+
+    .icon-box__content {
+      overflow: hidden;
+      p {
+        font-size: 14px;
+        line-height: normal;
+      }
+    }
+  }
+}
+
+/*=====  End of icon box  ======*/
+

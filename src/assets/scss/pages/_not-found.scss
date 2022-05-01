@@ -1,0 +1,58 @@
+
+/*=============================================
+=            not found            =
+=============================================*/
+
+.error-wrap {
+  width: 100%;
+}
+.error-txt {
+  font-size: 150px;
+  font-weight: 600;
+  line-height: 1;
+
+  margin-bottom: 20px;
+
+  color: $black--four;
+
+@include respond (extra-small-mobile) {
+    font-size: 100px;
+  }
+}
+.search-form {
+  form {
+    position: relative;
+    input {
+      height: 50px;
+      padding: 5px 60px 5px 20px;
+      &:focus {
+        height: 50px;
+      }
+    }
+    .icon-search {
+      position: absolute;
+      top: 50%;
+      right: 18px;
+
+      padding: 0;
+      padding-left: 15px;
+
+      transform: translateY(-50%);
+
+      border-left: 1px solid $grey--two;
+      border-radius: 0;
+      svg {
+        font-size: 24px;
+
+        margin-right: 0;
+      }
+    }
+  }
+}
+
+.form-note {
+  margin-top: 20px;
+}
+
+/*=====  End of not found  ======*/
+

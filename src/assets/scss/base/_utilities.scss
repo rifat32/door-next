@@ -1,0 +1,380 @@
+/*=============================================
+=            utilities            =
+=============================================*/
+
+[class*=overlay-bg--] {
+  position: relative;
+}
+
+[class*=overlay-bg--]::before {
+  position: absolute;
+  z-index: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+
+  content: "";
+
+  background-color: $black;
+}
+
+.overlay-bg--40::before,
+.overlay-bg--default_40::before,
+.overlay-bg--blue_40::before,
+.overlay-bg--white_40::before {
+  opacity: 0.4;
+}
+
+.border-top {
+  &--grey {
+    border-top: 1px solid rgba($white,0.1);
+  }
+}
+
+.border-bottom {
+  &--tran {
+    border-bottom: 1px solid rgba($white, 0.1);
+  }
+}
+
+.bg {
+  &--default {
+    background-color: $theme-color--default;
+  }
+  &--redon {
+    background-color: $red--two;
+  }
+  &--blue-two {
+    background-color: $blue;
+  }
+  &--blue-three {
+    background-color: $blue--four !important;
+  }
+  &--grey {
+    background-color: $grey--three;
+  }
+  &--dark {
+    background-color: $black--ten;
+  }
+  &--dark-two {
+    background-color: $black--twelve;
+  }
+}
+
+.bg-image {
+  background-position: center center;
+  background-size: cover;
+}
+
+.space-mt {
+  &--15 {
+    margin-top: 15px;
+  }
+  &--20 {
+    margin-top: 20px;
+  }
+  &--30 {
+    margin-top: 30px;
+  }
+  &--40 {
+    margin-top: 40px;
+  }
+  &--50 {
+    margin-top: 50px;
+  }
+  &--m40 {
+    margin-top: -40px;
+  }
+  &--100 {
+    margin-top: 100px;
+  }
+  &-mobile-only {
+    &--40 {
+      @include respond(extra-large-mobile) {
+        margin-top: 40px;
+      }
+
+@include respond(large-mobile) {
+        margin-top: 40px;
+      }
+    }
+    &--60 {
+      @include respond(extra-large-mobile) {
+        margin-top: 60px;
+      }
+
+@include respond(large-mobile) {
+        margin-top: 60px;
+      }
+    }
+  }
+}
+
+.space-mr {
+  &--10 {
+    margin-right: 10px;
+  }
+}
+
+.space-mb {
+  &--10 {
+    margin-bottom: 10px;
+  }
+  &--20 {
+    margin-bottom: 20px;
+  }
+  &--25 {
+    margin-bottom: 25px;
+  }
+  &--30 {
+    margin-bottom: 30px;
+  }
+  &--40 {
+    margin-bottom: 40px;
+  }
+  &--50 {
+    margin-bottom: 50px;
+  }
+  &--r100 {
+    margin-bottom: 100px;
+
+@include respond(extra-large-mobile) {
+      margin-bottom: 80px;
+    }
+
+@include respond(large-mobile) {
+      margin-bottom: 60px;
+    }
+  }
+  &-mobile-only {
+    &--30 {
+      @include respond(extra-large-mobile) {
+        margin-bottom: 30px;
+      }
+
+@include respond(large-mobile) {
+        margin-bottom: 30px;
+      }
+    }
+  }
+  &-mobile-only {
+    &--40 {
+      @include respond(extra-large-mobile) {
+        margin-bottom: 40px;
+      }
+
+@include respond(large-mobile) {
+        margin-bottom: 40px;
+      }
+    }
+  }
+}
+
+.space-ml {
+  &--10 {
+    margin-left: 10px;
+  }
+}
+
+.space-pt {
+  &--20 {
+    padding-top: 20px;
+  }
+  &--25 {
+    padding-top: 25px;
+  }
+  &--30 {
+    padding-top: 30px;
+  }
+  &--50 {
+    padding-top: 50px;
+  }
+  &--60 {
+    padding-top: 60px;
+  }
+  &--r70 {
+    padding-top: 70px;
+
+@include respond(extra-large-mobile) {
+      padding-top: 50px;
+    }
+
+@include respond(large-mobile) {
+      padding-top: 30px;
+    }
+  }
+  &--r100 {
+    padding-top: 100px;
+
+@include respond(extra-large-mobile) {
+      padding-top: 80px;
+    }
+
+@include respond(large-mobile) {
+      padding-top: 60px;
+    }
+  }
+  &-mobile-only {
+    &--60 {
+      @include respond (large-mobile) {
+        padding-top: 60px;
+      }
+    }
+  }
+}
+
+.space-pb {
+  &--20 {
+    padding-bottom: 20px;
+  }
+  &--30 {
+    padding-bottom: 30px;
+  }
+  &--50 {
+    padding-bottom: 50px;
+  }
+  &--60 {
+    padding-bottom: 60px;
+  }
+  &--r70 {
+    padding-bottom: 70px;
+
+@include respond(extra-large-mobile) {
+      padding-bottom: 50px;
+    }
+
+@include respond(large-mobile) {
+      padding-bottom: 30px;
+    }
+  }
+  &--r100 {
+    padding-bottom: 100px;
+
+@include respond(extra-large-mobile) {
+      padding-bottom: 80px;
+    }
+
+@include respond(large-mobile) {
+      padding-bottom: 60px;
+    }
+  }
+}
+
+
+.small-padding {
+  padding: 30px;
+}
+.medium-padding {
+  padding: 50px;
+}
+.large-padding {
+  padding: 100px;
+}
+.small-divider {
+  height: 30px;
+}
+.medium-divider {
+  height: 50px;
+
+@include respond(extra-large-mobile) {
+    height: 40px;
+  }
+}
+.large-divider {
+  height: 100px;
+}
+.padding-eight-all {
+  padding: 8%;
+}
+.padding-eight-lr {
+  padding: 0 8%;
+}
+.padding-eight-tb {
+  padding: 8% 0;
+}
+
+
+.sc_facebook {
+  border-color: #3b5998 !important;
+  background-color: #3b5998 !important;
+}
+.sc_gplus,
+.sc_google {
+  border-color: #dd4b39 !important;
+  background-color: #dd4b39 !important;
+}
+.sc_twitter {
+  border-color: #00acee !important;
+  background-color: #00acee !important;
+}
+.sc_youtube {
+  border-color: #c4302b !important;
+  background-color: #c4302b !important;
+}
+.sc_instagram {
+  border-color: #3f729b !important;
+  background-color: #3f729b !important;
+}
+
+.hover-effect {
+  position: relative;
+
+  display: block;
+  overflow: hidden;
+  &:before,
+  &:after {
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 100%;
+
+    content: "";
+    transition: all 0.9s ease 0s;
+
+    opacity: 1;
+    background-color: rgba($white, 0.6);
+  }
+  &:before {
+    transform: translate(105%, 0%);
+
+    border-top: 1px solid rgba($white, 0.4);
+  }
+  &:after {
+    transform: translate(-105%, 0%);
+
+    border-bottom: 1px solid rgba($white, 0.4);
+  }
+  &:hover {
+    &:before,
+    &:after {
+      transform: translate(0, 0);
+
+      opacity: 0;
+    }
+  }
+}
+
+.leads {
+  margin-bottom: 30px !important;
+}
+
+/* background image */
+.bg-img {
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+}
+
+.text-default {
+  color: $theme-color--default;
+}
+
+.text-white * {
+  color: $white;
+}
+
+/*=====  End of utilities  ======*/

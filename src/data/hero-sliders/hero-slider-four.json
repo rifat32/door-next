@@ -1,0 +1,26 @@
+[
+  {
+    "id": "1",
+    "backgroundImage": "/assets/images/hero-slider/four/1.jpg",
+    "subtitle": "STARTING $90.00",
+    "title": "Unique Furniture Style",
+    "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus blandit massa enim. Nullam id varius nunc id varius nunc.",
+    "url": "/shop/grid-left-sidebar"
+  },
+  {
+    "id": "2",
+    "backgroundImage": "/assets/images/hero-slider/four/2.jpg",
+    "subtitle": "STARTING $70.00",
+    "title": "Quality Furniture",
+    "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus blandit massa enim. Nullam id varius nunc id varius nunc.",
+    "url": "/shop/grid-left-sidebar"
+  },
+  {
+    "id": "3",
+    "backgroundImage": "/assets/images/hero-slider/four/3.jpg",
+    "subtitle": "STARTING $60.00",
+    "title": "Living Room Collection",
+    "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus blandit massa enim. Nullam id varius nunc id varius nunc.",
+    "url": "/shop/grid-left-sidebar"
+  }
+]

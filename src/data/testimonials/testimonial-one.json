@@ -1,0 +1,30 @@
+[
+  {
+    "id": "1",
+    "name": "Sally Ramsey",
+    "designation": "Designer",
+    "image": "/assets/images/users/user_img1.jpg",
+    "content": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. A aliquam amet animi blanditiis consequatur debitis dicta distinctio, enim error eum iste libero modi nam natus perferendis possimus quasi sint sit tempora voluptatem."
+  },
+  {
+    "id": "2",
+    "name": "Lois Thompson",
+    "designation": "Designer",
+    "image": "/assets/images/users/user_img2.jpg",
+    "content": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. A aliquam amet animi blanditiis consequatur debitis dicta distinctio, enim error eum iste libero modi nam natus perferendis possimus quasi sint sit tempora voluptatem."
+  },
+  {
+    "id": "3",
+    "name": "Florence Pittman",
+    "designation": "Designer",
+    "image": "/assets/images/users/user_img3.jpg",
+    "content": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. A aliquam amet animi blanditiis consequatur debitis dicta distinctio, enim error eum iste libero modi nam natus perferendis possimus quasi sint sit tempora voluptatem."
+  },
+  {
+    "id": "4",
+    "name": "Anais Coulon",
+    "designation": "Designer",
+    "image": "/assets/images/users/user_img4.jpg",
+    "content": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. A aliquam amet animi blanditiis consequatur debitis dicta distinctio, enim error eum iste libero modi nam natus perferendis possimus quasi sint sit tempora voluptatem."
+  }
+]

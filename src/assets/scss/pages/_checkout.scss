@@ -1,0 +1,73 @@
+
+/*=============================================
+=            checkout            =
+=============================================*/
+
+.checkout-content {
+  input {
+    &.form-control {
+      height: 50px;
+    }
+  }
+
+  .product-qty {
+    font-weight: 600;
+  }
+
+  .order-review {
+    padding: 30px;
+
+    background-color: $grey--three;
+  }
+
+  .custom-radio {
+    input[type="radio"] {
+      display: none;
+      &:checked {
+        & + .form-check-label:after {
+          opacity: 1;
+        }
+        & + .form-check-label:before {
+          border-color: $theme-color--default;
+        }
+      }
+    }
+  }
+
+  .form-check-label {
+    font-weight: 600;
+
+    position: relative;
+    &:before {
+      display: inline-block;
+
+      width: 16px;
+      height: 16px;
+      margin-right: 8px;
+
+      content: "";
+      vertical-align: middle;
+
+      border: 1px solid $grey--seven;
+      border-radius: 100%;
+    }
+
+    &:after {
+      position: absolute;
+      top: 8px;
+      left: 3px;
+
+      width: 10px;
+      height: 10px;
+
+      content: "";
+
+      opacity: 0;
+      border-radius: 100%;
+      background-color: $theme-color--default;
+    }
+  }
+}
+
+/*=====  End of checkout  ======*/
+

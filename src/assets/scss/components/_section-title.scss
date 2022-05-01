@@ -1,0 +1,115 @@
+
+/*=============================================
+=            section title            =
+=============================================*/
+
+.section-title {
+  h2 {
+    font-weight: 700;
+  }
+  &--style-two {
+    padding-bottom: 15px;
+
+    border-bottom: 1px solid $grey--two;
+    h2 {
+      margin-bottom: 0;
+
+@include respond (large-mobile) {
+        font-size: 25px;
+      }
+
+@include respond (extra-small-mobile) {
+        font-size: 22px;
+      }
+    }
+  }
+
+  &--style-three {
+    h2 {
+      position: relative;
+
+      padding-bottom: 15px;
+
+@include respond(extra-small-mobile) {
+        font-size: 26px;
+      }
+
+      &:before {
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        left: 0;
+
+        width: 50px;
+        height: 1px;
+        margin: 0 auto;
+
+        content: "";
+
+        background-color: $theme-color--default;
+      }
+    }
+  }
+}
+
+.heading-s1 {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-weight: 700;
+
+    margin: 0;
+
+    text-transform: capitalize;
+  }
+}
+
+.content-title {
+  * {
+    font-weight: 600;
+
+    margin-bottom: 30px;
+  }
+}
+
+.header-slider-nav {
+  .ht-swiper-button-nav {
+    position: absolute;
+    top: 50%;
+
+    padding: 0;
+
+    transform: translateY(-50%);
+
+    color: $black--six;
+    border: none;
+    background: none;
+    &:after {
+      display: none;
+    }
+
+    &.swiper-button-prev {
+      right: 50px;
+      left: auto;
+    }
+  }
+
+  &--style-two {
+    .ht-swiper-button-nav {
+      width: auto;
+      svg {
+        font-size: 40px;
+      }
+      &.swiper-button-prev {
+        right: auto;
+        left: 0;
+      }
+    }
+  }
+}
+
+/*=====  End of section title  ======*/
+

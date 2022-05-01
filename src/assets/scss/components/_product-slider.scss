@@ -1,0 +1,196 @@
+
+/*=============================================
+=            product slider            =
+=============================================*/
+
+.product-slider-wrap {
+  .swiper-container {
+    margin: -10px;
+    padding: 10px;
+  }
+
+  .ht-swiper-button-nav {
+    font-size: 25px;
+
+    position: absolute;
+    z-index: 9;
+    top: 50%;
+
+    padding: 0;
+
+    transform: translateY(-50%);
+
+    color: $black--six;
+    border: none;
+    background: none;
+
+    i {
+      font-size: 17px;
+
+      color: $black--six;
+    }
+
+    &.swiper-button-prev {
+      left: -35px;
+
+@include respond(small-desktop) {
+        left: 15px;
+      }
+
+@include respond(extra-large-mobile) {
+        left: 15px;
+      }
+
+@include respond(large-mobile) {
+        left: 15px;
+      }
+
+      &:after {
+        display: none;
+      }
+    }
+
+    &.swiper-button-next {
+      right: -35px;
+
+@include respond(small-desktop) {
+        right: 15px;
+      }
+
+@include respond(extra-large-mobile) {
+        right: 15px;
+      }
+
+@include respond(large-mobile) {
+        right: 15px;
+      }
+
+      &:after {
+        display: none;
+      }
+    }
+
+    &--style-two {
+      line-height: 40px;
+
+      width: 40px;
+      height: 40px;
+
+      transform: translateY(0);
+
+      opacity: 0;
+      border-radius: 4px;
+      background-color: $white;
+      box-shadow: 0 0 10px rgba($black,0.1);
+
+      &:hover {
+        background-color: $theme-color--default;
+        i {
+          color: $white;
+        }
+      }
+
+      &.swiper-button-prev {
+        left: 15px;
+      }
+      &.swiper-button-next {
+        right: 15px;
+      }
+    }
+  }
+
+  .swiper-pagination {
+    bottom: 0;
+    .swiper-pagination-bullet {
+      opacity: 1;
+      border: 1px solid $theme-color--default;
+      background-color: transparent;
+    }
+    .swiper-pagination-bullet-active {
+      background: $theme-color--default;
+    }
+  }
+
+  &--style-two {
+    .swiper-container {
+      margin: -10px -25px;
+      padding: 10px 25px;
+
+@include respond(small-desktop) {
+        margin: -10px;
+        padding: 10px;
+      }
+
+@include respond(extra-large-mobile) {
+        margin: -10px;
+        padding: 10px;
+      }
+
+@include respond(large-mobile) {
+        margin: -10px;
+        padding: 10px;
+      }
+    }
+    .ht-swiper-button-nav {
+      &.swiper-button-next {
+        right: -9px;
+
+@include respond(small-desktop) {
+          right: 15px;
+        }
+
+@include respond(extra-large-mobile) {
+          right: 15px;
+        }
+
+@include respond(large-mobile) {
+          right: 15px;
+        }
+      }
+      &.swiper-button-prev {
+        left: -9px;
+
+@include respond(small-desktop) {
+          left: 15px;
+        }
+
+@include respond(extra-large-mobile) {
+          left: 15px;
+        }
+
+@include respond(large-mobile) {
+          left: 15px;
+        }
+      }
+    }
+  }
+
+  &:hover {
+    .ht-swiper-button-nav--style-two {
+      opacity: 1;
+      &.swiper-button-prev {
+        left: 35px;
+      }
+      &.swiper-button-next {
+        right: 35px;
+      }
+    }
+  }
+
+  &--custom-bullet {
+    .swiper-pagination-bullet {
+      width: 10px;
+      height: 10px;
+
+      transition: $transition--default;
+
+      border-radius: 30px;
+    }
+    .swiper-pagination-bullet-active {
+      width: 30px;
+    }
+  }
+}
+
+/*=====  End of product slider  ======*/
+

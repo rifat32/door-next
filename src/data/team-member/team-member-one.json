@@ -1,0 +1,42 @@
+[
+  {
+    "id": "1",
+    "image": "/assets/images/team/team_img1.jpg",
+    "name": "John Muniz",
+    "designation": "Project Engineer",
+    "facebookUrl": "https://www.facebook.com",
+    "twitterUrl": "https://www.twitter.com",
+    "googlePlusUrl": "https://www.google.com",
+    "instagramUrl": "https://www.instagram.com"
+  },
+  {
+    "id": "2",
+    "image": "/assets/images/team/team_img2.jpg",
+    "name": "Alea Brooks",
+    "designation": "Graphics Designer",
+    "facebookUrl": "https://www.facebook.com",
+    "twitterUrl": "https://www.twitter.com",
+    "googlePlusUrl": "https://www.google.com",
+    "instagramUrl": "https://www.instagram.com"
+  },
+  {
+    "id": "3",
+    "image": "/assets/images/team/team_img3.jpg",
+    "name": "Anders Glick",
+    "designation": "Project Engineer",
+    "facebookUrl": "https://www.facebook.com",
+    "twitterUrl": "https://www.twitter.com",
+    "googlePlusUrl": "https://www.google.com",
+    "instagramUrl": "https://www.instagram.com"
+  },
+  {
+    "id": "4",
+    "image": "/assets/images/team/team_img4.jpg",
+    "name": "John Muniz",
+    "designation": "Web Developer",
+    "facebookUrl": "https://www.facebook.com",
+    "twitterUrl": "https://www.twitter.com",
+    "googlePlusUrl": "https://www.google.com",
+    "instagramUrl": "https://www.instagram.com"
+  }
+]

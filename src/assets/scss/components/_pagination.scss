@@ -1,0 +1,70 @@
+
+/*=============================================
+=            pagination            =
+=============================================*/
+
+
+.pagination-style {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  .page-item {
+    margin-right: 5px;
+    &:last-child {
+      margin-right: 0;
+    }
+
+    .page-link {
+      line-height: 36px;
+
+      z-index: 1;
+
+      width: 40px;
+      height: 40px;
+      margin-left: 0;
+      padding: 0;
+
+      text-align: center;
+
+      color: $black--three;
+      border: 2px solid $grey--four;
+      border-radius: 0 !important;
+      &:focus {
+        box-shadow: none;
+      }
+    }
+
+    &.active,
+    &:hover {
+      .page-link {
+        color: $white;
+        border-color: $theme-color--default;
+        background-color: $theme-color--default;
+        &:focus {
+          box-shadow: none;
+        }
+      }
+    }
+
+    &.disabled {
+      .page-link {
+        pointer-events: none;
+
+        color: #c6c6c6;
+        border-color: $grey--eleven;
+        background-color: $white;
+      }
+    }
+  }
+  &--two {
+    ul {
+      li {
+        display: inline-block;
+      }
+    }
+  }
+}
+
+
+/*=====  End of pagination  ======*/
+

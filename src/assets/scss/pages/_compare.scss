@@ -1,0 +1,61 @@
+.compare-box {
+  .table {
+    display: block;
+
+    margin: 0;
+  }
+  table {
+    @include respond (small-desktop) {
+      width: 1050px;
+    }
+
+@include respond (extra-large-mobile) {
+      width: 1050px;
+    }
+
+@include respond (large-mobile) {
+      width: 900px;
+    }
+
+    tr {
+      td {
+        width: 27%;
+
+        vertical-align: middle;
+
+        .rating-wrap {
+          svg {
+            color: $yellow--one;
+          }
+          .rating-num {
+            font-size: 14px;
+
+            margin-left: 10px;
+          }
+        }
+
+        &.product-name {
+          text-transform: capitalize;
+        }
+        &.row-title {
+          font-weight: 600;
+
+          width: 270px;
+
+          text-transform: uppercase;
+        }
+        &.row-remove {
+          button {
+            font-size: 30px;
+
+            padding: 0;
+
+            color: $red;
+            border: none;
+            background: none;
+          }
+        }
+      }
+    }
+  }
+}

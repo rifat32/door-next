@@ -1,0 +1,210 @@
+
+/*=============================================
+=            cart            =
+=============================================*/
+
+
+.shop-cart-table {
+  table {
+    thead {
+      @include respond(large-mobile) {
+        display: none;
+      }
+    }
+    tbody {
+      tr {
+        td {
+          vertical-align: middle;
+
+@include respond(large-mobile) {
+            display: block;
+
+            width: 100%;
+          }
+
+          &.product-thumbnail {
+            text-align: center;
+            img {
+              max-width: 100px;
+
+@include respond (extra-large-mobile) {
+                max-width: 80px;
+              }
+            }
+          }
+
+          &.product-name {
+            @include respond(extra-large-mobile) {
+              max-width: 170px;
+            }
+
+@include respond(large-mobile) {
+              text-align: right;
+            }
+
+            .cart-variation {
+              p {
+                font-size: 14px;
+
+                margin-bottom: 0;
+              }
+            }
+          }
+          &.product-price,
+          &.product-subtotal {
+            font-weight: 600;
+
+@include respond(large-mobile) {
+              text-align: right;
+            }
+          }
+          &.product-quantity {
+            @include respond(large-mobile) {
+              text-align: right;
+            }
+            .cart-plus-minus {
+              button {
+                font-size: 20px;
+                line-height: 36px;
+
+                display: block;
+                float: left;
+
+                width: 34px;
+                height: 34px;
+                margin: 4px;
+                padding: 0;
+
+                cursor: pointer;
+                text-align: center;
+
+                border: 0;
+                border-radius: 50px;
+                background-color: $grey;
+
+@include respond(large-mobile) {
+                  display: inline-block;
+                  float: none;
+                }
+              }
+              input {
+                float: left;
+
+                width: 55px;
+                height: 36px;
+                margin: 3px;
+                padding: 0;
+
+                text-align: center;
+
+                border: 1px solid $grey--two;
+                background-color: transparent;
+
+@include respond(large-mobile) {
+                  float: none;
+                }
+              }
+            }
+
+            &:before {
+              margin-top: 10px;
+            }
+          }
+          &.product-remove {
+            text-align: center;
+            button {
+              font-size: 25px;
+              line-height: 30px;
+
+              display: inline-block;
+
+              width: 30px;
+              height: 30px;
+              padding: 0;
+
+              text-align: center;
+
+              color: $black--two;
+              border: none;
+              border-radius: 100%;
+              background: none;
+              &:hover {
+                color: $white;
+                background-color: $red;
+              }
+            }
+          }
+
+          &:before {
+            font-weight: bold;
+
+            display: none;
+            float: left;
+
+            margin-right: 15px;
+
+            content: attr(data-title) " ";
+            text-transform: capitalize;
+
+@include respond (large-mobile) {
+              display: block;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.divider {
+  position: relative;
+
+  overflow: hidden;
+  &.center-icon {
+    text-align: center;
+  }
+  &::before {
+    margin-top: -1px;
+  }
+  &::after {
+    margin-top: 1px;
+  }
+  &:before,
+  &:after {
+    position: absolute;
+    top: 50%;
+    left: 0;
+
+    width: 100%;
+    height: 0;
+
+    content: "";
+    transform: translateY(-50%);
+
+    border-top: 1px solid $grey--two;
+  }
+  i {
+    font-size: 30px;
+
+    position: relative;
+    z-index: 1;
+
+    padding: 0 40px;
+
+    color: $grey--six;
+    background-color: $white;
+  }
+}
+
+.field-form {
+  .form-control {
+    height: 45px;
+  }
+  textarea {
+    &.form-control {
+      height: auto;
+    }
+  }
+}
+/*=====  End of cart  ======*/
+

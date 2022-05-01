@@ -1,0 +1,59 @@
+
+/*=============================================
+=            breadcrumb            =
+=============================================*/
+
+.breadcrumb-title {
+  font-size: 28px;
+  font-weight: 700;
+  line-height: 1;
+
+  margin-bottom: 0;
+
+  text-transform: capitalize;
+
+  color: $black--two;
+
+@include respond (large-mobile) {
+    font-size: 25px;
+
+    margin-bottom: 15px;
+  }
+}
+
+.breadcrumb {
+  margin: 0;
+  padding: 0;
+
+  background-color: transparent;
+  .breadcrumb-item {
+    a {
+      font-size: 14px;
+      font-weight: 400;
+
+      color: $black--two;
+
+      &:hover {
+        color: $theme-color--default;
+      }
+    }
+    &:before {
+      content: ">";
+    }
+
+    &:first-child {
+      &:before {
+        content: "";
+      }
+    }
+
+    &.active {
+      font-size: 14px;
+      font-weight: 400;
+
+      color: $black--three;
+    }
+  }
+}
+/*=====  End of breadcrumb  ======*/
+

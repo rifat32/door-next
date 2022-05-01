@@ -1,0 +1,67 @@
+
+/*=============================================
+=            my account            =
+=============================================*/
+
+.my-account-content {
+  &__navigation {
+    box-shadow: 0 0 4px 0 $grey--eight;
+
+    @include respond (large-mobile) {
+      margin-bottom: 30px;
+    }
+
+    .nav-link {
+      font-weight: 500;
+
+      padding: 12px 20px;
+
+      color: $black--eight;
+      border-bottom: 1px solid $grey--nine;
+      border-radius: 0;
+      &.active {
+        background-color: $theme-color--default;
+      }
+      svg {
+        font-size: 25px;
+
+        margin-right: 5px;
+      }
+
+      &:hover {
+        color: $white;
+        background-color: $theme-color--default;
+      }
+    }
+  }
+
+  &__content {
+    border: 0;
+    border-radius: 0;
+    box-shadow: 0 0 4px 0 $grey--eight;
+    .card-header {
+      background-color: transparent;
+      h3 {
+        margin-bottom: 0;
+      }
+    }
+
+    .table {
+      th {
+        padding-top: 0;
+
+        border-top: 0;
+        border-bottom: 1px;
+      }
+    }
+
+    form {
+      .form-control {
+        height: 50px;
+      }
+    }
+  }
+}
+
+/*=====  End of my account  ======*/
+

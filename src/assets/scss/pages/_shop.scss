@@ -1,0 +1,47 @@
+
+/*=============================================
+=            shop            =
+=============================================*/
+
+.shop-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  &__left {
+    select {
+      height: 45px;
+    }
+  }
+}
+
+.sorting-icon {
+  font-size: 25px;
+  line-height: 45px;
+
+  width: 45px;
+  height: 45px;
+  margin-right: 10px;
+  padding: 0;
+
+  text-align: center;
+
+  border: 1px solid $grey--fourteen;
+  border-radius: 4px;
+  background: none;
+  svg {
+    margin-bottom: 5px;
+  }
+  &:last-child {
+    margin-right: 0;
+  }
+  &:hover,
+  &.active {
+    color: $white;
+    border-color: $theme-color--default;
+    background-color: $theme-color--default;
+  }
+}
+
+/*=====  End of shop  ======*/
+

@@ -1,0 +1,254 @@
+
+/*=============================================
+=            banner            =
+=============================================*/
+.trending-text {
+  .heading-wrapper {
+    span {
+      display: block;
+
+      margin-bottom: 10px;
+
+      color: $theme-color--default;
+    }
+
+    h2 {
+      font-weight: 700;
+
+      margin: 0;
+
+@include respond(extra-large-mobile) {
+        font-size: 28px;
+      }
+
+@include respond(large-mobile) {
+        font-size: 28px;
+      }
+    }
+  }
+}
+
+.trending-img {
+  margin-top: -40px;
+
+@include respond(large-mobile) {
+    margin-top: 0;
+  }
+}
+
+.single-banner {
+  position: relative;
+
+  overflow: hidden;
+
+  margin-bottom: 30px;
+
+  img {
+    width: 100%;
+
+    transition: all 0.3s ease-in-out;
+  }
+
+  &__info {
+    position: absolute;
+    top: 50%;
+    right: 0;
+
+    width: 50%;
+    padding: 20px;
+
+    transform: translateY(-50%);
+
+    .title {
+      font-size: 32px;
+      font-weight: bold;
+
+@include respond(extra-large-mobile) {
+        font-size: 25px;
+      }
+
+@include respond(large-mobile) {
+        font-size: 25px;
+      }
+    }
+    .link {
+      position: relative;
+      &:before {
+        position: absolute;
+        z-index: -1;
+        bottom: 3px;
+
+        width: 100%;
+        height: 7px;
+
+        content: "";
+
+        background-color: rgba($red--three, 0.2);
+      }
+
+      &:hover {
+        color: $theme-color--default;
+      }
+    }
+  }
+
+  &:hover {
+    img {
+      transform: scale(1.06);
+    }
+  }
+}
+
+
+.sale-banner {
+  margin-bottom: 30px;
+  padding: 0 10px;
+  img {
+    width: 100%;
+  }
+
+  &--style-two {
+    position: relative;
+    z-index: 1;
+
+    overflow: hidden;
+
+    height: 235px;
+
+    background-color: $yellow--three;
+
+    &:before {
+      position: absolute;
+      z-index: -1;
+      bottom: -80px;
+      left: 50%;
+
+      width: 250px;
+      height: 250px;
+
+      content: "";
+      transform: translateX(-50%);
+
+      border-radius: 100%;
+      background-color: rgba($white,0.2);
+    }
+
+    a {
+      position: relative;
+      z-index: 9;
+
+      display: flex;
+      align-content: space-between;
+      flex-wrap: wrap;
+
+      height: 100%;
+      padding: 15px;
+    }
+    .el-img {
+      width: 100%;
+
+      text-align: center;
+      img {
+        width: 100%;
+        max-width: 180px;
+        margin-top: 20px;
+      }
+    }
+
+    .el-title {
+      span {
+        font-size: 20px;
+        font-weight: 600;
+
+        text-transform: uppercase;
+      }
+    }
+  }
+}
+
+.fb-info {
+  position: absolute;
+  z-index: 9;
+  top: 15px;
+  left: 15px;
+
+  padding: 15px;
+}
+
+.fb-info-two {
+  position: absolute;
+  z-index: 9;
+  top: 50%;
+  left: 35px;
+
+  width: 40%;
+  padding: 15px;
+
+  transform: translateY(-50%);
+}
+
+
+.single-bn-link {
+  position: relative;
+  &:before {
+    position: absolute;
+    z-index: -1;
+    bottom: 3px;
+
+    width: 100%;
+    height: 7px;
+
+    content: "";
+
+    background-color: rgba(255,50,77,0.2);
+  }
+}
+
+.single-bn-title {
+  @include respond(extra-large-mobile) {
+    font-size: 20px;
+  }
+
+@include respond(small-mobile) {
+    font-size: 20px;
+  }
+}
+
+.single-bn-title-two {
+  @include respond(extra-large-mobile) {
+    font-size: 15px;
+  }
+
+@include respond(small-mobile) {
+    font-size: 15px;
+  }
+}
+
+.furniture-banner {
+  .single-bn-title-one {
+    font-size: 80px;
+
+    margin-bottom: 15px;
+
+    color: $theme-color--default;
+
+@include respond(small-desktop) {
+      font-size: 60px;
+    }
+
+@include respond(extra-large-mobile) {
+      font-size: 60px;
+    }
+
+@include respond(large-mobile) {
+      font-size: 60px;
+    }
+
+@include respond(extra-small-mobile) {
+      font-size: 40px;
+    }
+  }
+}
+
+/*=====  End of banner  ======*/
+

@@ -1,0 +1,338 @@
+
+/*=============================================
+=            hero slider            =
+=============================================*/
+
+.hero-slider {
+  position: relative;
+
+  &__wrapper {
+    .swiper-container {
+      .ht-swiper-button-nav {
+        font-size: 22px;
+
+        position: absolute;
+        z-index: 9;
+        top: 50%;
+
+        visibility: hidden;
+
+        width: 50px;
+        height: 50px;
+
+        transition: $transition--default;
+        transform: translateY(-50%);
+
+        opacity: 0;
+        color: $black;
+        border: none;
+        background: none;
+        background-color: $white;
+        box-shadow: 0 0 10px rgba($black, 0.1);
+
+        &:hover {
+          color: $white;
+          background-color: $theme-color--default;
+        }
+
+        &.swiper-button-prev {
+          left: 20px;
+        }
+        &.swiper-button-next {
+          right: 20px;
+        }
+        &:after {
+          display: none;
+        }
+      }
+      .swiper-pagination {
+        .swiper-pagination-bullet {
+          position: relative;
+
+          width: 10px;
+          height: 10px;
+          margin: 8px;
+
+          border: 0;
+          border-radius: 0;
+          background-color: $black--four;
+          &:before {
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+
+            margin: -4px;
+
+            content: "";
+
+            border: 2px solid $black--four;
+          }
+          &-active {
+            background-color: $theme-color--default;
+            &:before {
+              border-color: $theme-color--default;
+            }
+          }
+        }
+      }
+    }
+
+
+    &:hover {
+      .ht-swiper-button-nav {
+        visibility: visible;
+
+        opacity: 1;
+      }
+    }
+
+    &--style-two {
+      .swiper-pagination {
+        &-bullet {
+          border-radius: 50% !important;
+          &:before {
+            border-radius: 50% !important;
+          }
+        }
+      }
+    }
+    &--style-three {
+      .swiper-pagination {
+        &-bullet {
+          margin: 4px !important;
+
+          border-radius: 50% !important;
+          &-active {
+            background-color: $black--four !important;
+          }
+          &:before {
+            display: none;
+          }
+        }
+      }
+    }
+  }
+
+  &__slide {
+    height: 500px !important;
+    &--style-two {
+      height: 650px !important;
+
+@include respond(small-desktop) {
+        height: 550px !important;
+      }
+
+@include respond(extra-large-mobile) {
+        height: 500px !important;
+      }
+
+@include respond(large-mobile) {
+        height: 450px !important;
+      }
+    }
+    &--style-three {
+      height: 100vh !important;
+    }
+  }
+
+  &__content-wrapper {
+    position: absolute;
+    z-index: 1;
+    top: 50%;
+    right: 0;
+    left: 0;
+
+    transform: translateY(-50%);
+
+    &--round-space {
+      padding: 30px;
+
+@include respond (large-mobile) {
+        padding: 15px;
+      }
+    }
+  }
+
+  .swiper-slide-active {
+    .hero-slider__content {
+      & > * {
+        animation-duration: 1s;
+
+        opacity: 1;
+
+        animation-fill-mode: both;
+      }
+
+      .sub-title {
+        animation-name: slideInLeft;
+        animation-delay: 0.5s;
+      }
+
+      .title {
+        animation-name: slideInLeft;
+        animation-delay: 1s;
+      }
+
+      .text {
+        animation-name: slideInLeft;
+        animation-delay: 1.5s;
+      }
+
+      .slider-link {
+        animation-name: slideInLeft;
+        animation-delay: 2s;
+      }
+
+      &--style-two {
+        .sub-title {
+          animation-name: fadeInDown;
+        }
+        .title {
+          animation-name: fadeInDown;
+        }
+        .text {
+          animation-name: fadeInUp;
+        }
+        .slider-link {
+          animation-name: fadeInUp;
+        }
+      }
+
+      &--style-three {
+        .sub-title {
+          animation-name: fadeInDown;
+        }
+        .title {
+          animation-name: fadeInDown;
+        }
+        .text {
+          animation-name: fadeInUp;
+        }
+        .slider-link {
+          animation-name: fadeInUp;
+        }
+      }
+    }
+  }
+
+  &__content {
+    & > * {
+      opacity: 0;
+    }
+    h2 {
+      font-size: 60px;
+      font-weight: 600;
+
+@include respond (large-mobile) {
+        font-size: 50px;
+      }
+
+@include respond (extra-small-mobile) {
+        font-size: 42px;
+      }
+    }
+
+    &--style-two {
+      .title {
+        font-size: 70px;
+
+@include respond(small-desktop) {
+          font-size: 50px;
+        }
+
+@include respond(extra-large-mobile) {
+          font-size: 40px;
+        }
+
+@include respond(large-mobile) {
+          font-size: 45px;
+        }
+
+@include respond(extra-small-mobile) {
+          font-size: 35px;
+        }
+      }
+
+      .text {
+        @include respond(extra-small-mobile) {
+          font-size: 14px;
+        }
+      }
+    }
+
+    &--style-three {
+      .title {
+        color: $white;
+      }
+      .sub-title {
+        color: $white;
+      }
+      .text {
+        color: $white;
+      }
+    }
+
+    &--style-four {
+      .title {
+        font-size: 40px;
+      }
+    }
+  }
+}
+
+
+.bg-strip {
+  font-size: 20px;
+
+  position: relative;
+
+  display: inline-block;
+
+  height: 40px;
+  padding: 8px 0;
+
+  white-space: nowrap;
+
+  color: #fff;
+  background-color: #ff324d;
+  &:before {
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    right: 100%;
+
+    display: block;
+
+    width: 0;
+    height: 0;
+
+    content: "";
+
+    border: 20px solid $theme-color--default;
+    border-bottom-color: $theme-color--default;
+    border-left-color: transparent;
+  }
+  &:after {
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    left: 100%;
+
+    display: block;
+
+    width: 0;
+    height: 0;
+
+    content: "";
+
+    border: 20px solid $theme-color--default;
+    border-right-color: transparent;
+    border-bottom-color: $theme-color--default;
+  }
+}
+
+
+/*=====  End of hero slider  ======*/
+
