@@ -1,6 +1,6 @@
 {
-  "name": "portfolio",
-  "version": "0.1.0",
+  "name": "oility-next",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
@@ -13,7 +13,7 @@
     "animate.css": "^4.1.0",
     "axios": "^0.27.2",
     "bootstrap": "4.6.0",
-    "next": "11.1.0",
+    "next": "^11.0.1",
     "react": "^17.0.2",
     "react-bootstrap": "^1.6.1",
     "react-countdown": "^2.2.1",
