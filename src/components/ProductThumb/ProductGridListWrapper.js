@@ -32,11 +32,11 @@ const ProductGridListWrapper = ({
     <Fragment>
       {products &&
         products.map((product) => {
-          const discountedPrice = getDiscountPrice(
+          const discountedPrice = parseFloat(getDiscountPrice(
             product.price,
             product.discount
-          ).toFixed(2);
-          const productPrice = product.price.toFixed(2);
+          )).toFixed(2);
+          const productPrice = parseFloat(product.price).toFixed(2);
           const cartItem = cartItems.filter(
             (cartItem) => cartItem.vid === product.vid
           )[0];
