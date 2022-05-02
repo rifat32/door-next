@@ -71,11 +71,11 @@ const DealProductSlider = ({ title, products }) => {
               <Swiper {...params} getSwiper={setSwiper}>
                 {products &&
                   products.map((product, key) => {
-                    const discountedPrice = getDiscountPrice(
+                    const discountedPrice = parseFloat(getDiscountPrice(
                       product.price,
                       product.discount
-                    ).toFixed(2);
-                    const productPrice = product.price.toFixed(2);
+                    )).toFixed(2);
+                    const productPrice = parseFloat(product.price).toFixed(2);
                     return (
                       <div className="deal-product" key={key}>
                         <div className="deal-product__image">

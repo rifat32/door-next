@@ -64,11 +64,11 @@ const ProductSliderFour = ({ title, products }) => {
                 {chunkArr.map((chunk, key) => (
                   <div className="product-chunk" key={key}>
                     {chunk.map((product, key) => {
-                      const discountedPrice = getDiscountPrice(
+                      const discountedPrice = parseFloat(getDiscountPrice(
                         product.price,
                         product.discount
-                      ).toFixed(2);
-                      const productPrice = product.price.toFixed(2);
+                      )).toFixed(2);
+                      const productPrice = parseFloat(product.price).toFixed(2);
                       return (
                         <div className="widget-product" key={key}>
                           <div className="widget-product__image">

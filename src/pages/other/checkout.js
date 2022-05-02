@@ -223,10 +223,10 @@ const handleSubmit= (e) => {
                       </thead>
                       <tbody>
                         {cartItems.map((product, i) => {
-                          const discountedPrice = getDiscountPrice(
+                          const discountedPrice = parseFloat(getDiscountPrice(
                             product.price,
                             product.discount
-                          ).toFixed(2);
+                          )).toFixed(2);
 
                           cartTotalPrice += discountedPrice * product.qty;
                           return (
@@ -239,7 +239,7 @@ const handleSubmit= (e) => {
                               </td>
                               <td>
                                 $
-                                {(discountedPrice * product.qty).toFixed(
+                                {parseFloat((discountedPrice * product.qty)).toFixed(
                                   2
                                 )}
                               </td>
@@ -251,7 +251,7 @@ const handleSubmit= (e) => {
                         <tr>
                           <th>SubTotal</th>
                           <td className="product-subtotal">
-                            ${cartTotalPrice.toFixed(2)}
+                            ${parseFloat(cartTotalPrice).toFixed(2)}
                           </td>
                         </tr>
                         <tr>
@@ -261,7 +261,7 @@ const handleSubmit= (e) => {
                         <tr>
                           <th>Total</th>
                           <td className="product-subtotal">
-                            ${cartTotalPrice.toFixed(2)}
+                            ${parseFloat(cartTotalPrice).toFixed(2)}
                           </td>
                         </tr>
                       </tfoot>

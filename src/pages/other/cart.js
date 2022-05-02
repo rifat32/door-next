@@ -60,12 +60,13 @@ const Cart = ({
                       </thead>
                       <tbody>
                         {cartItems.map((product, key) => {
-                          const discountedPrice = getDiscountPrice(
+                          const discountedPrice = parseFloat(getDiscountPrice(
                             product.price,
                             product.discount
-                          ).toFixed(2);
+                          )).toFixed(2);
 
-                          cartTotalPrice += discountedPrice * product.quantity;
+                          cartTotalPrice += discountedPrice * product.qty;
+                        
                           return (
                             <tr key={key}>
                               <td className="product-thumbnail">
@@ -117,9 +118,10 @@ const Cart = ({
                                   <input
                                     className="cart-plus-minus-box"
                                     type="text"
-                                    value={product.quantity}
+                                    value={product.qty}
                                     readOnly
                                   />
+                                  {console.log(  product !== undefined )}
                                   <button
                                     onClick={() =>
                                       addToCart(
@@ -129,7 +131,8 @@ const Cart = ({
                                       )
                                     }
                                     disabled={
-                                      product !== undefined &&
+                                      product == undefined 
+                                      &&
                                       product.qty &&
                                       product.qty >=
                                         cartItemStock(
@@ -149,7 +152,7 @@ const Cart = ({
                                 data-title="Total"
                               >
                                 $
-                                {(discountedPrice * product.quantity).toFixed(
+                                {parseFloat((discountedPrice * product.qty)).toFixed(
                                   2
                                 )}
                               </td>
@@ -279,7 +282,7 @@ const Cart = ({
                           <tr>
                             <td className="cart-total-label">Cart Subtotal</td>
                             <td className="cart-total-amount">
-                              ${cartTotalPrice.toFixed(2)}
+                              ${parseFloat(cartTotalPrice).toFixed(2)}
                             </td>
                           </tr>
                           <tr>
@@ -289,7 +292,8 @@ const Cart = ({
                           <tr>
                             <td className="cart-total-label">Total</td>
                             <td className="cart-total-amount">
-                              <strong>${cartTotalPrice.toFixed(2)}</strong>
+                    
+                              <strong>${parseFloat(cartTotalPrice).toFixed(2)}</strong>
                             </td>
                           </tr>
                         </tbody>

@@ -121,11 +121,11 @@ const Sidebar = ({ products, getSortParams }) => {
           <ul className="widget-recent-post-wrapper">
             {popularProducts &&
               popularProducts.map((product, key) => {
-                const discountedPrice = getDiscountPrice(
+                const discountedPrice = parseFloat(getDiscountPrice(
                   product.price,
                   product.discount
-                ).toFixed(2);
-                const productPrice = product.price.toFixed(2);
+                )).toFixed(2);
+                const productPrice = parseFloat(product.price).toFixed(2);
                 return (
                   <li className="widget-product-post" key={key}>
                     <div className="widget-product-post__image">

@@ -16,10 +16,10 @@ const MiniCart = ({ cartItems, deleteFromCart }) => {
         <div className="cart-box">
           <ul className="cart-list">
             {cartItems.map((product, key) => {
-              const discountedPrice = getDiscountPrice(
+              const discountedPrice = parseFloat(getDiscountPrice(
                 product.price,
                 product.discount
-              ).toFixed(2);
+              )).toFixed(2);
               cartTotalPrice += discountedPrice * product.qty;
               return (
                 <li key={key}>
@@ -78,7 +78,7 @@ const MiniCart = ({ cartItems, deleteFromCart }) => {
                 {" "}
                 <span className="price-symbol">$</span>
               </span>
-              {cartTotalPrice.toFixed(2)}
+              {parseFloat(cartTotalPrice).toFixed(2)}
             </p>
             <div className="cart-buttons">
               <Link href="/other/cart">

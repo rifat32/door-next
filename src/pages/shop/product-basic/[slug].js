@@ -36,12 +36,12 @@ const ProductBasic = ({
   relatedProducts
 }) => {
   const { addToast } = useToasts();
-  const discountedPrice = getDiscountPrice(
+  const discountedPrice = parseFloat(getDiscountPrice(
     product.price,
     product.discount
-  ).toFixed(2);
+  )).toFixed(2);
 
-  const productPrice = product.price.toFixed(2);
+  const productPrice = parseFloat(product.price).toFixed(2);
   const cartItem = cartItems.filter(
     (cartItem) => cartItem.id === product.id
   )[0];

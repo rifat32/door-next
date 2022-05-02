@@ -66,12 +66,12 @@ const Compare = ({ cartItems, compareItems, addToCart, deleteFromCompare }) => {
                         <tr className="pr-price">
                           <td className="row-title">Price</td>
                           {compareItems.map((product, key) => {
-                            const discountedPrice = getDiscountPrice(
+                            const discountedPrice = parseFloat(getDiscountPrice(
                               product.price,
                               product.discount
-                            ).toFixed(2);
+                            )).toFixed(2);
 
-                            const productPrice = product.price.toFixed(2);
+                            const productPrice = parseFloat(product.price).toFixed(2);
                             return (
                               <td className="product-price" key={key}>
                                 {product.discount ? (

@@ -50,10 +50,10 @@ const Wishlist = ({
                     </thead>
                     <tbody>
                       {wishlistItems.map((product, key) => {
-                        const discountedPrice = getDiscountPrice(
+                        const discountedPrice = parseFloat(getDiscountPrice(
                           product.price,
                           product.discount
-                        ).toFixed(2);
+                        )).toFixed(2);
                         const cartItem = cartItems.filter(
                           (item) => item.id === product.id
                         )[0];
