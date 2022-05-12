@@ -7,7 +7,7 @@ import { LayoutOne } from "../../layouts";
 import { BreadcrumbOne } from "../../components/Breadcrumb";
 import { Sidebar, ShopHeader, ShopProducts } from "../../components/Shop";
 import { getSortedProducts } from "../../lib/product";
-import {apiClient} from "../../utils/apiClient"
+import { apiClient } from "../../utils/apiClient";
 import { BACKENDAPI } from "../../../config";
 
 const GridLeftSidebar = ({ products }) => {
@@ -22,6 +22,8 @@ const GridLeftSidebar = ({ products }) => {
   const [sortedProducts, setSortedProducts] = useState([]);
   const [shopTopFilterStatus, setShopTopFilterStatus] = useState(false);
 
+  const [currentLink, setCurrentLink] = useState(`${BACKENDAPI}/v1.0/client/products/pagination/10?page=1&&category=&&aa=`);
+
   const pageLimit = 12;
 
   const getLayout = (layout) => {
@@ -29,6 +31,19 @@ const GridLeftSidebar = ({ products }) => {
   };
 
   const getSortParams = (sortType, sortValue) => {
+
+    let params = currentLink.split("?")[1];
+    if(sortType == "category"){
+      console.log(params)
+      let paramsArray = params.split("&&")
+      paramsArray[1] = `category=${sortValue}`
+      
+      setCurrentLink(currentLink.split("?")[0]
+      .concat("?")
+      .concat(paramsArray.join("&&")))
+    
+    }
+
     setSortType(sortType);
     setSortValue(sortValue);
   };
@@ -48,27 +63,24 @@ const GridLeftSidebar = ({ products }) => {
     sortedProducts = filterSortedProducts;
     setSortedProducts(sortedProducts);
 
+    apiClient()
+      .get(currentLink)
+      .then((response) => {
+        setCurrentData(response.data.products.data);
+      })
+      .catch((err) => {
+        console.log(err.response);
+      });
 
-    apiClient().get(`${BACKENDAPI}/v1.0/client/products/pagination/10?page=1`)
-    .then((response) => {
-console.log(response);
-setCurrentData(response.data.products.data)
-    })
-    .catch(err => {
-console.log(err.response)
-    })
+    //      setCurrentData(sortedProducts.slice(offset, offset + pageLimit));
 
-
-
-
-//      setCurrentData(sortedProducts.slice(offset, offset + pageLimit));
-
-// console.log(sortedProducts.slice(offset, offset + pageLimit))
-
-
-
-  }, [offset, products, sortType, sortValue, filterSortType, filterSortValue]);
-
+    // console.log(sortedProducts.slice(offset, offset + pageLimit))
+  }, 
+  // [offset, products, sortType, sortValue, filterSortType, filterSortValue]
+  [
+    currentLink
+  ]
+  );
 
   return (
     <LayoutOne>
@@ -96,6 +108,7 @@ console.log(err.response)
                 layout={layout}
               />
               {/* shop products */}
+
               <ShopProducts layout={layout} products={currentData} />
 
               {/* shop product pagination */}
@@ -115,6 +128,7 @@ console.log(err.response)
             </Col>
             <Col lg={3} className="order-lg-first mt-4 pt-2 mt-lg-0 pt-lg-0">
               {/* sidebar */}
+
               <Sidebar products={products} getSortParams={getSortParams} />
             </Col>
           </Row>
@@ -126,7 +140,7 @@ console.log(err.response)
 
 const mapStateToProps = (state) => {
   return {
-    products: state.productData
+    products: state.productData,
   };
 };
 

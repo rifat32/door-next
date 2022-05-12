@@ -1,4 +1,4 @@
-import { Fragment } from "react";
+import { Fragment, useEffect, useState } from "react";
 import { IoIosArrowForward } from "react-icons/io";
 import Link from "next/link";
 import {
@@ -11,13 +11,40 @@ import {
   setActiveSort
 } from "../../lib/product";
 import { ProductRating } from "../../components/Product";
+import { apiClient } from "../../utils/apiClient";
+import { BACKENDAPI } from "../../../config";
 
 const Sidebar = ({ products, getSortParams }) => {
-  const categories = getIndividualCategories(products);
+  const [categories, setCategories ] = useState([])
+ 
   const colors = getIndividualColors(products);
   const sizes = getProductsIndividualSizes(products);
   const tags = getIndividualTags(products);
   const popularProducts = getProducts(products, "fashion", "popular", 3);
+  
+useEffect(
+() => {
+  let isApiSubscribed = true;
+  apiClient()
+  .get(`${BACKENDAPI}/v1.0/client/categories/all`)
+  .then((response) => {
+    setCategories(response.data.data);
+  })
+  .catch((err) => {
+    console.log(err.response);
+  });
+  return () => {
+      // cancel the subscription
+      isApiSubscribed = false;
+  };
+}
+, []);
+ 
+
+
+
+
+
 
   return (
     <div className="sidebar">
@@ -31,13 +58,13 @@ const Sidebar = ({ products, getSortParams }) => {
                   <li key={key}>
                     <button
                       onClick={(e) => {
-                        getSortParams("category", category.name);
+                        getSortParams("category", category.id);
                         setActiveSort(e);
                       }}
                     >
                       <IoIosArrowForward />
-                      <span className="categories-name">{category.name}</span>
-                      <span className="categories-num">({category.count})</span>
+                      <span className="categories-name">{category.name} </span>
+                      {/* <span className="categories-num">({category.count})</span> */}
                     </button>
                   </li>
                 );
