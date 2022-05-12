@@ -9,6 +9,7 @@ import { Sidebar, ShopHeader, ShopProducts } from "../../components/Shop";
 import { getSortedProducts } from "../../lib/product";
 import { apiClient } from "../../utils/apiClient";
 import { BACKENDAPI } from "../../../config";
+import Loader from "react-loader-spinner";
 
 const GridLeftSidebar = ({ products }) => {
   const [layout, setLayout] = useState("grid");
@@ -21,6 +22,8 @@ const GridLeftSidebar = ({ products }) => {
   const [currentData, setCurrentData] = useState([]);
   const [sortedProducts, setSortedProducts] = useState([]);
   const [shopTopFilterStatus, setShopTopFilterStatus] = useState(false);
+  const [productLoading, setProductLoading] = useState(true);
+  
 
   const [currentLink, setCurrentLink] = useState(`${BACKENDAPI}/v1.0/client/products/pagination/10?page=1&&category=&&aa=`);
 
@@ -62,14 +65,17 @@ const GridLeftSidebar = ({ products }) => {
     );
     sortedProducts = filterSortedProducts;
     setSortedProducts(sortedProducts);
+    setProductLoading(true)
 
     apiClient()
       .get(currentLink)
       .then((response) => {
         setCurrentData(response.data.products.data);
+        setProductLoading(false)
       })
       .catch((err) => {
         console.log(err.response);
+        setProductLoading(false)
       });
 
     //      setCurrentData(sortedProducts.slice(offset, offset + pageLimit));
@@ -109,7 +115,23 @@ const GridLeftSidebar = ({ products }) => {
               />
               {/* shop products */}
 
-              <ShopProducts layout={layout} products={currentData} />
+              {productLoading ? (
+					<div className="col-12">
+						<div className="text-center">
+							<Loader
+								type="Puff"
+								color="#00BFFF"
+								height={100}
+								width={100}
+							/>
+						</div>
+					</div>
+				):(
+          <ShopProducts layout={layout} products={currentData} /> 
+        )
+        }
+             
+
 
               {/* shop product pagination */}
               <div className="pagination pagination-style pagination-style--two justify-content-center">

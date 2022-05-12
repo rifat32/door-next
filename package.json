@@ -33,7 +33,8 @@
     "redux-thunk": "^2.3.0",
     "simple-line-icons": "^2.4.1",
     "swiper": "5.3.6",
-    "uuid": "^8.2.0"
+    "uuid": "^8.2.0",
+    "react-loader-spinner": "^4.0.0"
   },
   "devDependencies": {
     "redux-devtools-extension": "^2.13.9",
