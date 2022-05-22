@@ -1,5 +1,5 @@
 import { toast } from "react-toastify";
-export const ErrorMessage = (error:any) => {
+export const ErrorMessage = (error) => {
          console.log(error.data);
 		 if(error.message){
 			toast.error(error.message);

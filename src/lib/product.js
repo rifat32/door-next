@@ -70,8 +70,7 @@ export const getProductCartQuantity = (cartItems, product, color, size) => {
       return cartItems.filter(
         (single) =>
           single.id === product.id &&
-          single.selectedProductColor === color &&
-          single.selectedProductSize === size
+          single.selectedProductColor === color 
       )[0].qty;
     } else {
       return cartItems.filter((single) => product.vid === single.vid)[0].qty;

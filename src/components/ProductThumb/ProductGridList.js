@@ -38,10 +38,12 @@ console.log("citem",cartItem)
         <div className="product-grid">
           <div className="product-grid__image">
             <Link
-              href={`/shop/product-basic/[slug]?slug=${product.slug}`}
-              as={"/shop/product-basic/" + product.slug}
+              href={`/shop/product-right-sidebar/[slug]?slug=${product.slug}`}
+              as={"/shop/product-right-sidebar/" + product.id}
             >
+             
               <a>
+            
                 <img
                   src={colorImage ? colorImage : `${BACKEND}/${product.image}`}
                   alt="product_img1"
@@ -71,29 +73,33 @@ console.log("citem",cartItem)
                     </a>
                   ) : product.variation && product.variation.length >= 1 ? (
                     <Link
-                      href={`/shop/product-basic/[slug]?slug=${product.slug}`}
-                      as={"/shop/product-basic/" + product.slug}
+                      href={`/shop/product-right-sidebar/[slug]?slug=${product.id}`}
+                      as={"/shop/product-right-sidebar/" + product.id}
                     >
                       <a>
                         <i className="icon-wrench" />
                       </a>
                     </Link>
-                  ) : product.qty && product.qty > 0 ? (
-                    <button
-                      onClick={() => addToCart(product, addToast)}
+                  ) : 
+                  product.qty && product.qty > 0 ? (
+                    // <button
+                    //   onClick={() => addToCart(product, addToast)}
                       
-                      disabled={
-                        cartItem !== undefined &&
-                        cartItem.qty >= product.qty
-                      }
-                      className={cartItem !== undefined ? "active" : ""}
-                    >
-                      <i className="icon-basket-loaded" /> 
-                    </button>
+                    //   disabled={
+                    //     cartItem !== undefined &&
+                    //     cartItem.qty >= product.qty
+                    //   }
+                    //   className={cartItem !== undefined ? "active" : ""}
+                    // >
+                    //   <i className="icon-basket-loaded" /> 
+                    // </button>
+                    <></>
+                    
                   ) : (
-                    <button disabled>
-                      <i className="icon-basket-loaded" /> 
-                    </button>
+                    // <button disabled>
+                    //   <i className="icon-basket-loaded" /> 
+                    // </button>
+                    <></>
                   )}
                 </li>
                 <li>
@@ -134,8 +140,8 @@ console.log("citem",cartItem)
           <div className="product-grid__info">
             <h6 className="product-title">
               <Link
-                href={`/shop/product-basic/[slug]?slug=${product.slug}`}
-                as={"/shop/product-basic/" + product.slug}
+                href={`/shop/product-right-sidebar/[slug]?slug=${product.id}`}
+                as={"/shop/product-right-sidebar/" + product.id}
               >
                 <a>{product.name}</a>
               </Link>
@@ -143,18 +149,18 @@ console.log("citem",cartItem)
             <div className="product-price">
               {product.discount ? (
                 <Fragment>
-                  <span className="price">${discountedPrice}</span>
-                  <del>${productPrice}</del>
+                  <span className="price">${discountedPrice} </span>
+                  <del>${productPrice} </del>
                   <span className="on-sale">{product.discount}% Off</span>
                 </Fragment>
               ) : (
-                <span className="price">${productPrice}</span>
+                <span className="price">Starting From ${productPrice} </span>
               )}
             </div>
-            <div className="rating-wrap">
+            {/* <div className="rating-wrap">
               <ProductRating ratingValue={product.rating} />
               <span className="rating-num">({product.ratingCount})</span>
-            </div>
+            </div> */}
 
             {product.variation ? (
               <div className="product-switch-wrap">
@@ -276,23 +282,26 @@ console.log("citem",cartItem)
                         <i className="icon-wrench" /> Select Options
                       </a>
                     </Link>
-                  ) : product.stock && product.stock > 0 ? (
-                    <button
-                      onClick={() => addToCart(product, addToast)}
-                      disabled={
-                        cartItem !== undefined &&
-                        cartItem.quantity >= cartItem.stock
-                      }
-                      className={`btn btn-fill-out btn-addtocart ${
-                        cartItem !== undefined ? "active" : ""
-                      }`}
-                    >
-                      <i className="icon-basket-loaded" /> Add To Cart
-                    </button>
+                  ) : 
+                  product.stock && product.stock > 0 ? (
+                    // <button
+                    //   onClick={() => addToCart(product, addToast)}
+                    //   disabled={
+                    //     cartItem !== undefined &&
+                    //     cartItem.quantity >= cartItem.stock
+                    //   }
+                    //   className={`btn btn-fill-out btn-addtocart ${
+                    //     cartItem !== undefined ? "active" : ""
+                    //   }`}
+                    // >
+                    //   <i className="icon-basket-loaded" /> Add To Cart
+                    // </button>
+                    <></>
                   ) : (
-                    <button disabled className="btn btn-fill-out btn-addtocart">
-                      <i className="icon-basket-loaded" /> Add To Cart
-                    </button>
+                    // <button disabled className="btn btn-fill-out btn-addtocart">
+                    //   <i className="icon-basket-loaded" /> Add To Cart
+                    // </button>
+                    <></>
                   )}
                 </li>
                 <li>

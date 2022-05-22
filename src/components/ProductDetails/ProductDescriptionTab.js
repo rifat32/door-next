@@ -25,7 +25,7 @@ const ProductDescriptionTab = ({ product }) => {
         <Tab.Content>
           <Tab.Pane eventKey="description">
             <div className="product-description-tab__details">
-              {product.fullDescription}
+              {product.description}
             </div>
           </Tab.Pane>
           <Tab.Pane eventKey="additionalInfo">

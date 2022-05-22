@@ -1,6 +1,7 @@
 import { Fragment, useState, useEffect } from "react";
 import Swiper from "react-id-swiper";
 import { LightgalleryProvider, LightgalleryItem } from "react-lightgallery";
+import { BACKEND } from "../../../config";
 
 const ImageGalleryBottomThumb = ({ product }) => {
   const [gallerySwiper, getGallerySwiper] = useState(null);
@@ -42,34 +43,39 @@ const ImageGalleryBottomThumb = ({ product }) => {
   return (
     <Fragment>
       <div className="product-large-image-wrapper">
+       
         <LightgalleryProvider>
           <Swiper {...gallerySwiperParams}>
-            {product.image &&
-              product.image.map((single, key) => {
+     
+            {product.images &&
+              product.images.map((single, key) => {
                 return (
                   <div key={key}>
-                    <LightgalleryItem group="any" src={single}>
+                 
+                    <LightgalleryItem group="any" src={`https://csharpcorner-mindcrackerinc.netdna-ssl.com/article/asp-net-mvc5-upload-imagefile-into-database/Images/1.PNG`}>
                       <button className="enlarge-icon">
                         <i className="icon-magnifier-add" />
                       </button>
                     </LightgalleryItem>
                     <div className="single-image">
-                      <img src={single} className="img-fluid" alt="" />
+                      <img src={`https://csharpcorner-mindcrackerinc.netdna-ssl.com/article/asp-net-mvc5-upload-imagefile-into-database/Images/1.PNG`}className="img-fluid" alt="" />
                     </div>
                   </div>
                 );
-              })}
+              })
+              
+              }
           </Swiper>
         </LightgalleryProvider>
       </div>
       <div className="product-small-image-wrapper">
         <Swiper {...thumbnailSwiperParams}>
-          {product.image &&
-            product.image.map((image, i) => {
+          {product.images &&
+            product.images.map((image, i) => {
               return (
                 <div key={i}>
                   <div className="single-image">
-                    <img src={image} className="img-fluid" alt="" />
+                    <img src={`https://csharpcorner-mindcrackerinc.netdna-ssl.com/article/asp-net-mvc5-upload-imagefile-into-database/Images/1.PNG`} className="img-fluid" alt="" />
                   </div>
                 </div>
               );

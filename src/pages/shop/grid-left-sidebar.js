@@ -25,7 +25,7 @@ const GridLeftSidebar = ({ products }) => {
   const [productLoading, setProductLoading] = useState(true);
   
 
-  const [currentLink, setCurrentLink] = useState(`${BACKENDAPI}/v1.0/client/products/pagination/10?page=1&&category=&&aa=`);
+ 
 
   const pageLimit = 12;
 
@@ -43,7 +43,7 @@ const GridLeftSidebar = ({ products }) => {
       
       setCurrentLink(currentLink.split("?")[0]
       .concat("?")
-      .concat(paramsArray.join("&&")))
+      .concat([paramsArray[0],paramsArray[1]].join("&&")))
     
     }
 
@@ -56,6 +56,24 @@ const GridLeftSidebar = ({ products }) => {
     setFilterSortValue(sortValue);
   };
 
+  const [loading, setLoading] = useState(false);
+  const [perPage, setPerPage] = useState(1)
+  const [from, setFrom] = useState(null)
+  const [to, setTo] = useState(null)
+  const [total, setTotal] = useState(null)
+
+  const [lastPage, setLastPage] = useState(0)
+
+  const [links, setLinks] = useState(null)
+
+  const [current_page, set_current_page] = useState(0)
+
+  const [nextPageLink, setNextPageLink] = useState("");
+	const [prevPageLink, setPrevPageLink] = useState("");
+  const [currentLink, setCurrentLink] = useState(`${BACKENDAPI}/v1.0/client/products/pagination/${perPage}?page=1&&category=&&aa=`);
+  // useEffect(() => {
+	// 	loadData(perPage);
+	// }, []);
   useEffect(() => {
     let sortedProducts = getSortedProducts(products, sortType, sortValue);
     const filterSortedProducts = getSortedProducts(
@@ -66,17 +84,18 @@ const GridLeftSidebar = ({ products }) => {
     sortedProducts = filterSortedProducts;
     setSortedProducts(sortedProducts);
     setProductLoading(true)
+    loadData(currentLink)
 
-    apiClient()
-      .get(currentLink)
-      .then((response) => {
-        setCurrentData(response.data.products.data);
-        setProductLoading(false)
-      })
-      .catch((err) => {
-        console.log(err.response);
-        setProductLoading(false)
-      });
+    // apiClient()
+    //   .get(currentLink)
+    //   .then((response) => {
+    //     setCurrentData(response.data.products.data);
+    //     setProductLoading(false)
+    //   })
+    //   .catch((err) => {
+    //     console.log(err.response);
+    //     setProductLoading(false)
+    //   });
 
     //      setCurrentData(sortedProducts.slice(offset, offset + pageLimit));
 
@@ -87,6 +106,140 @@ const GridLeftSidebar = ({ products }) => {
     currentLink
   ]
   );
+
+  const loadData = (urlOrPerPage) => {
+		setLoading(true)  
+    
+    setProductLoading(true)
+    setCurrentData([]);
+  
+		let url;
+		if (typeof urlOrPerPage === "string") {
+			url = urlOrPerPage.replace("http", "http");
+		} else {
+			url = 
+      `${BACKENDAPI}/v1.0/client/products/pagination/${urlOrPerPage}`
+      .concat("?")
+      .concat(currentLink.split("?")[1])
+		}
+		apiClient()
+			.get(url)
+			.then((response) => {
+				setLoading(false)
+				console.log(response.data)
+				setFrom(response.data.products.from)
+				setTo(response.data.products.to)
+				setTotal(response.data.products.total)
+
+				setLastPage(response.data.products.last_page)
+
+				setLinks(response.data.products.links)
+				set_current_page(response.data.products.current_page)
+				console.log(response.data.products);
+				
+			  setCurrentData(response.data.products.data);
+        setProductLoading(false)
+
+				setNextPageLink(response.data.products.next_page_url);
+				setPrevPageLink(response.data.products.prev_page_url);
+			})
+			.catch((error) => {
+				setLoading(false)
+				console.log(error.response)
+			});
+	};
+
+  const handlePerPage = (e) => {
+      const newValue = parseInt(e.target.value);
+      setPerPage(newValue)
+      console.log(newValue)
+      loadData(newValue)
+  
+    }
+    const setLinksView = (el, index, arr) => {
+      let params = currentLink.split("?")[1];
+   
+        let paramsArray = params.split("&&")
+        paramsArray[0] = ""
+        params =   paramsArray.join("&&")
+       
+   el.url += params
+  
+
+  
+
+      if (el.label == "&laquo; Previous") {
+        if (el.url) {
+          return <li key={index} className="page-item"><button className="page-link" onClick={() =>
+            loadData(el.url)} >Previous</button></li>
+        }
+        else {
+          return <li key={index} className="page-item disabled"><button className="page-link"  >Previous</button></li>
+        }
+      }
+      else if (el.label == "Next &raquo;") {
+        if (el.url) {
+          return <li key={index} className="page-item"><button onClick={() =>
+            loadData(el.url)} className="page-link" >Next</button></li>
+        }
+        else {
+          return <li key={index} className="page-item disabled"><button className="page-link" >Next</button></li>
+        }
+      } else {
+        if (index === 1) {
+          return <React.Fragment key={index}><li className="page-item"><button className={`page-link  ${el.active && "text-dark"}`} onClick={() =>
+            index == current_page ? null : loadData(el.url)} >
+            1
+          </button></li>
+            {
+              current_page > 4 ? (<li className="page-item"><button className={`page-link `} >
+                ....
+              </button></li>) : null
+            }
+          </React.Fragment>
+        }
+        else if (index === lastPage && lastPage > 1) {
+          return <React.Fragment key={index}>
+            {
+              current_page < (lastPage - 3) ? (<li className="page-item">
+                <button className={`page-link `} >
+                  ....
+                </button></li>) : null
+            }
+            <li key={index} className="page-item"><button className={`page-link  ${el.active && "text-dark"}`} onClick={() =>
+              index == current_page ? null : loadData(el.url)} >
+              {lastPage}
+            </button></li>
+  
+          </React.Fragment>
+        }
+        else {
+  
+          if (index == current_page + 1 || index == current_page + 2 || index == current_page - 1 || index == current_page - 2 || index == current_page) {
+            return <li key={index} className="page-item"><button className={`page-link  ${el.active && "text-dark"}`} onClick={() =>
+              index == current_page ? null : loadData(el.url)} >
+              {el.label}
+            </button></li>
+  
+          }
+  
+  
+  
+        }
+  
+      }
+    }
+  if (!currentData?.length) {
+
+      return <div className="noProduct d-flex align-items-center justify-content-center">
+        {
+          loading ? "loading..." : <h3 className="display-3" >
+            No products to show
+          </h3>
+        }
+  
+      </div>
+    }
 
   return (
     <LayoutOne>
@@ -131,7 +284,49 @@ const GridLeftSidebar = ({ products }) => {
         )
         }
              
+<div className="footer-pagination">
+				<div className="row">
+					<div className="col-md-4 text-center">
+						<div className="items">
+							<label>Item per page</label> <select onChange={handlePerPage} value={perPage}>
+								<option value={6}>6</option>
+								<option value={9}>9</option>
+								<option value={12}>12</option>
+								<option value={15}>15</option>
 
+							</select>
+						</div>
+
+					</div>
+					<div className="col-md-2 text-center">
+						<div className="number">{from} - {to} of {total}</div>
+
+					</div>
+					<div className="col-md-6">
+
+						<nav aria-label="Page navigation example   ">
+							<ul className="pagination  ">
+
+								{
+									links ? links.map((el, index, arr) => setLinksView(el, index, arr)) : null
+								}
+
+
+
+
+
+							</ul>
+						</nav>
+
+
+
+					</div>
+
+
+
+				</div>
+			
+			</div>
 
               {/* shop product pagination */}
               <div className="pagination pagination-style pagination-style--two justify-content-center">

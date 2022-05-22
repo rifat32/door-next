@@ -29,21 +29,20 @@ const ProductDescription = ({
   productContentButtonStyleClass
 }) => {
   const [selectedProductColor, setSelectedProductColor] = useState(
-    product.variation ? product.variation[0].color : ""
+    product.colors.length ? product.colors[0].color.name : ""
   );
-  const [selectedProductSize, setSelectedProductSize] = useState(
-    product.variation ? product.variation[0].size[0].name : ""
-  );
+  // const [selectedProductSize, setSelectedProductSize] = useState(
+  //   product.variation ? product.variation[0].size[0].name : ""
+  // );
   const [productStock, setProductStock] = useState(
-    product.variation ? product.variation[0].size[0].stock : product.stock
+     product.qty 
   );
   const [quantityCount, setQuantityCount] = useState(1);
 
   const productCartQty = getProductCartQuantity(
     cartItems,
     product,
-    selectedProductColor,
-    selectedProductSize
+    selectedProductColor
   );
   return (
     <div className="product-content">
@@ -107,7 +106,7 @@ const ProductDescription = ({
                       }
                       onChange={() => {
                         setSelectedProductColor(single.color);
-                        setSelectedProductSize(single.size[0].name);
+                        
                         setProductStock(single.size[0].stock);
                         setQuantityCount(1);
                       }}
@@ -121,7 +120,7 @@ const ProductDescription = ({
               })}
             </div>
           </div>
-          <div className="product-content__size space-mb--20">
+          {/* <div className="product-content__size space-mb--20">
             <div className="product-content__size__title">Size</div>
             <div className="product-content__size__content">
               {product.variation &&
@@ -154,7 +153,7 @@ const ProductDescription = ({
                     : "";
                 })}
             </div>
-          </div>
+          </div> */}
         </div>
       ) : (
         ""
@@ -219,7 +218,7 @@ const ProductDescription = ({
                     addToast,
                     quantityCount,
                     selectedProductColor,
-                    selectedProductSize
+                  
                   )
                 }
                 disabled={productCartQty >= productStock}
@@ -279,17 +278,17 @@ const ProductDescription = ({
         <li>
           Category:
           {product.category &&
-            product.category.map((item, index, arr) => {
-              return (
+            (
                 <Link
                   href="/shop/grid-left-sidebar"
                   as={"/shop/grid-left-sidebar"}
-                  key={index}
+                 
                 >
-                  <a>{item + (index !== arr.length - 1 ? ", " : "")}</a>
+                  <a>{product.category.name}</a>
                 </Link>
-              );
-            })}
+              )
+            }
+           
         </li>
         <li>
           Tags:
