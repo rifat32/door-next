@@ -55,7 +55,7 @@ const [toggle,setToggle] = useState(true)
 		type: "single",
 		category_id: "",
 		style_id: "",
-		price: "",
+		price: 0,
 		qty: "",
 		status:"active",
 		is_featured:"0",
@@ -76,8 +76,10 @@ const [toggle,setToggle] = useState(true)
 				code:"",
 				color_id:"",
 			}
-		]
+		],
 		
+    selectedHeight:0,
+    selectedWidth:0
 	});
   useEffect(() => {
    loadProduct(slug)
@@ -94,8 +96,8 @@ const [toggle,setToggle] = useState(true)
 
 					
 				
-              let price = "";
-			  let qty = "";
+              let price = 0;
+			  let qty = 0;
 			  let tempVariation = []
 				if(type === "single"){
                    price = variations[0].price
@@ -106,11 +108,14 @@ const [toggle,setToggle] = useState(true)
 
 			
 
-
+           
 					
 						el.variation_value_template = el.variations.map((el2) => {
+              qty += el2.qty
 						 return el2;
 							 })
+
+               
 							return el
 					   
 					   })
@@ -137,6 +142,7 @@ const [toggle,setToggle] = useState(true)
 				price,
 				qty,
 				variation:tempVariation,
+        selectedHeight:tempVariation[0].id,
         category,
 				image,
 				colors:tempColors,
@@ -181,6 +187,27 @@ const [toggle,setToggle] = useState(true)
   const compareItem = compareItems.filter(
     (compareItem) => compareItem.id === productNew.id
   )[0];
+
+
+  const [errors,setErrors] = useState(null);
+  
+  const handleSelectHeight = (e) => {
+		 setProductData({ ...productNew, [e.target.name]: e.target.value });
+     if(e.target.name == "selectedWidth"){
+       let price = 0;
+       productNew.variation.map(el => {
+         if(el.id == productNew.selectedHeight){
+           el.variation_value_template.map(el2 => {
+             if(el2.id == e.target.value){
+               price = el2.price
+             }
+           })
+         }
+       })
+       
+        setProductData({ ...productNew,[e.target.name]: e.target.value, price})
+     }
+	};
 if(!loading){
   return (
     <LayoutOne>
@@ -215,7 +242,7 @@ if(!loading){
                   {/* product description */}
                   <ProductDescription
                     product={productNew}
-                    productPrice={productPrice}
+                    productPrice={productNew.price}
                     discountedPrice={discountedPrice}
                     cartItems={cartItems}
                     cartItem={cartItem}
@@ -248,7 +275,97 @@ if(!loading){
             <Col xl={3} lg={4} className="space-mt-mobile-only--60">
               {/* sidebar */}
              
-              <Sidebar products={products} category={productNew.category.name} />
+             <Row>
+               <Col sm={12} className="form-group" >
+               
+				<label htmlFor="selectedHeight" className="form-label">
+					Height
+				</label>
+				<select
+					className={
+						errors
+							? errors.selectedHeight
+								? `form-control is-invalid`
+								: `form-control is-valid`
+							: "form-control"
+					}
+					id="selectedHeight"
+					name="selectedHeight"
+					onChange={handleSelectHeight}
+					value={productNew.selectedHeight}>
+				  <option
+  
+            value=""
+            >
+            Please Select
+          </option>
+					{productNew.variation.map((el, index) => (
+          
+						<option
+							key={index}
+							value={el.id}
+							style={{ textTransform: "uppercase" }}>
+							{el.name}
+						</option>
+					))}
+				</select>
+				{errors?.selectedHeight && (
+					<div className="invalid-feedback">{errors.selectedHeight[0]}</div>
+				)}
+				{errors && <div className="valid-feedback">Looks good!</div>}
+		
+               </Col>
+               <Col sm={12} className="form-group" >
+               
+               <label htmlFor="selectedWidth" className="form-label">
+                 Width
+               </label>
+               <select
+                 className={
+                   errors
+                     ? errors.selectedWidth
+                       ? `form-control is-invalid`
+                       : `form-control is-valid`
+                     : "form-control"
+                 }
+                 id="selectedWidth"
+                 name="selectedWidth"
+                 onChange={handleSelectHeight}
+                 value={productNew.selectedWidth}>
+                 <option
+         
+                   value=""
+                   >
+                   Please Select
+                 </option>
+                 {productNew.variation.map((el, index) => {
+                    
+                    if(el.id == productNew.selectedHeight) {
+                   
+                  return    el.variation_value_template.map((el2,index )=> {
+                        
+                        return (<option
+                          key={index}
+                          value={el2.id}
+                          style={{ textTransform: "uppercase" }}>
+                          {el2.name}
+                        </option>)
+                      })
+                     
+                    } else {
+                      return <></>
+                    }
+                 
+                 })}
+               </select>
+               {errors?.selectedWidth && (
+                 <div className="invalid-feedback">{errors.selectedWidth[0]}</div>
+               )}
+               {errors && <div className="valid-feedback">Looks good!</div>}
+           
+                      </Col>
+             </Row>
+             
               
             </Col>
           </Row>

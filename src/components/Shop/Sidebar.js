@@ -16,8 +16,11 @@ import { BACKENDAPI } from "../../../config";
 
 const Sidebar = ({ products, getSortParams }) => {
   const [categories, setCategories ] = useState([])
- 
-  const colors = getIndividualColors(products);
+  const [styles, setStyles ] = useState([])
+  const [colors, setColors ] = useState([])
+  
+
+  // const colors = getIndividualColors(products);
   const sizes = getProductsIndividualSizes(products);
   const tags = getIndividualTags(products);
   const popularProducts = getProducts(products, "fashion", "popular", 3);
@@ -25,14 +28,35 @@ const Sidebar = ({ products, getSortParams }) => {
 useEffect(
 () => {
   let isApiSubscribed = true;
-  apiClient()
-  .get(`${BACKENDAPI}/v1.0/client/categories/all`)
-  .then((response) => {
-    setCategories(response.data.data);
-  })
-  .catch((err) => {
-    console.log(err.response);
-  });
+  if(isApiSubscribed){
+    apiClient()
+    .get(`${BACKENDAPI}/v1.0/client/categories/all`)
+    .then((response) => {
+      setCategories(response.data.data);
+    })
+    .catch((err) => {
+      console.log(err.response);
+    });
+    apiClient()
+    .get(`${BACKENDAPI}/v1.0/client/styles/all`)
+    .then((response) => {
+     
+      setStyles(response.data.data);
+    })
+    .catch((err) => {
+      console.log(err.response);
+    });
+    apiClient()
+    .get(`${BACKENDAPI}/v1.0/client/colors/all`)
+    .then((response) => {
+     
+      setColors(response.data.data);
+    })
+    .catch((err) => {
+      console.log(err.response);
+    });
+  }
+ 
   return () => {
       // cancel the subscription
       isApiSubscribed = false;
@@ -71,11 +95,37 @@ useEffect(
               })}
           </ul>
         ) : (
-          "No categories found"
+          "No category found"
+        )}
+      </div>
+      <div className="widget">
+        <h5 className="widget__title">Styles</h5>
+        {styles.length > 0 ? (
+          <ul className="widget__categories">
+            {styles &&
+              styles.map((el, key) => {
+                return (
+                  <li key={key}>
+                    <button
+                      onClick={(e) => {
+                        getSortParams("style", el.id);
+                        setActiveSort(e);
+                      }}
+                    >
+                      <IoIosArrowForward />
+                      <span className="categories-name">{el.name} </span>
+                      {/* <span className="categories-num">({category.count})</span> */}
+                    </button>
+                  </li>
+                );
+              })}
+          </ul>
+        ) : (
+          "No style found"
         )}
       </div>
 
-      <div className="widget">
+      {/* <div className="widget">
         <h5 className="widget__title">Sizes</h5>
         {sizes.length > 0 ? (
           <ul className="widget__sizes">
@@ -107,7 +157,7 @@ useEffect(
         ) : (
           "No sizes found"
         )}
-      </div>
+      </div> */}
 
       <div className="widget">
         <h5 className="widget__title">Colors</h5>
@@ -118,10 +168,10 @@ useEffect(
                 <li key={key}>
                   <button
                     onClick={(e) => {
-                      getSortParams("color", color.colorName);
+                      getSortParams("color", color.id);
                       setActiveSort(e);
                     }}
-                    style={{ backgroundColor: color.colorCode }}
+                    style={{ backgroundColor: color.code }}
                   ></button>
                 </li>
               );

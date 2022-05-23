@@ -263,7 +263,7 @@ export const getIndividualSizes = (product) => {
 
 export const setActiveSort = (e) => {
   const filterButtons = document.querySelectorAll(
-    ".widget__categories button, .widget__sizes button, .widget__colors button, .widget__tags button"
+    ".widget__categories button,.widget__styles button, .widget__sizes button, .widget__colors button, .widget__tags button"
   );
   filterButtons.forEach((item) => {
     item.classList.remove("active");

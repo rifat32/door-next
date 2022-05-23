@@ -36,16 +36,61 @@ const GridLeftSidebar = ({ products }) => {
   const getSortParams = (sortType, sortValue) => {
 
     let params = currentLink.split("?")[1];
+    // category sort
     if(sortType == "category"){
-      console.log(params)
-      let paramsArray = params.split("&&")
-      paramsArray[1] = `category=${sortValue}`
       
+      let paramsArray = params.split("&&")
+      let finalParamsArray = paramsArray.filter(el => {
+        return el.split("=")[0] !== "category"
+       
+      })
+      
+      params =   finalParamsArray.join("&&")
+     
+      params = params.concat(`&&category=${sortValue}`)
+
+  
+
       setCurrentLink(currentLink.split("?")[0]
       .concat("?")
-      .concat([paramsArray[0],paramsArray[1]].join("&&")))
+      .concat(params))
     
     }
+      // end category sort
+       // style sort
+    if(sortType == "style"){
+      
+      let paramsArray = params.split("&&")
+      let finalParamsArray = paramsArray.filter(el => {
+        return el.split("=")[0] !== "style"
+       
+      })
+      params =   finalParamsArray.join("&&")
+      params = params.concat(`&&style=${sortValue}`)
+      setCurrentLink(currentLink.split("?")[0]
+      .concat("?")
+      .concat(params))
+    
+    }
+      // end style sort
+           // color sort
+    if(sortType == "color"){
+      
+      let paramsArray = params.split("&&")
+      let finalParamsArray = paramsArray.filter(el => {
+        return el.split("=")[0] !== "color"
+       
+      })
+      params =   finalParamsArray.join("&&")
+      params = params.concat(`&&color=${sortValue}`)
+      setCurrentLink(currentLink.split("?")[0]
+      .concat("?")
+      .concat(params))
+    
+    }
+      // end color sort
+
+      
 
     setSortType(sortType);
     setSortValue(sortValue);
@@ -57,7 +102,7 @@ const GridLeftSidebar = ({ products }) => {
   };
 
   const [loading, setLoading] = useState(false);
-  const [perPage, setPerPage] = useState(1)
+  const [perPage, setPerPage] = useState(9)
   const [from, setFrom] = useState(null)
   const [to, setTo] = useState(null)
   const [total, setTotal] = useState(null)
@@ -70,7 +115,7 @@ const GridLeftSidebar = ({ products }) => {
 
   const [nextPageLink, setNextPageLink] = useState("");
 	const [prevPageLink, setPrevPageLink] = useState("");
-  const [currentLink, setCurrentLink] = useState(`${BACKENDAPI}/v1.0/client/products/pagination/${perPage}?page=1&&category=&&aa=`);
+  const [currentLink, setCurrentLink] = useState(`${BACKENDAPI}/v1.0/client/products/pagination/${perPage}?page=1&&category=&&aa=bb`);
   // useEffect(() => {
 	// 	loadData(perPage);
 	// }, []);
@@ -116,12 +161,14 @@ const GridLeftSidebar = ({ products }) => {
 		let url;
 		if (typeof urlOrPerPage === "string") {
 			url = urlOrPerPage.replace("http", "http");
+           setCurrentLink(url)
 		} else {
 			url = 
       `${BACKENDAPI}/v1.0/client/products/pagination/${urlOrPerPage}`
       .concat("?")
       .concat(currentLink.split("?")[1])
 		}
+    
 		apiClient()
 			.get(url)
 			.then((response) => {
@@ -160,11 +207,15 @@ const GridLeftSidebar = ({ products }) => {
       let params = currentLink.split("?")[1];
    
         let paramsArray = params.split("&&")
-        paramsArray[0] = ""
-        params =   paramsArray.join("&&")
-       
-   el.url += params
-  
+        let finalParamsArray = paramsArray.filter(el => {
+          return el.split("=")[0] !== "page"
+         
+        })
+        params =   finalParamsArray.join("&&")
+        el.url += `&&${params}`
+                  
+        
+               
 
   
 
@@ -229,17 +280,17 @@ const GridLeftSidebar = ({ products }) => {
   
       }
     }
-  if (!currentData?.length) {
+  // if (!currentData?.length) {
 
-      return <div className="noProduct d-flex align-items-center justify-content-center">
-        {
-          loading ? "loading..." : <h3 className="display-3" >
-            No products to show
-          </h3>
-        }
+  //     return <div className="noProduct d-flex align-items-center justify-content-center">
+  //       {
+  //         loading ? "loading..." : <h3 className="display-3" >
+  //           No products to show
+  //         </h3>
+  //       }
   
-      </div>
-    }
+  //     </div>
+  //   }
 
   return (
     <LayoutOne>

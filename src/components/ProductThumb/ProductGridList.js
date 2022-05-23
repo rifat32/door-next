@@ -45,7 +45,7 @@ console.log("citem",cartItem)
               <a>
             
                 <img
-                  src={colorImage ? colorImage : `${BACKEND}/${product.image}`}
+                  src={colorImage ? `${BACKEND}/${colorImage}` : `${BACKEND}/${product.image}`}
                   alt="product_img1"
                 />
               </a>
@@ -162,17 +162,17 @@ console.log("citem",cartItem)
               <span className="rating-num">({product.ratingCount})</span>
             </div> */}
 
-            {product.variation ? (
+            {product.colors ? (
               <div className="product-switch-wrap">
                 <ul>
-                  {product.variation.map((single, key) => {
+                  {product.colors.map((single, key) => {
                     return (
                       <li key={key}>
                         <button
-                          style={{ backgroundColor: `${single.colorCode}` }}
-                          onClick={() => setColorImage(single.image)}
+                          style={{ backgroundColor: `${single.color.code}` }}
+                          onClick={() => setColorImage(single.color_image)}
                           className={
-                            colorImage === single.image ? "active" : ""
+                            colorImage === single.color_image ? "active" : ""
                           }
                         />
                       </li>
@@ -193,7 +193,7 @@ console.log("citem",cartItem)
             >
               <a>
                 <img
-                  src={colorImage ? colorImage : `${BACKEND}/${product.image}`  }
+                  src={colorImage ? `${BACKEND}/${colorImage}` : `${BACKEND}/${product.image}`  }
                   alt="product_img1"
                 />
               </a>
@@ -241,17 +241,17 @@ console.log("citem",cartItem)
             <div className="product-description">
               {product.shortDescription}
             </div>
-            {product.variation ? (
+            {product.colors ? (
               <div className="product-switch-wrap">
                 <ul>
-                  {product.variation.map((single, key) => {
+                  {product.colors.map((single, key) => {
                     return (
                       <li key={key}>
                         <button
-                          style={{ backgroundColor: `${single.colorCode}` }}
-                          onClick={() => setColorImage(single.image)}
+                          style={{ backgroundColor: `${single.color.code}` }}
+                          onClick={() => setColorImage(single.color_image)}
                           className={
-                            colorImage === single.image ? "active" : ""
+                            colorImage === single.color_image ? "active" : ""
                           }
                         />
                       </li>
