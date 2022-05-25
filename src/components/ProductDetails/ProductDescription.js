@@ -29,7 +29,7 @@ const ProductDescription = ({
   productContentButtonStyleClass
 }) => {
   const [selectedProductColor, setSelectedProductColor] = useState(
-    product.colors.length ? product.colors[0].color.name : ""
+    product.colors.length ? product.colors[0].color.code : ""
   );
   // const [selectedProductSize, setSelectedProductSize] = useState(
   //   product.variation ? product.variation[0].size[0].name : ""
@@ -88,33 +88,40 @@ const ProductDescription = ({
         </ul>
       </div>
 
-      {product.variation ? (
+      {product.colors ? (
         <div className="product-content__size-color">
           <div className="product-content__color space-mb--10">
             <div className="product-content__color__title">Color</div>
             <div className="product-content__color__content">
-              {product.variation.map((single, i) => {
+              {product.colors.map((single, i) => {
                 return (
                   <Fragment key={i}>
+                    
                     <input
                       type="radio"
-                      value={single.color}
+                      value={single.color.code}
                       name="product-color"
-                      id={single.color}
+                      id={ single.color.code}
                       checked={
-                        single.color === selectedProductColor ? "checked" : ""
+                      single.color.code === selectedProductColor ? "checked" : ""
                       }
-                      onChange={() => {
-                        setSelectedProductColor(single.color);
+                      onChange={(e) => {
                         
-                        setProductStock(single.size[0].stock);
+                        setSelectedProductColor(e.target.value);
+                        
+                        // setProductStock(single.size[0].stock);
                         setQuantityCount(1);
                       }}
                     />
+                
                     <label
-                      htmlFor={single.color}
-                      style={{ backgroundColor: single.colorCode }}
-                    ></label>
+                      htmlFor={single.color.code}
+                      style={{ backgroundColor: single.color.code }}
+                    >
+ 
+ 
+                    </label>
+               
                   </Fragment>
                 );
               })}
@@ -285,6 +292,21 @@ const ProductDescription = ({
                  
                 >
                   <a>{product.category.name}</a>
+                </Link>
+              )
+            }
+           
+        </li>
+        <li>
+          Style:
+          {product.style &&
+            (
+                <Link
+                  href="/shop/grid-left-sidebar"
+                  as={"/shop/grid-left-sidebar"}
+                 
+                >
+                  <a>{product.style.name}</a>
                 </Link>
               )
             }

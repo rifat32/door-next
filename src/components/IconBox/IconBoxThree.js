@@ -11,7 +11,7 @@ const IconBoxThree = () => {
                 <i className="flaticon-shipped" />
               </div>
               <div className="icon-box__content">
-                <h6>Free Delivery</h6>
+                <h6>Fast Delivery</h6>
                 <p>Worldwide</p>
               </div>
             </div>

@@ -36,7 +36,16 @@ const ProductGridWrapperThree = ({
             product.price,
             product.discount
           )).toFixed(2);
-          const productPrice = parseFloat(product.price).toFixed(2);
+
+          
+          let productPrice = 0;
+          product.variations.map(el => {
+            if(productPrice === 0 || productPrice > el.price) {
+              productPrice =   parseFloat(el.price).toFixed(2);   
+            } 
+
+          })
+          
           const cartItem = cartItems.filter(
             (cartItem) => cartItem.id === product.id
           )[0];

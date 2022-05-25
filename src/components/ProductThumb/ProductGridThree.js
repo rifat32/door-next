@@ -2,6 +2,7 @@ import { Fragment, useState } from "react";
 import Link from "next/link";
 import ProductModal from "./elements/ProductModal";
 import { ProductRating } from "../Product";
+import { BACKEND } from "../../../config";
 
 const ProductGridThree = ({
   product,
@@ -25,26 +26,34 @@ const ProductGridThree = ({
 
   return (
     <Fragment>
-      <div
-        className={`${sliderClass ? sliderClass : ""} ${
+       <Link
+                href={`/shop/product-right-sidebar/[slug]?slug=${product.id}`}
+                as={"/shop/product-right-sidebar/" + product.id}
+              >
+                <a  className={`${sliderClass ? sliderClass : ""} ${
           bottomSpace ? bottomSpace : ""
-        }`}
-      >
+        }`}>
+    
         <div className="product-grid product-grid--style-two">
           <div className="product-grid__image">
-            <Link
-              href={`/shop/product-basic/[slug]?slug=${product.slug}`}
-              as={"/shop/product-basic/" + product.slug}
+          <Link
+              href={`/shop/product-right-sidebar/[slug]?slug=${product.slug}`}
+              as={"/shop/product-right-sidebar/" + product.id}
             >
               <a>
                 <img
-                  src={colorImage ? colorImage : product.thumbImage[0]}
+                  src={colorImage ? `${BACKEND}/${colorImage}` : `${BACKEND}/${product.image}`}
                   alt="product_img1"
+                  style={{
+                    height:"inherit",
+                    width:"inherit"
+                  }}
+                  
                 />
               </a>
             </Link>
 
-            <div className="product-grid__action-box">
+            {/* <div className="product-grid__action-box">
               <ul>
                 <li>
                   <button
@@ -79,13 +88,13 @@ const ProductGridThree = ({
                   </button>
                 </li>
               </ul>
-            </div>
+            </div> */}
           </div>
           <div className="product-grid__info text-center">
-            <h6 className="product-title">
+          <h6 className="product-title">
               <Link
-                href={`/shop/product-basic/[slug]?slug=${product.slug}`}
-                as={"/shop/product-basic/" + product.slug}
+                href={`/shop/product-right-sidebar/[slug]?slug=${product.id}`}
+                as={"/shop/product-right-sidebar/" + product.id}
               >
                 <a>{product.name}</a>
               </Link>
@@ -97,14 +106,14 @@ const ProductGridThree = ({
                   <del>${productPrice}</del>
                 </Fragment>
               ) : (
-                <span className="price">${productPrice}</span>
+                <span className="price">Starting From ${productPrice} </span>
               )}
             </div>
-            <div className="rating-wrap">
+            {/* <div className="rating-wrap">
               <ProductRating ratingValue={product.rating} />
               <span className="rating-num">({product.ratingCount})</span>
-            </div>
-            <div className="add-to-cart">
+            </div> */}
+            {/* <div className="add-to-cart">
               {product.affiliateLink ? (
                 <a
                   href={product.affiliateLink}
@@ -140,10 +149,10 @@ const ProductGridThree = ({
                   <i className="icon-basket-loaded" /> Add To Cart
                 </button>
               )}
-            </div>
+            </div> */}
           </div>
         </div>
-      </div>
+     
       {/* product modal */}
       <ProductModal
         show={modalShow}
@@ -162,6 +171,8 @@ const ProductGridThree = ({
         deletefromcompare={deleteFromCompare}
         addtoast={addToast}
       />
+      </a>
+              </Link>
     </Fragment>
   );
 };

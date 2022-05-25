@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import Swiper from "react-id-swiper";
 import { IoIosArrowRoundForward, IoIosArrowRoundBack } from "react-icons/io";
-import { ProductGridWrapperThree } from "../ProductThumb";
+import { ProductGridListWrapper, ProductGridWrapperThree } from "../ProductThumb";
 
 const ProductSliderSix = ({ title, products }) => {
   const [swiper, setSwiper] = useState(null);
@@ -68,6 +68,11 @@ const ProductSliderSix = ({ title, products }) => {
           <Col md={12}>
             <div className="product-slider-wrap">
               <Swiper {...params} getSwiper={setSwiper}>
+              {/* <ProductGridListWrapper
+          products={products}
+          sliderClass="swiper-slide"
+          bottomSpace="space-mb--50"
+        /> */}
                 <ProductGridWrapperThree
                   products={products}
                   sliderClass="swiper-slide"

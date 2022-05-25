@@ -10,13 +10,18 @@ const Navigation = ({ positionClass }) => {
           positionClass ? positionClass : "justify-content-end"
         }`}
       >
+          <li>
+          <Link href="/home/furniture-one">
+            <a className="nav-link">Home</a>
+          </Link>
+        </li>
            <li>
           <Link href="/shop/grid-left-sidebar">
             <a className="nav-link">SHOP</a>
           </Link>
         </li>
         
-        <li>
+        {/* <li>
           <Link href="/">
             <a className="nav-link">
               HOME <IoIosArrowDown />
@@ -55,8 +60,8 @@ const Navigation = ({ positionClass }) => {
               </Link>
             </li>
           </ul>
-        </li>
-        <li className="has-children-mega">
+        </li> */}
+        {/* <li className="has-children-mega">
           <Link href="/">
             <a className="nav-link">
               SHOP <IoIosArrowDown />
@@ -193,8 +198,8 @@ const Navigation = ({ positionClass }) => {
               </div>
             </li>
           </ul>
-        </li>
-        <li className="has-children-mega">
+        </li> */}
+        {/* <li className="has-children-mega">
           <Link href="/">
             <a className="nav-link">
               PRODUCTS <IoIosArrowDown />
@@ -388,8 +393,8 @@ const Navigation = ({ positionClass }) => {
               </Col>
             </li>
           </ul>
-        </li>
-        <li>
+        </li> */}
+        {/* <li>
           <Link href="/">
             <a className="nav-link">
               PAGES <IoIosArrowDown />
@@ -432,8 +437,38 @@ const Navigation = ({ positionClass }) => {
               </Link>
             </li>
           </ul>
+        </li> */}
+        {/* <li>
+              <Link href="/other/about-us">
+                <a className="nav-link">About Us</a>
+              </Link>
+            </li> */}
+            {/* <li>
+              <Link href="/other/contact-us">
+                <a className="nav-link">Contact Us</a>
+              </Link>
+            </li> */}
+
+
+
+
+        {/* <li>
+          <Link href="/other/faq">
+            <a className="nav-link">F.A.Q</a>
+          </Link>
+        </li> */}
+
+        {/* <li>
+          <Link href="/other/terms">
+            <a className="nav-link">Terms & Conditions</a>
+          </Link>
+        </li> */}
+         <li>
+          <Link href="/blog/grid-right-sidebar">
+            <a className="nav-link">Blog</a>
+          </Link>
         </li>
-        <li>
+        {/* <li>
           <Link href="/">
             <a className="nav-link">
               BLOG <IoIosArrowDown />
@@ -533,7 +568,7 @@ const Navigation = ({ positionClass }) => {
               </ul>
             </li>
           </ul>
-        </li>
+        </li> */}
         <li>
           <Link href="/other/contact-us">
             <a className="nav-link">CONTACT US</a>

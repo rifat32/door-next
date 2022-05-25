@@ -12,8 +12,40 @@ import { BannerFour } from "../../components/Banner";
 import heroSliderThreeData from "../../data/hero-sliders/hero-slider-three.json";
 import imageSliderData from "../../data/image-sliders/image-slider-one.json";
 import brandLogoData from "../../data/brand-logo/brand-logo-one.json";
+import { BACKENDAPI } from "../../../config";
+import { useEffect, useState } from "react";
+import { apiClient } from "../../utils/apiClient";
 
-const FurnitureOne = ({ featuredProducts, bestSellerProducts }) => {
+const FurnitureOne = ({ bestSellerProducts }) => {
+const [featuredProducts,setFeaturenProduct] = useState([])
+
+  useEffect(() => {
+    
+  
+    
+     let url = 
+        `${BACKENDAPI}/v1.0/client/products/featured/all`
+    
+      
+      apiClient()
+        .get(url)
+        .then((response) => {
+          console.log(response.data)
+          setFeaturenProduct(response.data.products);
+       
+        })
+        .catch((error) => {
+      
+          console.log(error.response)
+        });
+    
+
+  }, 
+  
+  [
+  
+  ]
+  );
   return (
     <LayoutThree navPositionClass="justify-content-center">
       {/* hero slider */}
@@ -28,7 +60,10 @@ const FurnitureOne = ({ featuredProducts, bestSellerProducts }) => {
       {/* banner */}
       <BannerFour />
       {/* product slider */}
-      <ProductSliderSix title="Featured Products" products={featuredProducts} />
+      {
+        featuredProducts.length?(    <ProductSliderSix title="Featured Products" products={featuredProducts} />):(null)
+      }
+  
       {/* image slider */}
       <ImageSliderOne imageSliderData={imageSliderData} />
       {/* brand logo */}
@@ -40,7 +75,7 @@ const FurnitureOne = ({ featuredProducts, bestSellerProducts }) => {
 const mapStateToProps = (state) => {
   const products = state.productData;
   return {
-    featuredProducts: getProducts(products, "furniture", "featured", 8),
+    // featuredProducts: getProducts(products, "furniture", "featured", 8),
     bestSellerProducts: getProducts(products, "furniture", "popular", 8)
   };
 };

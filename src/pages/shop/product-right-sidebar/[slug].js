@@ -59,7 +59,8 @@ const [toggle,setToggle] = useState(true)
 		qty: "",
 		status:"active",
 		is_featured:"0",
-    category:{name:"vvv"},
+    category:{name:""},
+    style:{name:""},
 		variation:[
 			{
 				variation_template_id:"",
@@ -92,7 +93,7 @@ const [toggle,setToggle] = useState(true)
 			.then((response) => {
 				console.log(response);
       
-				const {id,name,category_id,style_id,sku,description,type,product_variations,variations,image,colors,status,is_featured,category,images} = response.data.product
+				const {id,name,category_id,style_id,sku,description,type,product_variations,variations,image,colors,status,is_featured,category,images,style} = response.data.product
 
 					
 				
@@ -102,6 +103,17 @@ const [toggle,setToggle] = useState(true)
 				if(type === "single"){
                    price = variations[0].price
 				   qty = variations[0].qty
+           tempVariation = product_variations.map((el) => {
+
+						el.variation_value_template = el.variations.map((el2) => {
+              qty += el2.qty
+						 return el2;
+							 })
+
+               
+							return el
+					   
+					   })
 				   
 				} else {
 					tempVariation = product_variations.map((el) => {
@@ -148,7 +160,8 @@ const [toggle,setToggle] = useState(true)
 				colors:tempColors,
 				status,
 				is_featured,
-        images
+        images,
+        style
 				})
 				// setCategories(response.data.data);
         setToggle(!toggle)

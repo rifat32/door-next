@@ -53,8 +53,10 @@ const HeaderOne = ({ cartItems, navPositionClass }) => {
                 />
                 <img
                   className="logo-dark"
-                  src="/assets/images/logo_dark.png"
+                  src="/assets/images/logo.jpeg"
                   alt="logo"
+                  height={100}
+                  width={400}
                 />
               </a>
             </Link>

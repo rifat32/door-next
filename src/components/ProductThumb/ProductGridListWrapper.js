@@ -39,14 +39,14 @@ const ProductGridListWrapper = ({
           let productPrice = 0;
           product.variations.map(el => {
             if(productPrice === 0 || productPrice > el.price) {
-              productPrice = el.price
+              productPrice =   parseFloat(el.price).toFixed(2);   
             } 
 
           })
           
-          parseFloat(product.price).toFixed(2);
+        
           const cartItem = cartItems.filter(
-            (cartItem) => cartItem.vid === product.vid
+            (cartItem) => cartItem.id === product.id
           )[0];
           const wishlistItem = wishlistItems.filter(
             (wishlistItem) => wishlistItem.id === product.id

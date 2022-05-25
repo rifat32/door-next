@@ -52,13 +52,13 @@ const ImageGalleryBottomThumb = ({ product }) => {
                 return (
                   <div key={key}>
                  
-                    <LightgalleryItem group="any" src={`https://csharpcorner-mindcrackerinc.netdna-ssl.com/article/asp-net-mvc5-upload-imagefile-into-database/Images/1.PNG`}>
+                    <LightgalleryItem group="any" src={`${BACKEND}/${single.file}`}>
                       <button className="enlarge-icon">
                         <i className="icon-magnifier-add" />
                       </button>
                     </LightgalleryItem>
                     <div className="single-image">
-                      <img src={`https://csharpcorner-mindcrackerinc.netdna-ssl.com/article/asp-net-mvc5-upload-imagefile-into-database/Images/1.PNG`}className="img-fluid" alt="" />
+                      <img src={`${BACKEND}/${single.file}`}className="img-fluid" alt="" />
                     </div>
                   </div>
                 );
@@ -75,7 +75,7 @@ const ImageGalleryBottomThumb = ({ product }) => {
               return (
                 <div key={i}>
                   <div className="single-image">
-                    <img src={`https://csharpcorner-mindcrackerinc.netdna-ssl.com/article/asp-net-mvc5-upload-imagefile-into-database/Images/1.PNG`} className="img-fluid" alt="" />
+                    <img src={`${BACKEND}/${image.file}`} className="img-fluid" alt="" />
                   </div>
                 </div>
               );
