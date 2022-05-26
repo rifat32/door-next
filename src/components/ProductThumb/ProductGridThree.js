@@ -26,15 +26,23 @@ const ProductGridThree = ({
 
   return (
     <Fragment>
-       <Link
+       {/* <Link
                 href={`/shop/[slug]?slug=${product.id}`}
                 as={"/shop/" + product.id}
               >
                 <a  className={`${sliderClass ? sliderClass : ""} ${
           bottomSpace ? bottomSpace : ""
+        }`}> */}
+
+    <div className={`${sliderClass ? sliderClass : ""} ${
+          bottomSpace ? bottomSpace : ""
         }`}>
-    
         <div className="product-grid product-grid--style-two">
+        <Link
+              href={`/shop/[slug]?slug=${product.slug}`}
+              as={"/shop/" + product.id}
+            >
+              <a>
           <div className="product-grid__image">
           <Link
               href={`/shop/[slug]?slug=${product.slug}`}
@@ -90,6 +98,8 @@ const ProductGridThree = ({
               </ul>
             </div> */}
           </div>
+          </a>
+          </Link>
           <div className="product-grid__info text-center">
           <h6 className="product-title">
               <Link
@@ -171,8 +181,10 @@ const ProductGridThree = ({
         deletefromcompare={deleteFromCompare}
         addtoast={addToast}
       />
-      </a>
-              </Link>
+        </div>
+      {/* </a>
+    
+              </Link> */}
     </Fragment>
   );
 };

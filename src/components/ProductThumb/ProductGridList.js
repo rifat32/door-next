@@ -35,15 +35,15 @@ console.log("citem",cartItem)
           bottomSpace ? bottomSpace : ""
         }`}
       >
-          <Link
-          className="product-grid"
-                href={`/shop/[slug]?slug=${product.id}`}
-                as={"/shop/" + product.id}
-              >
-                <a>
 
-          
-        
+
+        <div className="product-grid">
+        <Link
+              href={`/shop/[slug]?slug=${product.slug}`}
+              as={"/shop/" + product.id}
+            >
+             
+              <a>
           <div className="product-grid__image">
             <Link
               href={`/shop/[slug]?slug=${product.slug}`}
@@ -110,44 +110,22 @@ console.log("citem",cartItem)
                     <></>
                   )}
                 </li>
-                <li>
-                  <button
-                    onClick={
-                      compareItem !== undefined
-                        ? () => deleteFromCompare(product, addToast)
-                        : () => addToCompare(product, addToast)
-                    }
-                    className={compareItem !== undefined ? "active" : ""}
-                  >
-                    <i className="icon-shuffle" />
-                  </button>
-                </li>
-                <li>
-                  <button
-                    onClick={() => setModalShow(true)}
-                    className="d-none d-lg-block"
-                  >
-                    <i className="icon-magnifier-add" />
-                  </button>
-                </li>
-                <li>
-                  <button
-                    onClick={
-                      wishlistItem !== undefined
-                        ? () => deleteFromWishlist(product, addToast)
-                        : () => addToWishlist(product, addToast)
-                    }
-                    className={wishlistItem !== undefined ? "active" : ""}
-                  >
-                    <i className="icon-heart" />
-                  </button>
-                </li>
+               
+               
+               
               </ul>
             </div>
           </div>
+          </a>
+            </Link>
           <div className="product-grid__info">
             <h6 className="product-title">
-            {product.name}
+              <Link
+                href={`/shop/[slug]?slug=${product.id}`}
+                as={"/shop/" + product.id}
+              >
+                <a>{product.name}</a>
+              </Link>
             </h6>
             <div className="product-price">
               {product.discount ? (
@@ -187,8 +165,24 @@ console.log("citem",cartItem)
               ""
             )}
           </div>
-          </a>
-              </Link>
+        </div>
+      
+
+
+
+{/* end */}
+
+
+
+
+
+
+
+
+
+
+
+
         <div className="product-list">
           <div className="product-list__image">
             <Link
@@ -308,8 +302,38 @@ console.log("citem",cartItem)
                     <></>
                   )}
                 </li>
-               
-            
+                <li>
+                  <button
+                    onClick={
+                      compareItem !== undefined
+                        ? () => deleteFromCompare(product, addToast)
+                        : () => addToCompare(product, addToast)
+                    }
+                    className={compareItem !== undefined ? "active" : ""}
+                  >
+                    <i className="icon-shuffle" />
+                  </button>
+                </li>
+                <li>
+                  <button
+                    onClick={() => setModalShow(true)}
+                    className="d-none d-lg-block"
+                  >
+                    <i className="icon-magnifier-add" />
+                  </button>
+                </li>
+                <li>
+                  <button
+                    onClick={
+                      wishlistItem !== undefined
+                        ? () => deleteFromWishlist(product, addToast)
+                        : () => addToWishlist(product, addToast)
+                    }
+                    className={wishlistItem !== undefined ? "active" : ""}
+                  >
+                    <i className="icon-heart" />
+                  </button>
+                </li>
               </ul>
             </div>
           </div>

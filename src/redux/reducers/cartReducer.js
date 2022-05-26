@@ -48,7 +48,7 @@ const cartReducer = (state = initState, action) => {
 console.log("cart",product,cartItems)
         return   item.id === product.id 
         &&  item.selectedHeight === product.selectedHeight 
-          
+        &&  item.selectedProductColor === product.selectedProductColor 
         }
          
       )[0];

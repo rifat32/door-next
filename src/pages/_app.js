@@ -24,7 +24,7 @@ class MyApp extends App {
     return (
       <Fragment>
         <Head>
-          <title>Oility | React Next JS Multipurpose eCommerce Template</title>
+          <title>Wood Croft | Doors and Cabinet</title>
           <meta
             name="description"
             content="Oility is Powerful React Next JS Template For Any eCommerce Website. The template is built for sell Fashion Products, Shoes, Bags, Cosmetics, Clothes, Sunglasses, Furniture, Kids Products, Electronics, Stationery Products and Sporting Goods."
