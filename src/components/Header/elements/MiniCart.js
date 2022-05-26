@@ -81,7 +81,7 @@ const MiniCart = ({ cartItems, deleteFromCart }) => {
               {parseFloat(cartTotalPrice).toFixed(2)}
             </p>
             <div className="cart-buttons">
-              <Link href="/other/cart">
+              <Link href="/cart">
                 <a className="btn btn-fill-line view-cart">View Cart</a>
               </Link>
               <Link href="/other/checkout">

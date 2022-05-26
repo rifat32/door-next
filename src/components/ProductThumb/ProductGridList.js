@@ -35,11 +35,19 @@ console.log("citem",cartItem)
           bottomSpace ? bottomSpace : ""
         }`}
       >
-        <div className="product-grid">
+          <Link
+          className="product-grid"
+                href={`/shop/[slug]?slug=${product.id}`}
+                as={"/shop/" + product.id}
+              >
+                <a>
+
+          
+        
           <div className="product-grid__image">
             <Link
-              href={`/shop/product-right-sidebar/[slug]?slug=${product.slug}`}
-              as={"/shop/product-right-sidebar/" + product.id}
+              href={`/shop/[slug]?slug=${product.slug}`}
+              as={"/shop/" + product.id}
             >
              
               <a>
@@ -73,8 +81,8 @@ console.log("citem",cartItem)
                     </a>
                   ) : product.variation && product.variation.length >= 1 ? (
                     <Link
-                      href={`/shop/product-right-sidebar/[slug]?slug=${product.id}`}
-                      as={"/shop/product-right-sidebar/" + product.id}
+                      href={`/shop/[slug]?slug=${product.id}`}
+                      as={"/shop/" + product.id}
                     >
                       <a>
                         <i className="icon-wrench" />
@@ -139,12 +147,7 @@ console.log("citem",cartItem)
           </div>
           <div className="product-grid__info">
             <h6 className="product-title">
-              <Link
-                href={`/shop/product-right-sidebar/[slug]?slug=${product.id}`}
-                as={"/shop/product-right-sidebar/" + product.id}
-              >
-                <a>{product.name}</a>
-              </Link>
+            {product.name}
             </h6>
             <div className="product-price">
               {product.discount ? (
@@ -184,7 +187,8 @@ console.log("citem",cartItem)
               ""
             )}
           </div>
-        </div>
+          </a>
+              </Link>
         <div className="product-list">
           <div className="product-list__image">
             <Link
@@ -304,38 +308,8 @@ console.log("citem",cartItem)
                     <></>
                   )}
                 </li>
-                <li>
-                  <button
-                    onClick={
-                      compareItem !== undefined
-                        ? () => deleteFromCompare(product, addToast)
-                        : () => addToCompare(product, addToast)
-                    }
-                    className={compareItem !== undefined ? "active" : ""}
-                  >
-                    <i className="icon-shuffle" />
-                  </button>
-                </li>
-                <li>
-                  <button
-                    onClick={() => setModalShow(true)}
-                    className="d-none d-lg-block"
-                  >
-                    <i className="icon-magnifier-add" />
-                  </button>
-                </li>
-                <li>
-                  <button
-                    onClick={
-                      wishlistItem !== undefined
-                        ? () => deleteFromWishlist(product, addToast)
-                        : () => addToWishlist(product, addToast)
-                    }
-                    className={wishlistItem !== undefined ? "active" : ""}
-                  >
-                    <i className="icon-heart" />
-                  </button>
-                </li>
+               
+            
               </ul>
             </div>
           </div>

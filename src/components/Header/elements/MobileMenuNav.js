@@ -124,7 +124,7 @@ const MobileMenuNav = ({ getActiveStatus }) => {
               </Link>
               <ul className="mobile-sub-menu">
                 <li>
-                  <Link href="/other/cart">
+                  <Link href="/cart">
                     <a>Cart</a>
                   </Link>
                 </li>
@@ -240,7 +240,7 @@ const MobileMenuNav = ({ getActiveStatus }) => {
               </Link>
               <ul className="mobile-sub-menu">
                 <li>
-                  <Link href="/other/cart">
+                  <Link href="/cart">
                     <a>Cart</a>
                   </Link>
                 </li>

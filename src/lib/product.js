@@ -59,7 +59,7 @@ export const getDiscountPrice = (price, discount) => {
 export const getProductCartQuantity = (cartItems, product, color, size) => {
   let productInCart = cartItems.filter(
     (single) =>
-      single.vid === product.vid &&
+      single.id === product.id &&
       (single.selectedProductColor
         ? single.selectedProductColor === color
         : true) &&
@@ -73,7 +73,7 @@ export const getProductCartQuantity = (cartItems, product, color, size) => {
           single.selectedProductColor === color 
       )[0].qty;
     } else {
-      return cartItems.filter((single) => product.vid === single.vid)[0].qty;
+      return cartItems.filter((single) => product.id === single.id)[0].qty;
     }
   } else {
     return 0;

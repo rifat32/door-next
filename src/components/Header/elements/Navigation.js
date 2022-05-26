@@ -11,12 +11,12 @@ const Navigation = ({ positionClass }) => {
         }`}
       >
           <li>
-          <Link href="/home/furniture-one">
+          <Link href="/">
             <a className="nav-link">Home</a>
           </Link>
         </li>
            <li>
-          <Link href="/shop/grid-left-sidebar">
+          <Link href="/shop">
             <a className="nav-link">SHOP</a>
           </Link>
         </li>
@@ -102,7 +102,7 @@ const Navigation = ({ positionClass }) => {
               <h3 className="sub-menu--mega__title">OTHER PAGES</h3>
               <ul className="sub-menu--mega__list">
                 <li>
-                  <Link href="/other/cart">
+                  <Link href="/cart">
                     <a>Cart</a>
                   </Link>
                 </li>
@@ -240,7 +240,7 @@ const Navigation = ({ positionClass }) => {
               <h3 className="sub-menu--mega__title">OTHER PAGES</h3>
               <ul className="sub-menu--mega__list">
                 <li>
-                  <Link href="/other/cart">
+                  <Link href="/cart">
                     <a>Cart</a>
                   </Link>
                 </li>

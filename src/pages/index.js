@@ -1,56 +1,76 @@
 import { connect } from "react-redux";
 import { getProducts } from "../lib/product";
-import { LayoutOne } from "../layouts";
-import { HeroSliderOne } from "../components/HeroSlider";
-import { BannerOne, BannerTwo } from "../components/Banner";
-import { ProductTab } from "../components/ProductTab";
-import { ProductSliderOne } from "../components/ProductSlider";
-import { TestimonialOne } from "../components/Testimonial";
-import { IconBoxOne } from "../components/IconBox";
+import { LayoutThree } from "../layouts";
+import { HeroSliderThree } from "../components/HeroSlider";
+import { IconBoxThree } from "../components/IconBox";
+import { ProductSliderSix } from "../components/ProductSlider";
+import { BrandLogoTwo } from "../components/BrandLogo";
+import { ImageSliderOne } from "../components/ImageSlider";
+import { ProductGridOne } from "../components/ProductGrid";
+import { BannerFour } from "../components/Banner";
 
-import heroSliderOneData from "../data/hero-sliders/hero-slider-one.json";
-import testimonialOneData from "../data/testimonials/testimonial-one.json";
+import heroSliderThreeData from "../data/hero-sliders/hero-slider-three.json";
+import imageSliderData from "../data/image-sliders/image-slider-one.json";
+import brandLogoData from "../data/brand-logo/brand-logo-one.json";
+import { BACKENDAPI } from "../../config";
+import { useEffect, useState } from "react";
+import { apiClient } from "../utils/apiClient";
 
-const FashionOne = ({
-  featuredProducts,
-  newProducts,
-  bestSellerProducts,
-  saleProducts
-}) => {
-  return (
-    <LayoutOne>
-      {/* hero slider */}
-      <HeroSliderOne heroSliderData={heroSliderOneData} />
-      {/* double banner */}
-      <BannerTwo />
-      {/* tab product */}
-      <ProductTab
-        title="Exclusive Products"
-        newProducts={newProducts}
-        bestSellerProducts={bestSellerProducts}
-        featuredProducts={featuredProducts}
-        saleProducts={saleProducts}
-      />
-      {/* single banner */}
-      <BannerOne />
-      {/* product slider */}
-      <ProductSliderOne title="Featured Products" products={featuredProducts} />
-      {/* testimonial */}
-      <TestimonialOne testimonialData={testimonialOneData} />
-      {/* icon box */}
-      <IconBoxOne />
-    </LayoutOne>
-  );
+const FurnitureOne = ({ bestSellerProducts }) => {
+    const [featuredProducts, setFeaturenProduct] = useState([]);
+
+    useEffect(() => {
+        let url = `${BACKENDAPI}/v1.0/client/products/featured/all`;
+
+        apiClient()
+            .get(url)
+            .then((response) => {
+                console.log(response.data);
+                setFeaturenProduct(response.data.products);
+            })
+            .catch((error) => {
+                console.log(error.response);
+            });
+    }, []);
+    return (
+        <LayoutThree navPositionClass="justify-content-center">
+            {/* hero slider */}
+            <HeroSliderThree heroSliderData={heroSliderThreeData} />
+            {/* icon box */}
+            <IconBoxThree />
+            {/* grid product */}
+            {featuredProducts.length ? (
+                <ProductSliderSix
+                    title="Featured Products"
+                    products={featuredProducts}
+                />
+            ) : null}
+            {/* banner */}
+            <BannerFour />
+            {/* product slider */}
+          
+
+
+
+            {/* <ProductGridOne
+                title="Exclusive Products"
+                products={bestSellerProducts}
+            /> */}
+
+            {/* image slider */}
+            <ImageSliderOne imageSliderData={imageSliderData} />
+            {/* brand logo */}
+            <BrandLogoTwo brandLogoData={brandLogoData} />
+        </LayoutThree>
+    );
 };
 
 const mapStateToProps = (state) => {
-  const products = state.productData;
-  return {
-    featuredProducts: getProducts(products, "fashion", "featured", 8),
-    newProducts: getProducts(products, "fashion", "new", 8),
-    bestSellerProducts: getProducts(products, "fashion", "popular", 8),
-    saleProducts: getProducts(products, "fashion", "sale", 8)
-  };
+    const products = state.productData;
+    return {
+        // featuredProducts: getProducts(products, "furniture", "featured", 8),
+        bestSellerProducts: getProducts(products, "furniture", "popular", 8),
+    };
 };
 
-export default connect(mapStateToProps)(FashionOne);
+export default connect(mapStateToProps)(FurnitureOne);

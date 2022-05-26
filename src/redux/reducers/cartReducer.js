@@ -15,7 +15,8 @@ const cartReducer = (state = initState, action) => {
   if (action.type === ADD_TO_CART) {
     // for non variant products
     if (product.variation === undefined) {
-      const cartItem = cartItems.filter((item) => item.vid === product.vid)[0];
+     
+      const cartItem = cartItems.filter((item) => item.id === product.id)[0];
       if (cartItem === undefined) {
         return [
           ...cartItems,
@@ -40,15 +41,19 @@ const cartReducer = (state = initState, action) => {
       }
       // for variant products
     } else {
+     
       const cartItem = cartItems.filter(
         (item) =>
-          item.vid === product.vid &&
-          product.selectedProductColor &&
-          product.selectedProductColor === item.selectedProductColor &&
-          product.selectedProductSize &&
-          product.selectedProductSize === item.selectedProductSize &&
-          (product.cartItemId ? product.cartItemId === item.cartItemId : true)
+        {
+console.log("cart",product,cartItems)
+        return   item.id === product.id 
+        &&  item.selectedHeight === product.selectedHeight 
+          
+        }
+         
       )[0];
+
+
 
       if (cartItem === undefined) {
         return [

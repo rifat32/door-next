@@ -44,7 +44,7 @@ const ProductGridListWrapper = ({
 
           })
           
-        
+          
           const cartItem = cartItems.filter(
             (cartItem) => cartItem.id === product.id
           )[0];

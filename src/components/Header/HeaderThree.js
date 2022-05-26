@@ -73,7 +73,7 @@ const HeaderThree = ({ cartItems, navPositionClass }) => {
               </li>
 
               <li className="d-none d-lg-block position-relative">
-                <Link href="/other/cart">
+                <Link href="/cart">
                   <a className="nav-link mini-cart-trigger pr-3 pr-lg-0">
                     <AiOutlineShoppingCart />
                     {cartItems.length > 0 ? (
@@ -88,7 +88,7 @@ const HeaderThree = ({ cartItems, navPositionClass }) => {
               </li>
 
               <li className="d-block d-lg-none position-relative">
-                <Link href="/other/cart">
+                <Link href="/cart">
                   <a className="nav-link mini-cart-trigger pr-3 pr-lg-0">
                     <AiOutlineShoppingCart />
                     {cartItems.length > 0 ? (

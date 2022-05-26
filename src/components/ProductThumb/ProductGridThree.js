@@ -27,8 +27,8 @@ const ProductGridThree = ({
   return (
     <Fragment>
        <Link
-                href={`/shop/product-right-sidebar/[slug]?slug=${product.id}`}
-                as={"/shop/product-right-sidebar/" + product.id}
+                href={`/shop/[slug]?slug=${product.id}`}
+                as={"/shop/" + product.id}
               >
                 <a  className={`${sliderClass ? sliderClass : ""} ${
           bottomSpace ? bottomSpace : ""
@@ -37,8 +37,8 @@ const ProductGridThree = ({
         <div className="product-grid product-grid--style-two">
           <div className="product-grid__image">
           <Link
-              href={`/shop/product-right-sidebar/[slug]?slug=${product.slug}`}
-              as={"/shop/product-right-sidebar/" + product.id}
+              href={`/shop/[slug]?slug=${product.slug}`}
+              as={"/shop/" + product.id}
             >
               <a>
                 <img
@@ -93,8 +93,8 @@ const ProductGridThree = ({
           <div className="product-grid__info text-center">
           <h6 className="product-title">
               <Link
-                href={`/shop/product-right-sidebar/[slug]?slug=${product.id}`}
-                as={"/shop/product-right-sidebar/" + product.id}
+                href={`/shop/[slug]?slug=${product.id}`}
+                as={"/shop/" + product.id}
               >
                 <a>{product.name}</a>
               </Link>

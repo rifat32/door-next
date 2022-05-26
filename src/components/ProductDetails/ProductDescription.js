@@ -26,11 +26,11 @@ const ProductDescription = ({
   deleteFromWishlist,
   addToCompare,
   deleteFromCompare,
-  productContentButtonStyleClass
+  productContentButtonStyleClass,
+  selectedProductColor,
+  setSelectedProductColor
 }) => {
-  const [selectedProductColor, setSelectedProductColor] = useState(
-    product.colors.length ? product.colors[0].color.code : ""
-  );
+  
   // const [selectedProductSize, setSelectedProductSize] = useState(
   //   product.variation ? product.variation[0].size[0].name : ""
   // );
