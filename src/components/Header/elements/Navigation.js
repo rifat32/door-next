@@ -10,11 +10,11 @@ const Navigation = ({ positionClass }) => {
           positionClass ? positionClass : "justify-content-end"
         }`}
       >
-          <li>
+{/*           <li>
           <Link href="/">
             <a className="nav-link">Home</a>
           </Link>
-        </li>
+        </li> */}
            <li>
           <Link href="/shop">
             <a className="nav-link">SHOP</a>
@@ -463,11 +463,11 @@ const Navigation = ({ positionClass }) => {
             <a className="nav-link">Terms & Conditions</a>
           </Link>
         </li> */}
-         <li>
+  {/*        <li>
           <Link href="/blog/grid-right-sidebar">
             <a className="nav-link">Blog</a>
           </Link>
-        </li>
+        </li> */}
         {/* <li>
           <Link href="/">
             <a className="nav-link">
@@ -569,11 +569,11 @@ const Navigation = ({ positionClass }) => {
             </li>
           </ul>
         </li> */}
-        <li>
+{/*         <li>
           <Link href="/other/contact-us">
             <a className="nav-link">CONTACT US</a>
           </Link>
-        </li>
+        </li> */}
       </ul>
     </nav>
   );
