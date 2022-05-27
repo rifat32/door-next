@@ -10,11 +10,11 @@ const Navigation = ({ positionClass }) => {
           positionClass ? positionClass : "justify-content-end"
         }`}
       >
-{/*           <li>
+          <li>
           <Link href="/">
             <a className="nav-link">Home</a>
           </Link>
-        </li> */}
+        </li>
            <li>
           <Link href="/shop">
             <a className="nav-link">SHOP</a>
