@@ -15,7 +15,8 @@ const Sidebar = ({ products, category }) => {
   const popularProducts = getProducts(products, category, "popular", 3);
 
   return (
-    <div className="sidebar">
+
+    {/* <div className="sidebar">
       <div className="widget">
         <h5 className="widget__title">Categories</h5>
         {categories.length > 0 ? (
@@ -132,7 +133,7 @@ const Sidebar = ({ products, category }) => {
           </div>
         </div>
       </div>
-    </div>
+    </div> */}
   );
 };
 
