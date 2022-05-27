@@ -192,7 +192,7 @@ useEffect(
         )}
       </div>
 
-      <div className="widget">
+      {/* <div className="widget">
         <h5 className="widget__title">Popular Items</h5>
         {popularProducts.length > 0 ? (
           <ul className="widget-recent-post-wrapper">
@@ -245,9 +245,9 @@ useEffect(
         ) : (
           "No products found"
         )}
-      </div>
+      </div> */}
 
-      <div className="widget">
+      {/* <div className="widget">
         <h5 className="widget__title">tags</h5>
         {tags.length > 0 ? (
           <div className="widget__tags">
@@ -269,9 +269,9 @@ useEffect(
         ) : (
           "No tags found"
         )}
-      </div>
+      </div> */}
 
-      <div className="widget">
+      {/* <div className="widget">
         <div className="shop-banner">
           <div className="banner-img">
             <img
@@ -289,7 +289,7 @@ useEffect(
             </Link>
           </div>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 };

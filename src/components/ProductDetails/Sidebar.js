@@ -16,7 +16,7 @@ const Sidebar = ({ products, category }) => {
 
   return (
 
-    {/* <div className="sidebar">
+ <div className="sidebar">
       <div className="widget">
         <h5 className="widget__title">Categories</h5>
         {categories.length > 0 ? (
@@ -42,7 +42,7 @@ const Sidebar = ({ products, category }) => {
       </div>
 
       <div className="widget">
-        <h5 className="widget__title">Popular Items</h5>
+        <h5 className="widget__title">Popular Items asdpfoopasdjdf</h5>
         {popularProducts.length > 0 ? (
           <ul className="widget-recent-post-wrapper">
             {popularProducts &&
@@ -133,7 +133,7 @@ const Sidebar = ({ products, category }) => {
           </div>
         </div>
       </div>
-    </div> */}
+    </div> 
   );
 };
 
