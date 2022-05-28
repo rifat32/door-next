@@ -38,7 +38,7 @@ const ProductGridListWrapper = ({
           )).toFixed(2);
           let productPrice = 0;
           product.variations.map(el => {
-            if(productPrice === 0 || productPrice > el.price) {
+            if(productPrice === 0 || productPrice > parseFloat(el.price).toFixed(2)) {
               productPrice =   parseFloat(el.price).toFixed(2);   
             } 
 
