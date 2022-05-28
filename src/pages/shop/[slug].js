@@ -255,8 +255,56 @@ const extraHoleDirections = [
   const handleChecked = (e) => {
 		setProductData({ ...productNew, [e.target.name]: e.target.checked });
 	};
+  const [heightErr,setHeightErr] = useState(null)
+  const [widthErr,setWidthErr] = useState(null)
+  
+  const [productVariation,setProductVariation] = useState(null)
   const handleChange = (e) => {
 		setProductData({ ...productNew, [e.target.name]: e.target.value });
+    if(e.target.name == "custom_height") {
+      apiClient()
+			.get(`${BACKENDAPI}/v1.0/client/check-height?product_id=${productNew.id}&&height=${e.target.value}`)
+			.then((response) => {
+        console.log(response.data.product)
+if(response.data.product){
+  setHeightErr(null)
+
+  setProductVariation(response.data.product)
+
+} else {
+  setHeightErr("no product found")
+  
+}
+
+      })
+    }
+    if(e.target.name == "custom_width") {
+      if(heightErr == null){
+
+
+        apiClient()
+        .get(`${BACKENDAPI}/v1.0/client/check-width?product_id=${productNew.id}&&height=${productNew.custom_height}&&width=${e.target.value}&&product_variation_id=${productVariation.id}`)
+        .then((response) => {
+          console.log(response.data.product)
+  if(response.data.product){
+    setWidthErr(null)
+    setProductData({
+      ...productNew,
+      price:response.data.product.price,
+      custom_width:e.target.value
+    })
+  
+  } else {
+    setWidthErr("no product found")
+ 
+  }
+  
+        })
+      }
+    
+    }
+
+    
 	};
 
   const handleSelectHeight = (e) => {
@@ -481,7 +529,7 @@ if(!loading){
 			</Col>
       {
         productNew.is_custom_size?(<>
-           <Col sm={6} className="form-group">
+           <Col sm={12} className="form-group">
 				<label htmlFor="custom_height" className="form-label">
         Height
 				</label>
@@ -501,12 +549,16 @@ if(!loading){
           placeholder="mm"
 				/>
 
+       
+       {heightErr && (
+        <div className="text-danger">{heightErr}</div>
+      )}
 				{errors?.custom_height && (
 					<div className="invalid-feedback">{errors.custom_height[0]}</div>
 				)}
 				{errors && <div className="valid-feedback">Looks good!</div>}
 			</Col>
-      <Col sm={6} className="form-group">
+      <Col sm={12} className="form-group">
       
 				<label htmlFor="custom_width" className="form-label">
         Width
@@ -526,7 +578,9 @@ if(!loading){
 					value={productNew.custom_width}
           placeholder="mm"
 				/>
-       
+       {widthErr && (
+        <div className="text-danger">{widthErr}</div>
+      )}
 
 				{errors?.custom_width && (
 					<div className="invalid-feedback">{errors.custom_width[0]}</div>

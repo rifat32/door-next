@@ -204,7 +204,8 @@ const GridLeftSidebar = ({ products }) => {
   
     }
     const setLinksView = (el, index, arr) => {
-      let params = currentLink.split("?")[1];
+      if(el.url){
+        let params = currentLink.split("?")[1];
    
         let paramsArray = params.split("&&")
         let finalParamsArray = paramsArray.filter(el => {
@@ -213,6 +214,8 @@ const GridLeftSidebar = ({ products }) => {
         })
         params =   finalParamsArray.join("&&")
         el.url += `&&${params}`
+      }
+  
                   
         
                
