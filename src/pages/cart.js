@@ -53,6 +53,7 @@ const Cart = ({
                           <th className="product-thumbnail">&nbsp;</th>
                           <th className="product-name">Product</th>
                           <th className="product-price">Price</th>
+                          <th className="product-price">Details</th>
                           <th className="product-quantity">Quantity</th>
                           <th className="product-subtotal">Total</th>
                           <th className="product-remove text-center">Remove</th>
@@ -84,8 +85,8 @@ const Cart = ({
                               </td>
                               <td className="product-name" data-title="Product">
                                 <Link
-                                  href={`/shop/product-basic/[slug]?slug=${product.slug}`}
-                                  as={"/shop/product-basic/" + product.slug}
+                                  href={`/shop/[slug]?slug=${product.id}`}
+                                  as={"/shop/" + product.id}
                                 >
                                   <a>{product.name}</a>
                                 </Link>
@@ -102,6 +103,16 @@ const Cart = ({
                               <td className="product-price" data-title="Price">
                                 ${discountedPrice}
                               </td>
+                              <td className="product-price" data-title="Price">
+                                <div>color:     {product.selectedProductColor}</div>
+                                <div>height:   
+                                   {console.log(product)} 
+                                    {product.variation.find (el => {
+                                  return el.id === parseInt(product.selectedHeight)
+                                })?.name}
+                                </div>
+                              </td>
+                              
                               <td
                                 className="product-quantity"
                                 data-title="Quantity"

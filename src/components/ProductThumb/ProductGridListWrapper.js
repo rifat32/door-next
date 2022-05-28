@@ -42,21 +42,7 @@ const ProductGridListWrapper = ({
         })
         let productPrice =  parseFloat(product.variations[0].price).toFixed(2) ;
         console.log("final price",productPrice) 
-          // product.variations.map(el => {
-          //  let price = productPrice;
-          //  let newPrice = parseFloat(el.price).toFixed(2)
-
-          //   if(price > newPrice) {
-          //     console.log("exchange",productPrice,newPrice) 
-          //     productPrice =   newPrice;  
-             
-          //   } else {
-          //     console.log("bbbb",productPrice,newPrice) 
-          //     console.log("cccc",price > newPrice) 
-          //   }
-          
-          // })
- 
+         
           
           
           const cartItem = cartItems.filter(

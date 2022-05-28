@@ -55,15 +55,15 @@ export const getDiscountPrice = (price, discount) => {
   return discount && discount > 0 ? price - price * (discount / 100) : price;
 };
 
+// change this 
 // get product cart quantity
 export const getProductCartQuantity = (cartItems, product, color, size) => {
   let productInCart = cartItems.filter(
     (single) =>
-      single.id === product.id &&
-      (single.selectedProductColor
-        ? single.selectedProductColor === color
-        : true) &&
-      (single.selectedProductSize ? single.selectedProductSize === size : true)
+      single.id === product.id 
+      &&  single.selectedHeight === product.selectedHeight 
+      &&  single.selectedProductColor === product.selectedProductColor 
+      
   )[0];
   if (cartItems.length >= 1 && productInCart) {
     if (product.variation) {

@@ -119,6 +119,27 @@ const ProductGridThree = ({
                 <span className="price">Starting From ${productPrice} </span>
               )}
             </div>
+            {product.colors ? (
+              <div className="product-switch-wrap">
+                <ul>
+                  {product.colors.map((single, key) => {
+                    return (
+                      <li key={key}>
+                        <button
+                          style={{ backgroundColor: `${single.color.code}` }}
+                          onClick={() => setColorImage(single.color_image)}
+                          className={
+                            colorImage === single.color_image ? "active" : ""
+                          }
+                        />
+                      </li>
+                    );
+                  })}
+                </ul>
+              </div>
+            ) : (
+              ""
+            )}
             {/* <div className="rating-wrap">
               <ProductRating ratingValue={product.rating} />
               <span className="rating-num">({product.ratingCount})</span>
