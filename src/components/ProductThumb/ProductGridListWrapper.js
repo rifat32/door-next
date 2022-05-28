@@ -43,6 +43,7 @@ const ProductGridListWrapper = ({
             } 
 
           })
+          console.log("productPrice",productPrice)
           
           
           const cartItem = cartItems.filter(
