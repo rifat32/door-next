@@ -41,11 +41,12 @@ const ProductGridListWrapper = ({
            let price = productPricel;
            let newPrice = parseFloat(el.price).toFixed(2)
 
-            if(parseFloat(price > newPrice)) {
+            if(price > newPrice) {
               productPrice =   newPrice;  
               console.log("aaaa",productPrice,newPrice) 
             } else {
               console.log("bbbb",productPrice,newPrice) 
+              console.log("cccc",price > newPrice) 
             }
           
           })
