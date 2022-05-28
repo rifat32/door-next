@@ -38,7 +38,7 @@ const ProductGridListWrapper = ({
           )).toFixed(2);
           let productPrice =  parseFloat(product.variations[0].price).toFixed(2) ;
           product.variations.map(el => {
-           let price = productPricel;
+           let price = productPrice;
            let newPrice = parseFloat(el.price).toFixed(2)
 
             if(price > newPrice) {
