@@ -36,13 +36,17 @@ const ProductGridListWrapper = ({
             product.price,
             product.discount
           )).toFixed(2);
-          let productPrice = product.variations[0].price;
+          let productPrice =  parseFloat(product.variations[0].price).toFixed(2) ;
           product.variations.map(el => {
-          
-            if(parseFloat(productPrice).toFixed(2) > parseFloat(el.price).toFixed(2)) {
-              productPrice =   parseFloat(el.price).toFixed(2);  
-              console.log("aaaa",productPrice,parseFloat(el.price).toFixed(2)) 
-            } 
+           let price = productPricel;
+           let newPrice = parseFloat(el.price).toFixed(2)
+
+            if(parseFloat(price > newPrice)) {
+              productPrice =   newPrice;  
+              console.log("aaaa",productPrice,newPrice) 
+            } else {
+              console.log("bbbb",productPrice,newPrice) 
+            }
           
           })
  
