@@ -14,7 +14,12 @@ import { Container, Row, Col } from "react-bootstrap";
 import { LayoutOne } from "../layouts";
 import { BreadcrumbOne } from "../components/Breadcrumb";
 import { IoIosClose } from "react-icons/io";
-import { BACKEND } from "../../config";
+import { BACKEND, BACKENDAPI } from "../../config";
+import { apiClient } from "../utils/apiClient";
+
+
+
+
 
 const Cart = ({
   cartItems,
@@ -23,9 +28,85 @@ const Cart = ({
   deleteFromCart,
   deleteAllFromCart
 }) => {
+  const [tempCarts,setTempCarts] = useState(JSON.parse(JSON.stringify(cartItems)) ) 
   const [quantityCount] = useState(1);
   const { addToast } = useToasts();
+  let cartSubTotalPrice = 0;
   let cartTotalPrice = 0;
+  let cartCouponDiscount = 0;
+  const [couponCode,setCouponCode] = useState(null);
+  const [coupon,setCoupon] = useState(null);
+  const [couponErr,setCouponErr] = useState(null);
+const applyCoupon = () => {
+  setCouponErr(null)
+  apiClient()
+  .get(`${BACKENDAPI}/v1.0/client/check-coupon?coupon=${couponCode}`)
+  .then(response => {
+console.log(response.data)
+if(!response.data.coupon){
+  setCouponErr("No Coupon Found")
+  addToast("No Coupon Found", {
+    appearance: "warning",
+    autoDismiss: true
+  });
+}
+else if(!parseInt(response.data.coupon.is_active)) {
+  setCouponErr("This is not available now")
+  addToast("This is not available now", {
+    appearance: "warning",
+    autoDismiss: true
+  });
+} 
+ else if(new Date() > new Date(response.data.coupon.expire_date)){
+  addToast("This coupon is expired", {
+    appearance: "warning",
+    autoDismiss: true
+  });
+  setCouponErr("This coupon is expired")
+ }
+ else {
+  
+   setCoupon(response.data.coupon)
+   updateCart(response.data.coupon)
+ }
+  })
+  .catch(err => {
+    console.log(err)
+  })
+}
+
+
+
+const updateCart = (couponParam) => {
+ const cartWithCoupon = tempCarts.map((el,index) => {
+   console.log("cart", el.category_id )
+   console.log("coupon",couponParam.category_id)
+      if(el.category_id == couponParam.category_id) {
+        if(parseInt(couponParam.is_all_category_product) === 1 ) {
+          el.discount_type = couponParam.discount_type
+          el.discount_amount = couponParam.discount_amount
+        } else {
+           el.aa = "aa"
+        }
+        
+       
+      }
+      return el;
+  })
+
+  setTempCarts([...cartWithCoupon])
+
+  // cartTotalPrice = 0;
+  // cartWithCoupon.map(el => {
+  //   const discountedPrice = parseFloat(getDiscountPrice(
+  //     el.price,
+  //     el.discount
+  //   )).toFixed(2);
+  //   cartTotalPrice += discountedPrice * product.qty;
+  // })
+
+
+}
   return (
     <LayoutOne>
       {/* breadcrumb */}
@@ -42,7 +123,7 @@ const Cart = ({
       {/* cart content */}
       <div className="cart-content space-pt--r100 space-pb--r100">
         <Container>
-          {cartItems && cartItems.length >= 1 ? (
+          {tempCarts && tempCarts.length >= 1 ? (
             <Fragment>
               <Row>
                 <Col lg={12}>
@@ -60,13 +141,22 @@ const Cart = ({
                         </tr>
                       </thead>
                       <tbody>
-                        {cartItems.map((product, key) => {
-                          const discountedPrice = parseFloat(getDiscountPrice(
-                            product.price,
-                            product.discount
-                          )).toFixed(2);
+                        {tempCarts.map((product, key) => {
+                          let price = product.price;
+                     
+                         if(product.discount_type && product.discount_type  == "fixed") {
+                         
+                          price -= product.discount_amount
+                         }
+                          else if(product.discount_type && product.discount_type  == "percentage") {
+                         price  -= (price * product.discount_amount) / 100
+                         }
+                       
 
-                          cartTotalPrice += discountedPrice * product.qty;
+                         cartSubTotalPrice += product.price * product.qty;
+                          cartTotalPrice += price * product.qty;
+
+                          cartCouponDiscount +=  cartSubTotalPrice - cartTotalPrice
                         
                           return (
                             <tr key={key}>
@@ -101,16 +191,48 @@ const Cart = ({
                                 )}
                               </td>
                               <td className="product-price" data-title="Price">
-                                ${discountedPrice}
+                                ${parseFloat(product.price).toFixed(2)}
                               </td>
                               <td className="product-price" data-title="Price">
-                                <div>color:     {product.selectedProductColor}</div>
-                                <div>height:   
+                                <p>color:     {product.selectedProductColor}</p>
+                                {
+                                  !product.is_custom_size?(<>
+                                   <p>height:   
                                    {console.log(product)} 
                                     {product.variation.find (el => {
                                   return el.id === parseInt(product.selectedHeight)
                                 })?.name}
-                                </div>
+                                </p>
+                                <p>width:   
+                                   {console.log(product)} 
+                                    {product.variation.find (el => {
+
+                                  return el.id === parseInt(product.selectedHeight)
+                                })?.variation_value_template.find (el2 => {
+
+                                  return el2.id === parseInt(product.selectedWidth)
+                                })?.name}
+                                </p>
+                                  
+                                  
+                                  </>):(<>
+                                  <p>Custom Height:     {product.custom_height}</p>
+                                 <p>Custom Width:     {product.custom_width}</p>
+                                  
+                                  
+                                  </>)
+                                }
+                                {
+                                  product.is_hinge_holes?(
+                                    <>
+                                     <p>Hinge hole top:     {product.hinge_holes_from_top}</p>
+                                    <p>Hinge hole bottom:     {product.hinge_holes_from_bottom}</p></>
+                                   
+                                  ):(null)
+                                }
+                               
+                               
+                                
                               </td>
                               
                               <td
@@ -163,7 +285,7 @@ const Cart = ({
                                 data-title="Total"
                               >
                                 $
-                                {parseFloat((discountedPrice * product.qty)).toFixed(
+                                {parseFloat((product.price * product.qty)).toFixed(
                                   2
                                 )}
                               </td>
@@ -190,16 +312,22 @@ const Cart = ({
                                     type="text"
                                     className="form-control form-control-sm"
                                     placeholder="Enter Coupon Code.."
-                                  />
+                                    value={couponCode}
+                                    onChange={(e) => {
+                                      setCouponCode(e.target.value)
+                                    }}                                  />
                                   <div className="input-group-append">
                                     <button
                                       className="btn btn-fill-out btn-sm"
                                       type="submit"
+                                      onClick={applyCoupon}
                                     >
                                       Apply Coupon
                                     </button>
+                                   
                                   </div>
                                 </div>
+                                {couponErr}
                               </Col>
                               <Col
                                 lg={8}
@@ -293,8 +421,13 @@ const Cart = ({
                           <tr>
                             <td className="cart-total-label">Cart Subtotal</td>
                             <td className="cart-total-amount">
-                              ${parseFloat(cartTotalPrice).toFixed(2)}
+                              ${parseFloat(cartSubTotalPrice).toFixed(2)}
                             </td>
+                          </tr>
+                          
+                          <tr>
+                            <td className="cart-total-label">Coupon Discount</td>
+                            <td className="cart-total-amount">{cartCouponDiscount}</td>
                           </tr>
                           <tr>
                             <td className="cart-total-label">Shipping</td>

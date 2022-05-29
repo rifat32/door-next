@@ -209,7 +209,8 @@ const extraHoleDirections = [
 				status,
 				is_featured,
         images,
-        style
+        style,
+        selectedProductColor:tempColors[0].code
 				})
 				// setCategories(response.data.data);
         setToggle(!toggle)

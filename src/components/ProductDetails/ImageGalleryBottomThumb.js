@@ -50,15 +50,15 @@ const ImageGalleryBottomThumb = ({ product }) => {
             {product.images &&
               product.images.map((single, key) => {
                 return (
-                  <div key={key}>
+                  <div key={key} >
                  
                     <LightgalleryItem group="any" src={`${BACKEND}/${single.file}`}>
                       <button className="enlarge-icon">
                         <i className="icon-magnifier-add" />
                       </button>
                     </LightgalleryItem>
-                    <div className="single-image">
-                      <img src={`${BACKEND}/${single.file}`}className="img-fluid" alt="" />
+                    <div className="single-image" style={{minHeight:"15rem"}}>
+                      <img src={`${BACKEND}/${single.file}`}className="img-fluid" alt="" style={{height:"inherit"}} />
                     </div>
                   </div>
                 );

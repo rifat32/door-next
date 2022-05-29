@@ -63,6 +63,27 @@ export const getProductCartQuantity = (cartItems, product, color, size) => {
       single.id === product.id 
       &&  single.selectedHeight === product.selectedHeight 
       &&  single.selectedProductColor === product.selectedProductColor 
+      &&  single.selectedWidth === product.selectedWidth 
+      &&  single.price === product.price 
+      &&  single.is_hinge_holes === product.is_hinge_holes 
+      &&  single.is_custom_size === product.is_custom_size 
+      &&  single.is_extra_holes === product.is_extra_holes 
+      &&  single.orientation_id === product.orientation_id 
+      &&  single.hinge_holes_from_top === product.hinge_holes_from_top 
+      &&  single.hinge_holes_from_bottom === product.hinge_holes_from_bottom 
+      &&  single.extra_holes_direction_id === product.extra_holes_direction_id 
+      &&  single.extra_holes_value === product.extra_holes_value 
+      &&  single.is_hinge_holes === product.is_hinge_holes 
+      &&  single.custom_height === product.custom_height 
+      &&  single.custom_width === product.custom_width 
+
+  
+      
+  
+
+     
+      
+    
       
   )[0];
   if (cartItems.length >= 1 && productInCart) {

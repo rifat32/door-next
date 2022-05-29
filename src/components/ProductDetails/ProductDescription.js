@@ -115,6 +115,7 @@ const ProductDescription = ({
                     />
                 
                     <label
+                    title={single.name}
                       htmlFor={single.color.code}
                       style={{ backgroundColor: single.color.code }}
                     >
