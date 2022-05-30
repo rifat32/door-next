@@ -1,4 +1,4 @@
-import { useState, Fragment } from "react";
+import { useState, Fragment, useEffect } from "react";
 import Link from "next/link";
 import { connect } from "react-redux";
 import { useToasts } from "react-toast-notifications";
@@ -75,7 +75,9 @@ else if(!parseInt(response.data.coupon.is_active)) {
   })
 }
 
-
+useEffect(()=>{
+setTempCarts(cartItems)
+},[cartItems])
 
 const updateCart = (couponParam) => {
  const cartWithCoupon = tempCarts.map((el,index) => {
@@ -86,7 +88,13 @@ const updateCart = (couponParam) => {
           el.discount_type = couponParam.discount_type
           el.discount_amount = couponParam.discount_amount
         } else {
-           el.aa = "aa"
+          couponParam.cproducts?.map(el2 => {
+               if(parseInt(el2.product_id) === parseInt(el.id)){
+                el.discount_type = couponParam.discount_type
+                el.discount_amount = couponParam.discount_amount
+               }
+          })
+         
         }
         
        

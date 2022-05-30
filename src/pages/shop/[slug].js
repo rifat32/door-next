@@ -202,7 +202,7 @@ const extraHoleDirections = [
 				price,
 				qty,
 				variation:tempVariation,
-        selectedHeight:tempVariation[0].id,
+        selectedHeight:0,
         category,
 				image,
 				colors:tempColors,
@@ -210,7 +210,7 @@ const extraHoleDirections = [
 				is_featured,
         images,
         style,
-        selectedProductColor:tempColors[0].code
+        
 				})
 				// setCategories(response.data.data);
         setToggle(!toggle)
@@ -263,25 +263,42 @@ const extraHoleDirections = [
   const handleChange = (e) => {
 		setProductData({ ...productNew, [e.target.name]: e.target.value });
     if(e.target.name == "custom_height") {
-      apiClient()
-			.get(`${BACKENDAPI}/v1.0/client/check-height?product_id=${productNew.id}&&height=${e.target.value}`)
-			.then((response) => {
-        console.log(response.data.product)
-if(response.data.product){
-  setHeightErr(null)
 
-  setProductVariation(response.data.product)
-
-} else {
-  setHeightErr("no product found")
-  
-}
-
+      let color = productNew.colors.find(el => {
+        console.log(el)
+           return   el.color.code == productNew.selectedProductColor
       })
+       console.log("ccc",color)
+      if(color) {
+        apiClient()
+        .get(`${BACKENDAPI}/v1.0/client/check-height?product_id=${productNew.id}&&height=${e.target.value}&&color_id=${color.color.id}`)
+        .then((response) => {
+          console.log(response.data.product)
+  if(response.data.product){
+    setHeightErr(null)
+  
+    setProductVariation(response.data.product)
+  
+  } else {
+    setHeightErr("no product found")
+    
+  }
+  
+        })
+    
+    
+      } else {
+        window.alert("please select a color")
+      }
+
+  
+  
+  
+  
     }
     if(e.target.name == "custom_width") {
       if(heightErr == null){
-
+    
 
         apiClient()
         .get(`${BACKENDAPI}/v1.0/client/check-width?product_id=${productNew.id}&&height=${productNew.custom_height}&&width=${e.target.value}&&product_variation_id=${productVariation.id}`)
@@ -330,6 +347,12 @@ setProductData({
   ...productNew,
   selectedProductColor:value
 })
+  }
+  const checkColorNotEpmty = () => {
+    if(!productNew.selectedProductColor){
+      window.alert("Please select color")
+    }
+    
   }
   
 if(!loading){
@@ -405,7 +428,7 @@ if(!loading){
               {/* sidebar */}
              
              <Row>
-         <Col sm={12} className="form-group" >
+         <Col sm={12} className="form-group" onClick={checkColorNotEpmty} >
                
 				<label htmlFor="selectedHeight" className="form-label">
 					Height
@@ -421,6 +444,7 @@ if(!loading){
 					id="selectedHeight"
 					name="selectedHeight"
 					onChange={handleSelectHeight}
+          
 					value={productNew.selectedHeight}
           disabled={productNew.is_custom_size}
           >
@@ -431,15 +455,29 @@ if(!loading){
             >
             Please Select
           </option>
-					{productNew.variation.map((el, index) => (
-          
-						<option
+					{productNew.variation.map((el, index) => { 
+          if(!productNew.selectedProductColor) {
+            return <></>;
+            return		(<option
 							key={index}
 							value={el.id}
 							style={{ textTransform: "uppercase" }}>
 							{el.name}
-						</option>
-					))}
+						</option>)
+          } else  {
+            if(productNew.selectedProductColor == el.color.code){
+              return		(<option
+                key={index}
+                value={el.id}
+                style={{ textTransform: "uppercase" }}>
+                {el.name}
+              </option>)
+            }
+            
+          }
+
+			
+})}
 				</select>
 				{errors?.selectedHeight && (
 					<div className="invalid-feedback">{errors.selectedHeight[0]}</div>
