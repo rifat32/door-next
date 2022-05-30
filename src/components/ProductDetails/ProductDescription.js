@@ -92,12 +92,13 @@ const ProductDescription = ({
         <div className="product-content__size-color">
           <div className="product-content__color space-mb--10">
             <div className="product-content__color__title">Color</div>
-            <div className="product-content__color__content">
+            <div className="product-content__color__content" >
               {product.colors.map((single, i) => {
                 return (
-                  <Fragment key={i}>
+                  <Fragment key={i}   >
                     
                     <input
+                  
                       type="radio"
                       value={single.color.code}
                       name="product-color"
@@ -117,7 +118,14 @@ const ProductDescription = ({
                     <label
                     title={single.name}
                       htmlFor={single.color.code}
-                      style={{ backgroundColor: single.color.code }}
+                      style={{ 
+                        backgroundColor: single.color.code,
+                        border:"2px solid black", }}
+                  //     style={{
+                   
+                  //   borderRadius:"50%"
+                  // }}
+
                     >
  
  

@@ -228,6 +228,7 @@ const GridLeftSidebar = ({ products }) => {
             loadData(el.url)} >Previous</button></li>
         }
         else {
+          return <></>
           return <li key={index} className="page-item disabled"><button className="page-link"  >Previous</button></li>
         }
       }
@@ -237,6 +238,7 @@ const GridLeftSidebar = ({ products }) => {
             loadData(el.url)} className="page-link" >Next</button></li>
         }
         else {
+          return <></>
           return <li key={index} className="page-item disabled"><button className="page-link" >Next</button></li>
         }
       } else {
@@ -383,7 +385,7 @@ const GridLeftSidebar = ({ products }) => {
 			</div>
 
               {/* shop product pagination */}
-              <div className="pagination pagination-style pagination-style--two justify-content-center">
+              {/* <div className="pagination pagination-style pagination-style--two justify-content-center">
                 <Paginator
                   totalRecords={sortedProducts.length}
                   pageLimit={pageLimit}
@@ -395,7 +397,7 @@ const GridLeftSidebar = ({ products }) => {
                   pagePrevText="«"
                   pageNextText="»"
                 />
-              </div>
+              </div> */}
             </Col>
             <Col lg={3} className="order-lg-first mt-4 pt-2 mt-lg-0 pt-lg-0">
               {/* sidebar */}

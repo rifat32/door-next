@@ -171,7 +171,8 @@ useEffect(
                       getSortParams("color", color.id);
                       setActiveSort(e);
                     }}
-                    style={{ backgroundColor: color.code }}
+                    style={{ backgroundColor: color.code ,   border:"1px solid black",}}
+                    
                   ></button>
                 </li>
               );
