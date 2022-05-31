@@ -55,6 +55,9 @@ console.log("citem",cartItem)
                 <img
                   src={colorImage ? `${BACKEND}/${colorImage}` : `${BACKEND}/${product.image}`}
                   alt="product_img1"
+                  style={{
+                    height:"300px"
+                  }}
                 />
               </a>
             </Link>

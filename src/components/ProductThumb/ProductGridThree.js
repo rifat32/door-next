@@ -53,7 +53,7 @@ const ProductGridThree = ({
                   src={colorImage ? `${BACKEND}/${colorImage}` : `${BACKEND}/${product.image}`}
                   alt="product_img1"
                   style={{
-                    height:"inherit",
+                    height:"300px",
                     width:"inherit"
                   }}
                   
