@@ -44,14 +44,14 @@ const applyCoupon = () => {
   .then(response => {
 console.log(response.data)
 if(!response.data.coupon){
-  setCouponErr("No Coupon Found")
+/*   setCouponErr("No Coupon Found") */
   addToast("No Coupon Found", {
     appearance: "warning",
     autoDismiss: true
   });
 }
 else if(!parseInt(response.data.coupon.is_active)) {
-  setCouponErr("This is not available now")
+/*   setCouponErr("This is not available now") */
   addToast("This is not available now", {
     appearance: "warning",
     autoDismiss: true
@@ -62,7 +62,7 @@ else if(!parseInt(response.data.coupon.is_active)) {
     appearance: "warning",
     autoDismiss: true
   });
-  setCouponErr("This coupon is expired")
+/*   setCouponErr("This coupon is expired") */
  }
  else {
   
