@@ -159,13 +159,15 @@ useEffect(
         )}
       </div> */}
 
-      <div className="widget">
+      <div className="widget" 
+      // style={{display:"none"}}
+      >
         <h5 className="widget__title">Colors</h5>
         {categories.length > 0 ? (
-          <ul className="widget__colors">
+          <ul className="widget__colors row">
             {colors.map((color, key) => {
               return (
-                <li key={key}>
+                <li key={key} className="col-1">
                   <button
                     onClick={(e) => {
                       getSortParams("color", color.id);
@@ -177,7 +179,7 @@ useEffect(
                 </li>
               );
             })}
-            <li>
+            <li className="col-1">
               <button
                 onClick={(e) => {
                   getSortParams("color", "");

@@ -88,7 +88,7 @@ const ProductDescription = ({
         </ul>
       </div>
 
-      {product.colors ? (
+      {product.colors.length ? (
         <div className="product-content__size-color">
           <div className="product-content__color space-mb--10">
             <div className="product-content__color__title">Color</div>
@@ -111,7 +111,7 @@ const ProductDescription = ({
                         setSelectedProductColor(e.target.value);
                         
                         // setProductStock(single.size[0].stock);
-                        setQuantityCount(1);
+                        // setQuantityCount(1);
                       }}
                     />
                 

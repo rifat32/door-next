@@ -40,6 +40,21 @@ const ImageGalleryBottomThumb = ({ product }) => {
     slideToClickedSlide: true
   };
 
+  let images = [
+    ...product.images,
+   {
+    file:product.image
+   },
+   ...product.colors.map(el => {
+return {
+file:el.color_image
+};
+   })
+   
+
+  ]
+  console.log("aaa",images)
+
   return (
     <Fragment>
       <div className="product-large-image-wrapper">
@@ -47,8 +62,8 @@ const ImageGalleryBottomThumb = ({ product }) => {
         <LightgalleryProvider>
           <Swiper {...gallerySwiperParams}>
      
-            {product.images &&
-              product.images.map((single, key) => {
+            {images &&
+              images.map((single, key) => {
                 return (
                   <div key={key} >
                  
@@ -57,7 +72,7 @@ const ImageGalleryBottomThumb = ({ product }) => {
                         <i className="icon-magnifier-add" />
                       </button>
                     </LightgalleryItem>
-                    <div className="single-image" style={{minHeight:"15rem"}}>
+                    <div className="single-image" style={{height:"15rem"}}>
                       <img src={`${BACKEND}/${single.file}`}className="img-fluid" alt="" style={{height:"inherit"}} />
                     </div>
                   </div>
@@ -68,20 +83,24 @@ const ImageGalleryBottomThumb = ({ product }) => {
           </Swiper>
         </LightgalleryProvider>
       </div>
-      <div className="product-small-image-wrapper">
-        <Swiper {...thumbnailSwiperParams}>
-          {product.images &&
-            product.images.map((image, i) => {
-              return (
-                <div key={i}>
-                  <div className="single-image">
-                    <img src={`${BACKEND}/${image.file}`} className="img-fluid" alt="" />
-                  </div>
+      
+    {
+      images.length >1?(<div className="product-small-image-wrapper">
+      <Swiper {...thumbnailSwiperParams}>
+        {
+          images.map((image, i) => {
+            return (
+              <div key={i}>
+                <div className="single-image">
+            
+                  <img src={`${BACKEND}/${image.file}`} className="img-fluid" alt="" />
                 </div>
-              );
-            })}
-        </Swiper>
-      </div>
+              </div>
+            );
+          })}
+      </Swiper>
+    </div>):(null)
+    }  
     </Fragment>
   );
 };

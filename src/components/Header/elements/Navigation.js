@@ -20,7 +20,58 @@ const Navigation = ({ positionClass }) => {
             <a className="nav-link">SHOP</a>
           </Link>
         </li>
-        
+        <li>
+          <Link href="/">
+            <a className="nav-link">
+            Accessories <IoIosArrowDown />
+            </a>
+          </Link>
+
+          <ul className="sub-menu sub-menu--one-column">
+            <li>
+              <Link href="/category/general">
+                <a>General</a>
+              </Link>
+            </li>
+            <li>
+              <Link href="/category/kitchen">
+                <a>Kitchen</a>
+              </Link>
+            </li>
+            
+          </ul>
+        </li>
+        <li>
+          <Link href="/">
+            <a className="nav-link">
+            Hinges Drawers Internals <IoIosArrowDown />
+            </a>
+          </Link>
+
+          <ul className="sub-menu sub-menu--one-column">
+            <li>
+              <Link href="/category/hinges">
+                <a>Hinges</a>
+              </Link>
+            </li>
+            <li>
+              <Link href="/category/drawers">
+                <a>Drawers</a>
+              </Link>
+            </li>
+            <li>
+              <Link href="/category/internals">
+                <a>Internals</a>
+              </Link>
+            </li>
+            <li>
+              <Link href="/category/handles">
+                <a>Handles</a>
+              </Link>
+            </li>
+          </ul>
+        </li>
+
         {/* <li>
           <Link href="/">
             <a className="nav-link">
