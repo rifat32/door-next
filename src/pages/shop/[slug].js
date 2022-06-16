@@ -270,7 +270,7 @@ const extraHoleDirections = [
       })
        console.log("ccc",color)
 let final_color = color.color.id;
- if(!color.is_variation_specific) {
+ if(!parseInt(color.is_variation_specific)) {
   final_color = ""
  }
 
@@ -368,7 +368,7 @@ const getHeights = (variation,index) => {
     return el.code == productNew.selectedProductColor
   })
 
-if(color.is_variation_specific){
+if(parseInt(color.is_variation_specific)){
   if(productNew.selectedProductColor == variation.color?.code ){
 
   
