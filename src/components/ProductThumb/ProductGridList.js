@@ -147,11 +147,12 @@ console.log("citem",cartItem)
             </div> */}
 
             {product.colors ? (
-              <div className="product-switch-wrap">
-                <ul>
+              <div className="product-switch-wrap" style={{marginTop:"5rem"}}>
+                <ul className="row">
                   {product.colors.map((single, key) => {
                     return (
-                      <li key={key}>
+                      <li key={key} className="col-md-1">
+                       
                         <button
                           style={{ backgroundColor: `${single.color.code}` }}
                           onClick={() => setColorImage(single.color_image)}

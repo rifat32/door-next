@@ -202,8 +202,23 @@ const updateCart = (couponParam) => {
                                 ${parseFloat(product.price).toFixed(2)}
                               </td>
                               <td className="product-price" data-title="Price">
-                                <p>color:     {product.selectedProductColor}</p>
-                                {
+                              {product.selectedProductColor &&   <p>color:     {
+
+
+product.colors.find(el => {
+ return product.selectedProductColor == el.code
+}).color.name
+                            
+                              
+                              
+                              
+                              
+                              
+                              }</p>}
+                              {product.type != "single"?(
+                                
+
+                                
                                   !product.is_custom_size?(<>
                                    <p>height:   
                                    {console.log(product)} 
@@ -229,7 +244,16 @@ const updateCart = (couponParam) => {
                                   
                                   
                                   </>)
-                                }
+                                
+
+
+
+
+
+                              ):(null)
+                              
+                              }
+                              
                                 {
                                   product.is_hinge_holes?(
                                     <>

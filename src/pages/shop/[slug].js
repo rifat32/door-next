@@ -407,7 +407,7 @@ if(!loading){
             </Link>
           </li>
           <li className="breadcrumb-item">
-            <Link href="/shop/grid-left-sidebar">
+            <Link href="/shop">
               <a>Shop</a>
             </Link>
           </li>
