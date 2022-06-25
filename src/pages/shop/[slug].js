@@ -128,7 +128,8 @@ const extraHoleDirections = [
 		
     selectedHeight:0,
     selectedWidth:0,
-    selectedProductColor: ""
+    selectedProductColor: "",
+    options:[]
 	});
   useEffect(() => {
    loadProduct(slug)
@@ -141,9 +142,9 @@ const extraHoleDirections = [
 			.then((response) => {
 				console.log(response);
       
-				const {id,name,category_id,style_id,sku,description,type,product_variations,variations,image,colors,status,is_featured,category,images,style} = response.data.product
+				const {id,name,category_id,style_id,sku,description,type,product_variations,variations,image,colors,status,is_featured,category,images,style,options} = response.data.product
 
-					
+					console.log("option",options)
 				
               let price = 0;
 			  let qty = 0;
@@ -210,6 +211,7 @@ const extraHoleDirections = [
 				is_featured,
         images,
         style,
+        options
         
 				})
 				// setCategories(response.data.data);
@@ -395,6 +397,14 @@ if(parseInt(color.is_variation_specific)){
  
 }
 
+
+const handleSelectOption = (e) => {
+  const index = e.target.name.split("-")[1]
+  const tempOtions = [...productNew.options];
+  tempOtions[index].selectedValue = e.target.value
+  setProductData({...productNew,options:tempOtions})
+  console.log(productNew)
+}
 if(!loading){
   return (
     <LayoutOne>
@@ -902,7 +912,46 @@ if(!loading){
                     </Row>)
              }
           
+             <Row>
+              {
+                productNew.options.map((el,index) => {
+                  return  (<Col sm={12} className="form-group">
+                    <label>{el.option.name}</label>
+                     <select
+           className={
+             errors
+               ? errors.options
+                 ? `form-control is-invalid`
+                 : `form-control is-valid`
+               : "form-control"
+           }
+           id="options"
+           name={`options-${index}`}
+          onChange={handleSelectOption}
+            value={productNew.options[index].selectedOption}
+           >
+           <option
+       
+             value=""
+             >
+             Please Select 
+           </option>
+           {el.option.option_value_template.map((el, index) => {
+              
+              return ( <option
+       key={index}
+       value={el.id}
+                >
+                 {el.name}
+              </option>)
+           
+           })}
+         </select>
+                  </Col>)
+                })
+              }
              
+             </Row>
               
             </Col>
           </Row>

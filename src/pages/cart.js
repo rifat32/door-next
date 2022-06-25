@@ -263,7 +263,25 @@ product.colors.find(el => {
                                   ):(null)
                                 }
                                
-                               
+                               {
+                                  product.options.length?(
+                                    product.options.map(el => {
+                                      
+                                      if(el.selectedValue) {
+                                        console.log("abcd",el)
+                                      return  el.option.option_value_template.map(el2 => {
+                                        if(parseInt(el.selectedValue) == parseInt(el2.id))
+                                            return <>
+                                            <br/>
+                                            {el.option.name}:{el2.name}
+                                            </>
+                                        })
+                                      }
+                                     
+                                    })
+                                   
+                                  ):(null)
+                                }
                                 
                               </td>
                               
