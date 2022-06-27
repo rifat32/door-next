@@ -1,8 +1,27 @@
 import Link from "next/link";
+import { useEffect } from "react";
+import { useState } from "react";
 import { Col } from "react-bootstrap";
 import { IoIosArrowDown, IoIosArrowForward } from "react-icons/io";
+import { BACKENDAPI } from "../../../../config";
+import { apiClient } from "../../../utils/apiClient";
 
 const Navigation = ({ positionClass }) => {
+
+  const [links,setLinks] = useState([])
+
+  useEffect(() => {
+    apiClient().get(`${BACKENDAPI}/v1.0/client/menus/all`)
+    .then(response => {
+console.log("menu",response)
+setLinks(response.data.data)
+    })
+    .catch(err => {
+      console.log(err.response)
+    })
+
+  },[])
+
   return (
     <nav className="navigation d-none d-lg-block">
       <ul
@@ -10,7 +29,8 @@ const Navigation = ({ positionClass }) => {
           positionClass ? positionClass : "justify-content-end"
         }`}
       >
-          <li>
+       
+          {/* <li>
           <Link href="/">
             <a className="nav-link">Home</a>
           </Link>
@@ -70,8 +90,46 @@ const Navigation = ({ positionClass }) => {
               </Link>
             </li>
           </ul>
-        </li>
+        </li> */}
+        {
+        links.length?  links.map(el => {
+            if(el.type == "single") {
+              return  <li key={el.id}>
+              <Link href={el.url}>
+                <a className="nav-link">{el.name}</a>
+              </Link>
+            </li>
+            }
+            else{
+              return   <li key={el.id}>
+              <Link href={el.url}>
+                <a className="nav-link">
+                {el.name} <IoIosArrowDown />
+                </a>
+              </Link>
+              <ul className="sub-menu sub-menu--one-column">
+    {
+      el.children.map(el2 => {
+        return <li key={el2.id}>
+        <Link href={el2.url}>
+          <a>{el2.name}</a>
+        </Link>
+      </li>
+      })
+    }
+             
+               
+                
+                
+              </ul>
+            </li>
+            }
 
+
+          })
+          :
+          null
+        }
         {/* <li>
           <Link href="/">
             <a className="nav-link">
