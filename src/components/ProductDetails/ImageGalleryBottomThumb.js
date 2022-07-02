@@ -53,7 +53,7 @@ file:el.color_image
    
 
   ]
-  console.log("aaa",images)
+
 
   return (
     <Fragment>

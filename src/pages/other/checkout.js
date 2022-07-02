@@ -5,13 +5,17 @@ import { getDiscountPrice } from "../../lib/product";
 import { IoMdCash } from "react-icons/io";
 import { LayoutOne } from "../../layouts";
 import { BreadcrumbOne } from "../../components/Breadcrumb";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { apiClient } from "../../utils/apiClient";
 import { BACKENDAPI } from "../../../config";
 import { deleteAllFromCart } from "../../redux/actions/cartActions";
 import { useToasts } from "react-toast-notifications";
 const Checkout = ({ cartItems ,  deleteAllFromCart}) => {
+  const [tempCarts,setTempCarts] = useState(JSON.parse(JSON.stringify(cartItems)) ) 
+
   let cartTotalPrice = 0;
+  let cartSubTotalPrice = 0;
+  let cartCouponDiscount = 0;
 
   const [orderInfo,setOrderInfo] = useState({
     fname:"",
@@ -25,7 +29,11 @@ const Checkout = ({ cartItems ,  deleteAllFromCart}) => {
     phone:"",
     email:"",
     additional_info:"",
-    payment_option:"direct bank"
+    payment_option:"direct bank",
+    order_coupon:"",
+    create_account:"0",
+    password:"",
+    password_confirmation:"",
   })
 
 const handleChange = (e) => {
@@ -37,21 +45,84 @@ const handleChange = (e) => {
   })
 }
 const { addToast } = useToasts();
+const [errors,setErrors] = useState(null)
+
 const handleSubmit= (e) => {
   e.preventDefault();
+ 
   apiClient()
-  .post(`${BACKENDAPI}/v1.0/client/orders`, { ...orderInfo},
+  .post(`${BACKENDAPI}/v1.0/client/orders`, { 
+    ...orderInfo,
+    cart:tempCarts
+
+  
+  },
 				)
 			.then((response) => {
-				console.log(response);
+	
         deleteAllFromCart(addToast);
         window.alert("order placed")
 			
 			})
 			.catch((error) => {
-				console.log(error);
+    
+        if (error.response.status === 422) {
+          setErrors(error.response.data.errors);
+          console.log("hhhh",errors)
+        }
+			
 			});
 }
+
+useEffect(() => {
+  let coupon = localStorage.getItem("coupon")
+  console.log("localcoupon",JSON.parse(coupon))
+  if(coupon){
+    coupon = JSON.parse(coupon)
+    updateCart(coupon)
+    setOrderInfo({
+      ...orderInfo,
+      order_coupon:coupon
+    })
+  }
+
+},[])
+const updateCart = (couponParam) => {
+  const cartWithCoupon = tempCarts.map((el,index) => {
+    console.log("cart", el.category_id )
+    console.log("coupon",couponParam.category_id)
+       if(el.category_id == couponParam.category_id) {
+         if(parseInt(couponParam.is_all_category_product) === 1 ) {
+           el.discount_type = couponParam.discount_type
+           el.discount_amount = couponParam.discount_amount
+         } else {
+           couponParam.cproducts?.map(el2 => {
+                if(parseInt(el2.product_id) === parseInt(el.id)){
+                 el.discount_type = couponParam.discount_type
+                 el.discount_amount = couponParam.discount_amount
+                }
+           })
+          
+         }
+         
+        
+       } else if(!couponParam.category_id) {
+         el.discount_type = couponParam.discount_type
+         el.discount_amount = couponParam.discount_amount
+ 
+       }
+       return el;
+   })
+ 
+   setTempCarts([...cartWithCoupon])
+ 
+
+ 
+ 
+ }
+
+
+
 
   return (
     <LayoutOne>
@@ -78,38 +149,67 @@ const handleSubmit= (e) => {
                   <div className="form-group">
                     <input
                       type="text"
-                      required
-                      className="form-control"
+                      
+                      className={
+                        errors
+                          ? errors.fname
+                            ? `form-control is-invalid`
+                            : `form-control is-valid`
+                          : "form-control"
+                      }
                       name="fname"
                      
                       placeholder="First name *"
                       value={orderInfo.fname}
                       onChange={handleChange}
                     />
+                    
+                    {errors?.fname && (
+					<p className="invalid-feedback">{errors.fname[0]}</p>
+				)}
+                  
                   </div>
                   <div className="form-group">
                     <input
                       type="text"
                       required
-                      className="form-control"
+                      className={
+                        errors
+                          ? errors.lname
+                            ? `form-control is-invalid`
+                            : `form-control is-valid`
+                          : "form-control"
+                      }
                       name="lname"
                       placeholder="Last name *"
                       value={orderInfo.lname}
                       onChange={handleChange}
                     />
+        {errors?.lname && (
+					<p className="invalid-feedback">{errors.lname[0]}</p>
+				)}
                   </div>
                   <div className="form-group">
                     <input
-                      className="form-control"
-                      required
+                      className={
+                        errors
+                          ? errors.cname
+                            ? `form-control is-invalid`
+                            : `form-control is-valid`
+                          : "form-control"
+                      }
+                      
                       type="text"
                       name="cname"
                       placeholder="Company Name"
                       value={orderInfo.cname}
                       onChange={handleChange}
                     />
+                     {errors?.cname && (
+					<p className="invalid-feedback">{errors.cname[0]}</p>
+				)}
                   </div>
-                  <div className="form-group">
+                  {/* <div className="form-group">
                     <div className="custom_select">
                       <select className="form-control" name="country"     value={orderInfo.country}
                       onChange={handleChange}
@@ -125,11 +225,17 @@ const handleSubmit= (e) => {
                         <option value="AQ">Antarctica</option>
                       </select>
                     </div>
-                  </div>
+                  </div> */}
                   <div className="form-group">
                     <input
                       type="text"
-                      className="form-control"
+                      className={
+                        errors
+                          ? errors.billing_address
+                            ? `form-control is-invalid`
+                            : `form-control is-valid`
+                          : "form-control"
+                      }
                       name="billing_address"
                       required=""
                       placeholder="Address *"
@@ -137,21 +243,39 @@ const handleSubmit= (e) => {
                       value={orderInfo.billing_address}
                       onChange={handleChange}
                     />
+                    {errors?.billing_address && (
+					<p className="invalid-feedback">{errors.billing_address[0]}</p>
+				)}
                   </div>
                   <div className="form-group">
                     <input
                       type="text"
-                      className="form-control"
+                      className={
+                        errors
+                          ? errors.billing_address2
+                            ? `form-control is-invalid`
+                            : `form-control is-valid`
+                          : "form-control"
+                      }
                       name="billing_address2"
                       required=""
                       placeholder="Address line2"
                       value={orderInfo.billing_address2}
                       onChange={handleChange}
                     />
+           {errors?.billing_address2 && (
+					<p className="invalid-feedback">{errors.billing_address2[0]}</p>
+				)}
                   </div>
                   <div className="form-group">
                     <input
-                      className="form-control"
+                     className={
+                      errors
+                        ? errors.city
+                          ? `form-control is-invalid`
+                          : `form-control is-valid`
+                        : "form-control"
+                    }
                       required
                       type="text"
                       name="city"
@@ -159,10 +283,19 @@ const handleSubmit= (e) => {
                       value={orderInfo.city}
                       onChange={handleChange}
                     />
+                     {errors?.city && (
+					<p className="invalid-feedback">{errors.city[0]}</p>
+				)}
                   </div>
                   <div className="form-group">
                     <input
-                      className="form-control"
+                      className={
+                        errors
+                          ? errors.zipcode
+                            ? `form-control is-invalid`
+                            : `form-control is-valid`
+                          : "form-control"
+                      }
                       required
                       type="text"
                       name="zipcode"
@@ -170,10 +303,19 @@ const handleSubmit= (e) => {
                       value={orderInfo.zipcode}
                       onChange={handleChange}
                     />
+                     {errors?.zipcode && (
+					<p className="invalid-feedback">{errors.zipcode[0]}</p>
+				)}
                   </div>
                   <div className="form-group">
                     <input
-                      className="form-control"
+                      className={
+                        errors
+                          ? errors.phone
+                            ? `form-control is-invalid`
+                            : `form-control is-valid`
+                          : "form-control"
+                      }
                       required
                       type="text"
                       name="phone"
@@ -181,10 +323,19 @@ const handleSubmit= (e) => {
                       value={orderInfo.phone}
                       onChange={handleChange}
                     />
+                        {errors?.phone && (
+					<p className="invalid-feedback">{errors.phone[0]}</p>
+				)}
                   </div>
                   <div className="form-group">
                     <input
-                      className="form-control"
+                      className={
+                        errors
+                          ? errors.email
+                            ? `form-control is-invalid`
+                            : `form-control is-valid`
+                          : "form-control"
+                      }
                       required
                       type="text"
                       name="email"
@@ -192,19 +343,105 @@ const handleSubmit= (e) => {
                       value={orderInfo.email}
                       onChange={handleChange}
                     />
+                            {errors?.email && (
+					<p className="invalid-feedback">{errors.email[0]}</p>
+				)}
                   </div>
+                  <div className="form-group">
+                    <label>Guest</label>
+                    <input
+                     
+                      required
+                      type="radio"
+                      name="create_account"
+                     className="mr-5"
+                      value={0}
+                      checked={orderInfo.create_account == "0"}
+                      onChange={handleChange}
+                    /> 
+
+                      <label>Create Account</label>
+                    <input
+                     
+                      required
+                      type="radio"
+                      name="create_account"
+                     
+                      value={1}
+                      checked={orderInfo.create_account == "1"}
+                      onChange={handleChange}
+                    />
+                        
+                  </div>
+                  {
+                    orderInfo.create_account == 1?(<>
+                     <div className="form-group">
+                    <input
+                      className={
+                        errors
+                          ? errors.password
+                            ? `form-control is-invalid`
+                            : `form-control is-valid`
+                          : "form-control"
+                      }
+                      required
+                      type="text"
+                      name="password"
+                      placeholder="Password *"
+                      value={orderInfo.password}
+                      onChange={handleChange}
+                    />
+                            {errors?.password && (
+					<p className="invalid-feedback">{errors.password[0]}</p>
+				)}
+                  </div>
+                  <div className="form-group">
+                    <input
+                      className={
+                        errors
+                          ? errors.password_confirmation
+                            ? `form-control is-invalid`
+                            : `form-control is-valid`
+                          : "form-control"
+                      }
+                      
+                      type="text"
+                      name="password_confirmation"
+                      placeholder="password confirmation *"
+                      value={orderInfo.password_confirmation}
+                      onChange={handleChange}
+                    />
+                            {errors?.password_confirmation && (
+					<p className="invalid-feedback">{errors.password_confirmation[0]}</p>
+				)}
+                  </div>
+                  
+                    
+                    </>):(null)
+                  }
+                 
+
                   <div className="heading-s1 space-mb--20">
                     <h4>Additional information</h4>
                   </div>
                   <div className="form-group mb-0">
                     <textarea
                       rows="5"
-                      className="form-control"
+                      className={
+                        errors
+                          ? errors.additional_info
+                            ? `form-control is-invalid`
+                            : `form-control is-valid`
+                          : "form-control"
+                      }
                       placeholder="Order notes"
                       name="additional_info"
                       value={orderInfo.additional_info}
                       onChange={handleChange}
                     ></textarea>
+                          {errors?.additional_info && (
+                      <p className="invalid-feedback">{errors.additional_info[0]}</p>
+                    )}
                   </div>
                 </form>
               </Col>
@@ -222,13 +459,28 @@ const handleSubmit= (e) => {
                         </tr>
                       </thead>
                       <tbody>
-                        {cartItems.map((product, i) => {
-                          const discountedPrice = parseFloat(getDiscountPrice(
-                            product.price,
-                            product.discount
-                          )).toFixed(2);
+                        {tempCarts.map((product, i) => {
+                          // const discountedPrice = parseFloat(getDiscountPrice(
+                          //   product.price,
+                          //   product.discount
+                          // )).toFixed(2);
 
-                          cartTotalPrice += discountedPrice * product.qty;
+                          // cartTotalPrice += discountedPrice * product.qty;
+                          let price = product.price;
+                     
+                          if(product.discount_type && product.discount_type  == "fixed") {
+                          
+                           price -= product.discount_amount
+                          }
+                           else if(product.discount_type && product.discount_type  == "percentage") {
+                          price  -= (price * product.discount_amount) / 100
+                          }
+
+                          cartSubTotalPrice += product.price * product.qty;
+                          cartTotalPrice += price * product.qty;
+
+                          cartCouponDiscount +=  cartSubTotalPrice - cartTotalPrice
+
                           return (
                             <tr key={i}>
                               <td>
@@ -238,10 +490,8 @@ const handleSubmit= (e) => {
                                 </span>
                               </td>
                               <td>
-                                $
-                                {parseFloat((discountedPrice * product.qty)).toFixed(
-                                  2
-                                )}
+                                
+                                ${parseFloat(product.price).toFixed(2)}
                               </td>
                             </tr>
                           );
@@ -251,9 +501,13 @@ const handleSubmit= (e) => {
                         <tr>
                           <th>SubTotal</th>
                           <td className="product-subtotal">
-                            ${parseFloat(cartTotalPrice).toFixed(2)}
+                          ${parseFloat(cartSubTotalPrice).toFixed(2)}
                           </td>
                         </tr>
+                        <tr>
+                            <td className="cart-total-label">Coupon Discount</td>
+                            <td className="cart-total-amount">{cartCouponDiscount}</td>
+                          </tr>
                         <tr>
                           <th>Shipping</th>
                           <td>Free Shipping</td>
@@ -261,7 +515,7 @@ const handleSubmit= (e) => {
                         <tr>
                           <th>Total</th>
                           <td className="product-subtotal">
-                            ${parseFloat(cartTotalPrice).toFixed(2)}
+                          <strong>${parseFloat(cartTotalPrice).toFixed(2)}</strong>
                           </td>
                         </tr>
                       </tfoot>
@@ -356,7 +610,7 @@ const handleSubmit= (e) => {
                     <p className="space-mb--30">
                       No items found in cart to checkout
                     </p>
-                    <Link href="/shop/grid-left-sidebar">
+                    <Link href="/shop">
                       <a className="btn btn-fill-out">Shop Now</a>
                     </Link>
                   </div>

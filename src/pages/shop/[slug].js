@@ -129,7 +129,10 @@ const extraHoleDirections = [
     selectedHeight:0,
     selectedWidth:0,
     selectedProductColor: "",
-    options:[]
+    options:[],
+    length_lower_limit:"",
+    length_upper_limit:"",
+    selected_length:""
 	});
   useEffect(() => {
    loadProduct(slug)
@@ -142,7 +145,13 @@ const extraHoleDirections = [
 			.then((response) => {
 				console.log(response);
       
-				const {id,name,category_id,style_id,sku,description,type,product_variations,variations,image,colors,status,is_featured,category,images,style,options} = response.data.product
+				const {id,name,category_id,style_id,sku,description,type,product_variations,variations,image,colors,status,is_featured,category,images,style,options
+        
+          ,
+          length_lower_limit,
+          length_upper_limit,
+        
+        } = response.data.product
 
 					console.log("option",options)
 				
@@ -212,6 +221,9 @@ const extraHoleDirections = [
         images,
         style,
         options
+        ,
+        length_lower_limit,
+        length_upper_limit,
         
 				})
 				// setCategories(response.data.data);
@@ -263,7 +275,18 @@ const extraHoleDirections = [
   
   const [productVariation,setProductVariation] = useState(null)
   const handleChange = (e) => {
+    if(e.target.name == "selected_length") {
+      if( parseInt(e.target.value) > productNew.length_upper_limit ){
+return;
+      }
+    }
 		setProductData({ ...productNew, [e.target.name]: e.target.value });
+
+    
+
+
+
+
     if(e.target.name == "custom_height") {
 
       let color = productNew.colors.find(el => {
@@ -313,9 +336,12 @@ let final_color = color.color.id;
           console.log(response.data.product)
   if(response.data.product){
     setWidthErr(null)
+ 
     setProductData({
       ...productNew,
       price:response.data.product.price,
+      selectedHeight:response.data.product.product_variation_id,
+      selectedWidth:response.data.product.id,
       custom_width:e.target.value
     })
   
@@ -405,6 +431,7 @@ const handleSelectOption = (e) => {
   setProductData({...productNew,options:tempOtions})
   console.log(productNew)
 }
+
 if(!loading){
   return (
     <LayoutOne>
@@ -728,7 +755,7 @@ if(!loading){
                            
                            return ( <option
                 key={index}
-                value={el.name}
+                value={el.id}
                              >
                               {el.name}
                            </option>)
@@ -951,6 +978,42 @@ if(!loading){
                 })
               }
              
+             </Row>
+             <Row>
+{
+  (productNew.length_lower_limit && productNew.length_upper_limit)?(
+    <Col sm={12} className="form-group">
+    <label htmlFor="selected_length" className="form-label">
+    length min:{productNew.length_lower_limit}. max {productNew.length_upper_limit}
+    </label>
+    <input
+      type="number"
+      min={productNew.length_lower_limit}
+      max={productNew.length_upper_limit}
+      className={
+        errors
+          ? errors.selected_length
+            ? `form-control is-invalid`
+            : `form-control is-valid`
+          : "form-control"
+      }
+      id="selected_length"
+      name="selected_length"
+      onChange={handleChange}
+      value={productNew.selected_length}
+      
+    />
+
+   
+
+    {errors?.selected_length && (
+      <div className="invalid-feedback">{errors.selected_length[0]}</div>
+    )}
+    {errors && <div className="valid-feedback">Looks good!</div>}
+  </Col>
+  ):(null)
+}
+           
              </Row>
               
             </Col>

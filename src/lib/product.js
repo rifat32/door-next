@@ -57,25 +57,68 @@ export const getDiscountPrice = (price, discount) => {
 
 // change this 
 // get product cart quantity
+
+const checkOption = (cartOption,newOption,index) => {
+
+
+  if(cartOption.length != newOption.length) {
+      return false
+  } else {
+   let match = true;
+    for(let i = 0; i < cartOption.length; i++
+       ) {
+        console.log(index,"id",parseInt(cartOption[i].id),parseInt(newOption[i].id))
+
+        console.log(index,"selectedValue",parseInt(cartOption[i].selectedValue),parseInt(newOption[i].selectedValue))
+        
+        if(parseInt(cartOption[i].id) != parseInt(newOption[i].id)){
+          match = false;
+          console.log("match2",match)
+        }
+      
+
+        // console.log("dfghgfrdjgf",(cartOption[i].selectedValue) , (newOption[i].selectedValue))
+
+
+            if(cartOption[i].selectedValue && newOption[i].selectedValue) {
+              if(parseInt(cartOption[i].selectedValue) != parseInt(newOption[i].selectedValue)){
+                match = false;
+              }
+            }
+       
+        
+        
+
+    }
+    console.log("rfgsgsd",match)
+return match;
+
+
+  }
+
+}
 export const getProductCartQuantity = (cartItems, product, color, size) => {
+
   let productInCart = cartItems.filter(
     (single) =>
-      single.id === product.id 
-      &&  single.selectedHeight === product.selectedHeight 
-      &&  single.selectedProductColor === product.selectedProductColor 
-      &&  single.selectedWidth === product.selectedWidth 
-      &&  single.price === product.price 
-      &&  single.is_hinge_holes === product.is_hinge_holes 
-      &&  single.is_custom_size === product.is_custom_size 
-      &&  single.is_extra_holes === product.is_extra_holes 
-      &&  single.orientation_id === product.orientation_id 
-      &&  single.hinge_holes_from_top === product.hinge_holes_from_top 
-      &&  single.hinge_holes_from_bottom === product.hinge_holes_from_bottom 
-      &&  single.extra_holes_direction_id === product.extra_holes_direction_id 
-      &&  single.extra_holes_value === product.extra_holes_value 
-      &&  single.is_hinge_holes === product.is_hinge_holes 
-      &&  single.custom_height === product.custom_height 
-      &&  single.custom_width === product.custom_width 
+      single.id == product.id 
+      &&  single.selectedHeight == product.selectedHeight 
+      &&  single.selectedProductColor == product.selectedProductColor 
+      &&  single.selectedWidth == product.selectedWidth 
+      &&  single.price == product.price 
+      &&  single.is_hinge_holes == product.is_hinge_holes 
+      &&  single.is_custom_size == product.is_custom_size 
+      &&  single.is_extra_holes == product.is_extra_holes 
+      &&  single.orientation_id == product.orientation_id 
+      &&  single.hinge_holes_from_top == product.hinge_holes_from_top 
+      &&  single.hinge_holes_from_bottom == product.hinge_holes_from_bottom 
+      &&  single.extra_holes_direction_id == product.extra_holes_direction_id 
+      &&  single.extra_holes_value == product.extra_holes_value 
+      &&  single.is_hinge_holes == product.is_hinge_holes 
+      &&  single.custom_height == product.custom_height 
+      &&  single.custom_width == product.custom_width 
+      &&  single.selected_length == product.selected_length 
+      && checkOption(single.options,product.options)
 
   
       
@@ -86,6 +129,10 @@ export const getProductCartQuantity = (cartItems, product, color, size) => {
     
       
   )[0];
+
+
+
+
   if (cartItems.length >= 1 && productInCart) {
     if (product.variation) {
       return cartItems.filter(

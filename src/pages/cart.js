@@ -43,6 +43,11 @@ const applyCoupon = () => {
   .get(`${BACKENDAPI}/v1.0/client/check-coupon?coupon=${couponCode}`)
   .then(response => {
 console.log(response.data)
+
+localStorage.setItem("coupon",JSON.stringify(response.data.coupon))
+
+
+
 if(!response.data.coupon){
 /*   setCouponErr("No Coupon Found") */
   addToast("No Coupon Found", {
@@ -98,20 +103,17 @@ const updateCart = (couponParam) => {
         }
         
        
+      } else if(!couponParam.category_id) {
+        el.discount_type = couponParam.discount_type
+        el.discount_amount = couponParam.discount_amount
+
       }
       return el;
   })
 
   setTempCarts([...cartWithCoupon])
 
-  // cartTotalPrice = 0;
-  // cartWithCoupon.map(el => {
-  //   const discountedPrice = parseFloat(getDiscountPrice(
-  //     el.price,
-  //     el.discount
-  //   )).toFixed(2);
-  //   cartTotalPrice += discountedPrice * product.qty;
-  // })
+ 
 
 
 }
@@ -262,7 +264,17 @@ product.colors.find(el => {
                                    
                                   ):(null)
                                 }
-                               
+                                {
+                                  product.selected_length?(
+                                    <>
+                                     <p>Length:     {product.selected_length}</p>
+                                  
+
+                                  
+                                  </>
+                                   
+                                  ):(null)
+                                }
                                {
                                   product.options.length?(
                                     product.options.map(el => {
@@ -509,7 +521,7 @@ product.colors.find(el => {
                   </div>
                   <div className="item-empty-area__text">
                     <p className="space-mb--30">No items found in cart</p>
-                    <Link href="/shop/grid-left-sidebar">
+                    <Link href="/shop">
                       <a className="btn btn-fill-out">Shop Now</a>
                     </Link>
                   </div>
