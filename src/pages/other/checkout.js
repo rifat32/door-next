@@ -50,6 +50,51 @@ const [errors,setErrors] = useState(null)
 const handleSubmit= (e) => {
   e.preventDefault();
  
+  function ValidateEmail(mail) 
+{
+  // email validation
+ if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(mail))
+  {
+    return (true)
+  }
+    alert("You have entered an invalid email address!")
+    return (false)
+}
+if(!ValidateEmail(orderInfo.email)) {
+ return
+}
+// end email validation
+function valid_postcode(postcode) {
+  postcode = postcode.replace(/\s/g, "");
+  var regex = /^[A-Z]{1,2}[0-9]{1,2} ?[0-9][A-Z]{2}$/i;
+  if (regex.test(postcode))
+  {
+    return (true)
+  }
+    alert("You have entered an invalid Post Code !")
+    return (false)
+ 
+}
+
+ if(!valid_postcode(orderInfo.zipcode)) {
+  return
+ }
+ function valid_phone(phone) {
+  phone = phone.replace(/\D/g, '');
+  var regex = /^(?:(?:00)?44|0)7(?:[45789]\d{2}|624)\d{6}$/;
+  if (regex.test(phone))
+  {
+    return (true)
+  }
+    alert("You have entered an invalid Phone !")
+    return (false)
+ 
+}
+
+ if(!valid_phone(orderInfo.phone)) {
+  return
+ }
+
   apiClient()
   .post(`${BACKENDAPI}/v1.0/client/orders`, { 
     ...orderInfo,
