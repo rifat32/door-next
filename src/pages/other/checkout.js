@@ -7,7 +7,7 @@ import { LayoutOne } from "../../layouts";
 import { BreadcrumbOne } from "../../components/Breadcrumb";
 import { useEffect, useState } from "react";
 import { apiClient } from "../../utils/apiClient";
-import { BACKENDAPI } from "../../../config";
+import { BACKEND, BACKENDAPI } from "../../../config";
 import { deleteAllFromCart } from "../../redux/actions/cartActions";
 import { useToasts } from "react-toast-notifications";
 const Checkout = ({ cartItems ,  deleteAllFromCart}) => {
@@ -91,9 +91,9 @@ function valid_postcode(postcode) {
  
 }
 
- if(!valid_phone(orderInfo.phone)) {
-  return
- }
+//  if(!valid_phone(orderInfo.phone)) {
+//   return
+//  }
 
   apiClient()
   .post(`${BACKENDAPI}/v1.0/client/orders`, { 
@@ -104,8 +104,9 @@ function valid_postcode(postcode) {
   },
 				)
 			.then((response) => {
-	
         deleteAllFromCart(addToast);
+        window.location.href = `${BACKEND}/checkout`;
+
         window.alert("order placed")
 			
 			})
