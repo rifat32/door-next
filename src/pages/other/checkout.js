@@ -107,7 +107,7 @@ function valid_postcode(postcode) {
         deleteAllFromCart(addToast);
         setTimeout(()=> {
           window.location.href = `${BACKEND}/checkout`;
-        },5000)
+        },1000)
        
 
         // window.alert("order placed")
