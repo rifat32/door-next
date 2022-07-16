@@ -25,7 +25,7 @@ import {
 } from "../../redux/actions/compareActions";
 import products from "../../data/products.json";
 import { ProductSliderTwo } from "../../components/ProductSlider";
-import { BACKENDAPI } from "../../../config";
+import { BACKEND, BACKENDAPI } from "../../../config";
 import { useEffect, useState } from "react";
 import { apiClient } from "../../utils/apiClient";
 
@@ -376,11 +376,20 @@ let final_color = color.color.id;
      }
 	};
   const setSelectedProductColor = (value) => {
+
+
+    document.querySelector(".product-large-image-wrapper").classList.add("d-none");
+
+    document.querySelector(".pimage").classList.remove("d-none");
+
+
+    
 setProductData({
   ...productNew,
   selectedProductColor:value
 })
   }
+  const [colorImage,setColorImage] = useState("");
   const checkColorNotEpmty = () => {
     if(!productNew.selectedProductColor){
       window.alert("Please select color")
@@ -460,7 +469,27 @@ if(!loading){
               <Row>
                 <Col lg={6} className="space-mb-mobile-only--40">
                   {/* image gallery */}
+               <div className="img" style={{
+                marginBottom:"3rem"
+               }}>
+               <img
+                  className="pimage d-none"
+                   style={{
+                    height:"16rem",
+                    width:"24.5rem"
+                  }} 
+                   
+                   src={colorImage?`${BACKEND}/${colorImage}`:`${BACKEND}/${productNew.image}`}
+                  
+                  
+                  
+                  
+                  />
+               </div>
+                
                   <ImageGalleryBottomThumb product={productNew} />
+
+                 
                 </Col>
                 <Col lg={6}>
                   {/* product description */}
@@ -484,6 +513,7 @@ if(!loading){
                     productContentButtonStyleClass="product-content__button-wrapper--style-two"
                     selectedProductColor={productNew.selectedProductColor}
                     setSelectedProductColor={setSelectedProductColor}
+                    setColorImage={setColorImage}
                   />
                 </Col>
               </Row>

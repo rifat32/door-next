@@ -106,7 +106,7 @@ function valid_postcode(postcode) {
 			.then((response) => {
         deleteAllFromCart(addToast);
         setTimeout(()=> {
-          window.location.href = `${BACKEND}/checkout`;
+          window.location.href = `${BACKEND}/payment?order_id=${response.data.order.id}`;
         },1000)
        
 

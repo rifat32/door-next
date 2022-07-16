@@ -54,10 +54,14 @@ file:el.color_image
 
   ]
 
+const hideFunc = () =>{
+document.querySelector(".product-large-image-wrapper").classList.remove("d-none");
+document.querySelector(".pimage").classList.add("d-none");
 
+}
   return (
     <Fragment>
-      <div className="product-large-image-wrapper">
+      <div className="product-large-image-wrapper ">
        
         <LightgalleryProvider>
           <Swiper {...gallerySwiperParams}>
@@ -90,7 +94,12 @@ file:el.color_image
         {
           images.map((image, i) => {
             return (
-              <div key={i}>
+              <div key={i} 
+              onClick={
+                  hideFunc
+              }
+
+              >
                 <div className="single-image">
             
                   <img src={`${BACKEND}/${image.file}`} className="img-fluid" alt="" />

@@ -28,7 +28,8 @@ const ProductDescription = ({
   deleteFromCompare,
   productContentButtonStyleClass,
   selectedProductColor,
-  setSelectedProductColor
+  setSelectedProductColor,
+  setColorImage
 }) => {
   
   // const [selectedProductSize, setSelectedProductSize] = useState(
@@ -107,8 +108,10 @@ const ProductDescription = ({
                       single.color.code === selectedProductColor ? "checked" : ""
                       }
                       onChange={(e) => {
-                        
+
                         setSelectedProductColor(e.target.value);
+          
+                        setColorImage(single.color_image)
                         
                         // setProductStock(single.size[0].stock);
                         // setQuantityCount(1);
