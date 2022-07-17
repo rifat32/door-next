@@ -535,12 +535,13 @@ if(!loading){
               {/* sidebar */}
              {
               productNew.type=="single"?(null):(   <Row>
-                <Col sm={12} className="form-group" onClick={checkColorNotEpmty} >
+                <Col sm={12} className="form-group"  >
                       
                <label htmlFor="selectedHeight" className="form-label">
                  Height
                </label>
                <select
+               onClick={checkColorNotEpmty}
                  className={
                    errors
                      ? errors.selectedHeight
@@ -669,11 +670,12 @@ if(!loading){
              </Col>
              {
                productNew.is_custom_size?(<>
-                  <Col sm={12} className="form-group">
+                  <Col sm={12} className="form-group" >
                <label htmlFor="custom_height" className="form-label">
                Height
                </label>
                <input
+               onClick={checkColorNotEpmty}
                  type="text"
                  className={
                    errors
@@ -1014,12 +1016,13 @@ if(!loading){
   (productNew.length_lower_limit && productNew.length_upper_limit)?(
     <Col sm={12} className="form-group">
     <label htmlFor="selected_length" className="form-label">
-    length min:{productNew.length_lower_limit}. max {productNew.length_upper_limit}
+   Length
     </label>
     <input
       type="number"
       min={productNew.length_lower_limit}
       max={productNew.length_upper_limit}
+      placeholder={`Min: ${productNew.length_lower_limit} Max: ${productNew.length_upper_limit}`}
       className={
         errors
           ? errors.selected_length
