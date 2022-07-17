@@ -5,6 +5,7 @@ import { ProductRating } from "../Product";
 import { BsShield } from "react-icons/bs";
 import { AiOutlineReload } from "react-icons/ai";
 import { GiSwapBag } from "react-icons/gi";
+// import { useToasts } from "react-toast-notifications";
 import {
   IoLogoFacebook,
   IoLogoTwitter,
@@ -31,7 +32,7 @@ const ProductDescription = ({
   setSelectedProductColor,
   setColorImage
 }) => {
-  
+  // const { addToast } = useToasts();
   // const [selectedProductSize, setSelectedProductSize] = useState(
   //   product.variation ? product.variation[0].size[0].name : ""
   // );
@@ -45,6 +46,150 @@ const ProductDescription = ({
     product,
     selectedProductColor
   );
+  const validateBeforeCart = () => {
+   
+    const result = {
+      validated:true,
+      message:"validation success"
+    }
+    
+   
+    // color validation starts
+    if(product.colors.length){
+      if(!product.selectedProductColor){
+       
+        result.validated =false;
+        result.message="Please Select a Color!"
+
+      return result
+        
+      }
+    }
+     // color validation ends
+    //  height and width validation start
+    if(product.is_custom_size) {
+      if(!product.selectedHeight && !product.selectedWidth){
+        
+          result.validated =false;
+          result.message="Please select height and width";
+        
+        
+        return result
+       
+      }
+    } else {
+      if(!product.selectedHeight ){
+
+          result.validated=false,
+          result.message="Please select height"
+        
+        
+        return result
+      }
+      if(!product.selectedWidth){
+        
+        result.validated=false,
+        result.message="Please select width"
+        
+        
+        return result
+     
+      
+      }
+    }
+    //  height and width  validation ends
+     //  hinge holes  validation starts
+     if(product.is_hinge_holes){
+if(!product.orientation_id) {
+  result.validated=false,
+  result.message="Please select orientation"
+  return result
+}
+if(!product.hinge_holes_from_top) {
+  result.validated=false,
+  result.message="Please select hinge holes from top"
+  return result
+}
+if(!product.hinge_holes_from_bottom) {
+  result.validated=false,
+  result.message="Please select hinge holes from bottom"
+  return result
+}
+     }
+       //  hinge holes  validation ends
+  //  hinge extra holes  validation starts
+  if(product.is_extra_holes){
+    if(!product.extra_holes_direction_id) {
+      result.validated=false,
+      result.message="Please select Extra holes direction"
+      return result
+    }
+    if(!product.extra_holes_value) {
+      result.validated=false,
+      result.message="Please select Extra holes value"
+      return result
+    }
+   
+         }
+           //  hinge extra holes  validation ends
+            //  length validation starts
+            if(parseInt(product.length_is_required)){
+                if(!product.selected_length) {
+                  result.validated=false,
+                  result.message="Please select length"
+                  return result
+                }
+                if(parseInt(product.selected_length) < parseInt(product.length_lower_limit)) {
+                  result.validated=false,
+                  result.message="length is less then minimum value allowed"
+                  return result
+                }
+            }
+           
+           //  length validation starts
+            //  options validation starts
+            let options = JSON.parse(product.options);
+            for (var i = 0; i < options.length; i++) {
+              let el = options[i];
+              if(el.is_required){
+                
+                if(product.selectedProductColor && el.color) {
+                
+                   if(el.color?.code == product.selectedProductColor) {
+                    
+                       if(!el.selectedValue) {
+                        
+                        result.validated=false,
+                        result.message=`Please select ${el.option.name}`
+                        break;
+                       }
+                   }
+                }
+                // else if(!el.color) {
+                //   if(!el.selectedOption) {
+                //     result.validated=false,
+                //     result.message=`Please select ${el.option.name}`
+                //    }
+                // }
+                else {
+                  if(!el.selectedValue) {
+                    result.validated=false,
+                    result.message=`Please select ${el.option.name}`
+                    break;
+                   }
+                }
+              }
+            }
+            JSON.parse(product.options).map(el => {
+             
+
+
+            })
+ 
+           //  options holes  validation ends
+
+return result
+  }
   return (
     <div className="product-content">
       <h2 className="product-content__title space-mb--10">{product.name}</h2>
@@ -232,6 +377,24 @@ const ProductDescription = ({
             {productStock && productStock > 0 ? (
               <button
                 onClick={() =>
+                 {
+                  let validation = validateBeforeCart()
+                 
+                  if(!validation.validated) {
+                    
+                    addToast(validation.message, {
+                      appearance: "warning",
+                      autoDismiss: true
+                    });
+                    return
+                  }
+                  //  else {
+                  //   addToast(validation.message, {
+                  //     appearance: "success",
+                  //     autoDismiss: false
+                  //   });
+                  //   return
+                  // }
                   addToCart(
                     product,
                     addToast,
@@ -239,6 +402,7 @@ const ProductDescription = ({
                     selectedProductColor,
                   
                   )
+                 }
                 }
                 disabled={productCartQty >= productStock}
                 className="btn btn-fill-out btn-addtocart space-ml--10"

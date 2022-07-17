@@ -117,14 +117,15 @@ const extraHoleDirections = [
 		],
 	    image: "",
 		images:[],
-		colors:[
-			{
-				id:"",
-				name:"",
-				code:"",
-				color_id:"",
-			}
-		],
+    
+		// colors:[
+		// 	{
+		// 		id:"",
+		// 		name:"",
+		// 		code:"",
+		// 		color_id:"",
+		// 	}
+		// ],
 		
     selectedHeight:0,
     selectedWidth:0,
@@ -132,6 +133,7 @@ const extraHoleDirections = [
     options:[],
     length_lower_limit:"",
     length_upper_limit:"",
+    length_is_required:0,
     selected_length:""
 	});
   useEffect(() => {
@@ -150,10 +152,11 @@ const extraHoleDirections = [
           ,
           length_lower_limit,
           length_upper_limit,
+          length_is_required,
         
         } = response.data.product
 
-					console.log("option",options)
+			
 				
               let price = 0;
 			  let qty = 0;
@@ -199,7 +202,7 @@ const extraHoleDirections = [
                 return el;
 			})
 		
-
+const tempOptions = JSON.stringify(options)
       setProductData({
 				...productNew,
 				id,
@@ -220,10 +223,11 @@ const extraHoleDirections = [
 				is_featured,
         images,
         style,
-        options
+        options:tempOptions
         ,
         length_lower_limit,
         length_upper_limit,
+        length_is_required
         
 				})
 				// setCategories(response.data.data);
@@ -293,7 +297,7 @@ return;
         console.log(el)
            return   el.color.code == productNew.selectedProductColor
       })
-       console.log("ccc",color)
+                 console.log("ccc",color)
 let final_color = color.color.id;
  if(!parseInt(color.is_variation_specific)) {
   final_color = ""
@@ -311,7 +315,13 @@ let final_color = color.color.id;
   
   } else {
     setHeightErr("no product found")
-    
+    setProductData({
+      ...productNew,
+      custom_height:e.target.value,
+      price:0,
+      selectedHeight:0,
+      selectedWidth:0,
+    })
   }
   
         })
@@ -327,6 +337,8 @@ let final_color = color.color.id;
   
     }
     if(e.target.name == "custom_width") {
+
+
       if(heightErr == null){
     
 
@@ -347,7 +359,13 @@ let final_color = color.color.id;
   
   } else {
     setWidthErr("no product found")
- 
+  setProductData({
+      ...productNew,
+      price:0,
+      selectedHeight:0,
+      selectedWidth:0,
+      custom_width:e.target.value
+    })
   }
   
         })
@@ -435,9 +453,9 @@ if(parseInt(color.is_variation_specific)){
 
 const handleSelectOption = (e) => {
   const index = e.target.name.split("-")[1]
-  const tempOtions = [...productNew.options];
+  const tempOtions = JSON.parse(productNew.options);
   tempOtions[index].selectedValue = e.target.value
-  setProductData({...productNew,options:tempOtions})
+  setProductData({...productNew,options:JSON.stringify(tempOtions)})
   console.log(productNew)
 }
 
@@ -682,6 +700,9 @@ if(!loading){
                        : `form-control is-valid`
                      : "form-control"
                  }
+                 style={heightErr?{
+                  border:"0.2rem solid red"
+                 }:{}}
                  id="custom_height"
                  name="custom_height"
                  onChange={handleChange}
@@ -690,9 +711,7 @@ if(!loading){
                />
        
               
-              {heightErr && (
-               <div className="text-danger">{heightErr}</div>
-             )}
+              
                {errors?.custom_height && (
                  <div className="invalid-feedback">{errors.custom_height[0]}</div>
                )}
@@ -712,15 +731,20 @@ if(!loading){
                        : `form-control is-valid`
                      : "form-control"
                  }
+                 style={widthErr?{
+                  border:"0.2rem solid red",
+                  outline:"none",
+                  ':focus': {
+                    outline:"none"
+                  },
+                 }:{}}
                  id="custom_width"
                  name="custom_width"
                  onChange={handleChange}
                  value={productNew.custom_width}
                  placeholder="mm"
                />
-              {widthErr && (
-               <div className="text-danger">{widthErr}</div>
-             )}
+            
        
                {errors?.custom_width && (
                  <div className="invalid-feedback">{errors.custom_width[0]}</div>
@@ -971,40 +995,56 @@ if(!loading){
           
              <Row>
               {
-                productNew.options.map((el,index) => {
-                  return  (<Col sm={12} className="form-group">
-                    <label>{el.option.name}</label>
-                     <select
-           className={
-             errors
-               ? errors.options
-                 ? `form-control is-invalid`
-                 : `form-control is-valid`
-               : "form-control"
-           }
-           id="options"
-           name={`options-${index}`}
-          onChange={handleSelectOption}
-            value={productNew.options[index].selectedOption}
-           >
-           <option
-       
-             value=""
+                JSON.parse(productNew.options).map((el,index) => {
+                  
+                  if(productNew.selectedProductColor || !el.color_id){
+                    
+                    if(el.color?.code == (productNew.selectedProductColor) ||!el.color_id) {
+                    
+                      return  (<Col sm={12} className="form-group">
+                      <label>{el.option.name}</label>
+                       <select
+             className={
+               errors
+                 ? errors.options
+                   ? `form-control is-invalid`
+                   : `form-control is-valid`
+                 : "form-control"
+             }
+             id="options"
+             name={`options-${index}`}
+            onChange={handleSelectOption}
+              value={productNew.options[index].selectedValue}
              >
-             Please Select 
-           </option>
-           {el.option.option_value_template.map((el, index) => {
-              
-              return ( <option
-       key={index}
-       value={el.id}
-                >
-                 {el.name}
-              </option>)
-           
-           })}
-         </select>
-                  </Col>)
+             <option
+         
+               value=""
+               >
+               Please Select 
+             </option>
+             {el.option.option_value_template.map((el, index) => {
+                
+                return ( <option
+         key={index}
+         value={el.id}
+                  >
+                   {el.name}
+                </option>)
+             
+             })}
+           </select>
+                    </Col>)
+                    }else {
+                      return <>
+                    
+                      </>
+                    }
+                  }
+                  else {
+                    return <></>
+                  }
+                 
+                 
                 })
               }
              

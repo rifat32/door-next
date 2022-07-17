@@ -58,45 +58,7 @@ export const getDiscountPrice = (price, discount) => {
 // change this 
 // get product cart quantity
 
-const checkOption = (cartOption,newOption,index) => {
 
-
-  if(cartOption.length != newOption.length) {
-      return false
-  } else {
-   let match = true;
-    for(let i = 0; i < cartOption.length; i++
-       ) {
-        console.log(index,"id",parseInt(cartOption[i].id),parseInt(newOption[i].id))
-
-        console.log(index,"selectedValue",parseInt(cartOption[i].selectedValue),parseInt(newOption[i].selectedValue))
-        
-        if(parseInt(cartOption[i].id) != parseInt(newOption[i].id)){
-          match = false;
-          console.log("match2",match)
-        }
-      
-
-        // console.log("dfghgfrdjgf",(cartOption[i].selectedValue) , (newOption[i].selectedValue))
-
-
-            if(cartOption[i].selectedValue && newOption[i].selectedValue) {
-              if(parseInt(cartOption[i].selectedValue) != parseInt(newOption[i].selectedValue)){
-                match = false;
-              }
-            }
-       
-        
-        
-
-    }
-    console.log("rfgsgsd",match)
-return match;
-
-
-  }
-
-}
 export const getProductCartQuantity = (cartItems, product, color, size) => {
 
   let productInCart = cartItems.filter(
@@ -118,15 +80,7 @@ export const getProductCartQuantity = (cartItems, product, color, size) => {
       &&  single.custom_height == product.custom_height 
       &&  single.custom_width == product.custom_width 
       &&  single.selected_length == product.selected_length 
-      && checkOption(single.options,product.options)
-
-  
-      
-  
-
-     
-      
-    
+      &&  single.options == product.options 
       
   )[0];
 

@@ -47,46 +47,7 @@ console.log(cartItems)
       // for variant products
     } else {
        
-      const checkOption = (cartOption,newOption,index) => {
-
-       
-
-        if(cartOption.length != newOption.length) {
-            return false
-        } else {
-         let match = true;
-          for(let i = 0; i < cartOption.length; i++
-             ) {
-              console.log(index,"id",parseInt(cartOption[i].id),parseInt(newOption[i].id))
-
-              console.log(index,"selectedValue",parseInt(cartOption[i].selectedValue),parseInt(newOption[i].selectedValue))
-              
-              if(parseInt(cartOption[i].id) != parseInt(newOption[i].id)){
-                match = false;
-                console.log("match2",match)
-              }
-            
-
-              // console.log("dfghgfrdjgf",(cartOption[i].selectedValue) , (newOption[i].selectedValue))
-
-
-                  if(cartOption[i].selectedValue && newOption[i].selectedValue) {
-                    if(parseInt(cartOption[i].selectedValue) != parseInt(newOption[i].selectedValue)){
-                      match = false;
-                    }
-                  }
-             
-              
-              
-      
-          }
-          console.log("rfgsgsd",match)
-      return match;
-      
-      
-        }
-      
-      }
+     
       const cartItemArr = [];
       cartItems.map(
         (item,index) =>
@@ -110,7 +71,8 @@ if(
   &&  item.custom_height == product.custom_height 
   &&  item.custom_width == product.custom_width 
   &&  item.selected_length == product.selected_length 
-  // && checkOption(item.options,product.options,index)
+  &&  item.options == product.options 
+ 
   
   
   ) {
