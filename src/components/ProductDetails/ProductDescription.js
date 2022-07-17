@@ -65,73 +65,78 @@ const ProductDescription = ({
         
       }
     }
-     // color validation ends
-    //  height and width validation start
-    if(product.is_custom_size) {
-      if(!product.selectedHeight && !product.selectedWidth){
-        
-          result.validated =false;
-          result.message="Please select height and width";
-        
-        
-        return result
-       
-      }
-    } else {
-      if(!product.selectedHeight ){
 
-          result.validated=false,
-          result.message="Please select height"
-        
-        
-        return result
-      }
-      if(!product.selectedWidth){
-        
-        result.validated=false,
-        result.message="Please select width"
-        
-        
-        return result
-     
-      
-      }
-    }
-    //  height and width  validation ends
-     //  hinge holes  validation starts
-     if(product.is_hinge_holes){
+   // color validation ends
+    if(product.type == "variation") {
+//  height and width validation start
+if(product.is_custom_size) {
+  if(!product.selectedHeight && !product.selectedWidth){
+    
+      result.validated =false;
+      result.message="Please select height and width";
+    
+    
+    return result
+   
+  }
+} else {
+  if(!product.selectedHeight ){
+
+      result.validated=false,
+      result.message="Please select height"
+    
+    
+    return result
+  }
+  if(!product.selectedWidth){
+    
+    result.validated=false,
+    result.message="Please select width"
+    
+    
+    return result
+ 
+  
+  }
+}
+//  height and width  validation ends
+ //  hinge holes  validation starts
+ if(product.is_hinge_holes){
 if(!product.orientation_id) {
-  result.validated=false,
-  result.message="Please select orientation"
-  return result
+result.validated=false,
+result.message="Please select orientation"
+return result
 }
 if(!product.hinge_holes_from_top) {
-  result.validated=false,
-  result.message="Please select hinge holes from top"
-  return result
+result.validated=false,
+result.message="Please select hinge holes from top"
+return result
 }
 if(!product.hinge_holes_from_bottom) {
+result.validated=false,
+result.message="Please select hinge holes from bottom"
+return result
+}
+ }
+   //  hinge holes  validation ends
+//  hinge extra holes  validation starts
+if(product.is_extra_holes){
+if(!product.extra_holes_direction_id) {
   result.validated=false,
-  result.message="Please select hinge holes from bottom"
+  result.message="Please select Extra holes direction"
   return result
 }
+if(!product.extra_holes_value) {
+  result.validated=false,
+  result.message="Please select Extra holes value"
+  return result
+}
+
      }
-       //  hinge holes  validation ends
-  //  hinge extra holes  validation starts
-  if(product.is_extra_holes){
-    if(!product.extra_holes_direction_id) {
-      result.validated=false,
-      result.message="Please select Extra holes direction"
-      return result
+       //  hinge extra holes  validation ends
     }
-    if(!product.extra_holes_value) {
-      result.validated=false,
-      result.message="Please select Extra holes value"
-      return result
-    }
-   
-         }
-           //  hinge extra holes  validation ends
+  
+    
             //  length validation starts
             if(parseInt(product.length_is_required)){
                 if(!product.selected_length) {
