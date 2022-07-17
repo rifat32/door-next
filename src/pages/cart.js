@@ -276,8 +276,8 @@ product.colors.find(el => {
                                   ):(null)
                                 }
                                {
-                                  product.options.length?(
-                                    product.options.map(el => {
+                                  JSON.parse(product.options).length?(
+                                    JSON.parse(product.options).map(el => {
                                       
                                       if(el.selectedValue) {
                                         console.log("abcd",el)
