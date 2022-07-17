@@ -156,7 +156,7 @@ if(!product.extra_holes_value) {
             let options = JSON.parse(product.options);
             for (var i = 0; i < options.length; i++) {
               let el = options[i];
-              if(el.is_required){
+              if(parseInt(el.is_required)){
                 
                 if(product.selectedProductColor && el.color) {
                 
