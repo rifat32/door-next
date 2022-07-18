@@ -300,7 +300,7 @@ const GridLeftSidebar = ({ products }) => {
   return (
     <LayoutOne>
       <div style={{padding:"10px"}}>
-      <img src="https://www.doorsandcabinets.co.uk/wp-content/uploads/2021/08/Group-845.png" />
+      <img src="/assets/images/Group-845.png" />
       </div>
       <div className="shop-content space-pt--r100 space-pb--r100">
         <Container>
