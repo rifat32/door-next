@@ -93,6 +93,17 @@ useEffect(
                   </li>
                 );
               })}
+              <li>
+              <button
+                onClick={(e) => {
+                  getSortParams("category", "");
+                  setActiveSort(e);
+                }}
+              >
+                <IoIosArrowForward />
+                <span className="categories-name">Clear Filter</span>
+              </button>
+            </li>
           </ul>
         ) : (
           "No category found"
@@ -119,6 +130,17 @@ useEffect(
                   </li>
                 );
               })}
+                <li>
+              <button
+                onClick={(e) => {
+                  getSortParams("style", "");
+                  setActiveSort(e);
+                }}
+              >
+                <IoIosArrowForward />
+                <span className="categories-name">Clear Filter</span>
+              </button>
+            </li>
           </ul>
         ) : (
           "No style found"

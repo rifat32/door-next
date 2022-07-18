@@ -299,8 +299,15 @@ const GridLeftSidebar = ({ products }) => {
 
   return (
     <LayoutOne>
-      {/* breadcrumb */}
-      <BreadcrumbOne pageTitle="Shop">
+      <div style={{padding:"10px"}}>
+      <img src="https://www.doorsandcabinets.co.uk/wp-content/uploads/2021/08/Group-845.png" />
+      </div>
+      <div className="shop-content space-pt--r100 space-pb--r100">
+        <Container>
+          <Row>
+            <Col lg={9}>
+               {/* breadcrumb */}
+{/*               <BreadcrumbOne pageTitle="Shop">
         <ol className="breadcrumb justify-content-md-end">
           <li className="breadcrumb-item">
             <Link href="/">
@@ -309,12 +316,8 @@ const GridLeftSidebar = ({ products }) => {
           </li>
           <li className="breadcrumb-item active">Shop</li>
         </ol>
-      </BreadcrumbOne>
-      <div className="shop-content space-pt--r100 space-pb--r100">
-        <Container>
-          <Row>
-            <Col lg={9}>
-              {/* shop page header */}
+      </BreadcrumbOne> */}
+                    {/* shop page header */}
               <ShopHeader
                 getLayout={getLayout}
                 getFilterSortParams={getFilterSortParams}
