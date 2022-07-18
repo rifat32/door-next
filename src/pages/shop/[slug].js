@@ -463,7 +463,7 @@ if(!loading){
   return (
     <LayoutOne>
       {/* breadcrumb */}
-      <BreadcrumbOne pageTitle={productNew.name}>
+{/*       <BreadcrumbOne pageTitle={productNew.name}>
         <ol className="breadcrumb justify-content-md-end">
           <li className="breadcrumb-item">
             <Link href="/">
@@ -477,7 +477,7 @@ if(!loading){
           </li>
           <li className="breadcrumb-item active">{productNew.name}</li>
         </ol>
-      </BreadcrumbOne>
+      </BreadcrumbOne> */}
 
       {/* product details */}
       <div className="product-details space-pt--r100 space-pb--r100">
