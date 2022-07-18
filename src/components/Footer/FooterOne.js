@@ -38,7 +38,7 @@ const FooterOne = () => {
 
   return (
     <Fragment>
-      <div className="bg--default space-pt--60 space-pb--60">
+{/*       <div className="bg--default space-pt--60 space-pb--60">
         <Container>
           <Row className="align-items-center">
             <Col md={6}>
@@ -54,7 +54,7 @@ const FooterOne = () => {
             </Col>
           </Row>
         </Container>
-      </div>
+      </div> */}
 
       <footer className="footer-dark">
         <div className="footer-top">
