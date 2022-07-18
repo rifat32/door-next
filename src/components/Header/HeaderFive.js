@@ -39,9 +39,7 @@ const HeaderFive = ({ cartItems, wishlistItems, navPositionClass }) => {
 
   return (
     <header
-      className={`header-wrap header-with-topbar ${
-        scroll > headerHeight ? "is-sticky" : ""
-      }`}
+      className={"header-wrap header-with-topbar"}
     >
       {/* header top */}
       <HeaderTopThree />

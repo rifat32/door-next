@@ -33,9 +33,7 @@ const HeaderOne = ({ cartItems, navPositionClass }) => {
 
   return (
     <header
-      className={`header-wrap header-with-topbar ${
-        scroll > headerHeight ? "is-sticky" : ""
-      }`}
+      className={"header-wrap header-with-topbar"}
     >
       {/* header top */}
       <HeaderTop />

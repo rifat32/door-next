@@ -957,7 +957,10 @@ if(!loading){
                 </Col> 
                 
                 <Col sm={12} className="form-group">
-               
+                <div className="input-group">
+    <div className="input-group-prepend" >
+      <div className="input-group-text" style={{backgroundColor: '#58595B',color:"white"}} >MM</div>
+    </div>  
                <input
                  type="text"
                  className={
@@ -977,10 +980,11 @@ if(!loading){
                    console.log(el.id,productNew.extra_holes_direction_id)
                    return el.id == productNew.extra_holes_direction_id
                  })
-                 ?.name + " MM"
-                 :"MM"
+                 ?.name
+                 :""
                }
                />
+               </div>
        
                {errors?.extra_holes_value && (
                  <div className="invalid-feedback">{errors.extra_holes_value[0]}</div>

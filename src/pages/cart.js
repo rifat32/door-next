@@ -131,7 +131,7 @@ const updateCart = (couponParam) => {
         </ol>
       </BreadcrumbOne>
       {/* cart content */}
-      <div className="cart-content space-pt--r100 space-pb--r100">
+      <div className="cart-content space-pt--r100 space-pb--r100" >
         <Container>
           {tempCarts && tempCarts.length >= 1 ? (
             <Fragment>
@@ -169,7 +169,7 @@ const updateCart = (couponParam) => {
                           cartCouponDiscount +=  cartSubTotalPrice - cartTotalPrice
                         
                           return (
-                            <tr key={key}>
+                            <tr key={key} style={{backgroundColor:"#D3D3D3"}}>
                               <td className="product-thumbnail">
                                 <Link
                                   href={`/shop/product-basic/[slug]?slug=${product.slug}`}
@@ -204,19 +204,11 @@ const updateCart = (couponParam) => {
                                 <div><span style={{fontSize:"16px", fontWeight:"400"}}>${parseFloat(product.price).toFixed(2)}</span></div>
                               </td>
                               <td className="product-price" data-title="Price">
-                              {product.selectedProductColor &&  <div style={{fontSize:"16px", fontWeight:"400"}}><span>Colour:      {
-
-
-product.colors.find(el => {
- return product.selectedProductColor == el.code
-}).color.name
-                            
-                              
-                              
-                              
-                              
-                              
-                              }</span></div>}
+                              {product.selectedProductColor &&  <div style={{fontSize:"16px", fontWeight:"400"}}><span>Colour: {
+                                product.colors.find(el => {
+                                return product.selectedProductColor == el.code
+                                }).color.name
+                               }</span></div>}
                               {product.type != "single"?(
                                 
 
@@ -301,6 +293,7 @@ product.colors.find(el => {
                               >
                                 <div className="cart-plus-minus">
                                   <button
+                                  style={{border:"1px solid white"}}
                                     onClick={() =>
                                       decreaseQuantity(product, addToast)
                                     }
@@ -309,6 +302,7 @@ product.colors.find(el => {
                                     -
                                   </button>
                                   <input
+                                  style={{border:"1.5px solid white"}}
                                     className="cart-plus-minus-box"
                                     type="text"
                                     value={product.qty}
@@ -316,6 +310,7 @@ product.colors.find(el => {
                                   />
                                   {console.log(  product !== undefined )}
                                   <button
+                                   style={{border:"1px solid white"}}
                                     onClick={() =>
                                       addToCart(
                                         product,
@@ -504,7 +499,7 @@ product.colors.find(el => {
                       </table>
                     </div>
                     <Link href="/other/checkout">
-                      <a className="btn btn-fill-out">Proceed To CheckOut</a>
+                      <a className="btn btn-fill-out checkoutclass"  >Proceed To CheckOut</a>
                     </Link>
                   </div>
                 </Col>

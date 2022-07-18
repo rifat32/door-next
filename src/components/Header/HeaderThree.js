@@ -33,9 +33,7 @@ const HeaderThree = ({ cartItems, navPositionClass }) => {
 
   return (
     <header
-      className={`header-wrap header-wrap--transparent ${
-        scroll > headerHeight ? "is-sticky" : ""
-      }`}
+      className={"header-wrap header-wrap--transparent"}
     >
       <div className="bottom-header light-skin light-skin--style-two">
         <Container>
