@@ -38,7 +38,7 @@ const HeaderOne = ({ cartItems, navPositionClass }) => {
       {/* header top */}
       <HeaderTop />
 
-      <div className="bottom-header dark-skin">
+      <div className="bottom-header dark-skin" style={{backgroundColor:"#F7F7F7",marginBottom:"5px"}}>
         <Container>
           <div className="bottom-header-container d-flex justify-content-between align-items-center position-relative">
             {/* logo */}

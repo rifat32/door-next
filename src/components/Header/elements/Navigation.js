@@ -26,7 +26,7 @@ setLinks(response.data.data)
     <nav className="navigation d-none d-lg-block">
       <ul
         className={`d-flex ${
-          positionClass ? positionClass : "justify-content-end"
+          positionClass ? "justify-content-end" : "justify-content-end"
         }`}
       >
        
