@@ -554,7 +554,6 @@ if(!loading){
              {
               productNew.type=="single"?(null):(   <Row>
                 <Col sm={12} className="form-group"  >
-                      
                <label htmlFor="selectedHeight" className="form-label">
                  Height
                </label>
@@ -692,6 +691,10 @@ if(!loading){
                <label htmlFor="custom_height" className="form-label">
                Height
                </label>
+    <div className="input-group">
+    <div className="input-group-prepend" >
+      <div className="input-group-text" style={{backgroundColor: '#58595B',color:"white"}} >MM</div>
+    </div>
                <input
                onClick={checkColorNotEpmty}
                  type="text"
@@ -709,9 +712,8 @@ if(!loading){
                  name="custom_height"
                  onChange={handleChange}
                  value={productNew.custom_height}
-                 placeholder="mm"
                />
-       
+       </div>
               
               
                {errors?.custom_height && (
@@ -724,6 +726,10 @@ if(!loading){
                <label htmlFor="custom_width" className="form-label">
                Width
                </label>
+               <div className="input-group">
+    <div className="input-group-prepend" >
+      <div className="input-group-text" style={{backgroundColor: '#58595B',color:"white"}} >MM</div>
+    </div>
                <input
                  type="text"
                  className={
@@ -744,9 +750,8 @@ if(!loading){
                  name="custom_width"
                  onChange={handleChange}
                  value={productNew.custom_width}
-                 placeholder="mm"
                />
-            
+            </div>
        
                {errors?.custom_width && (
                  <div className="invalid-feedback">{errors.custom_width[0]}</div>
@@ -786,9 +791,7 @@ if(!loading){
                </div>
              </Col>
           {productNew.is_hinge_holes?(<>
-          <Col sm={12} className="form-group" >
-                      
-                      
+          <Col sm={12} className="form-group" >  
                       <select
                         className={
                           errors
@@ -828,7 +831,11 @@ if(!loading){
                              <Col sm={6} className="form-group">
                <label htmlFor="hinge_holes_from_top" className="form-label">
                From Top
-               </label>
+               </label> 
+      <div className="input-group">
+    <div className="input-group-prepend" >
+      <div className="input-group-text" style={{backgroundColor: '#58595B',color:"white"}} >MM</div>
+    </div>         
                <input
                  type="text"
                  className={
@@ -842,8 +849,8 @@ if(!loading){
                  name="hinge_holes_from_top"
                  onChange={handleChange}
                  value={productNew.hinge_holes_from_top}
-                 placeholder="mm"
                />
+               </div>
        
                {errors?.hinge_holes_from_top && (
                  <div className="invalid-feedback">{errors.hinge_holes_from_top[0]}</div>
@@ -854,6 +861,10 @@ if(!loading){
                <label htmlFor="hinge_holes_from_bottom" className="form-label">
                From Bottom
                </label>
+               <div className="input-group">
+    <div className="input-group-prepend" >
+      <div className="input-group-text" style={{backgroundColor: '#58595B',color:"white"}} >MM</div>
+    </div>   
                <input
                  type="text"
                  className={
@@ -867,9 +878,8 @@ if(!loading){
                  name="hinge_holes_from_bottom"
                  onChange={handleChange}
                  value={productNew.hinge_holes_from_bottom}
-                 placeholder="mm"
                />
-       
+       </div>
                {errors?.hinge_holes_from_bottom && (
                  <div className="invalid-feedback">{errors.hinge_holes_from_bottom[0]}</div>
                )}

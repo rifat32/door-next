@@ -193,7 +193,7 @@ const updateCart = (couponParam) => {
                                 {product.selectedProductColor &&
                                 product.selectedProductSize ? (
                                   <div className="cart-variation">
-                                    <p>Color: {product.selectedProductColor}</p>
+                                    <p>Colour: {product.selectedProductColor}</p>
                                     <p>Size: {product.selectedProductSize}</p>
                                   </div>
                                 ) : (
@@ -201,10 +201,10 @@ const updateCart = (couponParam) => {
                                 )}
                               </td>
                               <td className="product-price" data-title="Price">
-                                ${parseFloat(product.price).toFixed(2)}
+                                <div><span style={{fontSize:"16px", fontWeight:"400"}}>${parseFloat(product.price).toFixed(2)}</span></div>
                               </td>
                               <td className="product-price" data-title="Price">
-                              {product.selectedProductColor &&   <p>color:     {
+                              {product.selectedProductColor &&  <div style={{fontSize:"16px", fontWeight:"400"}}><span>Colour:      {
 
 
 product.colors.find(el => {
@@ -216,20 +216,19 @@ product.colors.find(el => {
                               
                               
                               
-                              }</p>}
+                              }</span></div>}
                               {product.type != "single"?(
                                 
 
                                 
                                   !product.is_custom_size?(<>
-                                   <p>height:   
-                                   {console.log(product)} 
+                                   <div style={{fontSize:"16px", fontWeight:"400"}}><span>Height:      
                                     {product.variation.find (el => {
                                   return el.id === parseInt(product.selectedHeight)
                                 })?.name}
-                                </p>
-                                <p>width:   
-                                   {console.log(product)} 
+                                </span></div>
+                                <div style={{fontSize:"16px", fontWeight:"400"}}>
+                                <span>Width:      
                                     {product.variation.find (el => {
 
                                   return el.id === parseInt(product.selectedHeight)
@@ -237,12 +236,12 @@ product.colors.find(el => {
 
                                   return el2.id === parseInt(product.selectedWidth)
                                 })?.name}
-                                </p>
+                                </span></div>
                                   
                                   
                                   </>):(<>
-                                  <p>Custom Height:     {product.custom_height}</p>
-                                 <p>Custom Width:     {product.custom_width}</p>
+                                 <div style={{fontSize:"16px", fontWeight:"400"}}> <span>Custom Height: {product.custom_height}</span></div>
+                                <div style={{fontSize:"16px", fontWeight:"400"}}><span>Custom Width: {product.custom_width}</span></div> 
                                   
                                   
                                   </>)
@@ -259,15 +258,15 @@ product.colors.find(el => {
                                 {
                                   product.is_hinge_holes?(
                                     <>
-                                     <p>Hinge hole top:     {product.hinge_holes_from_top}</p>
-                                    <p>Hinge hole bottom:     {product.hinge_holes_from_bottom}</p></>
+                                    <div style={{fontSize:"16px", fontWeight:"400"}}> <span>Hinge hole top: {product.hinge_holes_from_top}</span></div>
+                                   <div style={{fontSize:"16px", fontWeight:"400"}}> <span>Hinge hole bottom: {product.hinge_holes_from_bottom}</span></div></>
                                    
                                   ):(null)
                                 }
                                 {
                                   product.selected_length?(
                                     <>
-                                     <p>Length:     {product.selected_length}</p>
+                                    <div style={{fontSize:"16px", fontWeight:"400"}}><span>Length:     {product.selected_length}</span></div> 
                                   
 
                                   
@@ -284,8 +283,7 @@ product.colors.find(el => {
                                       return  el.option.option_value_template.map(el2 => {
                                         if(parseInt(el.selectedValue) == parseInt(el2.id))
                                             return <>
-                                            <br/>
-                                            {el.option.name}:{el2.name}
+                                          <div style={{fontSize:"16px", fontWeight:"400"}}><span>{el.option.name}: {el2.name}</span></div> 
                                             </>
                                         })
                                       }
@@ -346,10 +344,10 @@ product.colors.find(el => {
                                 className="product-subtotal"
                                 data-title="Total"
                               >
-                                $
+                                <div ><span>$
                                 {parseFloat((product.price * product.qty)).toFixed(
                                   2
-                                )}
+                                )}</span></div>
                               </td>
                               <td className="product-remove">
                                 <button

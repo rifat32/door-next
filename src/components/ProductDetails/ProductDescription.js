@@ -57,7 +57,6 @@ const ProductDescription = ({
     // color validation starts
     if(product.colors.length){
       if(!product.selectedProductColor){
-       
         result.validated =false;
         result.message="Please Select a Color!"
 
@@ -67,11 +66,11 @@ const ProductDescription = ({
     }
 
    // color validation ends
-    if(product.type == "variation") {
+    if(product.type == "variable") {
 //  height and width validation start
 if(product.is_custom_size) {
   if(!product.selectedHeight && !product.selectedWidth){
-    
+
       result.validated =false;
       result.message="Please select height and width";
     
