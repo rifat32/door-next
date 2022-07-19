@@ -741,7 +741,6 @@ if(!loading){
                  }
                  style={widthErr?{
                   border:"0.2rem solid red",
-                  outline:"none",
                   ':focus': {
                     outline:"none"
                   },

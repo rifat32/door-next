@@ -145,7 +145,6 @@ console.log("citem",cartItem)
               <ProductRating ratingValue={product.rating} />
               <span className="rating-num">({product.ratingCount})</span>
             </div> */}
-
             {product.colors ? (
               <div className="product-switch-wrap" style={{marginTop:"5rem"}}>
                 <ul className="row">
@@ -154,7 +153,7 @@ console.log("citem",cartItem)
                       <li key={key} className="col-md-1">
                        
                         <button
-                          style={{ backgroundColor: `${single.color.code}` }}
+                          style={{ backgroundColor: `${single.color.code}`,border: "2px solid black" }}
                           onClick={() => setColorImage(single.color_image)}
                           className={
                             colorImage === single.color_image ? "active" : ""

@@ -12,6 +12,7 @@ import "../assets/scss/style.scss";
 import Preloader from "../components/Preloader";
 import "../assets/css/style.css";
 
+
 class MyApp extends App {
   constructor(props) {
     super(props);

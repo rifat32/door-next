@@ -120,7 +120,7 @@ const ProductGridThree = ({
               )}
             </div>
             {product.colors ? (
-              <div className="product-switch-wrap">
+              <div className="product-switch-wrap" >
                 <ul>
                   {product.colors.map((single, key) => {
                     return (
