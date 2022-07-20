@@ -8,7 +8,8 @@ import {
   getProductsIndividualSizes,
   getProducts,
   getDiscountPrice,
-  setActiveSort
+  setActiveSort,
+  setActiveStyleSort
 } from "../../lib/product";
 import { ProductRating } from "../../components/Product";
 import { apiClient } from "../../utils/apiClient";
@@ -112,7 +113,7 @@ useEffect(
       <div className="widget">
         <h5 className="widget__title">Styles</h5>
         {styles.length > 0 ? (
-          <ul className="widget__categories">
+          <ul className="widget__categories widget__styles">
             {styles &&
               styles.map((el, key) => {
                 return (
@@ -120,7 +121,7 @@ useEffect(
                     <button
                       onClick={(e) => {
                         getSortParams("style", el.id);
-                        setActiveSort(e);
+                        setActiveStyleSort(e);
                       }}
                     >
                       <IoIosArrowForward />

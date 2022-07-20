@@ -201,10 +201,10 @@ const updateCart = (couponParam) => {
                                 )}
                               </td>
                               <td className="product-price" data-title="Price">
-                                <div><span style={{fontSize:"16px", fontWeight:"400"}}>{CURRENCY}{parseFloat(product.price).toFixed(2)}</span></div>
+                                <div><span className="cartabledetails">{CURRENCY}{parseFloat(product.price).toFixed(2)}</span></div>
                               </td>
                               <td className="product-price" data-title="Price">
-                              {product.selectedProductColor &&  <div style={{fontSize:"16px", fontWeight:"400"}}><span>Colour: {
+                              {product.selectedProductColor &&  <div className="cartabledetails"><span>Colour: {
                                 product.colors.find(el => {
                                 return product.selectedProductColor == el.code
                                 }).color.name
@@ -214,12 +214,12 @@ const updateCart = (couponParam) => {
 
                                 
                                   !product.is_custom_size?(<>
-                                   <div style={{fontSize:"16px", fontWeight:"400"}}><span>Height:      
+                                   <div className="cartabledetails"><span>Height:      
                                     {product.variation.find (el => {
                                   return el.id === parseInt(product.selectedHeight)
                                 })?.name}
                                 </span></div>
-                                <div style={{fontSize:"16px", fontWeight:"400"}}>
+                                <div className="cartabledetails">
                                 <span>Width:      
                                     {product.variation.find (el => {
 
@@ -232,8 +232,8 @@ const updateCart = (couponParam) => {
                                   
                                   
                                   </>):(<>
-                                 <div style={{fontSize:"16px", fontWeight:"400"}}> <span>Custom Height: {product.custom_height}</span></div>
-                                <div style={{fontSize:"16px", fontWeight:"400"}}><span>Custom Width: {product.custom_width}</span></div> 
+                                 <div className="cartabledetails"> <span>Custom Height: {product.custom_height}</span></div>
+                                <div className="cartabledetails"><span>Custom Width: {product.custom_width}</span></div> 
                                   
                                   
                                   </>)
@@ -250,15 +250,15 @@ const updateCart = (couponParam) => {
                                 {
                                   product.is_hinge_holes?(
                                     <>
-                                    <div style={{fontSize:"16px", fontWeight:"400"}}> <span>Hinge hole top: {product.hinge_holes_from_top}</span></div>
-                                   <div style={{fontSize:"16px", fontWeight:"400"}}> <span>Hinge hole bottom: {product.hinge_holes_from_bottom}</span></div></>
+                                    <div className="cartabledetails"> <span>Hinge hole top: {product.hinge_holes_from_top}</span></div>
+                                   <div className="cartabledetails"> <span>Hinge hole bottom: {product.hinge_holes_from_bottom}</span></div></>
                                    
                                   ):(null)
                                 }
                                 {
                                   product.selected_length?(
                                     <>
-                                    <div style={{fontSize:"16px", fontWeight:"400"}}><span>Length:     {product.selected_length}</span></div> 
+                                    <div className="cartabledetails"><span>Length:     {product.selected_length}</span></div> 
                                   
 
                                   
@@ -275,7 +275,7 @@ const updateCart = (couponParam) => {
                                       return  el.option.option_value_template.map(el2 => {
                                         if(parseInt(el.selectedValue) == parseInt(el2.id))
                                             return <>
-                                          <div style={{fontSize:"16px", fontWeight:"400"}}><span>{el.option.name}: {el2.name}</span></div> 
+                                          <div className="cartabledetails"><span>{el.option.name}: {el2.name}</span></div> 
                                             </>
                                         })
                                       }

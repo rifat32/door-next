@@ -5,3 +5,7 @@ width: 1;
 .productcolor:hover{
     position:relative;
 }
+.cartabledetails{
+    font-size:14px;
+    font-weight:400;
+}
