@@ -14,7 +14,7 @@ import { Container, Row, Col } from "react-bootstrap";
 import { LayoutOne } from "../layouts";
 import { BreadcrumbOne } from "../components/Breadcrumb";
 import { IoIosClose } from "react-icons/io";
-import { BACKEND, BACKENDAPI } from "../../config";
+import { BACKEND, BACKENDAPI,CURRENCY} from "../../config";
 import { apiClient } from "../utils/apiClient";
 
 
@@ -201,7 +201,7 @@ const updateCart = (couponParam) => {
                                 )}
                               </td>
                               <td className="product-price" data-title="Price">
-                                <div><span style={{fontSize:"16px", fontWeight:"400"}}>${parseFloat(product.price).toFixed(2)}</span></div>
+                                <div><span style={{fontSize:"16px", fontWeight:"400"}}>{CURRENCY}{parseFloat(product.price).toFixed(2)}</span></div>
                               </td>
                               <td className="product-price" data-title="Price">
                               {product.selectedProductColor &&  <div style={{fontSize:"16px", fontWeight:"400"}}><span>Colour: {
@@ -339,7 +339,7 @@ const updateCart = (couponParam) => {
                                 className="product-subtotal"
                                 data-title="Total"
                               >
-                                <div ><span>$
+                                <div ><span>{CURRENCY}
                                 {parseFloat((product.price * product.qty)).toFixed(
                                   2
                                 )}</span></div>
@@ -476,13 +476,13 @@ const updateCart = (couponParam) => {
                           <tr>
                             <td className="cart-total-label">Cart Subtotal</td>
                             <td className="cart-total-amount">
-                              ${parseFloat(cartSubTotalPrice).toFixed(2)}
+                            {CURRENCY}{parseFloat(cartSubTotalPrice).toFixed(2)}
                             </td>
                           </tr>
                           
                           <tr>
                             <td className="cart-total-label">Coupon Discount</td>
-                            <td className="cart-total-amount">{cartCouponDiscount}</td>
+                            <td className="cart-total-amount">{CURRENCY}{parseFloat(cartCouponDiscount).toFixed(2)}</td>
                           </tr>
                           <tr>
                             <td className="cart-total-label">Shipping</td>
@@ -492,7 +492,7 @@ const updateCart = (couponParam) => {
                             <td className="cart-total-label">Total</td>
                             <td className="cart-total-amount">
                     
-                              <strong>${parseFloat(cartTotalPrice).toFixed(2)}</strong>
+                              <strong>{CURRENCY}{parseFloat(cartTotalPrice).toFixed(2)}</strong>
                             </td>
                           </tr>
                         </tbody>

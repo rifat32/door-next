@@ -4,6 +4,7 @@ import { Col } from "react-bootstrap";
 import ProductModal from "./elements/ProductModal";
 import { ProductRating } from "../Product";
 import { BACKEND } from "../../../config";
+import { CURRENCY } from "../../../config";
 
 const ProductGridList = ({
   product,
@@ -133,12 +134,12 @@ console.log("citem",cartItem)
             <div className="product-price">
               {product.discount ? (
                 <Fragment>
-                  <span className="price">${discountedPrice} </span>
-                  <del>${productPrice} </del>
+                  <span className="price">{CURRENCY}{discountedPrice} </span>
+                  <del>{CURRENCY}{productPrice} </del>
                   <span className="on-sale">{product.discount}% Off</span>
                 </Fragment>
               ) : (
-                <span className="price">Starting From ${productPrice} </span>
+                <span className="price">Starting From {CURRENCY}{productPrice} </span>
               )}
             </div>
             {/* <div className="rating-wrap">
@@ -146,7 +147,7 @@ console.log("citem",cartItem)
               <span className="rating-num">({product.ratingCount})</span>
             </div> */}
             {product.colors ? (
-              <div className="product-switch-wrap" style={{marginTop:"5rem"}}>
+              <div className="product-switch-wrap">
                 <ul className="row">
                   {product.colors.map((single, key) => {
                     return (

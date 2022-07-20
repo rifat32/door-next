@@ -5,7 +5,7 @@ import { useToasts } from "react-toast-notifications";
 import { IoIosClose } from "react-icons/io";
 import { getDiscountPrice } from "../../../lib/product";
 import { deleteFromCart } from "../../../redux/actions/cartActions";
-import { BACKEND } from "../../../../config";
+import { BACKEND,CURRENCY  } from "../../../../config";
 
 const MiniCart = ({ cartItems, deleteFromCart }) => {
   let cartTotalPrice = 0;
@@ -52,7 +52,7 @@ const MiniCart = ({ cartItems, deleteFromCart }) => {
                         {product.qty} x{" "}
                         <span className="cart-amount">
                           {" "}
-                          <span className="price-symbol">$</span>
+                          <span className="price-symbol">{CURRENCY}</span>
                         </span>
                         {discountedPrice}
                       </span>
@@ -76,7 +76,7 @@ const MiniCart = ({ cartItems, deleteFromCart }) => {
               <strong>Subtotal:</strong>{" "}
               <span className="cart-price">
                 {" "}
-                <span className="price-symbol">$</span>
+                <span className="price-symbol">{CURRENCY}</span>
               </span>
               {parseFloat(cartTotalPrice).toFixed(2)}
             </p>

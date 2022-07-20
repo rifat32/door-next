@@ -5,6 +5,7 @@ import { ProductRating } from "../Product";
 import { BsShield } from "react-icons/bs";
 import { AiOutlineReload } from "react-icons/ai";
 import { GiSwapBag } from "react-icons/gi";
+import { CURRENCY } from "../../../config";
 // import { useToasts } from "react-toast-notifications";
 import {
   IoLogoFacebook,
@@ -201,12 +202,12 @@ return result
         <div className="product-content__price d-flex-align-items-center">
           {product.discount ? (
             <Fragment>
-              <span className="price">${discountedPrice}</span>
-              <del>${productPrice}</del>
-              <span className="on-sale">{product.discount}% Off</span>
+              <span className="price">{CURRENCY}{discountedPrice}</span>
+              <del>{CURRENCY}{productPrice}</del>
+              <span className="on-sale">{CURRENCY}{product.discount}% Off</span>
             </Fragment>
           ) : (
-            <span className="price">${productPrice}</span>
+            <span className="price">{CURRENCY}{productPrice}</span>
           )}
         </div>
         {product.rating && product.rating > 0 ? (

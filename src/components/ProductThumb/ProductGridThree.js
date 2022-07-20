@@ -2,7 +2,7 @@ import { Fragment, useState } from "react";
 import Link from "next/link";
 import ProductModal from "./elements/ProductModal";
 import { ProductRating } from "../Product";
-import { BACKEND } from "../../../config";
+import { BACKEND,CURRENCY  } from "../../../config";
 
 const ProductGridThree = ({
   product,
@@ -112,11 +112,11 @@ const ProductGridThree = ({
             <div className="product-price">
               {product.discount ? (
                 <Fragment>
-                  <span className="price">${discountedPrice}</span>
-                  <del>${productPrice}</del>
+                  <span className="price">{CURRENCY}{discountedPrice}</span>
+                  <del>{CURRENCY}{productPrice}</del>
                 </Fragment>
               ) : (
-                <span className="price">Starting From ${productPrice} </span>
+                <span className="price">Starting From {CURRENCY}{productPrice} </span>
               )}
             </div>
             {product.colors ? (
