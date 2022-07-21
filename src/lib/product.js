@@ -300,3 +300,21 @@ export const setActiveLayout = (e) => {
   });
   e.currentTarget.classList.add("active");
 };
+export const setActiveCategorySort = (e) => {
+  const filterButtons = document.querySelectorAll(
+    ".widget__categories button,.widget__styles button, .widget__sizes button, .widget__colors button, .widget__tags button"
+  );
+  filterButtons.forEach((item) => {
+    item.classList.remove("active");
+  });
+  e.currentTarget.classList.add("active");
+};
+export const setActiveStyleSort = (e) => {
+  const filterButtons = document.querySelectorAll(
+    ".widget__styles button"
+  );
+  filterButtons.forEach((item) => {
+    item.classList.remove("active");
+  });
+  e.currentTarget.classList.add("active");
+};

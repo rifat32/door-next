@@ -57,7 +57,7 @@ const ProductLeftSidebar = ({
   return (
     <LayoutOne>
       {/* breadcrumb */}
-      <BreadcrumbOne pageTitle={product.name}>
+{/*       <BreadcrumbOne pageTitle={product.name}>
         <ol className="breadcrumb justify-content-md-end">
           <li className="breadcrumb-item">
             <Link href="/">
@@ -71,7 +71,7 @@ const ProductLeftSidebar = ({
           </li>
           <li className="breadcrumb-item active">{product.name}</li>
         </ol>
-      </BreadcrumbOne>
+      </BreadcrumbOne> */}
 
       {/* product details */}
       <div className="product-details space-pt--r100 space-pb--r100">

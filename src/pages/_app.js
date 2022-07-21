@@ -10,7 +10,8 @@ import fetchProducts from "../redux/actions/productActions";
 import products from "../data/products.json";
 import "../assets/scss/style.scss";
 import Preloader from "../components/Preloader";
-import "../assets/css/style.css"
+import "../assets/css/style.css";
+
 
 class MyApp extends App {
   constructor(props) {

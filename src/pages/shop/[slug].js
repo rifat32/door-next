@@ -463,7 +463,7 @@ if(!loading){
   return (
     <LayoutOne>
       {/* breadcrumb */}
-      <BreadcrumbOne pageTitle={productNew.name}>
+{/*       <BreadcrumbOne pageTitle={productNew.name}>
         <ol className="breadcrumb justify-content-md-end">
           <li className="breadcrumb-item">
             <Link href="/">
@@ -477,7 +477,7 @@ if(!loading){
           </li>
           <li className="breadcrumb-item active">{productNew.name}</li>
         </ol>
-      </BreadcrumbOne>
+      </BreadcrumbOne> */}
 
       {/* product details */}
       <div className="product-details space-pt--r100 space-pb--r100">
@@ -553,12 +553,12 @@ if(!loading){
               {/* sidebar */}
              {
               productNew.type=="single"?(null):(   <Row>
-                <Col sm={12} className="form-group" onClick={checkColorNotEpmty} >
-                      
+                <Col sm={12} className="form-group"  >
                <label htmlFor="selectedHeight" className="form-label">
                  Height
                </label>
                <select
+               onClick={checkColorNotEpmty}
                  className={
                    errors
                      ? errors.selectedHeight
@@ -687,11 +687,16 @@ if(!loading){
              </Col>
              {
                productNew.is_custom_size?(<>
-                  <Col sm={12} className="form-group">
+                  <Col sm={12} className="form-group" >
                <label htmlFor="custom_height" className="form-label">
                Height
                </label>
+    <div className="input-group">
+    <div className="input-group-prepend" >
+      <div className="input-group-text" style={{backgroundColor: '#58595B',color:"white"}} >MM</div>
+    </div>
                <input
+               onClick={checkColorNotEpmty}
                  type="text"
                  className={
                    errors
@@ -707,9 +712,8 @@ if(!loading){
                  name="custom_height"
                  onChange={handleChange}
                  value={productNew.custom_height}
-                 placeholder="mm"
                />
-       
+       </div>
               
               
                {errors?.custom_height && (
@@ -722,6 +726,10 @@ if(!loading){
                <label htmlFor="custom_width" className="form-label">
                Width
                </label>
+               <div className="input-group">
+    <div className="input-group-prepend" >
+      <div className="input-group-text" style={{backgroundColor: '#58595B',color:"white"}} >MM</div>
+    </div>
                <input
                  type="text"
                  className={
@@ -733,7 +741,6 @@ if(!loading){
                  }
                  style={widthErr?{
                   border:"0.2rem solid red",
-                  outline:"none",
                   ':focus': {
                     outline:"none"
                   },
@@ -742,9 +749,8 @@ if(!loading){
                  name="custom_width"
                  onChange={handleChange}
                  value={productNew.custom_width}
-                 placeholder="mm"
                />
-            
+            </div>
        
                {errors?.custom_width && (
                  <div className="invalid-feedback">{errors.custom_width[0]}</div>
@@ -784,9 +790,7 @@ if(!loading){
                </div>
              </Col>
           {productNew.is_hinge_holes?(<>
-          <Col sm={12} className="form-group" >
-                      
-                      
+          <Col sm={12} className="form-group" >  
                       <select
                         className={
                           errors
@@ -826,7 +830,11 @@ if(!loading){
                              <Col sm={6} className="form-group">
                <label htmlFor="hinge_holes_from_top" className="form-label">
                From Top
-               </label>
+               </label> 
+      <div className="input-group">
+    <div className="input-group-prepend" >
+      <div className="input-group-text" style={{backgroundColor: '#58595B',color:"white"}} >MM</div>
+    </div>         
                <input
                  type="text"
                  className={
@@ -840,8 +848,8 @@ if(!loading){
                  name="hinge_holes_from_top"
                  onChange={handleChange}
                  value={productNew.hinge_holes_from_top}
-                 placeholder="mm"
                />
+               </div>
        
                {errors?.hinge_holes_from_top && (
                  <div className="invalid-feedback">{errors.hinge_holes_from_top[0]}</div>
@@ -852,6 +860,10 @@ if(!loading){
                <label htmlFor="hinge_holes_from_bottom" className="form-label">
                From Bottom
                </label>
+               <div className="input-group">
+    <div className="input-group-prepend" >
+      <div className="input-group-text" style={{backgroundColor: '#58595B',color:"white"}} >MM</div>
+    </div>   
                <input
                  type="text"
                  className={
@@ -865,9 +877,8 @@ if(!loading){
                  name="hinge_holes_from_bottom"
                  onChange={handleChange}
                  value={productNew.hinge_holes_from_bottom}
-                 placeholder="mm"
                />
-       
+       </div>
                {errors?.hinge_holes_from_bottom && (
                  <div className="invalid-feedback">{errors.hinge_holes_from_bottom[0]}</div>
                )}
@@ -945,7 +956,10 @@ if(!loading){
                 </Col> 
                 
                 <Col sm={12} className="form-group">
-               
+                <div className="input-group">
+    <div className="input-group-prepend" >
+      <div className="input-group-text" style={{backgroundColor: '#58595B',color:"white"}} >MM</div>
+    </div>  
                <input
                  type="text"
                  className={
@@ -965,10 +979,11 @@ if(!loading){
                    console.log(el.id,productNew.extra_holes_direction_id)
                    return el.id == productNew.extra_holes_direction_id
                  })
-                 ?.name + " MM"
-                 :"MM"
+                 ?.name
+                 :""
                }
                />
+               </div>
        
                {errors?.extra_holes_value && (
                  <div className="invalid-feedback">{errors.extra_holes_value[0]}</div>
@@ -1054,12 +1069,13 @@ if(!loading){
   (productNew.length_lower_limit && productNew.length_upper_limit)?(
     <Col sm={12} className="form-group">
     <label htmlFor="selected_length" className="form-label">
-    length min:{productNew.length_lower_limit}. max {productNew.length_upper_limit}
+   Length
     </label>
     <input
       type="number"
       min={productNew.length_lower_limit}
       max={productNew.length_upper_limit}
+      placeholder={`Min: ${productNew.length_lower_limit} Max: ${productNew.length_upper_limit}`}
       className={
         errors
           ? errors.selected_length

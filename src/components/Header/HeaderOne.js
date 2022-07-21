@@ -33,14 +33,12 @@ const HeaderOne = ({ cartItems, navPositionClass }) => {
 
   return (
     <header
-      className={`header-wrap header-with-topbar ${
-        scroll > headerHeight ? "is-sticky" : ""
-      }`}
+      className={"header-wrap header-with-topbar"}
     >
       {/* header top */}
       <HeaderTop />
 
-      <div className="bottom-header dark-skin">
+      <div className="bottom-header dark-skin" style={{backgroundColor:"#F7F7F7",marginBottom:"5px"}}>
         <Container>
           <div className="bottom-header-container d-flex justify-content-between align-items-center position-relative">
             {/* logo */}
@@ -55,8 +53,8 @@ const HeaderOne = ({ cartItems, navPositionClass }) => {
                   className="logo-dark"
                   src="/assets/images/logo.jpeg"
                   alt="logo"
-                  height={100}
-                  width={400}
+                  height={80}
+                  width={250}
                 />
               </a>
             </Link>

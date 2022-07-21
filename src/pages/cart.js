@@ -14,7 +14,7 @@ import { Container, Row, Col } from "react-bootstrap";
 import { LayoutOne } from "../layouts";
 import { BreadcrumbOne } from "../components/Breadcrumb";
 import { IoIosClose } from "react-icons/io";
-import { BACKEND, BACKENDAPI } from "../../config";
+import { BACKEND, BACKENDAPI,CURRENCY} from "../../config";
 import { apiClient } from "../utils/apiClient";
 
 
@@ -131,7 +131,7 @@ const updateCart = (couponParam) => {
         </ol>
       </BreadcrumbOne>
       {/* cart content */}
-      <div className="cart-content space-pt--r100 space-pb--r100">
+      <div className="cart-content space-pt--r100 space-pb--r100" >
         <Container>
           {tempCarts && tempCarts.length >= 1 ? (
             <Fragment>
@@ -169,7 +169,7 @@ const updateCart = (couponParam) => {
                           cartCouponDiscount +=  cartSubTotalPrice - cartTotalPrice
                         
                           return (
-                            <tr key={key}>
+                            <tr key={key} style={{backgroundColor:"#D3D3D3"}}>
                               <td className="product-thumbnail">
                                 <Link
                                   href={`/shop/product-basic/[slug]?slug=${product.slug}`}
@@ -193,7 +193,7 @@ const updateCart = (couponParam) => {
                                 {product.selectedProductColor &&
                                 product.selectedProductSize ? (
                                   <div className="cart-variation">
-                                    <p>Color: {product.selectedProductColor}</p>
+                                    <p>Colour: {product.selectedProductColor}</p>
                                     <p>Size: {product.selectedProductSize}</p>
                                   </div>
                                 ) : (
@@ -201,35 +201,26 @@ const updateCart = (couponParam) => {
                                 )}
                               </td>
                               <td className="product-price" data-title="Price">
-                                ${parseFloat(product.price).toFixed(2)}
+                                <div><span className="cartabledetails">{CURRENCY}{parseFloat(product.price).toFixed(2)}</span></div>
                               </td>
                               <td className="product-price" data-title="Price">
-                              {product.selectedProductColor &&   <p>color:     {
-
-
-product.colors.find(el => {
- return product.selectedProductColor == el.code
-}).color.name
-                            
-                              
-                              
-                              
-                              
-                              
-                              }</p>}
+                              {product.selectedProductColor &&  <div className="cartabledetails"><span>Colour: {
+                                product.colors.find(el => {
+                                return product.selectedProductColor == el.code
+                                }).color.name
+                               }</span></div>}
                               {product.type != "single"?(
                                 
 
                                 
                                   !product.is_custom_size?(<>
-                                   <p>height:   
-                                   {console.log(product)} 
+                                   <div className="cartabledetails"><span>Height:      
                                     {product.variation.find (el => {
                                   return el.id === parseInt(product.selectedHeight)
                                 })?.name}
-                                </p>
-                                <p>width:   
-                                   {console.log(product)} 
+                                </span></div>
+                                <div className="cartabledetails">
+                                <span>Width:      
                                     {product.variation.find (el => {
 
                                   return el.id === parseInt(product.selectedHeight)
@@ -237,12 +228,12 @@ product.colors.find(el => {
 
                                   return el2.id === parseInt(product.selectedWidth)
                                 })?.name}
-                                </p>
+                                </span></div>
                                   
                                   
                                   </>):(<>
-                                  <p>Custom Height:     {product.custom_height}</p>
-                                 <p>Custom Width:     {product.custom_width}</p>
+                                 <div className="cartabledetails"> <span>Custom Height: {product.custom_height}</span></div>
+                                <div className="cartabledetails"><span>Custom Width: {product.custom_width}</span></div> 
                                   
                                   
                                   </>)
@@ -259,15 +250,15 @@ product.colors.find(el => {
                                 {
                                   product.is_hinge_holes?(
                                     <>
-                                     <p>Hinge hole top:     {product.hinge_holes_from_top}</p>
-                                    <p>Hinge hole bottom:     {product.hinge_holes_from_bottom}</p></>
+                                    <div className="cartabledetails"> <span>Hinge hole top: {product.hinge_holes_from_top}</span></div>
+                                   <div className="cartabledetails"> <span>Hinge hole bottom: {product.hinge_holes_from_bottom}</span></div></>
                                    
                                   ):(null)
                                 }
                                 {
                                   product.selected_length?(
                                     <>
-                                     <p>Length:     {product.selected_length}</p>
+                                    <div className="cartabledetails"><span>Length:     {product.selected_length}</span></div> 
                                   
 
                                   
@@ -284,8 +275,7 @@ product.colors.find(el => {
                                       return  el.option.option_value_template.map(el2 => {
                                         if(parseInt(el.selectedValue) == parseInt(el2.id))
                                             return <>
-                                            <br/>
-                                            {el.option.name}:{el2.name}
+                                          <div className="cartabledetails"><span>{el.option.name}: {el2.name}</span></div> 
                                             </>
                                         })
                                       }
@@ -303,6 +293,7 @@ product.colors.find(el => {
                               >
                                 <div className="cart-plus-minus">
                                   <button
+                                  style={{border:"1px solid white"}}
                                     onClick={() =>
                                       decreaseQuantity(product, addToast)
                                     }
@@ -311,6 +302,7 @@ product.colors.find(el => {
                                     -
                                   </button>
                                   <input
+                                  style={{border:"1.5px solid white"}}
                                     className="cart-plus-minus-box"
                                     type="text"
                                     value={product.qty}
@@ -318,6 +310,7 @@ product.colors.find(el => {
                                   />
                                   {console.log(  product !== undefined )}
                                   <button
+                                   style={{border:"1px solid white"}}
                                     onClick={() =>
                                       addToCart(
                                         product,
@@ -346,10 +339,10 @@ product.colors.find(el => {
                                 className="product-subtotal"
                                 data-title="Total"
                               >
-                                $
+                                <div ><span>{CURRENCY}
                                 {parseFloat((product.price * product.qty)).toFixed(
                                   2
-                                )}
+                                )}</span></div>
                               </td>
                               <td className="product-remove">
                                 <button
@@ -483,13 +476,13 @@ product.colors.find(el => {
                           <tr>
                             <td className="cart-total-label">Cart Subtotal</td>
                             <td className="cart-total-amount">
-                              ${parseFloat(cartSubTotalPrice).toFixed(2)}
+                            {CURRENCY}{parseFloat(cartSubTotalPrice).toFixed(2)}
                             </td>
                           </tr>
                           
                           <tr>
                             <td className="cart-total-label">Coupon Discount</td>
-                            <td className="cart-total-amount">{cartCouponDiscount}</td>
+                            <td className="cart-total-amount">{CURRENCY}{parseFloat(cartCouponDiscount).toFixed(2)}</td>
                           </tr>
                           <tr>
                             <td className="cart-total-label">Shipping</td>
@@ -499,14 +492,14 @@ product.colors.find(el => {
                             <td className="cart-total-label">Total</td>
                             <td className="cart-total-amount">
                     
-                              <strong>${parseFloat(cartTotalPrice).toFixed(2)}</strong>
+                              <strong>{CURRENCY}{parseFloat(cartTotalPrice).toFixed(2)}</strong>
                             </td>
                           </tr>
                         </tbody>
                       </table>
                     </div>
                     <Link href="/other/checkout">
-                      <a className="btn btn-fill-out">Proceed To CheckOut</a>
+                      <a className="btn btn-fill-out checkoutclass"  >Proceed To CheckOut</a>
                     </Link>
                   </div>
                 </Col>

@@ -7,7 +7,7 @@ import { LayoutOne } from "../../layouts";
 import { BreadcrumbOne } from "../../components/Breadcrumb";
 import { useEffect, useState } from "react";
 import { apiClient } from "../../utils/apiClient";
-import { BACKEND, BACKENDAPI } from "../../../config";
+import { BACKEND, BACKENDAPI,CURRENCY } from "../../../config";
 import { deleteAllFromCart } from "../../redux/actions/cartActions";
 import { useToasts } from "react-toast-notifications";
 const Checkout = ({ cartItems ,  deleteAllFromCart}) => {
@@ -540,7 +540,7 @@ const updateCart = (couponParam) => {
                               </td>
                               <td>
                                 
-                                ${parseFloat(product.price).toFixed(2)}
+                              {CURRENCY}{parseFloat(product.price).toFixed(2)}
                               </td>
                             </tr>
                           );
@@ -550,12 +550,12 @@ const updateCart = (couponParam) => {
                         <tr>
                           <th>SubTotal</th>
                           <td className="product-subtotal">
-                          ${parseFloat(cartSubTotalPrice).toFixed(2)}
+                          {CURRENCY}{parseFloat(cartSubTotalPrice).toFixed(2)}
                           </td>
                         </tr>
                         <tr>
                             <td className="cart-total-label">Coupon Discount</td>
-                            <td className="cart-total-amount">{cartCouponDiscount}</td>
+                            <td className="cart-total-amount">{CURRENCY}{parseFloat(cartCouponDiscount).toFixed(2)}</td>
                           </tr>
                         <tr>
                           <th>Shipping</th>
@@ -564,7 +564,7 @@ const updateCart = (couponParam) => {
                         <tr>
                           <th>Total</th>
                           <td className="product-subtotal">
-                          <strong>${parseFloat(cartTotalPrice).toFixed(2)}</strong>
+                          <strong>{CURRENCY}{parseFloat(cartTotalPrice).toFixed(2)}</strong>
                           </td>
                         </tr>
                       </tfoot>
