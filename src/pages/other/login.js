@@ -3,8 +3,88 @@ import { LayoutOne } from "../../layouts";
 import { BreadcrumbOne } from "../../components/Breadcrumb";
 import { Container, Row, Col } from "react-bootstrap";
 import { FaFacebookF, FaGooglePlusG } from "react-icons/fa";
+import { useState } from "react";
+import { BACKEND, BACKENDAPI } from "../../../config";
+import { toast } from "react-toastify";
+import axios from "axios";
+import withRouter from "next/dist/client/with-router";
+import { useEffect } from "react";
+import { apiClient } from "../../utils/apiClient";
+import { useRouter } from "next/dist/client/router";
 
-const Login = () => {
+
+const Login = (props) => {
+  const router = useRouter()
+  useEffect(() => {
+   
+
+ 
+      apiClient()
+			.get(`${BACKENDAPI}/v1.0/user`)
+			.then((response) => {
+				console.log(response);
+        router.push("/admin");
+				// setUser(response.data.user);
+				// setPermissions(response.data.permissions);
+				// setRoles(response.data.roles);
+			
+			})
+			.catch((err) => {
+				console.log(err);
+				if (err.response) {
+          localStorage.removeItem("user")
+          localStorage.removeItem("token")
+				}
+				// logoutFunction();
+				// setUserLoading(false);
+			});
+          
+   
+  }, []);
+  const [loading, setLoading] = useState(false);
+	const [errors, setErrors] = useState([]);
+  const [formData,setFormData] = useState({
+    email:"",
+    password:""
+  })
+  const handleChange = (e) => {
+     setFormData({...formData,[e.target.name]:e.target.value})    
+  }
+  const handleSubmit = (e) => {
+		e.preventDefault();
+		 setLoading(true);
+		setErrors([]);
+
+		axios
+			.post(`${BACKEND}/api/v1.0/login`, {
+				...formData,
+			})
+			.then((response) => {
+				console.log(response.data);
+				localStorage.setItem("token", response.data.token);
+        localStorage.setItem("user", JSON.stringify(response.data.data));
+				toast.success("Login Successfull.");
+				
+				 setLoading(false);
+			
+			})
+			.catch((err) => {
+			
+				console.log("err", err.request);
+
+				if (err.response) {
+					let errorStatus = err.response.status;
+					if (errorStatus === 422) {
+						setErrors(err.response.data.errors);
+					}
+					if (errorStatus === 401) {
+						setErrors(["Invalid Credentials"]);
+					}
+				}
+
+				setLoading(false);
+			});
+	};
   return (
     <LayoutOne>
       {/* breadcrumb */}
@@ -27,7 +107,7 @@ const Login = () => {
                   <h3>Login</h3>
                 </div>
                 <div>
-                  <form method="post">
+                  <form onSubmit={handleSubmit}>
                     <div className="form-group">
                       <input
                         type="text"
@@ -35,6 +115,8 @@ const Login = () => {
                         className="form-control"
                         name="email"
                         placeholder="Your Email"
+                        value={formData.email}
+                        onChange={handleChange}
                       />
                     </div>
                     <div className="form-group">
@@ -44,10 +126,12 @@ const Login = () => {
                         type="password"
                         name="password"
                         placeholder="Password"
+                        value={formData.password}
+                        onChange={handleChange}
                       />
                     </div>
                     <div className="login-footer form-group">
-                      <div className="check-form">
+                      {/* <div className="check-form">
                         <div className="custom-checkbox">
                           <input
                             className="form-check-input"
@@ -63,7 +147,7 @@ const Login = () => {
                             <span>Remember me</span>
                           </label>
                         </div>
-                      </div>
+                      </div> */}
                       <a href="#">Forgot password?</a>
                     </div>
                     <div className="form-group">
@@ -109,4 +193,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default withRouter(Login);
