@@ -17,3 +17,23 @@ width: 1;
     background-color:#c2b58c;
     
 }
+.btn-primary:not(:disabled):not(.disabled):active, .btn-primary:not(:disabled):not(.disabled).active, .show > .btn-primary.dropdown-toggle{
+    background-color:#c2b58c;
+    border:none;
+}
+.login-footer .check-form input[type=checkbox]:checked + .form-check-label:before{
+    background-color:#c2b58c;
+    border-color:#c2b58c;
+}
+/* a:hover{
+    color:#c2b58c;
+} */
+.btn-fill-out{
+    border:1px solid #c2b58c;
+}
+.btn-fill-out:hover{
+    color:#c2b58c !important;
+}
+.btn-fill-out::before, .btn-fill-out::after{
+    background-color:#c2b58c;
+}
