@@ -9,3 +9,11 @@ width: 1;
     font-size:14px;
     font-weight:400;
 }
+.btn-primary{
+    background-color:#c2b59c;
+    border:none;
+}
+.btn-primary:hover{
+    background-color:#c2b58c;
+    
+}
