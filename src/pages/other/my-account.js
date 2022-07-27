@@ -14,10 +14,56 @@ import {
 import Tab from "react-bootstrap/Tab";
 import Nav from "react-bootstrap/Nav";
 import Card from "react-bootstrap/Card";
+import { useEffect, useState } from "react";
+import Authorize, { authorize } from "../../utils/authorize";
+import { BACKENDAPI } from "../../../config";
+import { apiClient } from "../../utils/apiClient";
+
 
 const MyAccount = () => {
+  const [user,setUser] = useState(null);
+  const setUserFunction = (user) => {
+    setUser(user)
+  }
+  const [loading, setLoading] = useState(false);
+  const [data, setData] = useState([]);
+  const [modalIsOpen, setIsOpen] = useState(false);
+  const showModal = (show) => {
+    setIsOpen(show);
+  };
+  const [currentData, setCurrentData] = useState(null);
+
+  const [link, setLink] = useState(`${BACKENDAPI}/v1.0/orders`);
+  const [nextPageLink, setNextPageLink] = useState("");
+  const [prevPageLink, setPrevPageLink] = useState("");
+
+
+  useEffect(() => {
+    loadData(link);
+  }, []);
+
+  // pagination required
+  const loadData = (link) => {
+    setLoading(true);
+    apiClient()
+      .get(link)
+      .then((response) => {
+        setLoading(false);
+        console.log(response.data.data);
+        setData([...data, ...response.data.data.data]);
+        setNextPageLink(response.data.data.next_page_url);
+        setPrevPageLink(response.data.data.prev_page_url);
+      })
+      .catch((error) => {
+        setLoading(false);
+        console.log(error.response);
+      });
+  };
+
+
   return (
-    <LayoutOne>
+    <Authorize setUserFunction={setUserFunction}>
+<LayoutOne>
       {/* breadcrumb */}
       <BreadcrumbOne pageTitle="My Account">
         <ol className="breadcrumb justify-content-md-end">
@@ -80,8 +126,8 @@ const MyAccount = () => {
                       <Card.Body>
                         <div className="welcome">
                           <p>
-                            Hello, <strong>John Doe</strong> (If Not{" "}
-                            <strong>John !</strong>{" "}
+                            Hello, <strong>{user && user.name}</strong> (If Not{" "}
+                            <strong>{user && user.name} !</strong>{" "}
                             <Link href="/other/login" as="/other/login">
                               <a className="logout">Logout</a>
                             </Link>
@@ -105,51 +151,104 @@ const MyAccount = () => {
                       <Card.Body>
                         <div className="myaccount-table table-responsive text-center">
                           <table className="table">
-                            <thead>
-                              <tr>
-                                <th>Order</th>
-                                <th>Date</th>
-                                <th>Status</th>
-                                <th>Total</th>
-                                <th>Action</th>
-                              </tr>
-                            </thead>
-                            <tbody>
-                              <tr>
-                                <td>1</td>
-                                <td>Aug 22, 2020</td>
-                                <td>Pending</td>
-                                <td>$3000</td>
-                                <td>
-                                  <a href="#" className="check-btn sqr-btn ">
-                                    View
-                                  </a>
-                                </td>
-                              </tr>
-                              <tr>
-                                <td>2</td>
-                                <td>July 22, 2020</td>
-                                <td>Approved</td>
-                                <td>$200</td>
-                                <td>
-                                  <a href="#" className="check-btn sqr-btn ">
-                                    View
-                                  </a>
-                                </td>
-                              </tr>
-                              <tr>
-                                <td>3</td>
-                                <td>June 12, 2020</td>
-                                <td>On Hold</td>
-                                <td>$990</td>
-                                <td>
-                                  <a href="#" className="check-btn sqr-btn ">
-                                    View
-                                  </a>
-                                </td>
-                              </tr>
-                            </tbody>
+                          <thead>
+          <tr>
+            <th scope="col">Id</th>
+            <th scope="col">First Name</th>
+            <th scope="col">Last Name</th>
+            <th scope="col">Email</th>
+            <th scope="col">Order Date</th>
+            <th scope="col">Status</th>
+            <th scope="col">Action</th>
+          </tr>
+        </thead>
+
+        {data.length ? (
+          <tbody>
+            {data.map((el) => {
+              return (
+                <tr
+                  key={el.id}
+                  onClick={() => viewOrder(el.id)}
+                  className="trhover"
+                >
+                  <td>{el.id}</td>
+                  <td> {el.fname && el.fname}</td>
+                  <td>{el.fname && el.lname}</td>
+                  <td>{el.fname && el.email}</td>
+                  <td>{el.fname && new Date(el.created_at).toDateString()}</td>
+                  <td>{el.status}</td>
+                  <td>
+                    <div className="btn-group">
+                      <button
+                        type="button"
+                        className="btn btn-sm btn-primary dropdown-toggle"
+                        data-bs-toggle="dropdown"
+                        aria-expanded="false"
+                      >
+                        Action
+                      </button>
+                      <ul className="dropdown-menu action">
+                        <li>
+                          <a
+                            onClick={() => {
+                              setCurrentData(el);
+                              showModal(true);
+                            }}
+                            className="dropdown-item"
+                            href="#"
+                          >
+                            edit
+                          </a>
+                        </li>
+                        <li>
+                          <hr className="dropdown-divider" />
+                        </li>
+                        <li>
+                          <a
+                            onClick={() => {
+                              deleteData(el.id);
+                            }}
+                            className="dropdown-item"
+                            href="#"
+                          >
+                            delete
+                          </a>
+                        </li>
+                        <li>
+                          <hr className="dropdown-divider" />
+                        </li>
+                      </ul>
+                    </div>
+                  </td>
+                </tr>
+              );
+            })}
+          </tbody>
+        ) : null}
                           </table>
+                          <div className="text-center">
+        {nextPageLink ? (
+          <button
+            className="btn btn-primary"
+            onClick={() => {
+              loadData(nextPageLink);
+            }}
+          >
+            Load More ...
+          </button>
+        ) : data.length ? (
+          prevPageLink ? (
+            "No more data to show"
+          ) : (
+            ""
+          )
+        ) : loading ? (
+          "Loading.."
+        ) : (
+          "No data to show"
+        )}
+      </div>
                         </div>
                       </Card.Body>
                     </Card>
@@ -344,6 +443,8 @@ const MyAccount = () => {
         </Container>
       </div>
     </LayoutOne>
+    </Authorize>
+    
   );
 };
 

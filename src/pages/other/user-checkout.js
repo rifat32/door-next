@@ -11,14 +11,12 @@ import { BACKEND, BACKENDAPI,CURRENCY } from "../../../config";
 import { deleteAllFromCart } from "../../redux/actions/cartActions";
 import { useToasts } from "react-toast-notifications";
 import NonUserCheckout from "../../utils/NonUserCheckout";
-import UserCheckout from "../../utils/UserCheckout";
 const Checkout = ({ cartItems ,  deleteAllFromCart}) => {
 
   const [user,setUser] = useState(null);
   const setUserFunction = (user) => {
     setUser(user)
   }
-
 
 
   const [tempCarts,setTempCarts] = useState(JSON.parse(JSON.stringify(cartItems)) ) 
@@ -184,8 +182,8 @@ const updateCart = (couponParam) => {
 
 
   return (
-    <UserCheckout setUserFunction={setUserFunction}>
-    <LayoutOne>
+    <NonUserCheckout setUserFunction={setUserFunction}>
+ <LayoutOne>
       {/* breadcrumb */}
       <BreadcrumbOne pageTitle="Checkout">
         <ol className="breadcrumb justify-content-md-end">
@@ -681,7 +679,8 @@ const updateCart = (couponParam) => {
         </Container>
       </div>
     </LayoutOne>
-    </UserCheckout>
+    </NonUserCheckout>
+   
   );
 };
 

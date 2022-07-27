@@ -5,42 +5,21 @@ import { Container, Row, Col } from "react-bootstrap";
 import { FaFacebookF, FaGooglePlusG } from "react-icons/fa";
 import { useState } from "react";
 import { BACKEND, BACKENDAPI } from "../../../config";
-import { toast } from "react-toastify";
+
 import axios from "axios";
 import withRouter from "next/dist/client/with-router";
 import { useEffect } from "react";
 import { apiClient } from "../../utils/apiClient";
 import { useRouter } from "next/dist/client/router";
 
+import AuthorizeReverse, { authorizeReverse } from "../../utils/authorizeReverse";
+
 
 const Login = (props) => {
+  
   const router = useRouter()
-  useEffect(() => {
-   
 
- 
-      apiClient()
-			.get(`${BACKENDAPI}/v1.0/user`)
-			.then((response) => {
-				console.log(response);
-        router.push("/admin");
-				// setUser(response.data.user);
-				// setPermissions(response.data.permissions);
-				// setRoles(response.data.roles);
-			
-			})
-			.catch((err) => {
-				console.log(err);
-				if (err.response) {
-          localStorage.removeItem("user")
-          localStorage.removeItem("token")
-				}
-				// logoutFunction();
-				// setUserLoading(false);
-			});
-          
-   
-  }, []);
+
   const [loading, setLoading] = useState(false);
 	const [errors, setErrors] = useState([]);
   const [formData,setFormData] = useState({
@@ -63,14 +42,14 @@ const Login = (props) => {
 				console.log(response.data);
 				localStorage.setItem("token", response.data.token);
         localStorage.setItem("user", JSON.stringify(response.data.data));
-				toast.success("Login Successfull.");
-				
-				 setLoading(false);
 			
+				 setLoading(false);
+          router.push("/other/my-account");
 			})
 			.catch((err) => {
-			
-				console.log("err", err.request);
+        localStorage.removeItem("user")
+        localStorage.removeItem("token")
+				console.log("err", err);
 
 				if (err.response) {
 					let errorStatus = err.response.status;
@@ -86,7 +65,8 @@ const Login = (props) => {
 			});
 	};
   return (
-    <LayoutOne>
+    <AuthorizeReverse>
+ <LayoutOne>
       {/* breadcrumb */}
       <BreadcrumbOne pageTitle="Login">
         <ol className="breadcrumb justify-content-md-end">
@@ -190,6 +170,8 @@ const Login = (props) => {
         </Container>
       </div>
     </LayoutOne>
+    </AuthorizeReverse>
+   
   );
 };
 
