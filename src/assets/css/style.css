@@ -37,3 +37,37 @@ width: 1;
 .btn-fill-out::before, .btn-fill-out::after{
     background-color:#c2b58c;
 }
+.product-grid__info .product-price span.price, .product-list__info .product-price span.price{
+    color:#c6b478;
+}
+a:hover{
+color:black;
+}
+.navigation > ul > li:hover > .nav-link, .navigation > ul > li:hover > svg{
+    color:black;
+}
+.sub-menu--one-column > li > a:hover{
+    color:black;
+}
+.header-icons > li > button:hover{
+    color:black;
+}
+.cart-count{
+    background-color: #c6b478;
+}
+.sidebar .widget__categories li a:hover, .sidebar .widget__categories li a.active, .sidebar .widget__categories li button:hover, .sidebar .widget__categories li button.active{
+    color:#c6b478;
+}
+.product-content__price .price{
+    color:#c6b478;
+}
+.product-content__sort-info ul li svg{
+    color:#c6b478;
+}
+.product-description-tab__navigation .nav-item .nav-link.active{
+    color:#c6b478;
+    border-bottom:2px solid #c6b478;
+}
+.scroll-top:hover{
+    background-color:#c6b478;
+}
