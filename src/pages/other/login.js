@@ -133,7 +133,7 @@ const Login = (props) => {
                     <div className="form-group">
                       <button
                         type="submit"
-                        className="btn btn-fill-out btn-block"
+                        className="btn btn-primary btn-block"
                         name="login"
                       >
                         Log in
