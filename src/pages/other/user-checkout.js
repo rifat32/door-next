@@ -42,6 +42,7 @@ const Checkout = ({ cartItems ,  deleteAllFromCart}) => {
     create_account:"0",
     password:"",
     password_confirmation:"",
+
   })
 
 const handleChange = (e) => {
@@ -143,6 +144,38 @@ useEffect(() => {
     })
   }
 
+
+  apiClient().get(`${BACKENDAPI}/v1.0/client/customer/info`)
+   .then(response => {
+   const {fname,cname,lname} = response.data.customer
+
+   setOrderInfo({
+    ...orderInfo,
+    cname,
+    fname,
+    lname
+   })
+  })
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 },[])
 const updateCart = (couponParam) => {
   const cartWithCoupon = tempCarts.map((el,index) => {
@@ -174,7 +207,6 @@ const updateCart = (couponParam) => {
    setTempCarts([...cartWithCoupon])
  
 
- 
  
  }
 
@@ -220,6 +252,7 @@ const updateCart = (couponParam) => {
                       placeholder="First name *"
                       value={orderInfo.fname}
                       onChange={handleChange}
+                      readOnly
                     />
                     
                     {errors?.fname && (
@@ -242,6 +275,7 @@ const updateCart = (couponParam) => {
                       placeholder="Last name *"
                       value={orderInfo.lname}
                       onChange={handleChange}
+                      readOnly
                     />
         {errors?.lname && (
 					<p className="invalid-feedback">{errors.lname[0]}</p>
@@ -262,6 +296,7 @@ const updateCart = (couponParam) => {
                       placeholder="Company Name"
                       value={orderInfo.cname}
                       onChange={handleChange}
+                      readOnly
                     />
                      {errors?.cname && (
 					<p className="invalid-feedback">{errors.cname[0]}</p>

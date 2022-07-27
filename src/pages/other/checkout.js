@@ -175,10 +175,11 @@ const updateCart = (couponParam) => {
  
    setTempCarts([...cartWithCoupon])
  
-
- 
- 
  }
+
+
+
+
 
 
 
