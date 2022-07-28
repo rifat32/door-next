@@ -213,7 +213,7 @@ const FooterOne = () => {
                     </li>
                     <li>
                       <IoIosPhonePortrait />
-                      <p>+ 457 789 789 65</p>
+                      <p>T:{" "}<a href="tel:01452 924 200">01452 924 200</a></p>
                     </li>
                   </ul>
                 </div>
