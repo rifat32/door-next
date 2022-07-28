@@ -69,7 +69,7 @@ const FooterThree = () => {
                       </a>
                     </Link>
                   </div>
-                  <p className="footer-text" style={{fontFamily:"Times New Roman"}}>
+                  <p className="footer-text footer-texts" >
                  Woodcroft Doors & Cabinets are a unique business based in the delightful Gloucestershire County. We specialise in selling a variety of customisable kitchen doors, cabinets, hinges and more. Our mission is to provide our customers with all of the necessary tools to achieve their dream kitchen. And, with over 15 years of experience within the installation industry, we have acquired a great wealth of knowledge that we can use to help our customers.
                   </p>
                 </div>
@@ -262,8 +262,8 @@ const FooterThree = () => {
           <Container>
             <Row>
               <Col md={8}>
-                <p className="mb-3 mb-md-0 text-center text-md-left footer-text">
-                  Copyright &copy; {new Date().getFullYear() + " "}.All Rights Reserved By Stewart KBB Ltd trading as Woodcroft Doors and Cabinets.  
+                <p className="mb-3 mb-md-0 text-center text-md-left footer-text footer-texts">
+                  Copyright &copy; {new Date().getFullYear() + " "}.All Rights Reserved By Stewart KBB Ltd trading as Woodcroft Doors and Cabinets.   
                  {/*  <FaHeart /> */}
                  <br />
                  Company No. 13230198
