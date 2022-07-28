@@ -570,7 +570,7 @@ if(!loading){
                  name="selectedHeight"
                  onChange={handleSelectHeight}
                  
-                 value={productNew.selectedHeight}
+                 value={`${productNew.selectedHeight} mm`}
                  disabled={productNew.is_custom_size}
                  >
                    

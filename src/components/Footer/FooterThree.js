@@ -223,28 +223,33 @@ const FooterThree = () => {
                   <span className="widget-title" style={{color:"#c2b59c",fontSize:"45px",textTransform:"uppercase",fontFamily:"Garamond"} }>INFORMATION</span>
                   <ul className="widget-links">
                     <li>
-                      <Link href="/other/my-account">
-                        <a>My Account</a>
+                      <Link href="#">
+                        <a>Home</a>
                       </Link>
                     </li>
                     <li>
-                      <Link href="/">
-                        <a>Discount</a>
+                      <Link href="#">
+                        <a>About US</a>
                       </Link>
                     </li>
                     <li>
-                      <Link href="/">
-                        <a>Returns</a>
+                      <Link href="#">
+                        <a>Ordering & Delivery</a>
                       </Link>
                     </li>
                     <li>
-                      <Link href="/">
-                        <a>Orders History</a>
+                      <Link href="#">
+                        <a>Contact Us</a>
                       </Link>
                     </li>
                     <li>
-                      <Link href="/">
-                        <a>Order Tracking</a>
+                      <Link href="#">
+                        <a>Shop</a>
+                      </Link>
+                    </li>
+                    <li>
+                      <Link href="#">
+                        <a>Privacy Policy</a>
                       </Link>
                     </li>
                   </ul>
@@ -258,7 +263,7 @@ const FooterThree = () => {
             <Row>
               <Col md={8}>
                 <p className="mb-3 mb-md-0 text-center text-md-left footer-text">
-                  Copyright &copy; {new Date().getFullYear() + " "}. Stewart KBB Ltd trading as Woodcroft Doors and Cabinets. All Rights Reserved.  
+                  Copyright &copy; {new Date().getFullYear() + " "}.All Rights Reserved By Stewart KBB Ltd trading as Woodcroft Doors and Cabinets.  
                  {/*  <FaHeart /> */}
                  <br />
                  Company No. 13230198
