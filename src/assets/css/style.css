@@ -94,3 +94,9 @@ color:#c6b478;
 .border-top--grey{
     border-top:2px solid #c2b59c;
 }
+.contact-info>li a:hover{
+    color:#c6b478;
+}
+.footer-dark a:hover, .footer-dark .widget-links li a:hover, .widget-links li a:hover, .footer-dark .footer-link li a:hover, .footer-link li a:hover{
+    color:#c6b478;
+}
