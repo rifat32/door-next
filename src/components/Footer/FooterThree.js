@@ -201,7 +201,7 @@ const FooterThree = () => {
               </Col> */}
               <Col lg={4} md={5} sm={7}>
                 <div className="widget">
-                  <span className="widget-title footer-header" style={{color:"#c2b59c",fontSize:"45px",textTransform:"uppercase",fontFamily:"Garamond"} }>Contact US</span>
+                  <span className="widget-title footer-header footer-texts" style={{color:"#c2b59c",fontSize:"45px",textTransform:"uppercase",fontWeight:"500"} }>Contact US</span>
                   <ul className="contact-info contact-info-light">
                     <li>
                       <IoIosPin />
@@ -220,7 +220,7 @@ const FooterThree = () => {
               </Col>
               <Col lg={4} md={6} sm={6}>
                 <div className="widget">
-                  <span className="widget-title" style={{color:"#c2b59c",fontSize:"45px",textTransform:"uppercase",fontFamily:"Garamond"} }>INFORMATION</span>
+                  <span className="widget-title footer-texts" style={{color:"#c2b59c",fontSize:"45px",textTransform:"uppercase",fontWeight:"500"} }>INFORMATION</span>
                   <ul className="widget-links">
                     <li>
                       <Link href="#">

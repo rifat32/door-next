@@ -69,7 +69,7 @@ const FooterOne = () => {
                       </a>
                     </Link>
                   </div>
-                  <p className="footer-text" style={{fontFamily:"Times New Roman"}}>
+                  <p className="footer-text footer-texts" >
                  Woodcroft Doors & Cabinets are a unique business based in the delightful Gloucestershire County. We specialise in selling a variety of customisable kitchen doors, cabinets, hinges and more. Our mission is to provide our customers with all of the necessary tools to achieve their dream kitchen. And, with over 15 years of experience within the installation industry, we have acquired a great wealth of knowledge that we can use to help our customers.
                   </p>
                 </div>
@@ -201,7 +201,7 @@ const FooterOne = () => {
               </Col> */}
               <Col lg={4} md={5} sm={7}>
                 <div className="widget">
-                  <span className="widget-title footer-header" style={{color:"#c2b59c",fontSize:"45px",textTransform:"uppercase",fontFamily:"Garamond"} }>Contact US</span>
+                  <span className="widget-title footer-header footer-texts" style={{color:"#c2b59c",fontSize:"45px",textTransform:"uppercase",fontWeight:"500"} }>Contact US</span>
                   <ul className="contact-info contact-info-light">
                     <li>
                       <IoIosPin />
@@ -220,7 +220,7 @@ const FooterOne = () => {
               </Col>
               <Col lg={4} md={6} sm={6}>
                 <div className="widget">
-                  <span className="widget-title" style={{color:"#c2b59c",fontSize:"45px",textTransform:"uppercase",fontFamily:"Garamond"} }>INFORMATION</span>
+                  <span className="widget-title footer-texts" style={{color:"#c2b59c",fontSize:"45px",textTransform:"uppercase",fontWeight:"500"} }>INFORMATION</span>
                   <ul className="widget-links">
                     <li>
                       <Link href="#">
@@ -262,7 +262,7 @@ const FooterOne = () => {
           <Container>
             <Row>
               <Col md={8}>
-                <p className="mb-3 mb-md-0 text-center text-md-left footer-text">
+                <p className="mb-3 mb-md-0 text-center text-md-left footer-text footer-texts">
                   Copyright &copy; {new Date().getFullYear() + " "}.All Rights Reserved By Stewart KBB Ltd trading as Woodcroft Doors and Cabinets.   
                  {/*  <FaHeart /> */}
                  <br />

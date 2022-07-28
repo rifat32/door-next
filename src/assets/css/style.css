@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito&display=swap');
  .swiper-slide{
 width: 1;
 
@@ -102,4 +103,12 @@ color:#c6b478;
 }
 .shop-cart-table table tbody tr td.product-remove button:hover{
     background-color:#c6b478;
+}
+.widget-title{
+    font-family:"Nunito"
+}
+.footer-texts{
+    font-family: 'Nunito',Arial;
+    
+    
 }
