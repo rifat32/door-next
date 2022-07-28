@@ -30,7 +30,7 @@ const ShopHeader = ({
               </select>
             </div>
             <div className="shop-header__right">
-              <div className="products-view">
+              {/* <div className="products-view">
                 <button
                   className={`sorting-icon grid ${
                     layout === "grid" ? "active" : ""
@@ -53,7 +53,7 @@ const ShopHeader = ({
                 >
                   <MdList />
                 </button>
-              </div>
+              </div> */}
             </div>
           </div>
         </Col>

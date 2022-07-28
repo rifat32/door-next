@@ -56,11 +56,11 @@ const FooterOne = () => {
         </Container>
       </div> */}
 
-      <footer className="footer-dark">
+      <footer className="footer-dark" >
         <div className="footer-top">
           <Container>
             <Row>
-              <Col lg={3} md={6} sm={12}>
+              <Col lg={4} md={6} sm={12}>
                 <div className="widget">
                   <div className="footer-logo">
                     <Link href="/">
@@ -69,9 +69,8 @@ const FooterOne = () => {
                       </a>
                     </Link>
                   </div>
-                  <p>
-                    If you are going to use of Lorem Ipsum need to be sure there
-                    isn't hidden of text
+                  <p className="footer-text" style={{fontFamily:"Times New Roman"}}>
+                  Doors & Cabinets are a unique business based in the delightful Gloucestershire County. We specialise in selling a variety of customisable kitchen doors, cabinets, hinges and more. Our mission is to provide our customers with all of the necessary tools to achieve their dream kitchen. And, with over 15 years of experience within the installation industry, we have acquired a great wealth of knowledge that we can use to help our customers.
                   </p>
                 </div>
                 <div className="widget">
@@ -104,7 +103,7 @@ const FooterOne = () => {
                   </ul>
                 </div>
               </Col>
-              <Col lg={2} md={3} sm={6}>
+              {/* <Col lg={2} md={3} sm={6}>
                 <div className="widget">
                   <h6 className="widget-title">Useful Links</h6>
                   <ul className="widget-links">
@@ -135,8 +134,8 @@ const FooterOne = () => {
                     </li>
                   </ul>
                 </div>
-              </Col>
-              <Col lg={2} md={3} sm={6}>
+              </Col> */}
+              {/* <Col lg={2} md={3} sm={6}>
                 <div className="widget">
                   <h6 className="widget-title">Category</h6>
                   <ul className="widget-links">
@@ -167,8 +166,8 @@ const FooterOne = () => {
                     </li>
                   </ul>
                 </div>
-              </Col>
-              <Col lg={2} md={6} sm={6}>
+              </Col> */}
+              {/* <Col lg={2} md={6} sm={6}>
                 <div className="widget">
                   <h6 className="widget-title">My Account</h6>
                   <ul className="widget-links">
@@ -199,10 +198,10 @@ const FooterOne = () => {
                     </li>
                   </ul>
                 </div>
-              </Col>
-              <Col lg={3} md={4} sm={6}>
+              </Col> */}
+              <Col lg={4} md={5} sm={7}>
                 <div className="widget">
-                  <h6 className="widget-title">Contact Info</h6>
+                  <span className="widget-title footer-header" style={{color:"#c2b59c",fontSize:"45px",textTransform:"uppercase",fontFamily:"Garamond"} }>Contact US</span>
                   <ul className="contact-info contact-info-light">
                     <li>
                       <IoIosPin />
@@ -219,22 +218,55 @@ const FooterOne = () => {
                   </ul>
                 </div>
               </Col>
+              <Col lg={4} md={6} sm={6}>
+                <div className="widget">
+                  <span className="widget-title" style={{color:"#c2b59c",fontSize:"45px",textTransform:"uppercase",fontFamily:"Garamond"} }>INFORMATION</span>
+                  <ul className="widget-links">
+                    <li>
+                      <Link href="/other/my-account">
+                        <a>My Account</a>
+                      </Link>
+                    </li>
+                    <li>
+                      <Link href="/">
+                        <a>Discount</a>
+                      </Link>
+                    </li>
+                    <li>
+                      <Link href="/">
+                        <a>Returns</a>
+                      </Link>
+                    </li>
+                    <li>
+                      <Link href="/">
+                        <a>Orders History</a>
+                      </Link>
+                    </li>
+                    <li>
+                      <Link href="/">
+                        <a>Order Tracking</a>
+                      </Link>
+                    </li>
+                  </ul>
+                </div>
+              </Col>
             </Row>
           </Container>
         </div>
         <div className="bottom-footer border-top--grey">
           <Container>
             <Row>
-              <Col md={6}>
-                <p className="mb-3 mb-md-0 text-center text-md-left">
-                  Copyright &copy; {new Date().getFullYear() + " "}. Built with{" "}
-                  <FaHeart /> by{" "}
-                  <a href="https://www.hasthemes.com" target="_blank">
-                    HasThemes
-                  </a>
+              <Col md={8}>
+                <p className="mb-3 mb-md-0 text-center text-md-left footer-text">
+                  Copyright &copy; {new Date().getFullYear() + " "}. Stewart KBB Ltd trading as Doors and Cabinets. All Rights Reserved.  
+                 {/*  <FaHeart /> */}
+                 <br />
+                 Company No. 13230198
+                 <br />
+                 VAT No. 372495668
                 </p>
               </Col>
-              <Col md={6}>
+              <Col md={4}>
                 <ul className="footer-payment text-center text-lg-right">
                   <li>
                     <a href="#">

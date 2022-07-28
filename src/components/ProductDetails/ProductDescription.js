@@ -420,7 +420,7 @@ return result
               </button>
             )}
 
-            <button
+{/*             <button
               className={`product-content__compare ${
                 compareItem !== undefined ? "active" : ""
               }`}
@@ -436,9 +436,9 @@ return result
               }
             >
               <i className="icon-shuffle" />
-            </button>
+            </button> */}
 
-            <button
+            {/* <button
               className={`product-content__wishlist ${
                 wishlistItem !== undefined ? "active" : ""
               }`}
@@ -454,7 +454,7 @@ return result
               }
             >
               <i className="icon-heart" />
-            </button>
+            </button> */}
           </div>
         </Fragment>
       )}
@@ -493,7 +493,7 @@ return result
             }
            
         </li>
-        <li>
+        {/* <li>
           Tags:
           {product.tag &&
             product.tag.map((item, index, arr) => {
@@ -507,9 +507,9 @@ return result
                 </Link>
               );
             })}
-        </li>
+        </li> */}
       </ul>
-      <div className="product-content__product-share space-mt--15">
+      {/* <div className="product-content__product-share space-mt--15">
         <span>Share:</span>
         <ul className="social-icons">
           <li>
@@ -538,7 +538,7 @@ return result
             </a>
           </li>
         </ul>
-      </div>
+      </div> */}
     </div>
   );
 };

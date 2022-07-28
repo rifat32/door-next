@@ -13,9 +13,9 @@ const ProductDescriptionTab = ({ product }) => {
           <Nav.Item>
             <Nav.Link eventKey="description">DESCRIPTION</Nav.Link>
           </Nav.Item>
-          <Nav.Item>
+{/*           <Nav.Item>
             <Nav.Link eventKey="additionalInfo">ADDITIONAL INFO</Nav.Link>
-          </Nav.Item>
+          </Nav.Item> */}
           <Nav.Item>
             <Nav.Link eventKey="reviews">
               REVIEWS {product.ratingCount ? `(${product.ratingCount})` : ""}

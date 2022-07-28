@@ -41,16 +41,16 @@ width: 1;
     color:#c6b478;
 }
 a:hover{
-color:black;
+color:#c6b478;
 }
 .navigation > ul > li:hover > .nav-link, .navigation > ul > li:hover > svg{
-    color:black;
+    color:#c6b478;
 }
 .sub-menu--one-column > li > a:hover{
-    color:black;
+    color:#c6b478;
 }
 .header-icons > li > button:hover{
-    color:black;
+    color:#c6b478;
 }
 .cart-count{
     background-color: #c6b478;
@@ -70,4 +70,27 @@ color:black;
 }
 .scroll-top:hover{
     background-color:#c6b478;
+}
+.page-link{
+    color:black;
+}
+.page-link:hover{
+    color:#c6b478;
+}
+.footer-dark{
+    background-color:#58595b;
+}
+.widget-title{
+    color:#c2b59c;
+    font-size:40px;
+}
+.footer-text{
+/*     padding:15px 10px; */
+    font-size:15px;
+}
+.footer-top{
+    padding:41px 0 70px;
+}
+.border-top--grey{
+    border-top:2px solid #c2b59c;
 }
