@@ -112,3 +112,9 @@ color:#c6b478;
     
     
 }
+.checkout-content .custom-radio input[type=radio]:checked+.form-check-label:before{
+    border-color:#c6b478;
+}
+.checkout-content .form-check-label:after{
+    background-color:#c6b478;
+}
