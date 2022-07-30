@@ -1,13 +1,20 @@
+import { useState } from "react";
 import { Row, Col } from "react-bootstrap";
 import { MdApps, MdList } from "react-icons/md";
 import { setActiveLayout } from "../../lib/product";
+import MobileMenu2 from "../Header/elements/MobileMenu2";
 
 const ShopHeader = ({
   getFilterSortParams,
   getLayout,
   layoutClass,
-  layout
+  layout,
+  products, getSortParams
 }) => {
+
+const [activeStatus2,getactiveStatus2] = useState(false)
+
+
   return (
     <div className="shop-header-area">
       <Row
@@ -54,10 +61,13 @@ const ShopHeader = ({
                   <MdList />
                 </button>
               </div> */}
+
+              <button className="btn btn-primary d-block d-lg-none" type="button" onClick={() => getactiveStatus2(true)}>filter</button>
             </div>
           </div>
         </Col>
       </Row>
+      <MobileMenu2 activeStatus2={activeStatus2} getactiveStatus2={getactiveStatus2}  products={products} getSortParams={getSortParams}/>
     </div>
   );
 };

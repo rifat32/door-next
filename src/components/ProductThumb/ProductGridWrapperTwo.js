@@ -36,7 +36,12 @@ const ProductGridWrapperTwo = ({
             product.price,
             product.discount
           )).toFixed(2);
-          const productPrice = parseFloat(product.price).toFixed(2);
+
+          
+          product.variations.sort(function (a, b) {
+            return a.price - b.price
+        })
+        let productPrice =  parseFloat(product.variations[0].price).toFixed(2) ;
           const cartItem = cartItems.filter(
             (cartItem) => cartItem.id === product.id
           )[0];
@@ -99,6 +104,7 @@ const mapDispatchToProps = (dispatch) => {
         )
       );
     },
+    
     addToWishlist: (item, addToast) => {
       dispatch(addToWishlist(item, addToast));
     },

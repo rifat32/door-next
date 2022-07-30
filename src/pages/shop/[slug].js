@@ -28,6 +28,7 @@ import { ProductSliderTwo } from "../../components/ProductSlider";
 import { BACKEND, BACKENDAPI } from "../../../config";
 import { useEffect, useState } from "react";
 import { apiClient } from "../../utils/apiClient";
+import { ShopProducts } from "../../components/Shop";
 
 const ProductRightSidebar = ({
   products,
@@ -42,6 +43,7 @@ const ProductRightSidebar = ({
   deleteFromCompare,
   relatedProducts
 }) => {
+  const [layout, setLayout] = useState("grid");
   const router = useRouter()
 const { slug } = router.query;
 const [loading,setLoading] = useState(true)
@@ -458,7 +460,37 @@ const handleSelectOption = (e) => {
   setProductData({...productNew,options:JSON.stringify(tempOtions)})
   console.log(productNew)
 }
+const [currentData, setCurrentData] = useState([]);
 
+useEffect(() => {
+  if(productNew.category_id){
+    loadData()
+  }
+ 
+
+ 
+}, 
+
+[
+ productNew.category_id
+]
+);
+
+const loadData = () => {
+  
+
+  apiClient()
+    .get(`${BACKENDAPI}/v1.0/client/products/relatedproduct/get?category=${productNew.category_id}`)
+    .then((response) => {
+     
+      console.log("zzzz",response.data)
+      setCurrentData(response.data.products);
+    
+    })
+    .catch((error) => {
+     
+    });
+};
 if(!loading){
   return (
     <LayoutOne>
@@ -543,11 +575,16 @@ if(!loading){
               </Row>
 
               {/* related product slider */}
-              <ProductSliderTwo
-                title="Related Products"
-                products={relatedProducts}
-                items={3}
-              />
+            
+              {/* <ShopProducts layout={layout} products={currentData} />  */}
+           {
+            currentData.length?( <ProductSliderTwo
+              title="Related Products"
+              products={currentData}
+              items={3}
+            />):(null)
+           }
+             
             </Col>
             <Col xl={3} lg={4} className="space-mt-mobile-only--60">
               {/* sidebar */}

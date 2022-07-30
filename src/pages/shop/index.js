@@ -318,13 +318,16 @@ const GridLeftSidebar = ({ products }) => {
         </ol>
       </BreadcrumbOne> */}
                     {/* shop page header */}
+                    
               <ShopHeader
                 getLayout={getLayout}
                 getFilterSortParams={getFilterSortParams}
                 shopTopFilterStatus={shopTopFilterStatus}
                 setShopTopFilterStatus={setShopTopFilterStatus}
                 layout={layout}
+                products={products} getSortParams={getSortParams}
               />
+              
               {/* shop products */}
 
               {productLoading ? (
@@ -402,7 +405,7 @@ const GridLeftSidebar = ({ products }) => {
                 />
               </div> */}
             </Col>
-            <Col lg={3} className="order-lg-first mt-4 pt-2 mt-lg-0 pt-lg-0">
+            <Col lg={3} className="order-lg-first mt-4 pt-2 mt-lg-0 pt-lg-0 d-none d-lg-block">
               {/* sidebar */}
 
               <Sidebar products={products} getSortParams={getSortParams} />

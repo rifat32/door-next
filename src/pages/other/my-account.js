@@ -18,9 +18,12 @@ import { useEffect, useState } from "react";
 import Authorize, { authorize } from "../../utils/authorize";
 import { BACKENDAPI } from "../../../config";
 import { apiClient } from "../../utils/apiClient";
+import { useRouter } from "next/dist/client/router";
 
 
 const MyAccount = () => {
+  const router = useRouter()
+
   const [user,setUser] = useState(null);
   const setUserFunction = (user) => {
     setUser(user)
@@ -33,7 +36,7 @@ const MyAccount = () => {
   };
   const [currentData, setCurrentData] = useState(null);
 
-  const [link, setLink] = useState(`${BACKENDAPI}/v1.0/orders`);
+  const [link, setLink] = useState(`${BACKENDAPI}/v1.0/orders/client/customers`);
   const [nextPageLink, setNextPageLink] = useState("");
   const [prevPageLink, setPrevPageLink] = useState("");
 
@@ -60,7 +63,9 @@ const MyAccount = () => {
       });
   };
 
-
+  const viewOrder = (id) => {
+    router.push(`/other/order/${id}`);
+  };
   return (
     <Authorize setUserFunction={setUserFunction}>
 <LayoutOne>
@@ -159,7 +164,7 @@ const MyAccount = () => {
             <th scope="col">Email</th>
             <th scope="col">Order Date</th>
             <th scope="col">Status</th>
-            <th scope="col">Action</th>
+       
           </tr>
         </thead>
 
@@ -178,49 +183,7 @@ const MyAccount = () => {
                   <td>{el.fname && el.email}</td>
                   <td>{el.fname && new Date(el.created_at).toDateString()}</td>
                   <td>{el.status}</td>
-                  <td>
-                    <div className="btn-group">
-                      <button
-                        type="button"
-                        className="btn btn-sm btn-primary dropdown-toggle"
-                        data-bs-toggle="dropdown"
-                        aria-expanded="false"
-                      >
-                        Action
-                      </button>
-                      <ul className="dropdown-menu action">
-                        <li>
-                          <a
-                            onClick={() => {
-                              setCurrentData(el);
-                              showModal(true);
-                            }}
-                            className="dropdown-item"
-                            href="#"
-                          >
-                            edit
-                          </a>
-                        </li>
-                        <li>
-                          <hr className="dropdown-divider" />
-                        </li>
-                        <li>
-                          <a
-                            onClick={() => {
-                              deleteData(el.id);
-                            }}
-                            className="dropdown-item"
-                            href="#"
-                          >
-                            delete
-                          </a>
-                        </li>
-                        <li>
-                          <hr className="dropdown-divider" />
-                        </li>
-                      </ul>
-                    </div>
-                  </td>
+                
                 </tr>
               );
             })}

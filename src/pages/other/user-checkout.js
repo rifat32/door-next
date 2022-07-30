@@ -105,7 +105,7 @@ function valid_postcode(postcode) {
 //  }
 
   apiClient()
-  .post(`${BACKENDAPI}/v1.0/client/orders`, { 
+  .post(`${BACKENDAPI}/v1.0/client/orders/loggedin`, { 
     ...orderInfo,
     cart:tempCarts
 
@@ -132,6 +132,7 @@ function valid_postcode(postcode) {
 			});
 }
 
+const [customerNotFound,setCustomerNotFound] = useState(false)
 useEffect(() => {
   let coupon = localStorage.getItem("coupon")
   console.log("localcoupon",JSON.parse(coupon))
@@ -147,13 +148,37 @@ useEffect(() => {
 
   apiClient().get(`${BACKENDAPI}/v1.0/client/customer/info`)
    .then(response => {
-   const {fname,cname,lname} = response.data.customer
+    if(!response.data.customer) {
+      setCustomerNotFound(true)
+      setOrderInfo({...orderInfo,email:JSON.parse(localStorage.getItem("user")).user.email})
+return
+    }
+   const {
+    fname,
+    cname,
+    lname, 
+    phone,
+   email,
+   total_order,
+   type,
+   billing_address,
+   billing_address2,
+   city,
+   zipcode} = response.data.customer
 
    setOrderInfo({
     ...orderInfo,
     cname,
     fname,
-    lname
+    lname,
+    phone,
+   email,
+   total_order,
+   type,
+   billing_address,
+   billing_address2,
+   city,
+   zipcode
    })
   })
 
@@ -252,7 +277,7 @@ const updateCart = (couponParam) => {
                       placeholder="First name *"
                       value={orderInfo.fname}
                       onChange={handleChange}
-                      readOnly
+                      readOnly={!customerNotFound}
                     />
                     
                     {errors?.fname && (
@@ -275,7 +300,7 @@ const updateCart = (couponParam) => {
                       placeholder="Last name *"
                       value={orderInfo.lname}
                       onChange={handleChange}
-                      readOnly
+                      readOnly={!customerNotFound}
                     />
         {errors?.lname && (
 					<p className="invalid-feedback">{errors.lname[0]}</p>
@@ -296,7 +321,7 @@ const updateCart = (couponParam) => {
                       placeholder="Company Name"
                       value={orderInfo.cname}
                       onChange={handleChange}
-                      readOnly
+                      readOnly={!customerNotFound}
                     />
                      {errors?.cname && (
 					<p className="invalid-feedback">{errors.cname[0]}</p>
@@ -335,6 +360,7 @@ const updateCart = (couponParam) => {
                         
                       value={orderInfo.billing_address}
                       onChange={handleChange}
+                      readOnly={!customerNotFound}
                     />
                     {errors?.billing_address && (
 					<p className="invalid-feedback">{errors.billing_address[0]}</p>
@@ -355,6 +381,7 @@ const updateCart = (couponParam) => {
                       placeholder="Address line2"
                       value={orderInfo.billing_address2}
                       onChange={handleChange}
+                      readOnly={!customerNotFound}
                     />
            {errors?.billing_address2 && (
 					<p className="invalid-feedback">{errors.billing_address2[0]}</p>
@@ -375,6 +402,7 @@ const updateCart = (couponParam) => {
                       placeholder="City / Town *"
                       value={orderInfo.city}
                       onChange={handleChange}
+                      readOnly={!customerNotFound}
                     />
                      {errors?.city && (
 					<p className="invalid-feedback">{errors.city[0]}</p>
@@ -395,6 +423,7 @@ const updateCart = (couponParam) => {
                       placeholder="Postcode / ZIP *"
                       value={orderInfo.zipcode}
                       onChange={handleChange}
+                      readOnly={!customerNotFound}
                     />
                      {errors?.zipcode && (
 					<p className="invalid-feedback">{errors.zipcode[0]}</p>
@@ -415,6 +444,7 @@ const updateCart = (couponParam) => {
                       placeholder="Phone *"
                       value={orderInfo.phone}
                       onChange={handleChange}
+                      readOnly={!customerNotFound}
                     />
                         {errors?.phone && (
 					<p className="invalid-feedback">{errors.phone[0]}</p>
@@ -435,37 +465,13 @@ const updateCart = (couponParam) => {
                       placeholder="Email address *"
                       value={orderInfo.email}
                       onChange={handleChange}
+                      readOnly
                     />
                             {errors?.email && (
 					<p className="invalid-feedback">{errors.email[0]}</p>
 				)}
                   </div>
-                  <div className="form-group">
-                    <label>Guest</label>
-                    <input
-                     
-                      required
-                      type="radio"
-                      name="create_account"
-                     className="mr-5"
-                      value={0}
-                      checked={orderInfo.create_account == "0"}
-                      onChange={handleChange}
-                    /> 
-
-                      <label>Create Account</label>
-                    <input
-                     
-                      required
-                      type="radio"
-                      name="create_account"
-                     
-                      value={1}
-                      checked={orderInfo.create_account == "1"}
-                      onChange={handleChange}
-                    />
-                        
-                  </div>
+                 
                   {
                     orderInfo.create_account == 1?(<>
                      <div className="form-group">
