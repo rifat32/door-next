@@ -118,3 +118,6 @@ color:#c6b478;
 .checkout-content .form-check-label:after{
     background-color:#c6b478;
 }
+.order-complete svg{
+    color:#c6b478;
+}
