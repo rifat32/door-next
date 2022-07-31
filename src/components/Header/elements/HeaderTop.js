@@ -6,8 +6,29 @@ import {
   IoIosHeartEmpty
 } from "react-icons/io";
 import { AiOutlineUser } from "react-icons/ai";
+import { useRouter } from "next/router";
+import { apiClient } from "../../../utils/apiClient";
+import { BACKENDAPI } from "../../../../config";
 
 const HeaderTop = () => {
+  const router = useRouter()
+  const logout = () => {
+    apiClient()
+    .post(`${BACKENDAPI}/v1.0/logout`)
+    .then((response) => {
+      console.log(response);
+    
+    })
+    .catch((err) => {
+      if (err.response) {
+        console.log(err.response);
+      }
+    });
+    localStorage.removeItem("user")
+    localStorage.removeItem("token")
+    router.push(`/other/login`);
+ 
+  }
   return (
     <div className="top-header d-none d-lg-block">
       <Container>
@@ -52,13 +73,21 @@ const HeaderTop = () => {
                     </a>
                   </Link>
                 </li>
-                <li>
+                <li id="web-login" className={localStorage.getItem("token")?"d-none":"d-inline-block"}>
                   <Link href="/other/login">
                     <a>
                       <AiOutlineUser />
-                      <span>Login</span>
+                      <span>Login </span>
                     </a>
                   </Link>
+                </li>
+                <li id="web-logout" className={localStorage.getItem("token")?"d-inline-block":"d-none"}>
+            
+                    <a onClick={logout}>
+                      <AiOutlineUser />
+                      <span>Logout </span>
+                    </a>
+                 
                 </li>
               </ul>
             </div>

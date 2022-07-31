@@ -39,16 +39,17 @@ console.log("citem",cartItem)
 
 
         <div className="product-grid">
+          {console.log("product",product)}
         <Link
               href={`/shop/[slug]?slug=${product.slug}`}
-              as={"/shop/" + product.id}
+              as={"/shop/" + product.slug}
             >
              
               <a>
           <div className="product-grid__image">
             <Link
               href={`/shop/[slug]?slug=${product.slug}`}
-              as={"/shop/" + product.id}
+              as={"/shop/" + product.slug}
             >
              
               <a>
@@ -85,8 +86,8 @@ console.log("citem",cartItem)
                     </a>
                   ) : product.variation && product.variation.length >= 1 ? (
                     <Link
-                      href={`/shop/[slug]?slug=${product.id}`}
-                      as={"/shop/" + product.id}
+                      href={`/shop/[slug]?slug=${product.slug}`}
+                      as={"/shop/" + product.slug}
                     >
                       <a>
                         <i className="icon-wrench" />
@@ -125,8 +126,8 @@ console.log("citem",cartItem)
           <div className="product-grid__info">
             <h6 className="product-title">
               <Link
-                href={`/shop/[slug]?slug=${product.id}`}
-                as={"/shop/" + product.id}
+                href={`/shop/[slug]?slug=${product.slug}`}
+                as={"/shop/" + product.slug}
               >
                 <a>{product.name}</a>
               </Link>
