@@ -119,5 +119,11 @@ color:#c6b478;
     background-color:#c6b478;
 }
 .order-complete svg{
-    color:#c6b478;
+    color:#c2b58c;
+}
+.my-account-content__navigation .nav-link.active{
+    background-color:#c6b478;
+}
+.my-account-content__navigation .nav-link:hover{
+    background-color:#c6b478;
 }
