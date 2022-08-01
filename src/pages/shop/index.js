@@ -297,6 +297,9 @@ const GridLeftSidebar = ({ products }) => {
   //     </div>
   //   }
 
+
+  
+
   return (
     <LayoutOne>
       <div style={{padding:"10px"}}>

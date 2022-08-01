@@ -318,7 +318,9 @@ const GridLeftSidebar = ({ products }) => {
   
   //     </div>
   //   }
-
+if(!currentData.length){
+return <div className="design">No Product Found</div>
+}
   return (
     <LayoutOne>
       {/* breadcrumb */}
@@ -343,6 +345,8 @@ const GridLeftSidebar = ({ products }) => {
                 shopTopFilterStatus={shopTopFilterStatus}
                 setShopTopFilterStatus={setShopTopFilterStatus}
                 layout={layout}
+              
+                products={products} getSortParams={getSortParams}
               />
               {/* shop products */}
 

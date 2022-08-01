@@ -32,9 +32,11 @@ const Checkout = ({ cartItems ,  deleteAllFromCart}) => {
     country:"",
     billing_address:"",
     billing_address2:"",
+    state:"",
     city:"",
     zipcode:"",
     phone:"",
+
     email:"",
     additional_info:"",
     payment_option:"direct bank",
@@ -42,6 +44,7 @@ const Checkout = ({ cartItems ,  deleteAllFromCart}) => {
     create_account:"0",
     password:"",
     password_confirmation:"",
+    address_id:""
 
   })
 
@@ -164,7 +167,9 @@ return
    billing_address,
    billing_address2,
    city,
-   zipcode} = response.data.customer
+   zipcode
+
+  } = response.data.customer
 
    setOrderInfo({
     ...orderInfo,
@@ -236,7 +241,58 @@ const updateCart = (couponParam) => {
  }
 
 
+ 
+const [addresses,setAddresses] = useState([])
+useEffect(() => {
+loadAddress()
+},[])
+const loadAddress = () => {
+  apiClient().get(`${BACKENDAPI}/v1.0/client/addresses`)
+  .then(response => {
+    console.log("address",response.data.data)
+  setAddresses(response.data.data)
+  })
+  .catch(err => {
+  
+  })
+}
 
+const setFormData = ({
+  billing_address,
+  billing_address2,
+  city,
+  zipcode,
+  fname,
+  lname,
+  cname,
+  country,
+  state,
+  phone,
+  id,
+
+}) => {
+  setOrderInfo({
+    ...orderInfo,
+   billing_address,
+   billing_address2,
+   city,
+   zipcode,
+   fname,
+  lname,
+  cname,
+  country,
+  state,
+  phone,
+  address_id:id
+   })
+  
+}
+
+const updateData = (el) => {
+  setTimeout(() => {
+    setFormData(el)
+  },1000)
+}
 
   return (
     <NonUserCheckout setUserFunction={setUserFunction}>
@@ -260,8 +316,44 @@ const updateCart = (couponParam) => {
                 <div className="heading-s1 space-mb--20">
                   <h4>Billing Details</h4>
                 </div>
+                <div className="row">
+                          {
+                            addresses.length?(
+                              addresses.map((el,index) => {
+                              {
+                                (parseInt(el.is_default) && !orderInfo.address_id)?(
+
+                                  updateData(el)
+                                ):(null)
+                              }
+                                return (
+                                  <div className={`col-4 ${parseInt(orderInfo.address_id) == parseInt(el.id)?"bg-dark":""}  `} key={index} onClick={()=>setFormData(el)}>
+                                  <address>
+                                  <p>
+                                    <strong>John Doe</strong>
+                                  </p>
+                                  <p>
+                                    1355 Market St, Suite 900 <br />
+                                    San Francisco, CA 94103
+                                  </p>
+                                  <p>Address:{el.billing_address}</p>
+                                  <p>Address2:{el.billing_address2}</p>
+                                  <p>City:{el.city}</p>
+                                  <p>Zipcode:{el.zipcode}</p>
+
+                                  <p>Mobile: (123) 456-7890</p>
+                                </address>
+                                
+                                  </div>
+                                )
+                              })
+                            ):(null)
+                          }
+                         
+                       
+                        </div>
                 <form>
-                  <div className="form-group">
+                  {/* <div className="form-group">
                     <input
                       type="text"
                       
@@ -284,8 +376,8 @@ const updateCart = (couponParam) => {
 					<p className="invalid-feedback">{errors.fname[0]}</p>
 				)}
                   
-                  </div>
-                  <div className="form-group">
+                  </div> */}
+                  {/* <div className="form-group">
                     <input
                       type="text"
                       required
@@ -305,8 +397,8 @@ const updateCart = (couponParam) => {
         {errors?.lname && (
 					<p className="invalid-feedback">{errors.lname[0]}</p>
 				)}
-                  </div>
-                  <div className="form-group">
+                  </div> */}
+                  {/* <div className="form-group">
                     <input
                       className={
                         errors
@@ -326,7 +418,7 @@ const updateCart = (couponParam) => {
                      {errors?.cname && (
 					<p className="invalid-feedback">{errors.cname[0]}</p>
 				)}
-                  </div>
+                  </div> */}
                   {/* <div className="form-group">
                     <div className="custom_select">
                       <select className="form-control" name="country"     value={orderInfo.country}
@@ -344,7 +436,8 @@ const updateCart = (couponParam) => {
                       </select>
                     </div>
                   </div> */}
-                  <div className="form-group">
+                  
+                  {/* <div className="form-group">
                     <input
                       type="text"
                       className={
@@ -365,8 +458,8 @@ const updateCart = (couponParam) => {
                     {errors?.billing_address && (
 					<p className="invalid-feedback">{errors.billing_address[0]}</p>
 				)}
-                  </div>
-                  <div className="form-group">
+                  </div> */}
+                  {/* <div className="form-group">
                     <input
                       type="text"
                       className={
@@ -386,8 +479,8 @@ const updateCart = (couponParam) => {
            {errors?.billing_address2 && (
 					<p className="invalid-feedback">{errors.billing_address2[0]}</p>
 				)}
-                  </div>
-                  <div className="form-group">
+                  </div> */}
+                  {/* <div className="form-group">
                     <input
                      className={
                       errors
@@ -407,8 +500,8 @@ const updateCart = (couponParam) => {
                      {errors?.city && (
 					<p className="invalid-feedback">{errors.city[0]}</p>
 				)}
-                  </div>
-                  <div className="form-group">
+                  </div> */}
+                  {/* <div className="form-group">
                     <input
                       className={
                         errors
@@ -428,8 +521,8 @@ const updateCart = (couponParam) => {
                      {errors?.zipcode && (
 					<p className="invalid-feedback">{errors.zipcode[0]}</p>
 				)}
-                  </div>
-                  <div className="form-group">
+                  </div> */}
+                  {/* <div className="form-group">
                     <input
                       className={
                         errors
@@ -449,7 +542,7 @@ const updateCart = (couponParam) => {
                         {errors?.phone && (
 					<p className="invalid-feedback">{errors.phone[0]}</p>
 				)}
-                  </div>
+                  </div> */}
                   <div className="form-group">
                     <input
                       className={

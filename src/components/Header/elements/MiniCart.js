@@ -32,8 +32,8 @@ const MiniCart = ({ cartItems, deleteFromCart }) => {
                   <div className="single-item">
                     <div className="single-item__image">
                       <Link
-                        href={`/shop/product-basic/[slug]?slug=${product.slug}`}
-                        as={"/shop/product-basic/" + product.slug}
+                        href={`/shop/[slug]?slug=${product.slug}`}
+                        as={"/shop/" + product.slug}
                       >
                         <a>
                           <img src={`${BACKEND}/${product.image}`} alt="cart_thumb1" />
@@ -42,8 +42,8 @@ const MiniCart = ({ cartItems, deleteFromCart }) => {
                     </div>
                     <div className="single-item__content">
                       <Link
-                        href={`/shop/product-basic/[slug]?slug=${product.slug}`}
-                        as={"/shop/product-basic/" + product.slug}
+                        href={`/shop/[slug]?slug=${product.slug}`}
+                        as={"/shop/" + product.slug}
                       >
                         <a>{product.name}</a>
                       </Link>

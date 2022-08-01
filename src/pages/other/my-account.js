@@ -41,6 +41,8 @@ const MyAccount = () => {
   const [prevPageLink, setPrevPageLink] = useState("");
 
 
+
+
   useEffect(() => {
     loadData(link);
   }, []);
@@ -66,6 +68,73 @@ const MyAccount = () => {
   const viewOrder = (id) => {
     router.push(`/other/order/${id}`);
   };
+  const logout = () => {
+    apiClient()
+    .post(`${BACKENDAPI}/v1.0/logout`)
+    .then((response) => {
+      console.log(response);
+    
+    })
+    .catch((err) => {
+      if (err.response) {
+        console.log(err.response);
+      }
+    });
+    localStorage.removeItem("user")
+    localStorage.removeItem("token")
+    router.push(`/other/login`);
+ 
+  }
+ 
+ const [addressFormData,setAddressFormData] = useState({
+  id:"",
+  billing_address:"",
+  billing_address2:"",
+  city:"",
+  zipcode:"",
+  fname:"",
+    lname:"",
+    cname:"",
+    country:"",
+    state:"",
+    phone:"",
+    is_default:false,
+ })
+const handleSubmit = (e) => {
+e.preventDefault();
+apiClient().post(`${BACKENDAPI}/v1.0/client/addresses`,{...addressFormData})
+.then(response => {
+window.alert("address saved")
+loadAddress()
+})
+.catch(err => {
+
+})
+}
+const handleAddressChange = (e) => {
+  setAddressFormData({...addressFormData,[e.target.name]:e.target.value})
+}
+
+const handleAddressChangeCheck = (e) => {
+  setAddressFormData({...addressFormData,[e.target.name]:e.target.checked})
+}
+const [showAddress,setShowAddress] = useState(false);
+
+const [addresses,setAddresses] = useState([])
+useEffect(() => {
+loadAddress()
+},[])
+const loadAddress = () => {
+  apiClient().get(`${BACKENDAPI}/v1.0/client/addresses`)
+  .then(response => {
+    console.log("address",response.data.data)
+  setAddresses(response.data.data)
+  })
+  .catch(err => {
+  
+  })
+}
+
   return (
     <Authorize setUserFunction={setUserFunction}>
 <LayoutOne>
@@ -133,9 +202,9 @@ const MyAccount = () => {
                           <p>
                             Hello, <strong>{user && user.name}</strong> (If Not{" "}
                             <strong>{user && user.name} !</strong>{" "}
-                            <Link href="/other/login" as="/other/login">
-                              <a className="logout">Logout</a>
-                            </Link>
+                          
+                              <a className="logout" onClick={logout}>Logout</a>
+                           
                             )
                           </p>
                         </div>
@@ -277,21 +346,228 @@ const MyAccount = () => {
                         <h3>Billing Address</h3>
                       </Card.Header>
                       <Card.Body>
-                        <address>
-                          <p>
-                            <strong>John Doe</strong>
-                          </p>
-                          <p>
-                            1355 Market St, Suite 900 <br />
-                            San Francisco, CA 94103
-                          </p>
-                          <p>Mobile: (123) 456-7890</p>
-                        </address>
-                        <a href="#" className="check-btn sqr-btn ">
-                          <FaRegEdit /> Edit Address
-                        </a>
+                        <div className="row">
+                          {
+                            addresses.length?(
+                              addresses.map((el,index) => {
+                                return (
+                                  <div className="col-4" key={index}>
+                                  <address>
+                                  <p>
+                                    <strong>John Doe</strong>
+                                  </p>
+                                  <p>
+                                    1355 Market St, Suite 900 <br />
+                                    San Francisco, CA 94103
+                                  </p>
+                                  <p>Address:{el.billing_address}</p>
+                                  <p>Address2:{el.billing_address2}</p>
+                                  <p>City:{el.city}</p>
+                                  <p>Zipcode:{el.zipcode}</p>
+
+                                  <p>Mobile: (123) 456-7890</p>
+                                </address>
+                                <a href="#" className="check-btn sqr-btn ">
+                                  <FaRegEdit /> Edit Address
+                                </a>
+                                  </div>
+                                )
+                              })
+                            ):(null)
+                          }
+                         
+                       
+                        </div>
+                      
                       </Card.Body>
+                   
+                      <Card.Body>
+                      <button className="btn btn-primary" onClick={() => {setShowAddress(true)}}>Add Address</button>
+                      </Card.Body>
+
+                      {showAddress? (<Card.Body>
+                      <div className="mt-5">
+                    <form onSubmit={handleSubmit}>
+                            <Row>
+                            <Col className="form-group" md={12}>
+                                <label>
+                            First Name
+                                   <span className="required">*</span>
+                                </label>
+                                <input
+                                  required
+                                  className="form-control"
+                                  name="fname"
+                                  type="text"
+                                  value={addressFormData.fname}
+                                  onChange={handleAddressChange}
+                                />
+                              </Col>
+                              <Col className="form-group" md={12}>
+                                <label>
+                            Last Name
+                                   <span className="required">*</span>
+                                </label>
+                                <input
+                                  required
+                                  className="form-control"
+                                  name="lname"
+                                  type="text"
+                                  value={addressFormData.lname}
+                                  onChange={handleAddressChange}
+                                />
+                              </Col>
+                              <Col className="form-group" md={12}>
+                                <label>
+                            Company Name
+                                   <span className="required">*</span>
+                                </label>
+                                <input
+                                  required
+                                  className="form-control"
+                                  name="cname"
+                                  type="text"
+                                  value={addressFormData.cname}
+                                  onChange={handleAddressChange}
+                                />
+                              </Col>
+                              <Col className="form-group" md={12}>
+                                <label>
+                            Country Name
+                                   <span className="required">*</span>
+                                </label>
+                                <input
+                                  required
+                                  className="form-control"
+                                  name="country"
+                                  type="text"
+                                  value={addressFormData.country}
+                                  onChange={handleAddressChange}
+                                />
+                              </Col>
+                              <Col className="form-group" md={12}>
+                                <label>
+                                State
+                                   <span className="required">*</span>
+                                </label>
+                                <input
+                                  required
+                                  className="form-control"
+                                  name="state"
+                                  type="text"
+                                  value={addressFormData.state}
+                                  onChange={handleAddressChange}
+                                />
+                              </Col>
+                              <Col className="form-group" md={12}>
+                                <label>
+                                phone
+                                   <span className="required">*</span>
+                                </label>
+                                <input
+                                  required
+                                  className="form-control"
+                                  name="phone"
+                                  type="text"
+                                  value={addressFormData.phone}
+                                  onChange={handleAddressChange}
+                                />
+                              </Col>
+                              <Col className="form-group" md={12}>
+                                <label>
+                                Billing Address
+                                   <span className="required">*</span>
+                                </label>
+                                <input
+                                  required
+                                  className="form-control"
+                                  name="billing_address"
+                                  type="text"
+                                  value={addressFormData.billing_address}
+                                  onChange={handleAddressChange}
+                                />
+                              </Col>
+                              <Col className="form-group" md={12}>
+                                <label>
+                                  Billing Address2<span className="required">*</span>
+                                </label>
+                                <input
+                                  required
+                                  className="form-control"
+                                
+                                  name="billing_address2"
+                                  type="text"
+                                  value={addressFormData.billing_address2}
+                                  onChange={handleAddressChange}
+                                />
+                              </Col>
+                              <Col className="form-group" md={12}>
+                                <label>
+                                city
+                                  <span className="required">*</span>
+                                </label>
+                                <input
+                                  required
+                                  className="form-control"
+                                  name="city"
+                                  type="text"
+                                  value={addressFormData.city}
+                                  onChange={handleAddressChange}
+                                />
+                              </Col>
+                              <Col className="form-group" md={12}>
+                                <label>
+                                zipcode
+                                  <span className="required">*</span>
+                                </label>
+                                <input
+                                  required
+                                  className="form-control"
+                                  name="zipcode"
+                                  type="text"
+                                  value={addressFormData.zipcode}
+                                  onChange={handleAddressChange}
+                                />
+                              </Col>
+                              <Col className="form-group" md={2}>
+                                <label>
+                                Set Default
+                                 
+                                </label>
+                                <input
+                                  
+                                  className="form-control"
+                                  name="is_default"
+                                  type="checkbox"
+                    
+                                  checked={addressFormData.is_default}
+                                  onChange={handleAddressChangeCheck}
+                                />
+                              </Col>
+                              
+                              <Col md={12}>
+                                <button
+                                  type="submit"
+                                  className="btn btn-fill-out"
+                                  name="submit"
+                                  value="Submit"
+                                >
+                                 Add Address
+                                </button>
+                                <button type="button" className="btn btn-danger" onClick={() => {setShowAddress(false)
+                                 window.scrollTo(0, 0);
+                                }}>Cancel</button>
+                              </Col>
+                            </Row>
+                          </form>
+
+
+                    </div>
+                      </Card.Body>):""}
+                      
                     </Card>
+                   
+                    
                   </Tab.Pane>
                   <Tab.Pane eventKey="accountDetails">
                     <Card className="my-account-content__content">

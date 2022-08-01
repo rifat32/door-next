@@ -12,8 +12,10 @@ import {
   IoLogoTwitter,
   IoLogoGoogleplus,
   IoLogoYoutube,
-  IoLogoInstagram
+  IoLogoInstagram,
+  
 } from "react-icons/io";
+import RightSidebar from "../Shop/RightSidebar";
 
 const ProductDescription = ({
   product,
@@ -31,7 +33,18 @@ const ProductDescription = ({
   productContentButtonStyleClass,
   selectedProductColor,
   setSelectedProductColor,
-  setColorImage
+  setColorImage,
+  errors,
+  handleChange,
+  checkColorNotEpmty,
+  handleSelectHeight,
+  handleChecked,
+  handleSelectOption,
+  heightErr,
+  widthErr,
+  orientations,
+  extraHoleDirections,
+  getHeights
 }) => {
   // const { addToast } = useToasts();
   // const [selectedProductSize, setSelectedProductSize] = useState(
@@ -327,6 +340,21 @@ return result
       ) : (
         ""
       )}
+      <RightSidebar 
+           classList={"d-block d-lg-none"}
+           productNew={product}
+           errors={errors}
+           handleChange={handleChange}
+           checkColorNotEpmty={checkColorNotEpmty}
+           handleSelectHeight={handleSelectHeight}
+           handleChecked={handleChecked}
+           handleSelectOption={handleSelectOption}
+           heightErr={heightErr}
+           widthErr={widthErr}
+           orientations={orientations}
+           extraHoleDirections={extraHoleDirections}
+           getHeights={getHeights}
+           />
       <hr />
       {product.affiliateLink ? (
         <div className="product-content__quality">
@@ -379,6 +407,7 @@ return result
                 </button>
               </div>
             </div>
+            
             {productStock && productStock > 0 ? (
               <button
                 onClick={() =>
