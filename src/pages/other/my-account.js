@@ -376,21 +376,23 @@ const handleAccountDetailsSubmit = (e) => {
                             addresses.length?(
                               addresses.map((el,index) => {
                                 return (
-                                  <div className="col-4" key={index}>
+                                  <div className="col-lg-4 col-sm-12 mt-3 p-2" key={index}>
                                   <address>
-                                  <p>
-                                    <strong>John Doe</strong>
-                                  </p>
-                                  <p>
+                                  <div>
+                            
+                                    <strong>{el.fname}{" "}{el.lname} {el.is_default == 1?(" (Default Address) "):("")}</strong>
+                                  </div>
+                                  {/* <p>
                                     1355 Market St, Suite 900 <br />
                                     San Francisco, CA 94103
-                                  </p>
-                                  <p>Address:{el.billing_address}</p>
-                                  <p>Address2:{el.billing_address2}</p>
-                                  <p>City:{el.city}</p>
-                                  <p>Zipcode:{el.zipcode}</p>
-
-                                  <p>Mobile: (123) 456-7890</p>
+                                  </p> */}
+                                  <div>Address:{" "}{el.billing_address}</div>
+                                  <div>Address2:{" "}{el.billing_address2&&el.billing_address2}</div>
+                                  <div>City:{" "}{el.city}</div>
+                                  <div>State/Province:{" "}{el.state}</div>
+                                  <div>Zipcode:{" "}{el.zipcode}</div>
+                                  <div>Country{" "}{el.country}</div>
+                                  <div>Mobile:{" "} {el.phone}</div>
                                 </address>
                                 <a href="#" className="check-btn sqr-btn ">
                                   <FaRegEdit /> Edit Address
@@ -486,7 +488,7 @@ const handleAccountDetailsSubmit = (e) => {
                               </Col>
                               <Col className="form-group" md={12}>
                                 <label>
-                                phone
+                                Phone Number
                                    <span className="required">*</span>
                                 </label>
                                 <input
@@ -514,10 +516,9 @@ const handleAccountDetailsSubmit = (e) => {
                               </Col>
                               <Col className="form-group" md={12}>
                                 <label>
-                                  Billing Address2<span className="required">*</span>
+                                  Billing Address2
                                 </label>
                                 <input
-                                  required
                                   className="form-control"
                                 
                                   name="billing_address2"
@@ -528,7 +529,7 @@ const handleAccountDetailsSubmit = (e) => {
                               </Col>
                               <Col className="form-group" md={12}>
                                 <label>
-                                city
+                                City
                                   <span className="required">*</span>
                                 </label>
                                 <input
@@ -542,7 +543,7 @@ const handleAccountDetailsSubmit = (e) => {
                               </Col>
                               <Col className="form-group" md={12}>
                                 <label>
-                                zipcode
+                                Zipcode
                                   <span className="required">*</span>
                                 </label>
                                 <input
@@ -555,19 +556,20 @@ const handleAccountDetailsSubmit = (e) => {
                                 />
                               </Col>
                               <Col className="form-group" md={2}>
+                              <input
+                                  
+                                  className=""
+                                  name="is_default"
+                                  type="checkbox"
+                                  style={{marginRight:"4px"}}
+                                  checked={addressFormData.is_default}
+                                  onChange={handleAddressChangeCheck}
+                                />
                                 <label>
                                 Set Default
                                  
                                 </label>
-                                <input
-                                  
-                                  className="form-control"
-                                  name="is_default"
-                                  type="checkbox"
-                    
-                                  checked={addressFormData.is_default}
-                                  onChange={handleAddressChangeCheck}
-                                />
+                               
                               </Col>
                               
                               <Col md={12}>
