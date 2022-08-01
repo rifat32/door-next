@@ -130,13 +130,13 @@ const [order, setOrder] = useState(null);
         </ol>
       </BreadcrumbOne>
 
-      <main id="main" className="main">
+      <main id="main" className="main container">
         {/* End Page Title */}
         <section className="section">
           {order && (
             <div className="row">
               <div className="col-12">
-                <div className="card">
+                <div className="card" style={{border:"none"}}>
                   <div className="card-body">
                     {/* <ListOrderPageComponent /> */}
                     <div className="">
@@ -146,16 +146,16 @@ const [order, setOrder] = useState(null);
                             #{order.id}
                           </span>
                         </div>
-                        <div className="m-2">
+                       {/*  <div className="m-2">
                           {" "}
-                          <span className=" position-absolute  p-2 bg-warning border border-light rounded-circle mt-1"></span>
+                          
                           <span className="badge bg-light text-dark ps-4 ">
                             Unpaid
                           </span>
-                        </div>
+                        </div> */}
 
                         <div className="m-2">
-                          <span className=" position-absolute  p-2 bg-warning border border-light rounded-circle mt-1"></span>
+                        
                           <span className="badge bg-light text-dark ps-4 ">
                             {order.status}
                           </span>
@@ -289,7 +289,7 @@ const [order, setOrder] = useState(null);
                                 }
                               )}
 
-                              <div className="row my-2">
+                             {/*  <div className="row my-2">
                                 <div className="col-6 offset-6">
                                   
                                 <div className="col-md-12">
@@ -314,7 +314,7 @@ const [order, setOrder] = useState(null);
 			</div>
                                   
                                 </div>
-                              </div>
+                              </div> */}
                             </div>
                             {/* second row first column */}
                             <div className="col-12 shadow-sm border mt-3 p-3">
@@ -389,7 +389,7 @@ const [order, setOrder] = useState(null);
                                 </div>
                               </div>
 
-                              <hr />
+                              {/* <hr />
                               <div className="row justify-content-between p-1">
                                 <div className="col-4">
                                   <small> Paid By Customer</small>
@@ -401,7 +401,7 @@ const [order, setOrder] = useState(null);
                                     orderInfo.tax +
                                     orderInfo.shipping}
                                 </div>
-                              </div>
+                              </div> */}
                             </div>
                             {/* <div className="col-12 shadow-sm border mt-3" >
 <div >
@@ -441,9 +441,9 @@ const [order, setOrder] = useState(null);
                           </div>
                         </div>
 
-                        <div className="col-4 ms-2">
+                        <div className="col-4" style={{marginLeft:"10px"}}>
                           <div className="row">
-                            <div className="col-12 shadow-sm border p-2">
+{/*                             <div className="col-12 shadow-sm border p-2">
                               <h6 style={{ fontWeight: "bold" }}>Notes</h6>
                               <p className="m-0 p-0">
                                 {order.additional_info ? (
@@ -454,9 +454,9 @@ const [order, setOrder] = useState(null);
                                   </small>
                                 )}
                               </p>
-                            </div>
-                            <div className="col-12 shadow-sm border p-2 mt-3">
-                              <h6 style={{ fontWeight: "bold" }}>Customer</h6>
+                            </div> */}
+                            <div className="col-12 shadow-sm border p-2 ">
+                              {/* <h6 style={{ fontWeight: "bold" }}>Customer</h6>
                               <p className="p-0 m-0">
                                 {order.fname + " " + order.lname}
                               </p>
@@ -480,8 +480,8 @@ const [order, setOrder] = useState(null);
                                 </p>
                               ) : (
                                 ""
-                              )}
-                              <hr />
+                              )} */}
+                              
                               <h6 style={{ fontWeight: "bold" }}>
                                 Shipping Address
                               </h6>

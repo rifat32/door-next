@@ -127,3 +127,7 @@ color:#c6b478;
 .my-account-content__navigation .nav-link:hover{
     background-color:#c6b478;
 }
+.btn-primary:focus, .btn-primary.focus{
+    background-color:#c2b59c;
+    border:none;
+}
