@@ -44,7 +44,9 @@ const ProductDescription = ({
   widthErr,
   orientations,
   extraHoleDirections,
-  getHeights
+  getHeights,
+  setCustomHeight,
+  customHeight
 }) => {
   // const { addToast } = useToasts();
   // const [selectedProductSize, setSelectedProductSize] = useState(
@@ -220,7 +222,9 @@ return result
               <span className="on-sale">{CURRENCY}{product.discount}% Off</span>
             </Fragment>
           ) : (
-            <span className="price">{CURRENCY}{productPrice}</span>
+            <span className="price">{CURRENCY}{productPrice} 
+            {/* {product.qty} */}
+            </span>
           )}
         </div>
         {product.rating && product.rating > 0 ? (
@@ -354,6 +358,8 @@ return result
            orientations={orientations}
            extraHoleDirections={extraHoleDirections}
            getHeights={getHeights}
+           customHeight={customHeight}
+           setCustomHeight={setCustomHeight}
            />
       <hr />
       {product.affiliateLink ? (
@@ -408,7 +414,7 @@ return result
               </div>
             </div>
             
-            {productStock && productStock > 0 ? (
+            {product.qty  && product.qty  > 0 ? (
               <button
                 onClick={() =>
                  {

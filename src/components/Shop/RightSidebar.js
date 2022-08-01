@@ -16,7 +16,9 @@ const RightSidebar = ({
   widthErr,
   orientations,
   extraHoleDirections,
-  getHeights
+  getHeights,
+  setCustomHeight,
+  customHeight
 }) => {
   return (
     <Col xl={3} lg={4} className={`space-mt-mobile-only--60 ${classList}`} >
@@ -50,7 +52,7 @@ const RightSidebar = ({
          >
          Please Select
        </option>
-       {productNew.variation.map((el, index) => { 
+       {productNew.is_custom_size?(null):( productNew.variation.map((el, index) => { 
        if(!productNew.selectedProductColor) {
          return <></>;
          return		(<option
@@ -66,7 +68,9 @@ const RightSidebar = ({
        }
 
    
-})}
+}))
+       }
+     
      </select>
      {errors?.selectedHeight && (
        <div className="invalid-feedback">{errors.selectedHeight[0]}</div>
@@ -100,25 +104,28 @@ const RightSidebar = ({
                 >
                 Please Select
               </option>
-              {productNew.variation.map((el, index) => {
+              {
+                productNew.is_custom_size?(null):(productNew.variation.map((el, index) => {
                  
-                 if(el.id == productNew.selectedHeight) {
-                
-               return    el.variation_value_template.map((el2,index )=> {
-                     
-                     return (<option
-                       key={index}
-                       value={el2.id}
-                       style={{ textTransform: "uppercase" }}>
-                       {el2.name}
-                     </option>)
-                   })
-                  
-                 } else {
-                   return <></>
-                 }
+                  if(el.id == productNew.selectedHeight) {
+                 
+                return    el.variation_value_template.map((el2,index )=> {
+                      
+                      return (<option
+                        key={index}
+                        value={el2.id}
+                        style={{ textTransform: "uppercase" }}>
+                        {el2.name}
+                      </option>)
+                    })
+                   
+                  } else {
+                    return <></>
+                  }
+               
+               }))
+              }
               
-              })}
             </select>
             {errors?.selectedWidth && (
               <div className="invalid-feedback">{errors.selectedWidth[0]}</div>
@@ -181,7 +188,7 @@ const RightSidebar = ({
        id="custom_height"
        name="custom_height"
        onChange={handleChange}
-       value={productNew.custom_height}
+       value={customHeight}
      />
 </div>
     

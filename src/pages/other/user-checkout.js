@@ -294,6 +294,41 @@ const updateData = (el) => {
   },1000)
 }
 
+
+const [showAddress,setShowAddress] = useState(false);
+const [addressFormData,setAddressFormData] = useState({
+  id:"",
+  billing_address:"",
+  billing_address2:"",
+  city:"",
+  zipcode:"",
+  fname:"",
+    lname:"",
+    cname:"",
+    country:"",
+    state:"",
+    phone:"",
+    is_default:false,
+ })
+const handleAddressSubmit = (e) => {
+  e.preventDefault();
+  apiClient().post(`${BACKENDAPI}/v1.0/client/addresses`,{...addressFormData})
+  .then(response => {
+  window.alert("address saved")
+  setShowAddress(false)
+  loadAddress()
+  })
+  .catch(err => {
+  
+  })
+  }
+  const handleAddressChange = (e) => {
+    setAddressFormData({...addressFormData,[e.target.name]:e.target.value})
+  }
+  const handleAddressChangeCheck = (e) => {
+    setAddressFormData({...addressFormData,[e.target.name]:e.target.checked})
+  }
+  
   return (
     <NonUserCheckout setUserFunction={setUserFunction}>
  <LayoutOne>
@@ -352,6 +387,188 @@ const updateData = (el) => {
                          
                        
                         </div>
+                        <div className="row">
+                        <button className="btn btn-primary" onClick={() => {setShowAddress(true)}}>Add Address</button>
+                        </div>
+                        {showAddress? (<>
+                      <div className="mt-5">
+                    <form onSubmit={handleAddressSubmit}>
+                            <Row>
+                            <Col className="form-group" md={12}>
+                                <label>
+                            First Name
+                                   <span className="required">*</span>
+                                </label>
+                                <input
+                                  required
+                                  className="form-control"
+                                  name="fname"
+                                  type="text"
+                                  value={addressFormData.fname}
+                                  onChange={handleAddressChange}
+                                />
+                              </Col>
+                              <Col className="form-group" md={12}>
+                                <label>
+                            Last Name
+                                   <span className="required">*</span>
+                                </label>
+                                <input
+                                  required
+                                  className="form-control"
+                                  name="lname"
+                                  type="text"
+                                  value={addressFormData.lname}
+                                  onChange={handleAddressChange}
+                                />
+                              </Col>
+                              <Col className="form-group" md={12}>
+                                <label>
+                            Company Name
+                                   <span className="required">*</span>
+                                </label>
+                                <input
+                                  required
+                                  className="form-control"
+                                  name="cname"
+                                  type="text"
+                                  value={addressFormData.cname}
+                                  onChange={handleAddressChange}
+                                />
+                              </Col>
+                              <Col className="form-group" md={12}>
+                                <label>
+                            Country Name
+                                   <span className="required">*</span>
+                                </label>
+                                <input
+                                  required
+                                  className="form-control"
+                                  name="country"
+                                  type="text"
+                                  value={addressFormData.country}
+                                  onChange={handleAddressChange}
+                                />
+                              </Col>
+                              <Col className="form-group" md={12}>
+                                <label>
+                                State
+                                   <span className="required">*</span>
+                                </label>
+                                <input
+                                  required
+                                  className="form-control"
+                                  name="state"
+                                  type="text"
+                                  value={addressFormData.state}
+                                  onChange={handleAddressChange}
+                                />
+                              </Col>
+                              <Col className="form-group" md={12}>
+                                <label>
+                                phone
+                                   <span className="required">*</span>
+                                </label>
+                                <input
+                                  required
+                                  className="form-control"
+                                  name="phone"
+                                  type="text"
+                                  value={addressFormData.phone}
+                                  onChange={handleAddressChange}
+                                />
+                              </Col>
+                              <Col className="form-group" md={12}>
+                                <label>
+                                Billing Address
+                                   <span className="required">*</span>
+                                </label>
+                                <input
+                                  required
+                                  className="form-control"
+                                  name="billing_address"
+                                  type="text"
+                                  value={addressFormData.billing_address}
+                                  onChange={handleAddressChange}
+                                />
+                              </Col>
+                              <Col className="form-group" md={12}>
+                                <label>
+                                  Billing Address2<span className="required">*</span>
+                                </label>
+                                <input
+                                  required
+                                  className="form-control"
+                                
+                                  name="billing_address2"
+                                  type="text"
+                                  value={addressFormData.billing_address2}
+                                  onChange={handleAddressChange}
+                                />
+                              </Col>
+                              <Col className="form-group" md={12}>
+                                <label>
+                                city
+                                  <span className="required">*</span>
+                                </label>
+                                <input
+                                  required
+                                  className="form-control"
+                                  name="city"
+                                  type="text"
+                                  value={addressFormData.city}
+                                  onChange={handleAddressChange}
+                                />
+                              </Col>
+                              <Col className="form-group" md={12}>
+                                <label>
+                                zipcode
+                                  <span className="required">*</span>
+                                </label>
+                                <input
+                                  required
+                                  className="form-control"
+                                  name="zipcode"
+                                  type="text"
+                                  value={addressFormData.zipcode}
+                                  onChange={handleAddressChange}
+                                />
+                              </Col>
+                              <Col className="form-group" md={2}>
+                                <label>
+                                Set Default
+                                 
+                                </label>
+                                <input
+                                  
+                                  className="form-control"
+                                  name="is_default"
+                                  type="checkbox"
+                    
+                                  checked={addressFormData.is_default}
+                                  onChange={handleAddressChangeCheck}
+                                />
+                              </Col>
+                              
+                              <Col md={12}>
+                                <button
+                                  type="submit"
+                                  className="btn btn-fill-out"
+                                  name="submit"
+                                  value="Submit"
+                                >
+                                 Add Address
+                                </button>
+                                <button type="button" className="btn btn-danger" onClick={() => {setShowAddress(false)
+                                 window.scrollTo(0, 0);
+                                }}>Cancel</button>
+                              </Col>
+                            </Row>
+                          </form>
+
+
+                    </div>
+                      </>):""}
                 <form>
                   {/* <div className="form-group">
                     <input

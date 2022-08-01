@@ -39,27 +39,9 @@ const GridLeftSidebar = ({ products }) => {
   const getSortParams = (sortType, sortValue) => {
 
     let params = currentLink.split("?")[1];
-    // category sort
-    if(sortType == "category"){
-      
-      let paramsArray = params.split("&&")
-      let finalParamsArray = paramsArray.filter(el => {
-        return el.split("=")[0] !== "category"
-       
-      })
-      
-      params =   finalParamsArray.join("&&")
-     
-      params = params.concat(`&&category=${sortValue}`)
-
-  
-
-      setCurrentLink(currentLink.split("?")[0]
-      .concat("?")
-      .concat(params))
     
-    }
-      // end category sort
+  
+   
        // style sort
     if(sortType == "style"){
       
@@ -99,6 +81,72 @@ const GridLeftSidebar = ({ products }) => {
     setSortValue(sortValue);
   };
 
+
+
+
+  // const getSortParams = (sortType, sortValue) => {
+
+  //   let params = currentLink.split("?")[1];
+  //   // category sort
+  //   if(sortType == "category"){
+      
+  //     let paramsArray = params.split("&&")
+  //     let finalParamsArray = paramsArray.filter(el => {
+  //       return el.split("=")[0] !== "category"
+       
+  //     })
+      
+  //     params =   finalParamsArray.join("&&")
+     
+  //     params = params.concat(`&&category=${sortValue}`)
+
+  
+
+  //     setCurrentLink(currentLink.split("?")[0]
+  //     .concat("?")
+  //     .concat(params))
+    
+  //   }
+  //     // end category sort
+  //      // style sort
+  //   if(sortType == "style"){
+      
+  //     let paramsArray = params.split("&&")
+  //     let finalParamsArray = paramsArray.filter(el => {
+  //       return el.split("=")[0] !== "style"
+       
+  //     })
+  //     params =   finalParamsArray.join("&&")
+  //     params = params.concat(`&&style=${sortValue}`)
+  //     setCurrentLink(currentLink.split("?")[0]
+  //     .concat("?")
+  //     .concat(params))
+    
+  //   }
+  //     // end style sort
+  //          // color sort
+  //   if(sortType == "color"){
+      
+  //     let paramsArray = params.split("&&")
+  //     let finalParamsArray = paramsArray.filter(el => {
+  //       return el.split("=")[0] !== "color"
+       
+  //     })
+  //     params =   finalParamsArray.join("&&")
+  //     params = params.concat(`&&color=${sortValue}`)
+  //     setCurrentLink(currentLink.split("?")[0]
+  //     .concat("?")
+  //     .concat(params))
+    
+  //   }
+  //     // end color sort
+
+      
+
+  //   setSortType(sortType);
+  //   setSortValue(sortValue);
+  // };
+
   const getFilterSortParams = (sortType, sortValue) => {
     setFilterSortType(sortType);
     setFilterSortValue(sortValue);
@@ -118,7 +166,7 @@ const GridLeftSidebar = ({ products }) => {
 
   const [nextPageLink, setNextPageLink] = useState("");
 	const [prevPageLink, setPrevPageLink] = useState("");
-  const [currentLink, setCurrentLink] = useState(`${BACKENDAPI}/v1.0/client/products/pagination/${perPage}?page=1&&category=&&aa=bb`);
+  const [currentLink, setCurrentLink] = useState(`${BACKENDAPI}/v1.0/client/products/pagination/${perPage}?page=1&&category_name=${slug}&&aa=bb`);
   // useEffect(() => {
 	// 	loadData(perPage);
 	// }, []);
@@ -146,7 +194,7 @@ const GridLeftSidebar = ({ products }) => {
 
 
 
-    loadData(`${BACKENDAPI}/v1.0/client/products/pagination/${perPage}?page=1&&category_name=${slug}&&aa=bb`)
+    loadData(currentLink)
 
     
     
@@ -318,9 +366,9 @@ const GridLeftSidebar = ({ products }) => {
   
   //     </div>
   //   }
-if(!currentData.length){
-return <div className="design">No Product Found</div>
-}
+// if(!currentData.length){
+// return <div className="design">No Product Found</div>
+// }
   return (
     <LayoutOne>
       {/* breadcrumb */}
@@ -362,7 +410,8 @@ return <div className="design">No Product Found</div>
 						</div>
 					</div>
 				):(
-          <ShopProducts layout={layout} products={currentData} /> 
+          currentData.length?( <ShopProducts layout={layout} products={currentData}  /> ):("No Product Found")
+         
         )
         }
              
@@ -428,7 +477,7 @@ return <div className="design">No Product Found</div>
             <Col lg={3} className="order-lg-first mt-4 pt-2 mt-lg-0 pt-lg-0">
               {/* sidebar */}
 
-              <Sidebar products={products} getSortParams={getSortParams} />
+              <Sidebar hideCategory={true} products={products} getSortParams={getSortParams} />
             </Col>
           </Row>
         </Container>

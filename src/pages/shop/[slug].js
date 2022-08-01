@@ -152,7 +152,8 @@ const extraHoleDirections = [
 			.then((response) => {
 				console.log(response);
       
-				const {id,name,category_id,style_id,sku,description,type,product_variations,variations,image,colors,status,is_featured,category,images,style,options
+				const {
+          id,name,category_id,style_id,sku,description,type,product_variations,variations,image,colors,status,is_featured,category,images,style,options
         
           ,
           length_lower_limit,
@@ -285,6 +286,7 @@ const tempOptions = JSON.stringify(options)
   const [widthErr,setWidthErr] = useState(null)
   
   const [productVariation,setProductVariation] = useState(null)
+  const [customHeight,setCustomHeight] = useState("")
   const handleChange = (e) => {
     if(e.target.name == "selected_length") {
       if( parseInt(e.target.value) > productNew.length_upper_limit ){
@@ -299,14 +301,14 @@ return;
 
 
     if(e.target.name == "custom_height") {
-
+      setCustomHeight(e.target.value)
       let color = productNew.colors.find(el => {
         console.log(el)
            return   el.color.code == productNew.selectedProductColor
       })
                  console.log("ccc",color)
-let final_color = color.color.id;
- if(!parseInt(color.is_variation_specific)) {
+let final_color = color?.color?.id;
+ if(!parseInt(color?.is_variation_specific)) {
   final_color = ""
  }
 
@@ -319,20 +321,54 @@ let final_color = color.color.id;
     setHeightErr(null)
   
     setProductVariation(response.data.product)
-  
+    if(productNew.custom_width){
+    
+
+      apiClient()
+      .get(`${BACKENDAPI}/v1.0/client/check-width?product_id=${productNew.id}&&height=${e.target.value}&&width=${productNew.custom_width}&&product_variation_id=${response.data.product.id}`)
+      .then((response) => {
+        console.log(response.data.product)
+if(response.data.product){
+  setWidthErr(null)
+
+  setProductData({
+    ...productNew,
+    qty:response.data.product.qty,
+    price:response.data.product.price,
+    selectedHeight:response.data.product.product_variation_id,
+    selectedWidth:response.data.product.id,
+    custom_height:e.target.value
+  })
+
+} else {
+  setWidthErr("no product found")
+setProductData({
+    ...productNew,
+    price:0,
+    selectedHeight:0,
+    selectedWidth:0,
+    custom_height:e.target.value
+  })
+}
+
+      })
+    }
+
+
   } else {
     setHeightErr("no product found")
     setProductData({
       ...productNew,
       custom_height:e.target.value,
       price:0,
+      qty:0,
       selectedHeight:0,
       selectedWidth:0,
     })
   }
   
         })
-    
+     
     
       } else {
         window.alert("please select a color")
@@ -358,6 +394,7 @@ let final_color = color.color.id;
  
     setProductData({
       ...productNew,
+      qty:response.data.product.qty,
       price:response.data.product.price,
       selectedHeight:response.data.product.product_variation_id,
       selectedWidth:response.data.product.id,
@@ -387,17 +424,19 @@ let final_color = color.color.id;
 		 setProductData({ ...productNew, [e.target.name]: e.target.value });
      if(e.target.name == "selectedWidth"){
        let price = 0;
+       let qty=0;
        productNew.variation.map(el => {
          if(el.id == productNew.selectedHeight){
            el.variation_value_template.map(el2 => {
              if(el2.id == e.target.value){
                price = el2.price
+               qty = el2.qty
              }
            })
          }
        })
        
-        setProductData({ ...productNew,[e.target.name]: e.target.value, price})
+        setProductData({ ...productNew,[e.target.name]: e.target.value, price,qty})
      }
 	};
   const setSelectedProductColor = (value) => {
@@ -580,6 +619,8 @@ if(!loading){
                     orientations={orientations}
                     extraHoleDirections={extraHoleDirections}
                     getHeights={getHeights}
+                    customHeight={customHeight}
+           setCustomHeight={setCustomHeight}
                   />
                   
                 </Col>
@@ -619,8 +660,8 @@ if(!loading){
            orientations={orientations}
            extraHoleDirections={extraHoleDirections}
            getHeights={getHeights}
-           
-           
+           customHeight={customHeight}
+           setCustomHeight={setCustomHeight}
            />
           </Row>
         </Container>

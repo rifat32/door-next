@@ -15,7 +15,7 @@ import { ProductRating } from "../../components/Product";
 import { apiClient } from "../../utils/apiClient";
 import { BACKENDAPI } from "../../../config";
 
-const Sidebar = ({ products, getSortParams }) => {
+const Sidebar = ({ products, getSortParams, hideCategory }) => {
   const [categories, setCategories ] = useState([])
   const [styles, setStyles ] = useState([])
   const [colors, setColors ] = useState([])
@@ -73,7 +73,8 @@ useEffect(
 
   return (
     <div className="sidebar">
-      <div className="widget">
+      {
+        !hideCategory?( <div className="widget">
         <h5 className="widget__title">Categories</h5>
         {categories.length > 0 ? (
           <ul className="widget__categories">
@@ -109,7 +110,9 @@ useEffect(
         ) : (
           "No category found"
         )}
-      </div>
+      </div>):(null)
+      }
+     
       <div className="widget">
         <h5 className="widget__title">Styles</h5>
         {styles.length > 0 ? (

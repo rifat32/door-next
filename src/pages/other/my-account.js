@@ -128,10 +128,35 @@ const loadAddress = () => {
   apiClient().get(`${BACKENDAPI}/v1.0/client/addresses`)
   .then(response => {
     console.log("address",response.data.data)
+    setShowAddress(false)
   setAddresses(response.data.data)
   })
   .catch(err => {
   
+  })
+}
+
+const [accountDetails,setAccountDetails] = useState({
+  name: "",
+  current_password:"",
+  password: "",
+  password_confirmation: "",
+})
+
+const handleAccountDetailsChange = (e) => {
+setAccountDetails({...accountDetails,[e.target.name]:e.target.value})
+}
+const handleAccountDetailsSubmit = (e) => {
+  e.preventDefault()
+  apiClient().post(`${BACKENDAPI}/v1.0/client/account-details`,{...accountDetails})
+  .then(response => {
+    
+  window.alert("Details updated")
+  
+  })
+  .catch(err => {
+    console.log(err.response)
+    window.alert(err.response.data.message)
   })
 }
 
@@ -576,53 +601,23 @@ const loadAddress = () => {
                       </Card.Header>
                       <Card.Body>
                         <div className="account-details-form">
-                          <form method="post" name="enq">
-                            <Row>
+                          <form onSubmit={handleAccountDetailsSubmit} >
+                            <Row >
                               <Col className="form-group" md={6}>
                                 <label>
-                                  First Name <span className="required">*</span>
+                                   Name <span className="required">*</span>
                                 </label>
                                 <input
                                   required
                                   className="form-control"
                                   name="name"
                                   type="text"
+                                  value={accountDetails.name}
+                                  onChange={handleAccountDetailsChange}
                                 />
                               </Col>
-                              <Col className="form-group" md={6}>
-                                <label>
-                                  Last Name <span className="required">*</span>
-                                </label>
-                                <input
-                                  required
-                                  className="form-control"
-                                  name="phone"
-                                />
-                              </Col>
-                              <Col className="form-group" md={12}>
-                                <label>
-                                  Display Name{" "}
-                                  <span className="required">*</span>
-                                </label>
-                                <input
-                                  required
-                                  className="form-control"
-                                  name="dname"
-                                  type="text"
-                                />
-                              </Col>
-                              <Col className="form-group" md={12}>
-                                <label>
-                                  Email Address{" "}
-                                  <span className="required">*</span>
-                                </label>
-                                <input
-                                  required
-                                  className="form-control"
-                                  name="email"
-                                  type="email"
-                                />
-                              </Col>
+                         
+                              
                               <Col className="form-group" md={12}>
                                 <label>
                                   Current Password{" "}
@@ -631,8 +626,10 @@ const loadAddress = () => {
                                 <input
                                   required
                                   className="form-control"
-                                  name="password"
-                                  type="password"
+                                  name="current_password"
+                                  type="current_password"
+                                  value={accountDetails.current_password}
+                                  onChange={handleAccountDetailsChange}
                                 />
                               </Col>
                               <Col className="form-group" md={12}>
@@ -643,8 +640,10 @@ const loadAddress = () => {
                                 <input
                                   required
                                   className="form-control"
-                                  name="npassword"
+                                  name="password"
                                   type="password"
+                                  value={accountDetails.password}
+                                  onChange={handleAccountDetailsChange}
                                 />
                               </Col>
                               <Col className="form-group" md={12}>
@@ -655,8 +654,10 @@ const loadAddress = () => {
                                 <input
                                   required
                                   className="form-control"
-                                  name="cpassword"
+                                  name="password_confirmation"
                                   type="password"
+                                  value={accountDetails.password_confirmation}
+                                  onChange={handleAccountDetailsChange}
                                 />
                               </Col>
                               <Col md={12}>

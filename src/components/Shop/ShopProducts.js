@@ -7,6 +7,7 @@ const ShopProducts = ({ products, layout }) => {
  
   return (
     <div className="shop-products">
+      
       <Row className={layout}>
         <ProductGridListWrapper
           products={products}
