@@ -438,7 +438,7 @@ const loadAddress = () => {
                             Country Name
                                    <span className="required">*</span>
                                 </label>
-                                <select
+                                <input
                                   required
                                   className="form-control"
                                   name="country"
