@@ -1,6 +1,8 @@
 import { Fragment, useEffect, useState } from "react";
 import { IoIosArrowForward } from "react-icons/io";
 import Link from "next/link";
+import Tooltip from 'react-bootstrap/Tooltip';
+import OverlayTrigger from 'react-bootstrap/OverlayTrigger'
 import {
   getIndividualCategories,
   getIndividualTags,
@@ -85,6 +87,7 @@ useEffect(
                       onClick={(e) => {
                         getSortParams("category", category.id);
                         setActiveSort(e);
+                        window.scrollTo({top:screen.height-50,behavior: 'smooth'});
                       }}
                     >
                       <IoIosArrowForward />
@@ -99,6 +102,7 @@ useEffect(
                 onClick={(e) => {
                   getSortParams("category", "");
                   setActiveSort(e);
+                  window.scrollTo({top:screen.height-50,behavior: 'smooth'});
                 }}
               >
                 <IoIosArrowForward />
@@ -122,6 +126,7 @@ useEffect(
                       onClick={(e) => {
                         getSortParams("style", el.id);
                         setActiveStyleSort(e);
+                        window.scrollTo({top:screen.height-50,behavior: 'smooth'});
                       }}
                     >
                       <IoIosArrowForward />
@@ -136,6 +141,7 @@ useEffect(
                 onClick={(e) => {
                   getSortParams("style", "");
                   setActiveSort(e);
+                  window.scrollTo({top:screen.height-50,behavior: 'smooth'});
                 }}
               >
                 <IoIosArrowForward />
@@ -190,23 +196,37 @@ useEffect(
           <ul className="widget__colors row">
             {colors.map((color, key) => {
               return (
+                
                 <li key={key} className="col-1">
+                  <OverlayTrigger
+                overlay={(props) => (
+                  <Tooltip {...props}>
+                    {color.name}
+                  </Tooltip>
+                )}
+                placement="top"
+                >
                   <button
                     onClick={(e) => {
                       getSortParams("color", color.id);
                       setActiveSort(e);
+                      window.scrollTo({top:screen.height-50,behavior: 'smooth'});
                     }}
                     style={{ backgroundColor: color.code ,   border:"1px solid black",}}
                     
                   ></button>
+                  </OverlayTrigger>
                 </li>
+                
               );
             })}
             <li className="col-1">
               <button
+             
                 onClick={(e) => {
                   getSortParams("color", "");
                   setActiveSort(e);
+                  window.scrollTo({top:screen.height-50,behavior: 'smooth'});
                 }}
               >
                 x

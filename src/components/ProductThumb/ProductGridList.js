@@ -5,7 +5,8 @@ import ProductModal from "./elements/ProductModal";
 import { ProductRating } from "../Product";
 import { BACKEND } from "../../../config";
 import { CURRENCY } from "../../../config";
-
+import Tooltip from 'react-bootstrap/Tooltip';
+import OverlayTrigger from 'react-bootstrap/OverlayTrigger'
 const ProductGridList = ({
   product,
   discountedPrice,
@@ -26,7 +27,7 @@ const ProductGridList = ({
   const [modalShow, setModalShow] = useState(false);
   const [colorImage, setColorImage] = useState("");
 console.log("citem",cartItem)
- 
+
   return (
     <Fragment>
       <Col
@@ -147,13 +148,21 @@ console.log("citem",cartItem)
               <ProductRating ratingValue={product.rating} />
               <span className="rating-num">({product.ratingCount})</span>
             </div> */}
+            <div className="colorswatchdown" ></div>
             {product.colors ? (
               <div className="product-switch-wrap">
                 <ul className="row">
                   {product.colors.map((single, key) => {
                     return (
                       <li key={key} className="col-md-1">
-                       
+                       <OverlayTrigger
+                overlay={(props) => (
+                  <Tooltip {...props}>
+                    {single.color.name}
+                  </Tooltip>
+                )}
+                placement="top"
+                >
                         <button
                           style={{ backgroundColor: `${single.color.code}`,border: "2px solid black" }}
                           onClick={() => setColorImage(single.color_image)}
@@ -161,6 +170,7 @@ console.log("citem",cartItem)
                             colorImage === single.color_image ? "active" : ""
                           }
                         />
+                        </OverlayTrigger>
                       </li>
                     );
                   })}

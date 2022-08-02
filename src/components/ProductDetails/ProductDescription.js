@@ -6,6 +6,8 @@ import { BsShield } from "react-icons/bs";
 import { AiOutlineReload } from "react-icons/ai";
 import { GiSwapBag } from "react-icons/gi";
 import { CURRENCY } from "../../../config";
+import Tooltip from 'react-bootstrap/Tooltip';
+import OverlayTrigger from 'react-bootstrap/OverlayTrigger'
 // import { useToasts } from "react-toast-notifications";
 import {
   IoLogoFacebook,
@@ -280,9 +282,16 @@ return result
                         // setQuantityCount(1);
                       }}
                     />
-                
+                  <OverlayTrigger
+                overlay={(props) => (
+                  <Tooltip {...props}>
+                    {single.name}
+                  </Tooltip>
+                )}
+                placement="top"
+                >
                     <label
-                    title={single.name}
+                   /*  title={single.name} */
                       htmlFor={single.color.code}
                       style={{ 
                         backgroundColor: single.color.code,
@@ -296,7 +305,7 @@ return result
  
  
                     </label>
-               
+                    </OverlayTrigger>
                   </Fragment>
                 );
               })}
