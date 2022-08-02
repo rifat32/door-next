@@ -9,7 +9,7 @@ const ShopHeader = ({
   getLayout,
   layoutClass,
   layout,
-  products, getSortParams
+  products, getSortParams, priceHighToLow
 }) => {
 
 const [activeStatus2,getactiveStatus2] = useState(false)
@@ -28,7 +28,9 @@ const [activeStatus2,getactiveStatus2] = useState(false)
               <select
                 className="form-control form-control-sm"
                 onChange={(e) =>
-                  getFilterSortParams("filterSort", e.target.value)
+                 {  getFilterSortParams("filterSort", e.target.value)
+                  priceHighToLow(e.target.value)
+                }
                 }
               >
                 <option value="default">Default</option>

@@ -40,13 +40,13 @@ const ProductGridThree = ({
         <div className="product-grid product-grid--style-two">
         <Link
               href={`/shop/[slug]?slug=${product.slug}`}
-              as={"/shop/" + product.id}
+              as={"/shop/" + product.slug}
             >
               <a>
           <div className="product-grid__image">
           <Link
               href={`/shop/[slug]?slug=${product.slug}`}
-              as={"/shop/" + product.id}
+              as={"/shop/" + product.slug}
             >
               <a>
                 <img
@@ -103,8 +103,8 @@ const ProductGridThree = ({
           <div className="product-grid__info text-center">
           <h6 className="product-title">
               <Link
-                href={`/shop/[slug]?slug=${product.id}`}
-                as={"/shop/" + product.id}
+                href={`/shop/[slug]?slug=${product.slug}`}
+                as={"/shop/" + product.slug}
               >
                 <a>{product.name}</a>
               </Link>

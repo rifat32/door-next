@@ -297,7 +297,21 @@ const GridLeftSidebar = ({ products }) => {
   //     </div>
   //   }
 
-
+const priceHighToLow = (value) => {
+  let params = currentLink.split("?")[1];
+  let paramsArray = params.split("&&")
+      let finalParamsArray = paramsArray.filter(el => {
+        return el.split("=")[0] !== "priceHighToLow"
+       
+      })
+      params =   finalParamsArray.join("&&")
+      params = params.concat(`&&priceHighToLow=${value}`)
+      setCurrentLink(currentLink.split("?")[0]
+      .concat("?")
+      .concat(params))
+  
+  // loadData(link)
+}
   
 
   return (
@@ -329,6 +343,7 @@ const GridLeftSidebar = ({ products }) => {
                 setShopTopFilterStatus={setShopTopFilterStatus}
                 layout={layout}
                 products={products} getSortParams={getSortParams}
+                priceHighToLow={priceHighToLow}
               />
               
               {/* shop products */}
