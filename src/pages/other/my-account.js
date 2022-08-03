@@ -409,7 +409,7 @@ const handleAccountDetailsSubmit = (e) => {
                       </Card.Body>
                    
                       <Card.Body>
-                      <button className="btn btn-primary" onClick={() => {setShowAddress(true)}}>Add Address</button>
+                      <button className="btn btn-primary" for="firstname"  onClick={() => {setShowAddress(true)}}>Add Address</button>
                       </Card.Body>
 
                       {showAddress? (<Card.Body>
@@ -417,7 +417,7 @@ const handleAccountDetailsSubmit = (e) => {
                     <form onSubmit={handleSubmit}>
                             <Row>
                             <Col className="form-group" md={12}>
-                                <label>
+                                <label for="firstname">
                             First Name
                                    <span className="required">*</span>
                                 </label>
@@ -428,6 +428,7 @@ const handleAccountDetailsSubmit = (e) => {
                                   type="text"
                                   value={addressFormData.fname}
                                   onChange={handleAddressChange}
+                                  id="firstname"
                                 />
                               </Col>
                               <Col className="form-group" md={12}>
@@ -460,48 +461,6 @@ const handleAccountDetailsSubmit = (e) => {
                               </Col>
                               <Col className="form-group" md={12}>
                                 <label>
-                            Country Name
-                                   <span className="required">*</span>
-                                </label>
-                                <input
-                                  required
-                                  className="form-control"
-                                  name="country"
-                                  type="text"
-                                  value={addressFormData.country}
-                                  onChange={handleAddressChange}
-                                />
-                              </Col>
-                              <Col className="form-group" md={12}>
-                                <label>
-                                State
-                                   <span className="required">*</span>
-                                </label>
-                                <input
-                                  required
-                                  className="form-control"
-                                  name="state"
-                                  type="text"
-                                  value={addressFormData.state}
-                                  onChange={handleAddressChange}
-                                />
-                              </Col>
-                              <Col className="form-group" md={12}>
-                                <label>
-                                Phone Number
-                                   <span className="required">*</span>
-                                </label>
-                                <input
-                                  required
-                                  className="form-control"
-                                  name="phone"
-                                  type="text"
-                                  value={addressFormData.phone}
-                                  onChange={handleAddressChange}
-                                />
-                              </Col>
-                              <Col className="form-group" md={12}>
-                                <label>
                                 Billing Address
                                    <span className="required">*</span>
                                 </label>
@@ -529,6 +488,34 @@ const handleAccountDetailsSubmit = (e) => {
                               </Col>
                               <Col className="form-group" md={12}>
                                 <label>
+                            Country Name
+                                   <span className="required">*</span>
+                                </label>
+                                <input
+                                  required
+                                  className="form-control"
+                                  name="country"
+                                  type="text"
+                                  value={addressFormData.country}
+                                  onChange={handleAddressChange}
+                                />
+                              </Col>
+                              <Col className="form-group" md={12}>
+                                <label>
+                                State/Province
+                                   <span className="required">*</span>
+                                </label>
+                                <input
+                                  required
+                                  className="form-control"
+                                  name="state"
+                                  type="text"
+                                  value={addressFormData.state}
+                                  onChange={handleAddressChange}
+                                />
+                              </Col>
+                              <Col className="form-group" md={12}>
+                                <label>
                                 City
                                   <span className="required">*</span>
                                 </label>
@@ -543,7 +530,7 @@ const handleAccountDetailsSubmit = (e) => {
                               </Col>
                               <Col className="form-group" md={12}>
                                 <label>
-                                Zipcode
+                                Postal/Zipcode
                                   <span className="required">*</span>
                                 </label>
                                 <input
@@ -552,6 +539,20 @@ const handleAccountDetailsSubmit = (e) => {
                                   name="zipcode"
                                   type="text"
                                   value={addressFormData.zipcode}
+                                  onChange={handleAddressChange}
+                                />
+                              </Col>
+                              <Col className="form-group" md={12}>
+                                <label>
+                                Phone Number
+                                   <span className="required">*</span>
+                                </label>
+                                <input
+                                  required
+                                  className="form-control"
+                                  name="phone"
+                                  type="text"
+                                  value={addressFormData.phone}
                                   onChange={handleAddressChange}
                                 />
                               </Col>

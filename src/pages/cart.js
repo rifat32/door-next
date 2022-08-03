@@ -499,7 +499,7 @@ const updateCart = (couponParam) => {
                       </table>
                     </div>
                     <Link href="/other/checkout">
-                      <a className="btn btn-fill-out checkoutclass"  >Proceed To CheckOut</a>
+                      <a className="btn btn-fill-out checkoutclass"   >Proceed To CheckOut</a>
                     </Link>
                   </div>
                 </Col>

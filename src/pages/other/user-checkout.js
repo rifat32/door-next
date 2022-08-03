@@ -133,6 +133,7 @@ function valid_postcode(postcode) {
         }
 			
 			});
+      window.scrollTo({top:0,behavior: 'smooth'});
 }
 
 const [customerNotFound,setCustomerNotFound] = useState(false)
@@ -351,7 +352,7 @@ const handleAddressSubmit = (e) => {
                 <div className="heading-s1 space-mb--20">
                   <h4>Billing Details</h4>
                 </div>
-                <div className="row">
+                <div className="row mb-2">
                           {
                             addresses.length?(
                               addresses.map((el,index) => {
@@ -362,21 +363,23 @@ const handleAddressSubmit = (e) => {
                                 ):(null)
                               }
                                 return (
-                                  <div className={`col-4 ${parseInt(orderInfo.address_id) == parseInt(el.id)?"bg-dark":""}  `} key={index} onClick={()=>setFormData(el)}>
-                                  <address>
-                                  <p>
-                                    <strong>John Doe</strong>
-                                  </p>
-                                  <p>
-                                    1355 Market St, Suite 900 <br />
-                                    San Francisco, CA 94103
-                                  </p>
-                                  <p>Address:{el.billing_address}</p>
-                                  <p>Address2:{el.billing_address2}</p>
-                                  <p>City:{el.city}</p>
-                                  <p>Zipcode:{el.zipcode}</p>
-
-                                  <p>Mobile: (123) 456-7890</p>
+                                  <div className={`col-4 mt-2 address-card-margin ${parseInt(orderInfo.address_id) == parseInt(el.id)?"address-card-select":"address-card"}  `} key={index} onClick={()=>setFormData(el)}>
+                                  <address className="mt-1">
+                                  <div>
+                            
+                            <strong>{el.fname}{" "}{el.lname} {el.is_default == 1?(" (Default Address) "):("")}</strong>
+                          </div>
+                          {/* <p>
+                            1355 Market St, Suite 900 <br />
+                            San Francisco, CA 94103
+                          </p> */}
+                          <div>Address:{" "}{el.billing_address}</div>
+                          <div>Address2:{" "}{el.billing_address2&&el.billing_address2}</div>
+                          <div>City:{" "}{el.city}</div>
+                          <div>State/Province:{" "}{el.state}</div>
+                          <div>Zipcode:{" "}{el.zipcode}</div>
+                          <div>Country{" "}{el.country}</div>
+                          <div>Mobile:{" "} {el.phone}</div>
                                 </address>
                                 
                                   </div>
@@ -387,7 +390,7 @@ const handleAddressSubmit = (e) => {
                          
                        
                         </div>
-                        <div className="row">
+                        <div className="row mb-2">
                         <button className="btn btn-primary" onClick={() => {setShowAddress(true)}}>Add Address</button>
                         </div>
                         {showAddress? (<>
@@ -438,48 +441,6 @@ const handleAddressSubmit = (e) => {
                               </Col>
                               <Col className="form-group" md={12}>
                                 <label>
-                            Country Name
-                                   <span className="required">*</span>
-                                </label>
-                                <input
-                                  required
-                                  className="form-control"
-                                  name="country"
-                                  type="text"
-                                  value={addressFormData.country}
-                                  onChange={handleAddressChange}
-                                />
-                              </Col>
-                              <Col className="form-group" md={12}>
-                                <label>
-                                State
-                                   <span className="required">*</span>
-                                </label>
-                                <input
-                                  required
-                                  className="form-control"
-                                  name="state"
-                                  type="text"
-                                  value={addressFormData.state}
-                                  onChange={handleAddressChange}
-                                />
-                              </Col>
-                              <Col className="form-group" md={12}>
-                                <label>
-                                phone
-                                   <span className="required">*</span>
-                                </label>
-                                <input
-                                  required
-                                  className="form-control"
-                                  name="phone"
-                                  type="text"
-                                  value={addressFormData.phone}
-                                  onChange={handleAddressChange}
-                                />
-                              </Col>
-                              <Col className="form-group" md={12}>
-                                <label>
                                 Billing Address
                                    <span className="required">*</span>
                                 </label>
@@ -508,7 +469,36 @@ const handleAddressSubmit = (e) => {
                               </Col>
                               <Col className="form-group" md={12}>
                                 <label>
-                                city
+                            Country Name
+                                   <span className="required">*</span>
+                                </label>
+                                <input
+                                  required
+                                  className="form-control"
+                                  name="country"
+                                  type="text"
+                                  value={addressFormData.country}
+                                  onChange={handleAddressChange}
+                                />
+                              </Col>
+                              <Col className="form-group" md={12}>
+                                <label>
+                                State/Province
+                                   <span className="required">*</span>
+                                </label>
+                                <input
+                                  required
+                                  className="form-control"
+                                  name="state"
+                                  type="text"
+                                  value={addressFormData.state}
+                                  onChange={handleAddressChange}
+                                />
+                              </Col>
+                             
+                              <Col className="form-group" md={12}>
+                                <label>
+                                City
                                   <span className="required">*</span>
                                 </label>
                                 <input
@@ -522,7 +512,7 @@ const handleAddressSubmit = (e) => {
                               </Col>
                               <Col className="form-group" md={12}>
                                 <label>
-                                zipcode
+                                Postal/Zip Code
                                   <span className="required">*</span>
                                 </label>
                                 <input
@@ -534,20 +524,33 @@ const handleAddressSubmit = (e) => {
                                   onChange={handleAddressChange}
                                 />
                               </Col>
-                              <Col className="form-group" md={2}>
+                              <Col className="form-group" md={12}>
                                 <label>
-                                Set Default
-                                 
+                                Phone
+                                   <span className="required">*</span>
                                 </label>
                                 <input
-                                  
+                                  required
                                   className="form-control"
+                                  name="phone"
+                                  type="text"
+                                  value={addressFormData.phone}
+                                  onChange={handleAddressChange}
+                                />
+                              </Col>
+                              <Col className="form-group" md={4}>
+        
+                                <input
+                                 className=""
                                   name="is_default"
                                   type="checkbox"
-                    
+                                  style={{marginRight:"4px"}}
                                   checked={addressFormData.is_default}
                                   onChange={handleAddressChangeCheck}
                                 />
+                                 <label>
+                                Set Default
+                                </label>
                               </Col>
                               
                               <Col md={12}>
@@ -556,6 +559,7 @@ const handleAddressSubmit = (e) => {
                                   className="btn btn-fill-out"
                                   name="submit"
                                   value="Submit"
+                                  
                                 >
                                  Add Address
                                 </button>
@@ -760,7 +764,7 @@ const handleAddressSubmit = (e) => {
 					<p className="invalid-feedback">{errors.phone[0]}</p>
 				)}
                   </div> */}
-                  <div className="form-group">
+                 {/*  <div className="form-group">
                     <input
                       className={
                         errors
@@ -780,7 +784,7 @@ const handleAddressSubmit = (e) => {
                             {errors?.email && (
 					<p className="invalid-feedback">{errors.email[0]}</p>
 				)}
-                  </div>
+                  </div> */}
                  
                   {
                     orderInfo.create_account == 1?(<>
@@ -830,7 +834,7 @@ const handleAddressSubmit = (e) => {
                   }
                  
 
-                  <div className="heading-s1 space-mb--20">
+                  <div className="heading-s1 space-mb--20 mt-3">
                     <h4>Additional information</h4>
                   </div>
                   <div className="form-group mb-0">
