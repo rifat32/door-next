@@ -409,15 +409,15 @@ const handleAccountDetailsSubmit = (e) => {
                       </Card.Body>
                    
                       <Card.Body>
-                      <button className="btn btn-primary" for="firstname"  onClick={() => {setShowAddress(true)}}>Add Address</button>
+                      <button className="btn btn-primary" for="firstname"   onClick={() => { setShowAddress(true);  }}>Add Address</button>
                       </Card.Body>
 
                       {showAddress? (<Card.Body>
                       <div className="mt-5">
-                    <form onSubmit={handleSubmit}>
+                    <form onSubmit={handleSubmit}   >
                             <Row>
-                            <Col className="form-group" md={12}>
-                                <label for="firstname">
+                            <Col className="form-group" md={12} >
+                                <label for="firstname" >
                             First Name
                                    <span className="required">*</span>
                                 </label>
