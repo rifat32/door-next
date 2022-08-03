@@ -26,6 +26,7 @@
     "react-lightgallery": "0.6.3",
     "react-loader-spinner": "^4.0.0",
     "react-mailchimp-subscribe": "^2.1.0",
+    "react-rating-stars-component": "^2.2.0",
     "react-redux": "^7.2.0",
     "react-scroll": "^1.8.0",
     "react-slidedown": "^2.4.5",
