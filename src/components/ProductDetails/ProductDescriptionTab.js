@@ -1,7 +1,11 @@
 import Tab from "react-bootstrap/Tab";
 import Nav from "react-bootstrap/Nav";
 import { IoIosStar, IoIosStarOutline } from "react-icons/io";
-
+import ReactStars from "react-rating-stars-component";
+const ratingChanged = (newRating) => {
+  /* console.log(newRating+"Rating Changed"); */
+  window.alert(newRating+" Rating Changed");
+};
 const ProductDescriptionTab = ({ product }) => {
   return (
     <div className="product-description-tab space-pt--r100 space-pb--50">
@@ -123,11 +127,17 @@ const ProductDescriptionTab = ({ product }) => {
                 <form className="row mt-3">
                   <div className="form-group col-12">
                     <span className="product-rating">
-                      <IoIosStarOutline />
-                      <IoIosStarOutline />
-                      <IoIosStarOutline />
-                      <IoIosStarOutline />
-                      <IoIosStarOutline />
+                    <ReactStars
+                    onChange={ratingChanged}
+                    count={5}
+                    size={24}
+                    activeColor="#F6BC3E"
+                    isHalf={true}
+                    emptyIcon={<i className="far fa-star"></i>}
+                    halfIcon={<i className="fa fa-star-half-alt"></i>}
+                    fullIcon={<i className="fa fa-star"></i>}
+                    
+                    />
                     </span>
                   </div>
                   <div className="form-group col-12">
