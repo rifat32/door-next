@@ -32,6 +32,7 @@ const Checkout = ({ cartItems ,  deleteAllFromCart}) => {
     lname:"",
     cname:"",
     country:"",
+    state:"",
     billing_address:"",
     billing_address2:"",
     city:"",
@@ -270,7 +271,7 @@ const updateCart = (couponParam) => {
 					<p className="invalid-feedback">{errors.cname[0]}</p>
 				)}
                   </div>
-                  {/* <div className="form-group">
+                   <div className="form-group">
                     <div className="custom_select">
                       <select className="form-control" name="country"     value={orderInfo.country}
                       onChange={handleChange}
@@ -286,7 +287,28 @@ const updateCart = (couponParam) => {
                         <option value="AQ">Antarctica</option>
                       </select>
                     </div>
-                  </div> */}
+                  </div> 
+                  <div className="form-group">
+                    <input
+                      type="text"
+                      className={
+                        errors
+                          ? errors.state
+                            ? `form-control is-invalid`
+                            : `form-control is-valid`
+                          : "form-control"
+                      }
+                      name="state"
+                      required=""
+                      placeholder="Address *"
+                        
+                      value={orderInfo.state}
+                      onChange={handleChange}
+                    />
+                    {errors?.state && (
+					<p className="invalid-feedback">{errors.state[0]}</p>
+				)}
+                  </div>
                   <div className="form-group">
                     <input
                       type="text"
