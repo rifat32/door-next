@@ -194,7 +194,7 @@ const GridLeftSidebar = ({ products }) => {
 
 
 
-    loadData(currentLink)
+    loadData(`${BACKENDAPI}/v1.0/client/products/pagination/${perPage}?page=1&&category_name=${slug}&&aa=bb`)
 
     
     
@@ -218,7 +218,7 @@ const GridLeftSidebar = ({ products }) => {
   }, 
   // [offset, products, sortType, sortValue, filterSortType, filterSortValue]
   [
-    currentLink,slug
+    slug
   ]
   );
 
@@ -393,8 +393,9 @@ const GridLeftSidebar = ({ products }) => {
                 shopTopFilterStatus={shopTopFilterStatus}
                 setShopTopFilterStatus={setShopTopFilterStatus}
                 layout={layout}
-              
                 products={products} getSortParams={getSortParams}
+
+
               />
               {/* shop products */}
 
@@ -474,10 +475,10 @@ const GridLeftSidebar = ({ products }) => {
                 />
               </div> */}
             </Col>
-            <Col lg={3} className="order-lg-first mt-4 pt-2 mt-lg-0 pt-lg-0">
+            <Col lg={3} className="order-lg-first mt-4 pt-2 mt-lg-0 pt-lg-0 d-none d-lg-block ">
               {/* sidebar */}
 
-              <Sidebar hideCategory={true} products={products} getSortParams={getSortParams} />
+              <Sidebar hideCategory={true} products={products} getSortParams={getSortParams}  />
             </Col>
           </Row>
         </Container>

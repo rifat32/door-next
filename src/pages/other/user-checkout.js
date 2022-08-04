@@ -153,7 +153,9 @@ useEffect(() => {
    .then(response => {
     if(!response.data.customer) {
       setCustomerNotFound(true)
-      setOrderInfo({...orderInfo,email:JSON.parse(localStorage.getItem("user")).user.email})
+      setOrderInfo({...orderInfo,email:JSON.parse(localStorage.getItem("user")).user.email,
+      order_coupon:coupon
+    })
 return
     }
    const {
@@ -183,7 +185,8 @@ return
    billing_address,
    billing_address2,
    city,
-   zipcode
+   zipcode,
+   order_coupon:coupon
    })
   })
 
