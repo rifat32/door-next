@@ -8,53 +8,19 @@ import {
   IoMdPerson
 } from "react-icons/io";
 
-
 import Link from "next/link";
-const logout = () => {
-  apiClient()
-  .post(`${BACKENDAPI}/v1.0/logout`)
-  .then((response) => {
-    console.log(response);
-  
-  })
-  .catch((err) => {
-    if (err.response) {
-      console.log(err.response);
-    }
-  });
-  localStorage.removeItem("user")
-  localStorage.removeItem("token")
-  router.push(`/other/login`);
-
-}
 
 const MobileMenuWidgets = () => {
   return (
     <div className="offcanvas-mobile-menu__widgets space-mb--30">
       <div className="contact-widget space-mb--30">
         <ul>
-        <li className={localStorage.getItem("token")?"d-inline-block":"d-none"}>
-                  <Link href="/other/my-account">
-                    <a>
-                    <IoMdPerson />
-                      <span>My Account</span>
-                    </a>
-                  </Link>
-                </li>
-          <li className={localStorage.getItem("token")?"d-none":"d-inline-block"}>
+          <li >
             <IoMdPerson />
             <Link href="/other/login">
               <a>Login</a>
             </Link>
           </li>
-          <li id="web-logout" className={localStorage.getItem("token")?"d-inline-block":"d-none"}>
-            
-            <a onClick={logout}>
-            <IoMdPerson />
-              <span>Logout </span>
-            </a>
-         
-        </li>
           <li>
             <IoIosPhonePortrait />
             <a href="tel://01452 924 200">01452 924 200 </a>
