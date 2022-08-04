@@ -193,11 +193,11 @@ const handleAccountDetailsSubmit = (e) => {
                       <IoIosClipboard /> Orders
                     </Nav.Link>
                   </Nav.Item>
-                  <Nav.Item>
+{/*                   <Nav.Item>
                     <Nav.Link eventKey="download">
                       <IoIosDownload /> Download
                     </Nav.Link>
-                  </Nav.Item>
+                  </Nav.Item> */}
                   <Nav.Item>
                     <Nav.Link eventKey="payment">
                       <IoIosCash /> Payment
@@ -252,7 +252,7 @@ const handleAccountDetailsSubmit = (e) => {
                           <table className="table">
                           <thead>
           <tr>
-            <th scope="col">Id</th>
+            <th scope="col">Order Id</th>
             <th scope="col">First Name</th>
             <th scope="col">Last Name</th>
             <th scope="col">Email</th>
@@ -275,7 +275,7 @@ const handleAccountDetailsSubmit = (e) => {
                   <td> {el.fname && el.fname}</td>
                   <td>{el.fname && el.lname}</td>
                   <td>{el.fname && el.email}</td>
-                  <td>{el.fname && new Date(el.created_at).toDateString()}</td>
+                  <td style={{fontSize:"14px"}}>{el.fname && new Date(el.created_at).toDateString()+ " " +new Date(el.created_at).toLocaleTimeString()}</td>
                   <td>{el.status}</td>
                 
                 </tr>
@@ -310,7 +310,7 @@ const handleAccountDetailsSubmit = (e) => {
                       </Card.Body>
                     </Card>
                   </Tab.Pane>
-                  <Tab.Pane eventKey="download">
+                 {/*  <Tab.Pane eventKey="download">
                     <Card className="my-account-content__content">
                       <Card.Header>
                         <h3>Downloads</h3>
@@ -352,7 +352,7 @@ const handleAccountDetailsSubmit = (e) => {
                         </div>
                       </Card.Body>
                     </Card>
-                  </Tab.Pane>
+                  </Tab.Pane> */}
                   <Tab.Pane eventKey="payment">
                     <Card className="my-account-content__content">
                       <Card.Header>

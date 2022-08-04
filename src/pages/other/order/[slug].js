@@ -189,7 +189,7 @@ const [order, setOrder] = useState(null);
                                             className="img img-thumbnail "
                                           />
                                         </div>
-                                        <div className="col-6">
+                                        <div className="col-6 col-sm-12 ">
                                           <p className="m-0 p-0">
                                             Name: {el.product.name}
                                           </p>

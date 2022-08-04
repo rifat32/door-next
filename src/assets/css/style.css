@@ -150,3 +150,11 @@ color:#c6b478;
 .address-card-margin{
     margin-right:10px;
 }
+.trhover{
+    cursor: pointer;
+    }
+.trhover:hover{
+      background-color: #c6b478;
+      color:white;	
+      
+    }
