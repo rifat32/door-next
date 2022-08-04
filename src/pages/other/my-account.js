@@ -100,17 +100,43 @@ const MyAccount = () => {
     phone:"",
     is_default:false,
  })
+ const [addressEditEvent,setAddressEditEvent] = useState(false)
 const handleSubmit = (e) => {
 e.preventDefault();
-apiClient().post(`${BACKENDAPI}/v1.0/client/addresses`,{...addressFormData})
-.then(response => {
-window.alert("address saved")
-loadAddress()
-})
-.catch(err => {
-
-})
+if(addressEditEvent){
+  apiClient().put(`${BACKENDAPI}/v1.0/client/addresses/${addressFormData.id}`,{...addressFormData})
+  .then(response => {
+  window.alert("address updated")
+  loadAddress()
+  })
+  .catch(err => {
+  
+  })
 }
+else{
+  apiClient().post(`${BACKENDAPI}/v1.0/client/addresses`,{...addressFormData})
+  .then(response => {
+  window.alert("address saved")
+  loadAddress()
+  })
+  .catch(err => {
+  
+  })
+}
+
+}
+const deleteAddress = (id) => {
+ 
+  apiClient().delete(`${BACKENDAPI}/v1.0/client/addresses/${id}`)
+  .then(response => {
+  window.alert("address deleted")
+  loadAddress()
+  })
+  .catch(err => {
+  
+  })
+  }
+
 const handleAddressChange = (e) => {
   setAddressFormData({...addressFormData,[e.target.name]:e.target.value})
 }
@@ -159,6 +185,44 @@ const handleAccountDetailsSubmit = (e) => {
     window.alert(err.response.data.message)
   })
 }
+
+const editAddress = (el) => {
+  setTimeout(() => {
+    document.getElementById("firstname").focus()
+  },100)
+
+  setShowAddress(true)
+setAddressFormData(
+  {
+    ...addressFormData,
+    id:el.id,
+    billing_address:el.billing_address,
+    billing_address2:el.billing_address2,
+    city:el.city,
+    zipcode:el.zipcode,
+    fname:el.fname,
+      lname:el.lname,
+      cname:el.cname,
+      country:el.country,
+      state:el.state,
+      phone:el.phone,
+      is_default:el.is_default,
+  }
+)
+setAddressEditEvent(true)
+}
+
+const showAddressFormFunc = () => { 
+  setShowAddress(!showAddress);
+   setAddressEditEvent(false);
+   setTimeout(() => {
+  let fname =   document.getElementById("firstname")
+  if(fname) {
+    fname.focus()
+  }
+  },100)
+  
+  }
 
   return (
     <Authorize setUserFunction={setUserFunction}>
@@ -394,8 +458,11 @@ const handleAccountDetailsSubmit = (e) => {
                                   <div>Country{" "}{el.country}</div>
                                   <div>Mobile:{" "} {el.phone}</div>
                                 </address>
-                                <a href="#" className="check-btn sqr-btn ">
+                                <a onClick={()=>editAddress(el)} className="check-btn sqr-btn ">
                                   <FaRegEdit /> Edit Address
+                                </a>
+                                <a onClick={()=>deleteAddress(el.id)} className="btn btn-danger">
+                              Delete
                                 </a>
                                   </div>
                                 )
@@ -409,7 +476,7 @@ const handleAccountDetailsSubmit = (e) => {
                       </Card.Body>
                    
                       <Card.Body>
-                      <button className="btn btn-primary" for="firstname"   onClick={() => { setShowAddress(true);  }}>Add Address</button>
+                      <button className="btn btn-primary" for="firstname"   onClick={showAddressFormFunc }>Add Address</button>
                       </Card.Body>
 
                       {showAddress? (<Card.Body>
@@ -574,14 +641,22 @@ const handleAccountDetailsSubmit = (e) => {
                               </Col>
                               
                               <Col md={12}>
-                                <button
+                              {addressEditEvent?(<button
                                   type="submit"
                                   className="btn btn-fill-out"
                                   name="submit"
                                   value="Submit"
                                 >
-                                 Add Address
-                                </button>
+                                Update
+                                </button>):(<button
+                                  type="submit"
+                                  className="btn btn-fill-out"
+                                  name="submit"
+                                  value="Submit"
+                                >
+                                Add
+                                </button>)} 
+                                
                                 <button type="button" className="btn btn-danger" onClick={() => {setShowAddress(false)
                                  window.scrollTo(0, 0);
                                 }}>Cancel</button>
