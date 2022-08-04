@@ -366,7 +366,7 @@ const handleAddressSubmit = (e) => {
                                 ):(null)
                               }
                                 return (
-                                  <div className={`col-4 mt-2 address-card-margin ${parseInt(orderInfo.address_id) == parseInt(el.id)?"address-card-select":"address-card"}  `} key={index} onClick={()=>setFormData(el)}>
+                                  <div className={`col-lg-4 col-sm-12 col-md-6 mt-2 address-card-margin ${parseInt(orderInfo.address_id) == parseInt(el.id)?"address-card-select":"address-card"}  `} key={index} onClick={()=>setFormData(el)}>
                                   <address className="mt-1">
                                   <div>
                             

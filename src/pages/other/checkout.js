@@ -132,6 +132,7 @@ function valid_postcode(postcode) {
         }
 			
 			});
+      window.scrollTo({top:0,behavior: 'smooth'});
 }
 
 useEffect(() => {
@@ -293,7 +294,7 @@ const updateCart = (couponParam) => {
                       }
                       name="state"
                       required=""
-                      placeholder="Address *"
+                      placeholder="State/province *"
                         
                       value={orderInfo.state}
                       onChange={handleChange}
@@ -334,7 +335,7 @@ const updateCart = (couponParam) => {
                           : "form-control"
                       }
                       name="billing_address2"
-                      required=""
+                      
                       placeholder="Address line2"
                       value={orderInfo.billing_address2}
                       onChange={handleChange}
