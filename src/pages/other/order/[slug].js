@@ -4,7 +4,7 @@ import { BreadcrumbOne } from "../../../components/Breadcrumb";
 import { Container, Row, Col } from "react-bootstrap";
 import { FaFacebookF, FaGooglePlusG } from "react-icons/fa";
 import { useState } from "react";
-import { BACKEND, BACKENDAPI } from "../../../../config";
+import { CURRENCY,BACKEND, BACKENDAPI } from "../../../../config";
 
 import axios from "axios";
 import withRouter from "next/dist/client/with-router";
@@ -189,7 +189,7 @@ const [order, setOrder] = useState(null);
                                             className="img img-thumbnail "
                                           />
                                         </div>
-                                        <div className="col-6">
+                                        <div className="col-6 col-sm-12 ">
                                           <p className="m-0 p-0">
                                             Name: {el.product.name}
                                           </p>
@@ -279,9 +279,9 @@ const [order, setOrder] = useState(null);
                                         </div>
                                         <div className="col-4">
                                           <small className="me-1">
-                                            ${el.price} x {el.qty}
+                                            {CURRENCY}{el.price} x {el.qty}
                                           </small>{" "}
-                                          <small> ${el.price * el.qty} </small>
+                                          <small> {CURRENCY}{el.price * el.qty} </small>
                                         </div>
                                       </div>
                                     </div>
@@ -326,7 +326,7 @@ const [order, setOrder] = useState(null);
                                   <small>{orderInfo.totalQuantity} item</small>
                                 </div>
                                 <div className="col-4 text-center ">
-                                  <small> ${orderInfo.subTotal}</small>
+                                  <small> {CURRENCY}{orderInfo.subTotal}</small>
                                 </div>
                               </div>
                               <div className="row justify-content-between">
@@ -380,7 +380,7 @@ const [order, setOrder] = useState(null);
 
                                 <div className="col-4 text-center ">
                                   <small>
-                                    $
+                                    {CURRENCY}
                                     {orderInfo.subTotal +
                                       orderInfo.tax +
                                       orderInfo.shipping -

@@ -277,14 +277,7 @@ const updateCart = (couponParam) => {
                       onChange={handleChange}
                       > 
                         <option value="">Select an option...</option>
-                        <option value="AX">Aland Islands</option>
-                        <option value="AF">Afghanistan</option>
-                        <option value="AL">Albania</option>
-                        <option value="DZ">Algeria</option>
-                        <option value="AD">Andorra</option>
-                        <option value="AO">Angola</option>
-                        <option value="AI">Anguilla</option>
-                        <option value="AQ">Antarctica</option>
+                        <option value="United Kingdom">United Kingdom</option>
                       </select>
                     </div>
                   </div> 

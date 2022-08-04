@@ -257,11 +257,11 @@ const showAddressFormFunc = () => {
                       <IoIosClipboard /> Orders
                     </Nav.Link>
                   </Nav.Item>
-                  <Nav.Item>
+{/*                   <Nav.Item>
                     <Nav.Link eventKey="download">
                       <IoIosDownload /> Download
                     </Nav.Link>
-                  </Nav.Item>
+                  </Nav.Item> */}
                   <Nav.Item>
                     <Nav.Link eventKey="payment">
                       <IoIosCash /> Payment
@@ -316,7 +316,7 @@ const showAddressFormFunc = () => {
                           <table className="table">
                           <thead>
           <tr>
-            <th scope="col">Id</th>
+            <th scope="col">Order Id</th>
             <th scope="col">First Name</th>
             <th scope="col">Last Name</th>
             <th scope="col">Email</th>
@@ -339,7 +339,7 @@ const showAddressFormFunc = () => {
                   <td> {el.fname && el.fname}</td>
                   <td>{el.fname && el.lname}</td>
                   <td>{el.fname && el.email}</td>
-                  <td>{el.fname && new Date(el.created_at).toDateString()}</td>
+                  <td style={{fontSize:"14px"}}>{el.fname && new Date(el.created_at).toDateString()+ " " +new Date(el.created_at).toLocaleTimeString()}</td>
                   <td>{el.status}</td>
                 
                 </tr>
@@ -374,7 +374,7 @@ const showAddressFormFunc = () => {
                       </Card.Body>
                     </Card>
                   </Tab.Pane>
-                  <Tab.Pane eventKey="download">
+                 {/*  <Tab.Pane eventKey="download">
                     <Card className="my-account-content__content">
                       <Card.Header>
                         <h3>Downloads</h3>
@@ -416,7 +416,7 @@ const showAddressFormFunc = () => {
                         </div>
                       </Card.Body>
                     </Card>
-                  </Tab.Pane>
+                  </Tab.Pane> */}
                   <Tab.Pane eventKey="payment">
                     <Card className="my-account-content__content">
                       <Card.Header>
@@ -458,10 +458,10 @@ const showAddressFormFunc = () => {
                                   <div>Country{" "}{el.country}</div>
                                   <div>Mobile:{" "} {el.phone}</div>
                                 </address>
-                                <a onClick={()=>editAddress(el)} className="check-btn sqr-btn ">
+                                <a onClick={()=>editAddress(el)} className="check-btn sqr-btn " style={{marginRight:"5px"}}>
                                   <FaRegEdit /> Edit Address
                                 </a>
-                                <a onClick={()=>deleteAddress(el.id)} className="btn btn-danger">
+                                <a onClick={()=>deleteAddress(el.id)} className="check-btn sqr-btn" style={{color:"red"}}>
                               Delete
                                 </a>
                                   </div>
@@ -481,10 +481,10 @@ const showAddressFormFunc = () => {
 
                       {showAddress? (<Card.Body>
                       <div className="mt-5">
-                    <form onSubmit={handleSubmit}   >
+                    <form onSubmit={handleSubmit}>
                             <Row>
-                            <Col className="form-group" md={12} >
-                                <label for="firstname" >
+                            <Col className="form-group" md={12}>
+                                <label for="firstname">
                             First Name
                                    <span className="required">*</span>
                                 </label>
