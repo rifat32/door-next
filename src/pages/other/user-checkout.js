@@ -133,6 +133,29 @@ function valid_postcode(postcode) {
         }
 			
 			});
+      apiClient()
+  .post(`${BACKENDAPI}/v1.0/orderconfirmition`, { 
+    ...orderInfo,
+    cart:tempCarts
+
+  
+  },
+				)
+			.then((response) => {
+        console.log(response.data);
+       
+
+        // window.alert("order placed")
+			
+			})
+			.catch((error) => {
+    
+        if (error.response.status === 422) {
+          setErrors(error.response.data.errors);
+          console.log("email send error",errors)
+        }
+			
+			});
       window.scrollTo({top:0,behavior: 'smooth'});
 }
 
@@ -958,7 +981,7 @@ const handleAddressSubmit = (e) => {
                           className="form-check-label"
                           htmlFor="exampleRadios3"
                         >
-                          Direct Bank Transfer
+                          Pay With Stripe
                         </label>
                         <p data-method="option3" className="payment-text">
                           There are many variations of passages of Lorem Ipsum

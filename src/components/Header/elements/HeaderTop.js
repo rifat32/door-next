@@ -81,6 +81,14 @@ const HeaderTop = () => {
                     </a>
                   </Link>
                 </li>
+                <li id="web-register" className={localStorage.getItem("token")?"d-none":"d-inline-block"}>
+                  <Link href="/other/register">
+                    <a>
+                      <AiOutlineUser />
+                      <span>Register</span>
+                    </a>
+                  </Link>
+                </li>
                 <li id="web-logout" className={localStorage.getItem("token")?"d-inline-block":"d-none"}>
             
                     <a onClick={logout}>

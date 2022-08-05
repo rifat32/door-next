@@ -51,6 +51,25 @@ const Register = () => {
 		
 				setLoading(false);
 			});
+      axios
+			.post(`${BACKEND}/api/v1.0/email`, {
+				...state,
+			})
+			.then((response) => {
+				console.log(response.data+"Email Sended");
+			
+				
+			})
+			.catch((error) => {
+		
+				if (error.response.status === 422) {
+				
+					setErrors(error.response.data.errors);
+				}
+
+		
+				setLoading(false);
+			});
 	};
   return (
     <AuthorizeReverse>

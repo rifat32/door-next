@@ -15,7 +15,7 @@ const MobileMenuWidgets = () => {
     <div className="offcanvas-mobile-menu__widgets space-mb--30">
       <div className="contact-widget space-mb--30">
         <ul>
-          <li >
+          <li>
             <IoMdPerson />
             <Link href="/other/login">
               <a>Login</a>
