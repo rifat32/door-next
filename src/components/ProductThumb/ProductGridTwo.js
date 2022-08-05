@@ -75,7 +75,7 @@ const ProductGridTwo = ({
             </div>
             {product.colors ? (
               <div className="product-switch-wrap" >
-                <ul>
+                {/* <ul>
                   {product.colors.map((single, key) => {
                     return (
                       <li key={key}>
@@ -89,7 +89,7 @@ const ProductGridTwo = ({
                       </li>
                     );
                   })}
-                </ul>
+                </ul> */}
               </div>
             ) : (
               ""

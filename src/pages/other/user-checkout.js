@@ -988,7 +988,7 @@ const handleAddressSubmit = (e) => {
                           available, but the majority have suffered alteration.{" "}
                         </p>
                       </div>
-                      <div className="custom-radio space-mb--20">
+                     {/*  <div className="custom-radio space-mb--20">
                         <input
                           className="form-check-input"
                           type="radio"
@@ -1029,7 +1029,7 @@ const handleAddressSubmit = (e) => {
                           Pay via PayPal; you can pay with your credit card if
                           you don't have a PayPal account.
                         </p>
-                      </div>
+                      </div> */}
                     </div>
                   </div>
                   <button className="btn btn-fill-out btn-block" onClick={handleSubmit}>

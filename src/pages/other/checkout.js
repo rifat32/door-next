@@ -40,7 +40,7 @@ const Checkout = ({ cartItems ,  deleteAllFromCart}) => {
     phone:"",
     email:"",
     additional_info:"",
-    payment_option:"direct bank",
+    payment_option:"Stripe Checkout",
     order_coupon:"",
     create_account:"0",
     password:"",
@@ -633,8 +633,8 @@ const updateCart = (couponParam) => {
                           type="radio"
                           name="payment_option"
                           id="exampleRadios3"
-                          checked={orderInfo.payment_option == "direct bank"}
-                          value="direct bank"
+                          checked={orderInfo.payment_option == "stripe Checkout"}
+                          value="Stripe Checkout"
                           onChange={handleChange}
                           
                         />
@@ -649,7 +649,7 @@ const updateCart = (couponParam) => {
                           available, but the majority have suffered alteration.{" "}
                         </p>
                       </div>
-                      <div className="custom-radio space-mb--20">
+                      {/* <div className="custom-radio space-mb--20">
                         <input
                           className="form-check-input"
                           type="radio"
@@ -690,7 +690,7 @@ const updateCart = (couponParam) => {
                           Pay via PayPal; you can pay with your credit card if
                           you don't have a PayPal account.
                         </p>
-                      </div>
+                      </div> */}
                     </div>
                   </div>
                   <button className="btn btn-fill-out btn-block" onClick={handleSubmit}>

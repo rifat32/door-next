@@ -154,7 +154,7 @@ const ProductGridOne = ({
 
             {product.variation ? (
               <div className="product-switch-wrap">
-                <ul>
+             {/*    <ul>
                   {product.variation.map((single, key) => {
                     return (
                       <li key={key}>
@@ -168,7 +168,7 @@ const ProductGridOne = ({
                       </li>
                     );
                   })}
-                </ul>
+                </ul> */}
               </div>
             ) : (
               ""
