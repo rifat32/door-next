@@ -48,7 +48,8 @@ const ProductDescription = ({
   extraHoleDirections,
   getHeights,
   setCustomHeight,
-  customHeight
+  customHeight,
+  slideTo
 }) => {
   // const { addToast } = useToasts();
   // const [selectedProductSize, setSelectedProductSize] = useState(
@@ -277,11 +278,11 @@ return result
                       single.color.code === selectedProductColor ? "checked" : ""
                       }
                       onChange={(e) => {
-
+                        
                         setSelectedProductColor(e.target.value);
           
                         setColorImage(single.color_image)
-                        
+                        slideTo(i)
                         // setProductStock(single.size[0].stock);
                         // setQuantityCount(1);
                       }}

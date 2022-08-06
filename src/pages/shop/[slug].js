@@ -30,6 +30,7 @@ import { useEffect, useState } from "react";
 import { apiClient } from "../../utils/apiClient";
 import { ShopProducts } from "../../components/Shop";
 import RightSidebar from "../../components/Shop/RightSidebar";
+import { LightgalleryItem, LightgalleryProvider } from "react-lightgallery";
 
 const ProductRightSidebar = ({
   products,
@@ -442,9 +443,7 @@ setProductData({
   const setSelectedProductColor = (value) => {
 
 
-    document.querySelector(".product-large-image-wrapper").classList.add("d-none");
-
-    document.querySelector(".pimage").classList.remove("d-none");
+   
 
 
     
@@ -535,6 +534,22 @@ const loadData = () => {
      
     });
 };
+const [swiper, setSwiper] = useState(null);
+
+
+  const slideTo = (index) => {
+
+   
+    if(swiper){
+   
+      swiper.slideToLoop(index)
+    }
+  
+  };
+  
+
+
+
 if(!loading){
   return (
     <LayoutOne>
@@ -563,25 +578,44 @@ if(!loading){
               <Row>
                 <Col lg={6} className="space-mb-mobile-only--40">
                   {/* image gallery */}
-               <div className="img" style={{
-                marginBottom:"3rem"
-               }}>
+                  <div
+                  className="product-large-image-wrapper text-center "
+                  >
+                  <LightgalleryProvider>
+                  <LightgalleryItem group="any" src={colorImage?`${BACKEND}/${colorImage}`:`${BACKEND}/${productNew.image}`}>
+                      <button className="enlarge-icon">
+                        <i className="icon-magnifier-add" />
+                      </button>
+                    </LightgalleryItem>
+                  <div className="img single-image" >
                <img
-                  className="pimage d-none"
+                  
                    style={{
-                    height:"16rem",
-                    width:"24.5rem"
+                    height:"25rem",
+                    width:"20rem"
                   }} 
                    
-                   src={colorImage?`${BACKEND}/${colorImage}`:`${BACKEND}/${productNew.image}`}
-                  
+                   src={colorImage?
+                    `${BACKEND}/${colorImage}`
+                    :
+                    (
+                      productNew.colors[0]?.color_image?
+                      `${BACKEND}/${productNew.colors[0]?.color_image}`
+                      :
+                      `${BACKEND}/${productNew.image}`
+                    )
+                   
+                  }
+                   className="img-fluid"
                   
                   
                   
                   />
                </div>
+                  </LightgalleryProvider>
+                  </div>
                 
-                  <ImageGalleryBottomThumb product={productNew} />
+                  <ImageGalleryBottomThumb product={productNew} swiper={swiper} setSwiper={setSwiper} setColorImage={setColorImage} />
 
                  
                 </Col>
@@ -621,6 +655,7 @@ if(!loading){
                     getHeights={getHeights}
                     customHeight={customHeight}
            setCustomHeight={setCustomHeight}
+           slideTo={slideTo}
                   />
                   
                 </Col>

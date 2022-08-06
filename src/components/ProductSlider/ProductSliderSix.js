@@ -10,6 +10,7 @@ const ProductSliderSix = ({ title, products }) => {
   const goNext = () => {
     if (swiper !== null) {
       swiper.slideNext();
+      
     }
   };
 

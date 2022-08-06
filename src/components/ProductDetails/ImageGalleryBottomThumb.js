@@ -3,7 +3,7 @@ import Swiper from "react-id-swiper";
 import { LightgalleryProvider, LightgalleryItem } from "react-lightgallery";
 import { BACKEND } from "../../../config";
 
-const ImageGalleryBottomThumb = ({ product }) => {
+const ImageGalleryBottomThumb = ({ product, swipper, setColorImage,setSwiper  }) => {
   const [gallerySwiper, getGallerySwiper] = useState(null);
   const [thumbnailSwiper, getThumbnailSwiper] = useState(null);
 
@@ -41,30 +41,37 @@ const ImageGalleryBottomThumb = ({ product }) => {
   };
 
   let images = [
+    ...product.colors.map(el => {
+      return {
+      file:el.color_image
+      };
+         }),
     ...product.images,
    {
     file:product.image
    },
-   ...product.colors.map(el => {
-return {
-file:el.color_image
-};
-   })
+  
    
 
   ]
 
 const hideFunc = () =>{
-document.querySelector(".product-large-image-wrapper").classList.remove("d-none");
-document.querySelector(".pimage").classList.add("d-none");
+// document.querySelector(".product-large-image-wrapper").classList.remove("d-none");
+// document.querySelector(".pimage").classList.add("d-none");
 
 }
+const changeSomething = (image) =>{
+  setColorImage(image)
+
+  
+  }
+
   return (
     <Fragment>
-      <div className="product-large-image-wrapper ">
+      {/* <div className="product-large-image-wrapper ">
        
         <LightgalleryProvider>
-          <Swiper {...gallerySwiperParams}>
+           <Swiper {...gallerySwiperParams}>
      
             {images &&
               images.map((single, key) => {
@@ -84,25 +91,39 @@ document.querySelector(".pimage").classList.add("d-none");
               })
               
               }
-          </Swiper>
+          </Swiper> 
         </LightgalleryProvider>
-      </div>
+      </div> */}
       
     {
       images.length >1?(<div className="product-small-image-wrapper">
-      <Swiper {...thumbnailSwiperParams}>
+      <Swiper {...thumbnailSwiperParams} getSwiper={setSwiper} >
         {
           images.map((image, i) => {
             return (
               <div key={i} 
               onClick={
-                  hideFunc
+                () => {
+                  changeSomething(image.file)
+                  hideFunc()
+                }
               }
+             
 
               >
-                <div className="single-image">
+                <div className="single-image"   onClick={
+                () => {
+                  changeSomething(image.file)
+               
+                }
+              }>
             
-                  <img src={`${BACKEND}/${image.file}`} className="img-fluid" alt="" />
+                  <img src={`${BACKEND}/${image.file}`}  className="img-fluid" alt=""   onClick={
+                () => {
+                  changeSomething(image.file)
+                 
+                }
+              } />
                 </div>
               </div>
             );
