@@ -151,7 +151,7 @@ console.log("citem",cartItem)
             <div className="colorswatchdown" ></div>
             {product.colors ? (
               <div className="product-switch-wrap">
-                <ul className="row">
+{/*                 <ul className="row">
                   {product.colors.map((single, key) => {
                     return (
                       <li key={key} className="col-md-1">
@@ -174,7 +174,7 @@ console.log("citem",cartItem)
                       </li>
                     );
                   })}
-                </ul>
+                </ul> */}
               </div>
             ) : (
               ""
@@ -256,7 +256,7 @@ console.log("citem",cartItem)
             </div>
             {product.colors ? (
               <div className="product-switch-wrap">
-                <ul>
+              {/*   <ul>
                   {product.colors.map((single, key) => {
                     return (
                       <li key={key}>
@@ -270,7 +270,7 @@ console.log("citem",cartItem)
                       </li>
                     );
                   })}
-                </ul>
+                </ul> */}
               </div>
             ) : (
               ""

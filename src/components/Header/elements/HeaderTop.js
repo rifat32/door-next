@@ -35,21 +35,21 @@ const HeaderTop = () => {
         <Row className="align-items-center">
           <Col md={6}>
             <div className="d-flex align-items-center justify-content-center justify-content-md-start">
-              <Form.Control as="select" name="languages" className="mr-2">
+{/*               <Form.Control as="select" name="languages" className="mr-2">
                 <option value="en">English</option>
-{/*                 <option value="fn">France</option> */}
-              </Form.Control>
+                <option value="fn">France</option>
+              </Form.Control> */}
 
-              <Form.Control as="select" name="countries" className="mr-3">
+{/*               <Form.Control as="select" name="countries" className="mr-3">
                <option value="EUR">EUR</option>
                 <option value="USD">USD</option>
                 <option value="GBR">GBR</option>
-              </Form.Control>
+              </Form.Control> */}
 
               <ul className="contact-detail text-center text-lg-left">
                 <li>
                   <IoIosPhonePortrait />
-                  <span>123-456-7890</span>
+                  <span><a href="tel:01452 924 200">01452 924 200</a></span>
                 </li>
               </ul>
             </div>
@@ -58,18 +58,18 @@ const HeaderTop = () => {
             <div className="text-center text-md-right">
               <ul className="header-list">
                 <li>
-                  <Link href="/other/compare">
+                {/*   <Link href="/other/compare">
                     <a>
                       <IoIosShuffle />
                       <span>Compare</span>
                     </a>
-                  </Link>
+                  </Link> */}
                 </li>
-                <li>
-                  <Link href="/other/wishlist">
+                <li className={localStorage.getItem("token")?"d-inline-block":"d-none"}>
+                  <Link href="/other/my-account">
                     <a>
-                      <IoIosHeartEmpty />
-                      <span>Wishlist</span>
+                      <AiOutlineUser />
+                      <span>My Account</span>
                     </a>
                   </Link>
                 </li>
@@ -78,6 +78,14 @@ const HeaderTop = () => {
                     <a>
                       <AiOutlineUser />
                       <span>Login </span>
+                    </a>
+                  </Link>
+                </li>
+                <li id="web-register" className={localStorage.getItem("token")?"d-none":"d-inline-block"}>
+                  <Link href="/other/register">
+                    <a>
+                      <AiOutlineUser />
+                      <span>Register</span>
                     </a>
                   </Link>
                 </li>

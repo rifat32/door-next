@@ -23,7 +23,7 @@ const MobileMenuWidgets = () => {
           </li>
           <li>
             <IoIosPhonePortrait />
-            <a href="tel://12452456012">(1245) 2456 012 </a>
+            <a href="tel://01452 924 200">01452 924 200 </a>
           </li>
           <li>
             <IoMdMail />

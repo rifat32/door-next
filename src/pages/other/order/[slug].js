@@ -4,7 +4,7 @@ import { BreadcrumbOne } from "../../../components/Breadcrumb";
 import { Container, Row, Col } from "react-bootstrap";
 import { FaFacebookF, FaGooglePlusG } from "react-icons/fa";
 import { useState } from "react";
-import { BACKEND, BACKENDAPI } from "../../../../config";
+import { CURRENCY,BACKEND, BACKENDAPI } from "../../../../config";
 
 import axios from "axios";
 import withRouter from "next/dist/client/with-router";
@@ -175,7 +175,7 @@ const [order, setOrder] = useState(null);
                         </div>
                       </div>
                       <div className="row mt-2">
-                        <div className="col-7 me-2">
+                        <div className="col-lg-7 col-sm-12 me-lg-2">
                           <div className="row">
                             <div className="col-12 shadow-sm rounded">
                               {order.order_details.map(
@@ -183,13 +183,13 @@ const [order, setOrder] = useState(null);
                                   return (
                                     <div key={index}>
                                       <div className="row border-bottom mt-1">
-                                        <div className="col-2 p-2">
-                                          <img
+                                        <div className="col-lg-2 p-2 img-center">
+                                          <img 
                                             src={`${BACKEND}/${el.product.image}`}
-                                            className="img img-thumbnail "
+                                            className="img img-thumbnail"
                                           />
                                         </div>
-                                        <div className="col-6">
+                                        <div className="col-lg-6 col-sm-12  textproperties">
                                           <p className="m-0 p-0">
                                             Name: {el.product.name}
                                           </p>
@@ -277,11 +277,11 @@ const [order, setOrder] = useState(null);
                                             }
                                           )}
                                         </div>
-                                        <div className="col-4">
+                                        <div className="col-lg-4 col-sm-12 textproperties">
                                           <small className="me-1">
-                                            ${el.price} x {el.qty}
+                                            {CURRENCY}{el.price} x {el.qty}
                                           </small>{" "}
-                                          <small> ${el.price * el.qty} </small>
+                                          <small> {CURRENCY}{el.price * el.qty} </small>
                                         </div>
                                       </div>
                                     </div>
@@ -317,7 +317,7 @@ const [order, setOrder] = useState(null);
                               </div> */}
                             </div>
                             {/* second row first column */}
-                            <div className="col-12 shadow-sm border mt-3 p-3">
+                            <div className="col-lg-12 col-sm-12 shadow-sm border mt-3 p-3 mb-sm-3">
                               <div className="row justify-content-between">
                                 <div className="col-4">
                                   <small>Subtotal</small>
@@ -326,22 +326,22 @@ const [order, setOrder] = useState(null);
                                   <small>{orderInfo.totalQuantity} item</small>
                                 </div>
                                 <div className="col-4 text-center ">
-                                  <small> ${orderInfo.subTotal}</small>
+                                  <small> {CURRENCY}{orderInfo.subTotal}</small>
                                 </div>
                               </div>
                               <div className="row justify-content-between">
                                 <div className="col-4">
                                   <small>Shipping</small>
                                 </div>
-                                <div className="col-4">
-                                  <small> Standard</small>
+                                <div className="col-4 ">
+                                  <small> Free</small>
                                 </div>
                                 <div className="col-4 text-center ">
-                                  <small>${orderInfo.shipping}</small>
+                                  <small>{CURRENCY}{/* {orderInfo.shipping} */}0</small>
                                 </div>
                               </div>
 
-                              <div className="row justify-content-between">
+                          {/*     <div className="row justify-content-between">
                                 <div className="col-4">
                                   <small> Tax</small>
                                 </div>
@@ -351,7 +351,7 @@ const [order, setOrder] = useState(null);
                                 <div className="col-4 text-center ">
                                   <small>${orderInfo.tax}</small>
                                 </div>
-                              </div>
+                              </div> */}
                               {(!orderInfo.coupon) ? null : (
                                 <div className="row justify-content-between">
                                   <div className="col-4">
@@ -368,7 +368,7 @@ const [order, setOrder] = useState(null);
                                     </small>
                                   </div>
                                   <div className="col-4 text-center ">
-                                    <small>${orderInfo.coupon}</small>
+                                    <small>{CURRENCY}{orderInfo.coupon}</small>
                                   </div>
                                 </div>
                               )}
@@ -380,10 +380,10 @@ const [order, setOrder] = useState(null);
 
                                 <div className="col-4 text-center ">
                                   <small>
-                                    $
-                                    {orderInfo.subTotal +
-                                      orderInfo.tax +
-                                      orderInfo.shipping -
+                                    {CURRENCY}
+                                    {orderInfo.subTotal -
+                                     /*  orderInfo.tax + */
+                                     /*  orderInfo.shipping - */
                                       (orderInfo.coupon?orderInfo.coupon:0)}
                                   </small>
                                 </div>
@@ -441,8 +441,8 @@ const [order, setOrder] = useState(null);
                           </div>
                         </div>
 
-                        <div className="col-4" style={{marginLeft:"10px"}}>
-                          <div className="row">
+                        <div className="col-lg-4 col-sm-12 shippingmargin" style={{marginLeft:"10px"}}>
+                          <div className="row ">
 {/*                             <div className="col-12 shadow-sm border p-2">
                               <h6 style={{ fontWeight: "bold" }}>Notes</h6>
                               <p className="m-0 p-0">
@@ -455,7 +455,7 @@ const [order, setOrder] = useState(null);
                                 )}
                               </p>
                             </div> */}
-                            <div className="col-12 shadow-sm border p-2 ">
+                            <div className="col-lg-12 col-sm-12 shadow-sm border p-lg-2 mt-2 ">
                               {/* <h6 style={{ fontWeight: "bold" }}>Customer</h6>
                               <p className="p-0 m-0">
                                 {order.fname + " " + order.lname}

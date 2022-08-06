@@ -39,7 +39,7 @@ const Checkout = ({ cartItems ,  deleteAllFromCart}) => {
 
     email:"",
     additional_info:"",
-    payment_option:"direct bank",
+    payment_option:"Stripe Checkout",
     order_coupon:"",
     create_account:"0",
     password:"",
@@ -130,6 +130,29 @@ function valid_postcode(postcode) {
         if (error.response.status === 422) {
           setErrors(error.response.data.errors);
           console.log("hhhh",errors)
+        }
+			
+			});
+      apiClient()
+  .post(`${BACKENDAPI}/v1.0/orderconfirmition`, { 
+    ...orderInfo,
+    cart:tempCarts
+
+  
+  },
+				)
+			.then((response) => {
+        console.log(response.data);
+       
+
+        // window.alert("order placed")
+			
+			})
+			.catch((error) => {
+    
+        if (error.response.status === 422) {
+          setErrors(error.response.data.errors);
+          console.log("email send error",errors)
         }
 			
 			});
@@ -366,7 +389,7 @@ const handleAddressSubmit = (e) => {
                                 ):(null)
                               }
                                 return (
-                                  <div className={`col-4 mt-2 address-card-margin ${parseInt(orderInfo.address_id) == parseInt(el.id)?"address-card-select":"address-card"}  `} key={index} onClick={()=>setFormData(el)}>
+                                  <div className={`col-lg-4 col-sm-12 col-md-6 mt-2 address-card-margin ${parseInt(orderInfo.address_id) == parseInt(el.id)?"address-card-select":"address-card"}  `} key={index} onClick={()=>setFormData(el)}>
                                   <address className="mt-1">
                                   <div>
                             
@@ -949,8 +972,8 @@ const handleAddressSubmit = (e) => {
                           type="radio"
                           name="payment_option"
                           id="exampleRadios3"
-                          checked={orderInfo.payment_option == "direct bank"}
-                          value="direct bank"
+                          checked={orderInfo.payment_option == "Stripe Checkout"}
+                          value="Stripe Checkout"
                           onChange={handleChange}
                           
                         />
@@ -958,14 +981,14 @@ const handleAddressSubmit = (e) => {
                           className="form-check-label"
                           htmlFor="exampleRadios3"
                         >
-                          Direct Bank Transfer
+                          Pay With Stripe
                         </label>
                         <p data-method="option3" className="payment-text">
                           There are many variations of passages of Lorem Ipsum
                           available, but the majority have suffered alteration.{" "}
                         </p>
                       </div>
-                      <div className="custom-radio space-mb--20">
+                     {/*  <div className="custom-radio space-mb--20">
                         <input
                           className="form-check-input"
                           type="radio"
@@ -1006,7 +1029,7 @@ const handleAddressSubmit = (e) => {
                           Pay via PayPal; you can pay with your credit card if
                           you don't have a PayPal account.
                         </p>
-                      </div>
+                      </div> */}
                     </div>
                   </div>
                   <button className="btn btn-fill-out btn-block" onClick={handleSubmit}>
