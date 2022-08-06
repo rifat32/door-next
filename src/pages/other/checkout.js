@@ -633,7 +633,7 @@ const updateCart = (couponParam) => {
                           type="radio"
                           name="payment_option"
                           id="exampleRadios3"
-                          checked={orderInfo.payment_option == "stripe Checkout"}
+                          checked={orderInfo.payment_option == "Stripe Checkout"}
                           value="Stripe Checkout"
                           onChange={handleChange}
                           

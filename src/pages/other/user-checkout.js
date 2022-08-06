@@ -39,7 +39,7 @@ const Checkout = ({ cartItems ,  deleteAllFromCart}) => {
 
     email:"",
     additional_info:"",
-    payment_option:"direct bank",
+    payment_option:"Stripe Checkout",
     order_coupon:"",
     create_account:"0",
     password:"",
@@ -972,8 +972,8 @@ const handleAddressSubmit = (e) => {
                           type="radio"
                           name="payment_option"
                           id="exampleRadios3"
-                          checked={orderInfo.payment_option == "direct bank"}
-                          value="direct bank"
+                          checked={orderInfo.payment_option == "Stripe Checkout"}
+                          value="Stripe Checkout"
                           onChange={handleChange}
                           
                         />
