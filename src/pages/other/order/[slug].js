@@ -2,7 +2,7 @@ import Link from "next/link";
 import { LayoutOne } from "../../../layouts";
 import { BreadcrumbOne } from "../../../components/Breadcrumb";
 import { Container, Row, Col } from "react-bootstrap";
-import { FaFacebookF, FaGooglePlusG } from "react-icons/fa";
+import { FaBackspace, FaBackward, FaFacebookF, FaGooglePlusG } from "react-icons/fa";
 import { useState } from "react";
 import { CURRENCY,BACKEND, BACKENDAPI } from "../../../../config";
 
@@ -13,6 +13,8 @@ import { apiClient } from "../../../utils/apiClient";
 import { useRouter } from "next/dist/client/router";
 
 import AuthorizeReverse, { authorizeReverse } from "../../../utils/authorizeReverse";
+import Loader from "react-loader-spinner";
+import { IoMdArrowRoundBack } from "react-icons/io";
 
 
 const Order = (props) => {
@@ -28,12 +30,15 @@ const [order, setOrder] = useState(null);
     tax: 10,
     coupon: 0,
   });
-
+const [loading,setLoading] = useState(false)
   useEffect(() => {
+    
     if(slug){
+      setLoading(true)
       apiClient()
       .get(`${BACKENDAPI}/v1.0/orders/${slug}`)
       .then((response) => {
+        setLoading(false)
         console.log(response);
         setOrder(response.data.data);
         let subTotal = 0;
@@ -57,6 +62,7 @@ const [order, setOrder] = useState(null);
         });
       })
       .catch((error) => {
+        setLoading(false)
         console.log(error.response);
       });
     }
@@ -114,7 +120,7 @@ const [order, setOrder] = useState(null);
 		}
   
 	};
- 
+
   return (
 
  <LayoutOne>
@@ -129,8 +135,18 @@ const [order, setOrder] = useState(null);
           <li className="breadcrumb-item active">Login</li>
         </ol>
       </BreadcrumbOne>
-
-      <main id="main" className="main container">
+{
+  loading?( <div className="col-12">
+  <div className="text-center">
+    <Loader
+      type="Bars"
+      color="#00BFFF"
+      height={100}
+      width={100}
+    />
+  </div>
+</div>):(
+  <main id="main" className="main container">
         {/* End Page Title */}
         <section className="section">
           {order && (
@@ -141,6 +157,13 @@ const [order, setOrder] = useState(null);
                     {/* <ListOrderPageComponent /> */}
                     <div className="">
                       <div className="d-flex flex-row border-bottom">
+                      <div className="m-2">
+                       
+                          <IoMdArrowRoundBack className="text-danger" style={{
+                            fontSize:"2rem",
+                            cursor:"pointer"
+                          }}  onClick={() => {router.back()}}/>
+                        </div>
                         <div className=" m-2 ">
                           <span className="badge bg-light text-dark">
                             #{order.id}
@@ -185,16 +208,16 @@ const [order, setOrder] = useState(null);
                                       <div className="row border-bottom mt-1">
                                         <div className="col-lg-2 p-2 img-center">
                                           <img 
-                                            src={`${BACKEND}/${el.product.image}`}
+                                            src={`${BACKEND}/${el.product?.image}`}
                                             className="img img-thumbnail"
                                           />
                                         </div>
                                         <div className="col-lg-6 col-sm-12  textproperties">
                                           <p className="m-0 p-0">
-                                            Name: {el.product.name}
+                                            Name: {el.product?.name}
                                           </p>
                                           <p className="m-0 p-0">
-                                            SKU: {el.product.sku}
+                                            SKU: {el.product?.sku}
                                           </p>
                                           {el.color && (
                                             <p className="m-0 p-0">
@@ -277,6 +300,7 @@ const [order, setOrder] = useState(null);
                                             }
                                           )}
                                         </div>
+
                                         <div className="col-lg-4 col-sm-12 textproperties">
                                           <small className="me-1">
                                             {CURRENCY}{el.price} x {el.qty}
@@ -438,6 +462,14 @@ const [order, setOrder] = useState(null);
 
 
         </div> */}
+        <div className="col-12 shadow-sm rounded">
+          <button className="btn btn-primary">
+                    Make Payment
+          </button>
+          <button className="btn btn-danger">
+                    Cancel
+          </button>
+        </div>
                           </div>
                         </div>
 
@@ -519,6 +551,7 @@ const [order, setOrder] = useState(null);
                           </div>
                         </div>
                       </div>
+                      
                     </div>
                   </div>
                 </div>
@@ -527,6 +560,14 @@ const [order, setOrder] = useState(null);
           )}
         </section>
       </main>
+  )
+}
+     
+
+
+
+
+      
       
     </LayoutOne>
 

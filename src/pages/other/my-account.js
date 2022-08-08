@@ -289,7 +289,7 @@ const showAddressFormFunc = () => {
                       <Card.Body>
                         <div className="welcome">
                           <p>
-                            Hello, <strong>{user && user.name}</strong> (If Not{" "}
+                            Hello, <strong>{user && user.first_name}</strong> <strong>{user && user.last_name}</strong> (If Not{" "}
                             <strong>{user && user.name} !</strong>{" "}
                           
                               <a className="logout" onClick={logout}>Logout</a>
@@ -764,6 +764,7 @@ const showAddressFormFunc = () => {
     </Authorize>
     
   );
+
 };
 
 export default MyAccount;

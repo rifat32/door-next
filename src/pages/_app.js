@@ -44,7 +44,7 @@ class MyApp extends App {
             rel="stylesheet"
           />
         </Head>
-        <ToastProvider placement="bottom-left">
+        <ToastProvider placement="top-right">
           <Provider store={reduxStore}>
             <PersistGate loading={<Preloader />} persistor={this.persistor}>
               <Component {...pageProps} />

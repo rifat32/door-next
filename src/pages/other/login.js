@@ -11,12 +11,12 @@ import withRouter from "next/dist/client/with-router";
 import { useEffect } from "react";
 import { apiClient } from "../../utils/apiClient";
 import { useRouter } from "next/dist/client/router";
-
+import { useToasts } from "react-toast-notifications";
 import AuthorizeReverse, { authorizeReverse } from "../../utils/authorizeReverse";
 
 
 const Login = (props) => {
-  
+  const { addToast } = useToasts();
   const router = useRouter()
 
 
@@ -54,13 +54,35 @@ const Login = (props) => {
 				if (err.response) {
 					let errorStatus = err.response.status;
 					if (errorStatus === 422) {
-						setErrors(err.response.data.errors);
+            addToast(err.response.data.message, {
+              appearance: "warning",
+              autoDismiss: true,
+              autoDismissTimeout:2000
+            });
+						// setErrors([err.response.data.message]);
 					}
-					if (errorStatus === 401) {
-						setErrors(["Invalid Credentials"]);
-					}
+					else if (errorStatus === 401) {
+            addToast("Invalid Credentials", {
+              appearance: "warning",
+              autoDismiss: true
+            });
+						// setErrors(["Invalid Credentials"]);
+					}else{
+            addToast("Some thing went wrong", {
+              appearance: "warning",
+              autoDismiss: true,
+              
+            });
+          
+          }
 				}
-
+        else{
+          addToast("Some thing went wrong", {
+            appearance: "warning",
+            autoDismiss: true
+          });
+       
+        }
 				setLoading(false);
 			});
 	};
@@ -129,6 +151,20 @@ const Login = (props) => {
                         </div>
                       </div> */}
                       <a href="#">Forgot password?</a>
+                     
+                    </div>
+                    <div>
+                    {/* {errors.length ? (
+					<div className="col-12">
+						<div>
+							<div
+								className="alert alert-danger py-2 text-center"
+								role="alert">
+								{errors[0]}
+							</div>
+						</div>
+					</div>
+				) : null} */}
                     </div>
                     <div className="form-group">
                       <button

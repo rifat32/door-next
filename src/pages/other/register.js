@@ -12,7 +12,8 @@ import { useRouter } from "next/dist/client/router";
 const Register = () => {
   const router = useRouter()
 	const [state, setState] = useState({
-		name: "",
+		first_name: "",
+    last_name: "",
 		email: "",
 		password: "",
 		password_confirmation: "",
@@ -95,27 +96,51 @@ const Register = () => {
                 </div>
                 <div>
                   <form method="post" onSubmit={handleSubmit}>
-                    <div className="form-group">
+                  <div className="form-group">
                       <input
                         type="text"
                         required
                       
-                        name="name"
-                        placeholder="Your Name"
+                        name="first_name"
+                        placeholder="First Name"
                       
 						className={
 							errors
-								? errors.name
+								? errors.first_name
 									? `form-control is-invalid`
 									: `form-control is-valid`
 								: "form-control"
 						}
 						id="yourPassword"
 						onChange={handleChange}
-						value={state.name}
+						value={state.first_name}
+                      />
+                      	{errors?.first_name && (
+						<div className="invalid-feedback">{errors.first_name[0]}</div>
+					)}
+					{errors && <div className="valid-feedback">Looks good!</div>}
+                    </div>
+                    <div className="form-group">
+                      <input
+                        type="text"
+                        required
+                      
+                        name="last_name"
+                        placeholder="Last Name"
+                      
+						className={
+							errors
+								? errors.last_name
+									? `form-control is-invalid`
+									: `form-control is-valid`
+								: "form-control"
+						}
+						id="last_name"
+						onChange={handleChange}
+						value={state.last_name}
                       />
                       	{errors?.name && (
-						<div className="invalid-feedback">{errors.name[0]}</div>
+						<div className="invalid-feedback">{errors.last_name[0]}</div>
 					)}
 					{errors && <div className="valid-feedback">Looks good!</div>}
                     </div>
