@@ -121,6 +121,26 @@ const [loading,setLoading] = useState(false)
   
 	};
 
+  const makePayment = () => {
+    setTimeout(()=> {
+      window.location.href = `${BACKEND}/payment?order_id=${order.id}`;
+    },1000)
+  }
+  const cancelOrder = () => {
+    if (window.confirm("Are you sure  want to cancel")) {
+		  apiClient()
+    .post(`${BACKENDAPI}/v1.0/orders/status/cancel/${order.id}`, {
+      status: "cancel",
+    })
+    .then((response) => {
+      console.log(response);
+      window.location.reload();
+    })
+    .catch((error) => {
+      console.log(error.response);
+    });
+		}
+  }
   return (
 
  <LayoutOne>
@@ -169,13 +189,16 @@ const [loading,setLoading] = useState(false)
                             #{order.id}
                           </span>
                         </div>
-                       {/*  <div className="m-2">
+                        <div className="m-2">
                           {" "}
                           
                           <span className="badge bg-light text-dark ps-4 ">
-                            Unpaid
+                            {
+                              order.payment?"paid":"unpaid"
+                            }
+                            
                           </span>
-                        </div> */}
+                        </div>
 
                         <div className="m-2">
                         
@@ -340,6 +363,25 @@ const [loading,setLoading] = useState(false)
                                 </div>
                               </div> */}
                             </div>
+                            <div className="col-12 shadow-sm rounded ">{
+                              (!order.payment  && order.status !== "cancel")?( <button className="btn btn-primary" onClick={makePayment}>
+                              Make Payment
+                    </button>):(null)
+                            }
+                             
+
+                              {
+                              (order.status !== "cancel" && ((order.status == "pending") || (order.status == "Pending Payment")))?( <button className="btn btn-danger" onClick={cancelOrder}>
+                              Cancel
+                    </button>):(null)
+                            }
+
+
+
+                             
+                            </div>
+                          
+           
                             {/* second row first column */}
                             <div className="col-lg-12 col-sm-12 shadow-sm border mt-3 p-3 mb-sm-3">
                               <div className="row justify-content-between">
@@ -462,14 +504,7 @@ const [loading,setLoading] = useState(false)
 
 
         </div> */}
-        <div className="col-12 shadow-sm rounded">
-          <button className="btn btn-primary">
-                    Make Payment
-          </button>
-          <button className="btn btn-danger">
-                    Cancel
-          </button>
-        </div>
+       
                           </div>
                         </div>
 

@@ -60,7 +60,7 @@ const [errors,setErrors] = useState(null)
 
 const handleSubmit= (e) => {
   e.preventDefault();
- 
+ setErrors(null)
   function ValidateEmail(mail) 
 {
   // email validation
