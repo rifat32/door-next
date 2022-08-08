@@ -72,7 +72,7 @@ const ProductSliderTwo = ({ title, products, items }) => {
       <Row>
         <Col md={12}>
           <div className="product-slider-wrap">
-            <Swiper {...params}>
+            <Swiper  {...params}>
               <ProductGridWrapperTwo
                 products={products}
                 sliderClass="swiper-slide"
