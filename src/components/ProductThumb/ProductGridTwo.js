@@ -70,7 +70,7 @@ const ProductGridTwo = ({
                   <del>{CURRENCY}{productPrice}</del>
                 </Fragment>
               ) : (
-                <span className="price">Starting From {CURRENCY}{productPrice} </span>
+                <span className="price" style={{fontSize:"14px"}}>Starting From {CURRENCY}{productPrice} </span>
               )}
             </div>
             {product.colors ? (
