@@ -11,6 +11,7 @@ import { BACKEND, BACKENDAPI,CURRENCY } from "../../../config";
 import { deleteAllFromCart } from "../../redux/actions/cartActions";
 import { useToasts } from "react-toast-notifications";
 import NonUserCheckout from "../../utils/NonUserCheckout";
+import Loader from "react-loader-spinner";
 const Checkout = ({ cartItems ,  deleteAllFromCart}) => {
 
   const [user,setUser] = useState(null);
@@ -123,8 +124,10 @@ function valid_postcode(postcode) {
 				)
 			.then((response) => {
         deleteAllFromCart();
+        
         setTimeout(()=> {
           window.location.href = `${BACKEND}/payment?order_id=${response.data.order.id}`;
+        
         },1000)
        
 
@@ -144,7 +147,6 @@ function valid_postcode(postcode) {
     ...orderInfo,
     cart:tempCarts
 
-  
   },
 				)
 			.then((response) => {
@@ -378,7 +380,7 @@ const handleAddressSubmit = (e) => {
       </BreadcrumbOne>
       <div className="checkout-content space-pt--r100 space-pb--r100">
         <Container>
-          {cartItems && cartItems.length >= 1 ? (
+          {(cartItems && cartItems.length >= 1) || checkoutLoading ? (
             <Row>
               <Col md={6}>
                 <div className="heading-s1 space-mb--20">
@@ -1044,8 +1046,18 @@ const handleAddressSubmit = (e) => {
                       </div> */}
                     </div>
                   </div>
-                  <button className="btn btn-fill-out btn-block" onClick={handleSubmit}>
-                    Place Order
+                  <button className="btn btn-fill-out btn-block" disabled={checkoutLoading} onClick={handleSubmit}>
+                 { checkoutLoading?( <span>
+ 
+    <Loader
+      type="Puff"
+      color="#00BFFF"
+      height={30}
+      width={30}
+      style={{margin:"0",padding:"0",display:"inline"}}
+    />
+ 
+</span>):null}  Place Order
                   </button>
                 </div>
               </Col>

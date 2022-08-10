@@ -3,15 +3,19 @@ import Link from "next/link";
 import { connect } from "react-redux";
 import { Container, Row, Col } from "react-bootstrap";
 import Paginator from "react-hooks-paginator";
-import { LayoutOne } from "../../layouts";
-import { BreadcrumbOne } from "../../components/Breadcrumb";
-import { Sidebar, ShopHeader, ShopProducts } from "../../components/Shop";
-import { getSortedProducts } from "../../lib/product";
-import { apiClient } from "../../utils/apiClient";
-import { BACKENDAPI } from "../../../config";
+import { LayoutOne } from "../../../layouts";
+import { BreadcrumbOne } from "../../../components/Breadcrumb";
+import { Sidebar, ShopHeader, ShopProducts } from "../../../components/Shop";
+import { getSortedProducts } from "../../../lib/product";
+import { apiClient } from "../../../utils/apiClient";
+import { BACKENDAPI } from "../../../../config";
 import Loader from "react-loader-spinner";
+import { useRouter } from "next/router";
 
 const GridLeftSidebar = ({ products }) => {
+  const router = useRouter()
+  const { slug } = router.query;
+
   const [layout, setLayout] = useState("grid");
   const [sortType, setSortType] = useState("");
   const [sortValue, setSortValue] = useState("");
@@ -88,6 +92,8 @@ const GridLeftSidebar = ({ products }) => {
       .concat(params))
     
     }
+
+    
       // end color sort
 
       
@@ -115,7 +121,7 @@ const GridLeftSidebar = ({ products }) => {
 
   const [nextPageLink, setNextPageLink] = useState("");
 	const [prevPageLink, setPrevPageLink] = useState("");
-  const [currentLink, setCurrentLink] = useState(`${BACKENDAPI}/v1.0/client/products/pagination/${perPage}?page=1&&category=&&aa=bb`);
+  const [currentLink, setCurrentLink] = useState(`${BACKENDAPI}/v1.0/client/products/pagination/${perPage}?page=1&&category=&&term=${slug}`);
   // useEffect(() => {
 	// 	loadData(perPage);
 	// }, []);
@@ -129,7 +135,10 @@ const GridLeftSidebar = ({ products }) => {
     sortedProducts = filterSortedProducts;
     setSortedProducts(sortedProducts);
     setProductLoading(true)
-    loadData(currentLink)
+    if(slug){
+      loadData(`${BACKENDAPI}/v1.0/client/products/pagination/${perPage}?page=1&&category=&&term=${slug}`)
+    }
+    
 
     // apiClient()
     //   .get(currentLink)
@@ -148,7 +157,8 @@ const GridLeftSidebar = ({ products }) => {
   }, 
   // [offset, products, sortType, sortValue, filterSortType, filterSortValue]
   [
-    currentLink
+    currentLink,
+    slug
   ]
   );
 

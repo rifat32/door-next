@@ -1,7 +1,15 @@
-import { Fragment } from "react";
+import { useRouter } from "next/router";
+import { Fragment, useState } from "react";
 import { IoIosSearch, IoIosClose } from "react-icons/io";
 
 const SearchOverlay = ({ activeStatus, getActiveStatus }) => {
+  const [term, setTerm] = useState("")
+  const router = useRouter()
+  const searchProduct = (e) => {
+e.preventDefault();
+getActiveStatus(false);
+router.push(`/shop/search/${term}`)
+  }
   return (
     <Fragment>
       <div className={`search-wrap ${activeStatus ? "open" : ""}`}>
@@ -13,12 +21,15 @@ const SearchOverlay = ({ activeStatus, getActiveStatus }) => {
         >
           <IoIosClose />
         </button>
-        <form>
+        <form onSubmit={searchProduct}>
           <input
             type="text"
             placeholder="Search"
             className="form-control"
             id="search-input"
+            onChange={(e) => {
+setTerm(e.target.value)
+            }}
           />
           <button type="submit" className="search-icon">
             <IoIosSearch />
