@@ -57,11 +57,15 @@ const handleChange = (e) => {
   })
 }
 const { addToast } = useToasts();
-const [errors,setErrors] = useState(null)
+const [errors,setErrors] = useState(null);
+
+const [checkoutLoading,setCheckOutLoading] = useState(false)
+
+
 
 const handleSubmit= (e) => {
   e.preventDefault();
- 
+  setCheckOutLoading(true)
   function ValidateEmail(mail) 
 {
   // email validation
@@ -107,6 +111,8 @@ function valid_postcode(postcode) {
 //   return
 //  }
 
+
+
   apiClient()
   .post(`${BACKENDAPI}/v1.0/client/orders/loggedin`, { 
     ...orderInfo,
@@ -116,7 +122,7 @@ function valid_postcode(postcode) {
   },
 				)
 			.then((response) => {
-        deleteAllFromCart(addToast);
+        deleteAllFromCart();
         setTimeout(()=> {
           window.location.href = `${BACKEND}/payment?order_id=${response.data.order.id}`;
         },1000)
@@ -498,14 +504,20 @@ const handleAddressSubmit = (e) => {
                             Country Name
                                    <span className="required">*</span>
                                 </label>
-                                <input
+                                <select className="form-control" name="country"     value={addressFormData.country}
+                      onChange={handleAddressChange}
+                      > 
+                        <option value="">Select an option...</option>
+                        <option value="United Kingdom"  >United Kingdom</option>
+                      </select>
+                                {/* <input
                                   required
                                   className="form-control"
                                   name="country"
                                   type="text"
                                   value={addressFormData.country}
                                   onChange={handleAddressChange}
-                                />
+                                /> */}
                               </Col>
                               <Col className="form-group" md={12}>
                                 <label>

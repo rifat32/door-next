@@ -31,7 +31,7 @@ const Checkout = ({ cartItems ,  deleteAllFromCart}) => {
     fname:"",
     lname:"",
     cname:"",
-    country:"",
+    country:"United Kingdom",
     state:"",
     billing_address:"",
     billing_address2:"",
@@ -301,7 +301,7 @@ const updateCart = (couponParam) => {
                       onChange={handleChange}
                       > 
                         <option value="">Select an option...</option>
-                        <option value="United Kingdom">United Kingdom</option>
+                        <option value="United Kingdom"  >United Kingdom</option>
                       </select>
                     </div>
                   </div> 
