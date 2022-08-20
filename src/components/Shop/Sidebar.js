@@ -80,6 +80,18 @@ useEffect(
         <h5 className="widget__title">Categories</h5>
         {categories.length > 0 ? (
           <ul className="widget__categories">
+            <li>
+              <button 
+                onClick={(e) => {
+                  getSortParams("category", "");
+                  setActiveSort(e);
+                  window.scrollTo({top:screen.height-50,behavior: 'smooth'});
+                }}
+              >
+                <IoIosArrowForward />
+                <span className="categories-name">Clear Filter</span>
+              </button>
+            </li>
             {categories &&
               categories.map((category, key) => {
                 return (
@@ -98,18 +110,7 @@ useEffect(
                   </li>
                 );
               })}
-              <li>
-              <button
-                onClick={(e) => {
-                  getSortParams("category", "");
-                  setActiveSort(e);
-                  window.scrollTo({top:screen.height-50,behavior: 'smooth'});
-                }}
-              >
-                <IoIosArrowForward />
-                <span className="categories-name">Clear Filter</span>
-              </button>
-            </li>
+              
           </ul>
         ) : (
           "No category found"
@@ -121,6 +122,18 @@ useEffect(
         <h5 className="widget__title">Styles</h5>
         {styles.length > 0 ? (
           <ul className="widget__categories widget__styles">
+                            <li>
+              <button 
+                onClick={(e) => {
+                  getSortParams("style", "");
+                  setActiveSort(e);
+                  window.scrollTo({top:screen.height-50,behavior: 'smooth'});
+                }}
+              >
+                <IoIosArrowForward />
+                <span className="categories-name">Clear Filter</span>
+              </button>
+            </li>
             {styles &&
               styles.map((el, key) => {
                 return (
@@ -139,7 +152,7 @@ useEffect(
                   </li>
                 );
               })}
-                <li>
+               {/*  <li>
               <button
                 onClick={(e) => {
                   getSortParams("style", "");
@@ -150,7 +163,7 @@ useEffect(
                 <IoIosArrowForward />
                 <span className="categories-name">Clear Filter</span>
               </button>
-            </li>
+            </li> */}
           </ul>
         ) : (
           "No style found"
