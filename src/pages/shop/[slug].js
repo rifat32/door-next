@@ -140,7 +140,12 @@ const extraHoleDirections = [
     length_is_required:0,
     selected_length:""
     ,
-    slug:""
+    slug:"",
+    panels:"",
+    selected_panel_index:"",
+    selected_panel_thickness:"",
+    selected_panel_length:"",
+    selected_panel_depth:""
 	});
   useEffect(() => {
    loadProduct(slug)
@@ -160,7 +165,8 @@ const extraHoleDirections = [
           length_lower_limit,
           length_upper_limit,
           length_is_required,
-          slug
+          slug,
+          panels
         
         } = response.data.product
 
@@ -184,7 +190,7 @@ const extraHoleDirections = [
 					   
 					   })
 				   
-				} else {
+				} else if(type === "variable") {
 					tempVariation = product_variations.map((el) => {
 
 			
@@ -200,7 +206,22 @@ const extraHoleDirections = [
 							return el
 					   
 					   })
-				}
+				} else {
+          price = variations[0].price
+          qty = variations[0].qty
+          tempVariation = product_variations.map((el) => {
+
+           el.variation_value_template = el.variations.map((el2) => {
+             qty += el2.qty
+            return el2;
+              })
+
+              
+             return el
+            
+            })
+        }
+
 			
 
 				console.log(tempVariation)
@@ -236,8 +257,8 @@ const tempOptions = JSON.stringify(options)
         length_lower_limit,
         length_upper_limit,
         length_is_required,
-        slug
-        
+        slug,
+        panels        
 				})
 				// setCategories(response.data.data);
         setToggle(!toggle)
@@ -420,7 +441,45 @@ setProductData({
 
     
 	};
+const handlePanelSelect = (e) => {
+if(e.target.name == "selected_panel_index") {
+  setProductData({ ...productNew, [e.target.name]: e.target.value,selected_panel_thickness:JSON.parse(productNew.panels)[e.target.value].thickness }) 
+}
+else {
 
+  if(e.target.name == "selected_panel_length"){
+    if(productNew.selected_panel_depth){
+  
+          setProductData({ ...productNew,
+             [e.target.name]: e.target.value,
+             price:   JSON.parse(productNew.panels)[productNew.selected_panel_index].price * e.target.value * productNew.selected_panel_depth
+            })
+    } else {
+      setProductData({ ...productNew,
+        [e.target.name]: e.target.value,
+       })
+    }
+   
+
+  }
+  if(e.target.name == "selected_panel_depth"){
+    if(productNew.selected_panel_length){   
+      console.log(JSON.parse(productNew.panels)[productNew.selected_panel_index] , e.target.value , productNew.selected_panel_length)
+      setProductData({ ...productNew,
+         [e.target.name]: e.target.value,
+         price:   JSON.parse(productNew.panels)[productNew.selected_panel_index].price * e.target.value * productNew.selected_panel_length
+        })
+} else {
+  setProductData({ ...productNew,
+    [e.target.name]: e.target.value,
+   })
+}
+
+  }
+}
+
+  // setProductData({ ...productNew, [e.target.name]: e.target.value })
+}
   const handleSelectHeight = (e) => {
 		 setProductData({ ...productNew, [e.target.name]: e.target.value });
      if(e.target.name == "selectedWidth"){
@@ -648,6 +707,8 @@ if(!loading){
                     handleSelectHeight={handleSelectHeight}
                     handleChecked={handleChecked}
                     handleSelectOption={handleSelectOption}
+                    handlePanelSelect={handlePanelSelect}
+                    
                     heightErr={heightErr}
                     widthErr={widthErr}
                     orientations={orientations}
@@ -690,6 +751,7 @@ if(!loading){
            handleSelectHeight={handleSelectHeight}
            handleChecked={handleChecked}
            handleSelectOption={handleSelectOption}
+           handlePanelSelect={handlePanelSelect}
            heightErr={heightErr}
            widthErr={widthErr}
            orientations={orientations}

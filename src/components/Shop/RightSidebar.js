@@ -12,6 +12,7 @@ const RightSidebar = ({
   handleSelectHeight,
   handleChecked,
   handleSelectOption,
+  handlePanelSelect,
   heightErr,
   widthErr,
   orientations,
@@ -20,11 +21,13 @@ const RightSidebar = ({
   setCustomHeight,
   customHeight
 }) => {
+
+  
   return (
     <Col xl={3} lg={4} className={`space-mt-mobile-only--60 ${classList}`} >
     {/* sidebar */}
    {
-    productNew.type=="single"?(null):(   <Row>
+    productNew.type=="variable"?(<Row>
       <Col sm={12} className="form-group"  >
      <label htmlFor="selectedHeight" className="form-label">
        Height
@@ -482,7 +485,98 @@ value={el.id}
 
 
 
-          </Row>)
+          </Row>):(null)
+   }
+
+   {
+ productNew.type=="panel"?(<Row>
+
+<Col sm={12} className="form-group">
+    <label>Thickness</label>
+     <select
+className={
+errors
+? errors.selected_panel_index
+ ? `form-control is-invalid`
+ : `form-control is-valid`
+: "form-control"
+}
+id="selected_panel_index"
+name={`selected_panel_index`}
+onChange={handlePanelSelect}
+value={productNew.selected_panel_index}
+>
+<option
+
+value=""
+>
+Please Select 
+</option>
+{JSON.parse(productNew.panels).map((el, index) => {
+
+return ( <option
+key={index}
+value={index}
+>
+ {el.thickness} 
+</option>)
+
+})}
+</select>
+  </Col>
+  {
+productNew.selected_panel_index?(<>
+
+<Col sm={12} className="form-group">
+    <label>Length</label>
+     <input
+className={
+errors
+? errors.selected_panel_length
+ ? `form-control is-invalid`
+ : `form-control is-valid`
+: "form-control"
+}
+id="selected_panel_length"
+name={`selected_panel_length`}
+onChange={handlePanelSelect}
+value={productNew.selected_panel_length}
+min={JSON.parse(productNew.panels)[productNew.selected_panel_index].len_minimum}
+max={JSON.parse(productNew.panels)[productNew.selected_panel_index].len_maximum}
+placeholder={`min:${JSON.parse(productNew.panels)[productNew.selected_panel_index].len_minimum} max:${JSON.parse(productNew.panels)[productNew.selected_panel_index].len_maximum}`}
+/>
+
+
+  </Col>
+
+  <Col sm={12} className="form-group">
+    <label>Depth</label>
+     <input
+className={
+errors
+? errors.selected_panel_depth
+ ? `form-control is-invalid`
+ : `form-control is-valid`
+: "form-control"
+}
+id="selected_panel_depth"
+name={`selected_panel_depth`}
+onChange={handlePanelSelect}
+value={productNew.selected_panel_depth}
+min={JSON.parse(productNew.panels)[productNew.selected_panel_index].depth_minimum}
+max={JSON.parse(productNew.panels)[productNew.selected_panel_index].depth_maximum}
+placeholder={`min:${JSON.parse(productNew.panels)[productNew.selected_panel_index].depth_minimum} max:${JSON.parse(productNew.panels)[productNew.selected_panel_index].depth_maximum}`}
+/>
+
+
+  </Col>
+</>):(null)
+  }
+  
+
+
+  
+ </Row>):(null)
    }
 
    <Row>

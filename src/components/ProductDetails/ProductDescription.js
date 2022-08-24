@@ -42,6 +42,7 @@ const ProductDescription = ({
   handleSelectHeight,
   handleChecked,
   handleSelectOption,
+  handlePanelSelect,
   heightErr,
   widthErr,
   orientations,
@@ -363,6 +364,8 @@ return result
            handleSelectHeight={handleSelectHeight}
            handleChecked={handleChecked}
            handleSelectOption={handleSelectOption}
+           handlePanelSelect={handlePanelSelect}
+           
            heightErr={heightErr}
            widthErr={widthErr}
            orientations={orientations}
